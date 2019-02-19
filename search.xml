@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[123]]></title>
-    <url>%2F2019%2F02%2F17%2Fhello-sh%2F</url>
-    <content type="text"><![CDATA[sdfasdf]]></content>
+    <title><![CDATA[hexo_image]]></title>
+    <url>%2F2019%2F02%2F19%2Fhexo-image%2F</url>
+    <content type="text"><![CDATA[hexo md文档添加图片修改站点配置文件post_asset_folder 字段置为true 修改后，当进入到/source/_posts 下使用 hexo n xxx 建立新的文章时，会自动生成一个相同命名的文件夹，用于存放文章中引用的图片等资源， 在md文档中引用时，使用相对路径 插件安装安装插件 使用命令 npm install https://github.com/CodeFalling/hexo-asset-image --save 保存预览hexo g hexo s]]></content>
       <categories>
-        <category>test</category>
+        <category>hexo</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[Next主题baidu验证]]></title>
+    <url>%2F2019%2F02%2F17%2Fhexo_baidu_verify%2F</url>
+    <content type="text"><![CDATA[baidu验证验证未收录百度搜索 site:yourgithub.github.io , 验证未收录 百度搜索平台进入百度搜索平台，点击链接提交，填写github地址 记录content值验证站点，选择html标签验证，记录content值 添加代码在themes/next下的配置文件最后添加代码 baidu_site_verification: 5xxxxxxQ 重新生成提交，无需修改head文件 刷新github页面，查看网站源代码，当可以找到正确的验证标签时，进行验证。 验证通过]]></content>
+      <categories>
+        <category>hexo</category>
       </categories>
   </entry>
   <entry>
