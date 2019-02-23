@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[next主题Google验证]]></title>
+    <url>%2F2019%2F02%2F23%2Fhexo-google-verify%2F</url>
+    <content type="text"><![CDATA[Google验证###]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>google</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[hexo_image]]></title>
     <url>%2F2019%2F02%2F19%2Fhexo-image%2F</url>
     <content type="text"><![CDATA[hexo md文档添加图片修改站点配置文件post_asset_folder 字段置为true 修改后，当进入到/source/_posts 下使用 hexo n xxx 建立新的文章时，会自动生成一个相同命名的文件夹，用于存放文章中引用的图片等资源， 在md文档中引用时，使用相对路径 插件安装安装插件 使用命令 npm install https://github.com/CodeFalling/hexo-asset-image --save 保存预览hexo g hexo s]]></content>
@@ -15,6 +26,9 @@
       <categories>
         <category>hexo</category>
       </categories>
+      <tags>
+        <tag>baidu</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[Hello World]]></title>
