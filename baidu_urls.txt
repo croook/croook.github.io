@@ -1,0 +1,3 @@
+http://yoursite.com/2019/02/19/hexo-image/
+http://yoursite.com/2019/02/17/hexo_baidu_verify/
+http://yoursite.com/2019/02/17/hello-world/
