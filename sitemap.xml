@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://croook.github.io/tags/index.html</loc>
+    
+    <lastmod>2019-02-23T13:18:56.146Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://croook.github.io/2019/02/23/hexo-google-verify/</loc>
     
     <lastmod>2019-02-23T13:13:57.284Z</lastmod>
@@ -33,13 +40,6 @@
     <loc>https://croook.github.io/2019/02/17/hello-world/</loc>
     
     <lastmod>2019-02-19T07:03:21.019Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://croook.github.io/tags/index.html</loc>
-    
-    <lastmod>2019-02-18T13:18:38.234Z</lastmod>
     
   </url>
   
