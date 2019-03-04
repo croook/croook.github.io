@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[AI-02深度学习概述]]></title>
+    <url>%2F2019%2F03%2F04%2FAI-02%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%A6%82%E8%BF%B0%2F</url>
+    <content type="text"><![CDATA[M-P神经元 为什么需要激活函数 激活函数举例 权重人工设置m-p神经元的权重由人工设置，无法学习 单层感知器首个可以学习的神经网络 逻辑实现 多层感知器异或 单层感知器，无法实现异或关系，无法找到一条线完美分开数据（0、1） 同或 单隐层神经网络可视化urlhttp://playground.tensorflow.org/ 万有逼近定理 双隐层感知器 神经网络每一层作用 更深 or 更宽]]></content>
+      <categories>
+        <category>AI</category>
+      </categories>
+      <tags>
+        <tag>AI</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[AI_01人工智能概述]]></title>
+    <url>%2F2019%2F03%2F04%2FAI-01%2F</url>
+    <content type="text"><![CDATA[人工智能&amp;机器学习什么是人工智能人工智能(Artificial Intelligence)使一部机器像人一样进行感知、认知、决策、执行的人工程序或系统 标志性事件 人工智能发展阶段 人工智能三个层面计算智能能存能算 感知智能能听会说、能看会认 认知智能能理解、会思考 人工智能 &gt; 机器学习 &gt; 深度学习 逻辑演绎 vs 归纳总结 专家系统根据专家定义的知识和经验，进行推理和判断，从而模拟人类专家的决策过程来解决问题。 知识工程 vs 机器学习 计算机视觉人脸识别图像分类目标检测图像搜索图像分割视频监控语音技术语音识别语音合成声纹识别自然语言处理文本分类机器翻译知识图谱自动问答信息检索文本生成机器学习的定义最常用定义计算机系统能够利用经验提高自身的性能 可操作定义机器学习本质是一个基于经验数据的函数估计问题 统计学定义提取重要模式、趋势，并理解数据，即从数据中学习 机器学习-怎么学模型对要学习问题映射的假设（问题建模，确定假设空间） 模型分类数据标记 监督学习模型 无监督学习模型 数据分布参数模型 、 无参数模型 建模对象 判别模型 生成模型 策略从假设空间中学习/选择最优模型的准则（确定目标函数） 算法根据目标函数求解最优模型的具体计算方法（求解模型参数） 深度学习传统机器学习：人工设计特征 传统机器学习VS 深度学习 手动设计程序 手动设计特征 神经网络结构发展 深度学习的不能 连接主义 vs 符号主义 从对立到合作 连接主义+ 符号主义]]></content>
+      <categories>
+        <category>AI</category>
+      </categories>
+      <tags>
+        <tag>AI</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[next主题Google验证]]></title>
     <url>%2F2019%2F02%2F23%2Fhexo-google-verify%2F</url>
     <content type="text"><![CDATA[Google验证urlhttps://www.google.com/webmasters 修改配置文件使用html标签验证，方法同baidu验证 在站点配置文件中添加 google_site_verification: 123xxxxxx321 使用hexo d提交，刷新页面，查看源代码，如果能看到一下内容，证明标签已经成功添加： 进行验证 添加sitemap添加sitemap]]></content>

@@ -1,3 +1,5 @@
+https://croook.github.io/2019/03/04/AI-02深度学习概述/
+https://croook.github.io/2019/03/04/AI-01/
 https://croook.github.io/2019/02/23/hexo-google-verify/
 https://croook.github.io/2019/02/19/hexo-image/
 https://croook.github.io/2019/02/17/hexo_baidu_verify/
