@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[数字图像处理-图像合成]]></title>
+    <url>%2F2019%2F03%2F28%2F%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86-%E5%9B%BE%E5%83%8F%E5%90%88%E6%88%90%2F</url>
+    <content type="text"><![CDATA[图像分割选择特定拓展名12345678img_path = &apos;pics/&apos;;ext = &#123;&apos;*.jpeg&apos;,&apos;*.jpg&apos;,&apos;*.png&apos;&#125;;img_list = [];for i = 1:numel(ext) img_list = [img_list ; dir(fullfile(img_path,ext&#123;i&#125;))];endimg_num = length(img_list); 转换为特定尺寸的灰度图像1234567891011if img_num &gt; 0 for j = 1 : img_num img_name = img_list(j).name; img = imread(strcat(img_path,img_name)); img = imresize(img,[640 480]); G = rgb2gray(img); strname = strsplit(img_name,&apos;.&apos;); name = strname&#123;1,1&#125;; imwrite(G , strcat(img_path, name , &apos;.gif&apos;)); endend 求素材图片的RGB平均值123456789101112131415161718192021SIZE = 5;img_RGB = zeros(img_num,SIZE,SIZE,3);average_rgb = zeros(img_num,3);if img_num &gt; 0 for j = 1:img_num img_name = img_list(j).name; img = imread(strcat(img_path,img_name)); img = imresize(img,[SIZE SIZE]); img_RGB(j,:,:,:) = img; R = img(:,:,1); G = img(:,:,2); B = img(:,:,3); average_rgb(j,1)=mean(mean(R)); average_rgb(j,2)=mean(mean(G)); average_rgb(j,3)=mean(mean(B)); endend 替换为素材图片123456789101112131415161718192021222324252627original_Img = (&apos;original.png&apos;);Image_size = size(original_Img);Image_RGB = zeros(Image_size(1),Image_size(2),3);Image_RGB = original_Img(:,:,:);for row = 1 : SIZE :Image_size(1)-SIZE for col = 1 : SIZE :Image_size(2)-SIZE rgb_mean = zeros(3); for k = 1:3 temp = original_Img(row:row+SIZE-1 ,col:col+SIZE-1,k); rgb_mean(k) = mean(mean(temp)); end deviation = zeros(1,img_num); for k = 1:img_num deviation(k) = abs(average_rgb(k,1) - rgb_mean(1)) + abs(average_rgb(k,2) - rgb_mean(2)) + abs(average_rgb(k,3) - rgb_mean(3)); 求目标区域与每一个素材图片的RGB误差 end [min_value,min_position] = min(deviation); %得到最小值下标 Image_RGB(row:row+SIZE-1 ,col:col+SIZE-1,:) = img_RGB(min_position,:,:,:); endendImage_RGB = uint8(Image_RGB);imwrite(Image_RGB,&apos;0.jpg&apos;); 实验结果素材图片 original pic After]]></content>
+      <tags>
+        <tag>Matlab</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[AI-02深度学习概述]]></title>
     <url>%2F2019%2F03%2F04%2FAI-02%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%A6%82%E8%BF%B0%2F</url>
     <content type="text"><![CDATA[M-P神经元 为什么需要激活函数 激活函数举例 权重人工设置m-p神经元的权重由人工设置，无法学习 单层感知器首个可以学习的神经网络 逻辑实现 多层感知器异或 单层感知器，无法实现异或关系，无法找到一条线完美分开数据（0、1） 同或 单隐层神经网络可视化urlhttp://playground.tensorflow.org/ 万有逼近定理 双隐层感知器 神经网络每一层作用 更深 or 更宽]]></content>
