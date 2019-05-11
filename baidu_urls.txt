@@ -1,3 +1,4 @@
+https://croook.github.io/2019/05/11/语言SUM到栈式计算机STACK的机器语言的翻译/
 https://croook.github.io/2019/05/11/验证Yacc的使用/
 https://croook.github.io/2019/05/11/用Lex设计词法分析器/
 https://croook.github.io/2019/05/11/Cygwin环境的熟悉和lex的使用1/
