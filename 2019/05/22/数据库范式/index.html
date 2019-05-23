@@ -100,23 +100,23 @@
 
 
 
-  <meta name="description" content="规范化过程    过程 影响     1NF ——-&amp;gt; 2NF 消除非主属性对码的部分函数依赖   2NF ——-&amp;gt; 3NF 消除非主属性对码的传递函数依赖   3NF ——-&amp;gt; BCNF 消除主属性对码的部分、传递函数依赖   BCNF——&amp;gt; 4NF 消除非平凡且非函数以来的多值依赖   4NF ——-&amp;gt; 5NF 消除连接依赖     范式1NF定义$x^{123}">
-<meta name="keywords" content="Exp,数据库,Mysql">
+  <meta name="description" content="规范化过程    过程 影响     1NF ——-&amp;gt; 2NF 消除非主属性对码的部分函数依赖   2NF ——-&amp;gt; 3NF 消除非主属性对码的传递函数依赖   3NF ——-&amp;gt; BCNF 消除主属性对码的部分、传递函数依赖   BCNF——&amp;gt; 4NF 消除非平凡且非函数以来的多值依赖   4NF ——-&amp;gt; 5NF 消除连接依赖     范式1NF定义符合1NF的关系">
+<meta name="keywords" content="Exp,Mysql,数据库">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据库范式">
 <meta property="og:url" content="https://croook.github.io/2019/05/22/数据库范式/index.html">
 <meta property="og:site_name" content="Crookshank">
-<meta property="og:description" content="规范化过程    过程 影响     1NF ——-&amp;gt; 2NF 消除非主属性对码的部分函数依赖   2NF ——-&amp;gt; 3NF 消除非主属性对码的传递函数依赖   3NF ——-&amp;gt; BCNF 消除主属性对码的部分、传递函数依赖   BCNF——&amp;gt; 4NF 消除非平凡且非函数以来的多值依赖   4NF ——-&amp;gt; 5NF 消除连接依赖     范式1NF定义$x^{123}">
+<meta property="og:description" content="规范化过程    过程 影响     1NF ——-&amp;gt; 2NF 消除非主属性对码的部分函数依赖   2NF ——-&amp;gt; 3NF 消除非主属性对码的传递函数依赖   3NF ——-&amp;gt; BCNF 消除主属性对码的部分、传递函数依赖   BCNF——&amp;gt; 4NF 消除非平凡且非函数以来的多值依赖   4NF ——-&amp;gt; 5NF 消除连接依赖     范式1NF定义符合1NF的关系">
 <meta property="og:locale" content="En">
 <meta property="og:image" content="https://croook.github.io/2019/05/22/数据库范式/1.png">
 <meta property="og:image" content="https://croook.github.io/2019/05/22/数据库范式/2.png">
 <meta property="og:image" content="https://croook.github.io/2019/05/22/数据库范式/3.png">
 <meta property="og:image" content="https://croook.github.io/2019/05/22/数据库范式/4.png">
 <meta property="og:image" content="https://croook.github.io/2019/05/22/数据库范式/5.png">
-<meta property="og:updated_time" content="2019-05-23T04:51:41.471Z">
+<meta property="og:updated_time" content="2019-05-23T04:59:03.585Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据库范式">
-<meta name="twitter:description" content="规范化过程    过程 影响     1NF ——-&amp;gt; 2NF 消除非主属性对码的部分函数依赖   2NF ——-&amp;gt; 3NF 消除非主属性对码的传递函数依赖   3NF ——-&amp;gt; BCNF 消除主属性对码的部分、传递函数依赖   BCNF——&amp;gt; 4NF 消除非平凡且非函数以来的多值依赖   4NF ——-&amp;gt; 5NF 消除连接依赖     范式1NF定义$x^{123}">
+<meta name="twitter:description" content="规范化过程    过程 影响     1NF ——-&amp;gt; 2NF 消除非主属性对码的部分函数依赖   2NF ——-&amp;gt; 3NF 消除非主属性对码的传递函数依赖   3NF ——-&amp;gt; BCNF 消除主属性对码的部分、传递函数依赖   BCNF——&amp;gt; 4NF 消除非平凡且非函数以来的多值依赖   4NF ——-&amp;gt; 5NF 消除连接依赖     范式1NF定义符合1NF的关系">
 <meta name="twitter:image" content="https://croook.github.io/2019/05/22/数据库范式/1.png">
 
 
@@ -422,7 +422,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-05-23 12:51:41" itemprop="dateModified" datetime="2019-05-23T12:51:41+08:00">2019-05-23</time>
+                <time title="Modified: 2019-05-23 12:59:03" itemprop="dateModified" datetime="2019-05-23T12:59:03+08:00">2019-05-23</time>
               
             
           </span>
@@ -517,8 +517,7 @@
 </tbody>
 </table>
 </div>
-<h1 id="范式"><a href="#范式" class="headerlink" title="范式"></a>范式</h1><h2 id="1NF"><a href="#1NF" class="headerlink" title="1NF"></a>1NF</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>$x^{123}==y_{666}$</p>
-<p><strong>符合1NF的关系中的每个属性都不可再分</strong></p>
+<h1 id="范式"><a href="#范式" class="headerlink" title="范式"></a>范式</h1><h2 id="1NF"><a href="#1NF" class="headerlink" title="1NF"></a>1NF</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p><strong>符合1NF的关系中的每个属性都不可再分</strong></p>
 <p><img src="/2019/05/22/数据库范式/1.png" alt></p>
 <p>不满足1NF</p>
 <h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><p><strong>1NF是所有关系型数据库的最基本要求</strong>，在关系型数据库管理系统（RDBMS），例如SQL Server，Oracle，MySQL中创建数据表的时候，如果数据表的设计不符合这个最基本的要求，那么操作一定是不能成功的。也就是说，只要在RDBMS中已经存在的数据表，一定是符合1NF的。</p>
@@ -1026,9 +1025,9 @@
           
             <a href="/tags/Exp/" rel="tag"># Exp</a>
           
-            <a href="/tags/数据库/" rel="tag"># 数据库</a>
-          
             <a href="/tags/Mysql/" rel="tag"># Mysql</a>
+          
+            <a href="/tags/数据库/" rel="tag"># 数据库</a>
           
         </div>
       
@@ -1791,6 +1790,43 @@
   
   
 
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+      for (i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+  overflow: auto hidden;
+}
+</style>
+
+    
   
 
 
