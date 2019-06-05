@@ -1,0 +1,1390 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="En">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+  <meta name="google-site-verification" content="7Oev-o_nVgfEcRT4Mc9fXSxqXK0_WXFBAuBh4GdzGuM">
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="5Nq4yOLRnQ">
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.ico?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.ico?v=7.0.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="​        问题分析车牌特点样例车牌可以分为两类： （1）       小功率汽车使用的蓝底白字牌照； （2）       国外驻华机构使用黑底白字牌照 这些牌照的长度均为45cm，宽为15cm，共有字符7个。一般民用牌照第一个字符为汉字，且是各省市的简称；第二个字符为大写英文字母，如“E”；第三个字符是英文字母或阿拉伯数字，第四至第七个字符为阿拉伯数字。 实验流程实验流程包括：车牌定位、倾">
+<meta name="keywords" content="Matlab">
+<meta property="og:type" content="article">
+<meta property="og:title" content="汽车牌照提取">
+<meta property="og:url" content="https://croook.github.io/2019/06/05/汽车牌照提取/index.html">
+<meta property="og:site_name" content="Crookshank">
+<meta property="og:description" content="​        问题分析车牌特点样例车牌可以分为两类： （1）       小功率汽车使用的蓝底白字牌照； （2）       国外驻华机构使用黑底白字牌照 这些牌照的长度均为45cm，宽为15cm，共有字符7个。一般民用牌照第一个字符为汉字，且是各省市的简称；第二个字符为大写英文字母，如“E”；第三个字符是英文字母或阿拉伯数字，第四至第七个字符为阿拉伯数字。 实验流程实验流程包括：车牌定位、倾">
+<meta property="og:locale" content="En">
+<meta property="og:image" content="https://croook.github.io/2019/06/05/汽车牌照提取/1.png">
+<meta property="og:image" content="https://croook.github.io/2019/06/05/汽车牌照提取/2.png">
+<meta property="og:image" content="https://croook.github.io/2019/06/05/汽车牌照提取/3.png">
+<meta property="og:image" content="https://croook.github.io/2019/06/05/汽车牌照提取/4.png">
+<meta property="og:image" content="https://croook.github.io/2019/06/05/汽车牌照提取/5.png">
+<meta property="og:image" content="https://croook.github.io/2019/06/05/汽车牌照提取/6.png">
+<meta property="og:image" content="https://croook.github.io/2019/06/05/汽车牌照提取/7.png">
+<meta property="og:image" content="https://croook.github.io/2019/06/05/汽车牌照提取/8.png">
+<meta property="og:image" content="https://croook.github.io/2019/06/05/汽车牌照提取/9.png">
+<meta property="og:image" content="https://croook.github.io/2019/06/05/汽车牌照提取/10.png">
+<meta property="og:updated_time" content="2019-06-05T13:59:32.938Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="汽车牌照提取">
+<meta name="twitter:description" content="​        问题分析车牌特点样例车牌可以分为两类： （1）       小功率汽车使用的蓝底白字牌照； （2）       国外驻华机构使用黑底白字牌照 这些牌照的长度均为45cm，宽为15cm，共有字符7个。一般民用牌照第一个字符为汉字，且是各省市的简称；第二个字符为大写英文字母，如“E”；第三个字符是英文字母或阿拉伯数字，第四至第七个字符为阿拉伯数字。 实验流程实验流程包括：车牌定位、倾">
+<meta name="twitter:image" content="https://croook.github.io/2019/06/05/汽车牌照提取/1.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://croook.github.io/2019/06/05/汽车牌照提取/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>汽车牌照提取 | Crookshank</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="En">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Crookshank</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Category</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archive</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://croook.github.io/2019/06/05/汽车牌照提取/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="sh">
+      <meta itemprop="description" content="so we beat on, boats against the current, borne back ceaselessly into the past.">
+      <meta itemprop="image" content="/images/ava.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Crookshank">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">汽车牌照提取
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2019-06-05 20:19:13 / Updated at: 21:59:32" itemprop="dateCreated datePublished" datetime="2019-06-05T20:19:13+08:00">2019-06-05</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数字图像处理/" itemprop="url" rel="index"><span itemprop="name">数字图像处理</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+            <span id="/2019/06/05/汽车牌照提取/" class="leancloud_visitors" data-flag-title="汽车牌照提取">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Views: </span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>​       </p>
+<h1 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a><em>问题分析</em></h1><h2 id="车牌特点"><a href="#车牌特点" class="headerlink" title="车牌特点"></a><em>车牌特点</em></h2><p><em>样例车牌可以分为两类：</em></p>
+<p><em>（1）       小功率汽车使用的蓝底白字牌照；</em></p>
+<p><em>（2）       国外驻华机构使用黑底白字牌照</em></p>
+<p><em>这些牌照的长度均为45cm，宽为15cm，共有字符7个。一般民用牌照第一个字符为汉字，且是各省市的简称；第二个字符为大写英文字母，如“E”；第三个字符是英文字母或阿拉伯数字，第四至第七个字符为阿拉伯数字。</em></p>
+<h2 id="实验流程"><a href="#实验流程" class="headerlink" title="实验流程"></a><em>实验流程</em></h2><p><em>实验流程包括：车牌定位、倾斜校正、字符分割、字符识别4个部分</em></p>
+<p><em><img src="/2019/06/05/汽车牌照提取/1.png" alt></em></p>
+<p><em>(1)    原始图像：样例中所给的汽车图像；</em></p>
+<p><em>(2)    图像预处理：对原始图像进行二值化等预处理操作；</em></p>
+<p><em>(3)    车牌定位：定位出汽车牌照所在的矩形范围；</em></p>
+<p><em>(4)    倾斜校正：对定位后的车牌进行倾斜校正；</em></p>
+<p><em>(5)    字符分割：定位分割得到的车牌图像，得到单个的字符；</em></p>
+<p><em>(6)    图像预处理：重新定义分割后的字符图像大小，并转化为一维矩阵；</em></p>
+<p><em>(7)    字符识别：通过BP神经网络训练，得到最后的汽车牌照，包括英文字母和数字。</em></p>
+<h1 id="实验过程"><a href="#实验过程" class="headerlink" title="实验过程"></a><em>实验过程</em></h1><h2 id="解决思路"><a href="#解决思路" class="headerlink" title="解决思路"></a><em>解决思路</em></h2><h3 id="车牌定位"><a href="#车牌定位" class="headerlink" title="车牌定位"></a><em>车牌定位</em></h3><p>1)      基于灰度边缘检测与形态学重构的方法。这种方法只要利用车牌区域局部对比度明显和有规律的纹理特征来定位，然后利用形态学方法将车牌区域与其它背景区域分离。 </p>
+<p>2)       基于直线检测的方法。这种方法主要Hough变换的方法来检测车牌周围边框直线，利用车牌形状特性来定位车牌。  </p>
+<p>3)      根据车牌的固有长宽比进行定位的方法。因为中外车牌的长宽比都是固定的3.1：1，在预处理完成后对二值化的图像进行膨胀腐蚀，计算联通区域长宽比确定车牌位置。  </p>
+<p>4)      基于彩色图像的车牌定位方法。现在的牌照有四种类型:第一种是最常见的小型汽车所用的蓝底白字牌照；第二种是大型汽车所用的黄底黑字牌照；第三种是军用或警用的白底黑字、红字牌照；第四种是国外驻华机构用的黑底白字、红字牌照。基于彩色图像的车牌定位方法主要利用车牌颜色与车身其他部位颜色具有明显不同的差异来分割与提取车牌。 </p>
+<p><em>5)      目前较为成熟的车牌区域定位算法有自适应边界搜索法、区域生长法、灰度图像数学形态学运算法、基于纹理或颜色的分割方法以及模糊聚类法等。</em></p>
+<h3 id="字符分割"><a href="#字符分割" class="headerlink" title="字符分割"></a><em>字符分割</em></h3><p>1)        投影分析常采用的是水平投影法。即沿水平方向计算每一列属于车牌字符的象素数目，在字符的间隙处取得局部最小值，分割位置应在其附近。先根据车牌水平投影的统计特征呈现出明显“波峰——波谷——波峰”，进行水平方向上的粗分割，若字符出现合并和粘连现象，再采用递归回归办法进行二次字符分割。 </p>
+<p>2)        投影法进行字符分割实现起较为简单，但在预处理效果不好的情况下，较难获得满足条件的列。若增加预处理，则使处理后的图像不可避免地损失一部分有用信息，还可能导致额外误差。基于连通域聚类分析切分车牌字符的方法按照属于同一个字符的像素构成一个连通域的原则，结合牌照字符的固定高度和间距比例关系等先验知识，较好地解决了汽车牌照在复杂背景条件下的字符切分问题，降低了对车牌定位准确度的要求，对不规范的车牌识别也具有一定的适用性。</p>
+<h3 id="字符识别"><a href="#字符识别" class="headerlink" title="字符识别"></a><em>字符识别</em></h3><p>1)      模板匹配法是最简单的一种字符识别方法。将待识别字符经分割归一化成模板字体的大小，将它输入字符识别模块进行匹配。根据实际字符和模板图像之间匹配方差最小的原则，判定车牌图像字符所属类别。这种方法对于标准、规范的字符识别效果较好。但在复杂环境下的车牌字符会与理想模板字符不完全一致，这导致了识别结果存在较大误差。  </p>
+<p>2)      模版匹配法简单、成熟，但其自适应不强。对于字符有断裂和粘连等情况容易造成误判。神经网络匹配法具有良好的容错性、自适应和学习能力，但样本的训练收敛速度慢，而大规模并行处理为此提供了解决途径。其中一种方法是采用并行识别的BP网络，让汉字、英文、阿拉伯数字，阿拉伯数字分别送到各自的网络识别。还有学者结合小波变化的优点，提出基于小波和BP神经网络的车牌字符识别新方法，采用小波变换提取字符特征，神经网络实现字符识别，加快了算法的执行，提高了识别率。</p>
+<h2 id="方法设计"><a href="#方法设计" class="headerlink" title="方法设计"></a><em>方法设计</em></h2><h3 id="车牌定位-1"><a href="#车牌定位-1" class="headerlink" title="车牌定位"></a><em>车牌定位</em></h3><p><em>1)      边缘检测方法</em></p>
+<p><em>采用robert、prewitt、soble算子进行边缘检测，之后利用数学形态学的方法对边缘检测后得到的图像进行线性腐蚀、闭运算等操作得到初步定位的二值化车牌位置</em></p>
+<p><em>2)      颜色提取方法</em></p>
+<p><em>针对蓝底、黑底车牌，确定颜色提取的范围，进行颜色提取，提取后得到图像的逻辑矩阵，逻辑为真的部分为初步定位的二值化车牌位置</em></p>
+<p><em>3)      根据行、列像素灰度值累积值确定行列起始、终止位置。</em></p>
+<p><em>4)      将逻辑矩阵初步确定的车牌位置的外接矩形作为车牌最终定位位置</em></p>
+<h3 id="倾斜校正"><a href="#倾斜校正" class="headerlink" title="倾斜校正"></a><em>倾斜校正</em></h3><p><em>1)      理想情况下，将车牌左上角，右上角连线与水平方向的夹角作为倾角。</em></p>
+<p><em>2)      将定位后的车牌等分为左右两部分，求出平均y值，作为倾角。</em></p>
+<h3 id="字符分割-1"><a href="#字符分割-1" class="headerlink" title="字符分割"></a><em>字符分割</em></h3><p><em>1)      水平投影法。沿水平方向计算每一列属于车牌字符的像素数目，在字符的间隙处取得局部最小值，分割位置应在其附近。先根据车牌水平投影的统计特征呈现出明显“波峰——波谷——波峰”，进行分割。</em></p>
+<p><em>2)      首先计算列级灰度值，确定阈值范围，将满足阈值范围的列号设为逻辑真值1，用连续的两个0作为分割符，进行初步分割，对分割后的部分进行判断，取连续超过5个的逻辑真值列，作为分割后的字符位置。</em></p>
+<h3 id="字符识别-1"><a href="#字符识别-1" class="headerlink" title="字符识别"></a>字符识别</h3><p><em>1)      使用matlab自带的bp神经网络进行训练</em></p>
+<h2 id="小组分工"><a href="#小组分工" class="headerlink" title="小组分工"></a><em>小组分工</em></h2><p><em>描述小组成员的分工情况，每个人需要完成的任务</em></p>
+<h2 id="实现过程"><a href="#实现过程" class="headerlink" title="实现过程"></a><em>实现过程</em></h2><h3 id="牌照定位"><a href="#牌照定位" class="headerlink" title="牌照定位"></a><em>牌照定位</em></h3><h4 id="边缘检测"><a href="#边缘检测" class="headerlink" title="边缘检测"></a><em>边缘检测</em></h4><p><em>首先采用边缘检测的方法进行定位，利用robert算子，进行边缘提取，之后利用腐蚀，闭运算填充的方法，得到初步的结果，之后根据车牌的大小，通过做差，提取出车牌部分</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">a = imread(&apos;pics/2.jpg&apos;);</span><br><span class="line"></span><br><span class="line">I = edge(rgb2gray(a),&apos;roberts&apos;,0.07,&apos;both&apos;);      %采用robert算子进行边缘检测</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">figure , subplot(1,2,1);</span><br><span class="line"></span><br><span class="line">imshow(I) , title(&apos;边缘检测&apos;);</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">se = [1;1;1];</span><br><span class="line"></span><br><span class="line">I1 = imerode(I,se);</span><br><span class="line"></span><br><span class="line">%figure  , imshow(I1) , title(&apos;膨胀后&apos;);</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">se=strel(&apos;rectangle&apos;,[25,25]);  %矩形结构元素</span><br><span class="line"></span><br><span class="line">I2 = imclose(I1,se);      %初步填充</span><br><span class="line"></span><br><span class="line">I3 = bwareaopen(I2,9000);     %去除聚团灰度值小于9000的部分</span><br><span class="line"></span><br><span class="line">I4 = bwareaopen(I2,11000);</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">subplot(1,2,2)</span><br><span class="line"></span><br><span class="line">imshow(I3-I4) , title(&apos;填充后&apos;);</span><br></pre></td></tr></table></figure>
+<p><em><img src="/2019/06/05/汽车牌照提取/2.png" alt></em></p>
+<p><em>但是这种方法对于样例4，得到的结果并不理想</em></p>
+<p><em><img src="/2019/06/05/汽车牌照提取/3.png" alt></em></p>
+<p><em>因此改用颜色提取的方法</em></p>
+<h4 id="颜色提取"><a href="#颜色提取" class="headerlink" title="颜色提取"></a><em>颜色提取</em></h4><p><em>根据蓝底和黑底车牌，确定不同的颜色范围，进行颜色提取。</em></p>
+<p><em>以蓝底车牌为例：</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">a = imread(&apos;pics/2.jpg&apos;);</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">dd1 = (a(:,:,1)&lt;=40&amp;a(:,:,1)&gt;=10&amp;a(:,:,2)&lt;=85&amp;a(:,:,2)&gt;=55&amp;a(:,:,3&lt;=240&amp;a(:,:,3)&gt;=110); %由RGB颜色范围抠图 结果为逻辑矩阵（只包含0与1）</span><br><span class="line"></span><br><span class="line">figure , subplot(1,2,1),imshow(dd1) , title(&apos;颜色提取&apos;);</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">se = strel(&apos;square&apos;,3);     %线型结构元素 </span><br><span class="line"></span><br><span class="line">I1 = imdilate(imdilate(dd1,se),se);      %膨胀图像</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">se=strel(&apos;rectangle&apos;,[20,20]);  %矩形结构元素</span><br><span class="line"></span><br><span class="line">I2 = imclose(I1,se);      %初步填充</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">I3 = bwareaopen(I2,2000);     %去除聚团灰度值小于2000的部分</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">se=strel(&apos;rectangle&apos;,[100,100]);  %矩形结构元素</span><br><span class="line"></span><br><span class="line">I = imclose(I3,se);      %再次填充</span><br><span class="line"></span><br><span class="line">subplot(1,2,2)</span><br><span class="line"></span><br><span class="line">imshow(I) , title(&apos;填充后&apos;);</span><br></pre></td></tr></table></figure>
+<p><em><img src="/2019/06/05/汽车牌照提取/4.png" alt></em></p>
+<h4 id="确定范围"><a href="#确定范围" class="headerlink" title="确定范围"></a><em>确定范围</em></h4><p><em>首先尝试通过行列的像素灰度值进行最终范围的确定，但得到的最终范围会损失一些有用信息，因此改用外接矩形的方法。</em></p>
+<p><em>由于颜色提取后的车牌位置已经比较准确，所以将颜色提取后车牌位置的x,y轴极大极小值作为最终的范围</em></p>
+<p><em><img src="/2019/06/05/汽车牌照提取/5.png" alt></em></p>
+<h4 id="倾斜校正-1"><a href="#倾斜校正-1" class="headerlink" title="倾斜校正"></a><em>倾斜校正</em></h4><p><em>(1)    在理想情况下，由于车牌为矩形，可以通过车牌的左上角和右上角确定倾角。但在实际识别过程中，定位的车牌左上角以及右上角并不准确，导致倾角误差较大。</em></p>
+<p><em>(2)    将定位后的车牌等分为左右两部分，求出平均y值，作为倾角。</em></p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br></pre></td><td class="code"><pre><span class="line">[y,x,]=<span class="built_in">size</span>(I);</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">minx = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">maxx = x;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:y</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">j</span> = <span class="number">1</span>:x</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(I(<span class="built_in">i</span>,<span class="built_in">j</span>,<span class="number">1</span>) == <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span>(minx == <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">                minx = <span class="built_in">j</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">elseif</span>(minx &gt; <span class="built_in">j</span>) </span><br><span class="line"></span><br><span class="line">                minx = <span class="built_in">j</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span>(maxx == x) </span><br><span class="line"></span><br><span class="line">                maxx = <span class="built_in">j</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">elseif</span>(maxx &lt; <span class="built_in">j</span>)</span><br><span class="line"></span><br><span class="line">                maxx = <span class="built_in">j</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">miny = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">maxy = y;</span><br><span class="line"></span><br><span class="line">sumofleft = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">sumofright = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">heightofleft = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">heightofright = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">j</span> = minx:int64((minx+maxx)/<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:y</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(I(<span class="built_in">i</span>,<span class="built_in">j</span>,<span class="number">1</span>) == <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">            sumofleft = sumofleft + <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">            heightofleft = heightofleft + <span class="built_in">i</span>;</span><br><span class="line"></span><br><span class="line">            </span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span>(miny == <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">                miny = <span class="built_in">i</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">elseif</span>(miny &gt; <span class="built_in">i</span>) </span><br><span class="line"></span><br><span class="line">                miny = <span class="built_in">i</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span>(maxy == y) </span><br><span class="line"></span><br><span class="line">                maxy = <span class="built_in">i</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">elseif</span>(maxy &lt; <span class="built_in">i</span>)</span><br><span class="line"></span><br><span class="line">                maxy = <span class="built_in">i</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">j</span> = int64((minx+maxx)/<span class="number">2</span>):maxx</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:y</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(I(<span class="built_in">i</span>,<span class="built_in">j</span>,<span class="number">1</span>) == <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">            sumofright = sumofright + <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">            heightofright = heightofright + <span class="built_in">i</span>;</span><br><span class="line"></span><br><span class="line">            </span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span>(miny &gt; <span class="built_in">i</span>) </span><br><span class="line"></span><br><span class="line">                miny = <span class="built_in">i</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span>(maxy &lt; <span class="built_in">i</span>)</span><br><span class="line"></span><br><span class="line">                maxy = <span class="built_in">i</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">旋转</span><br><span class="line"></span><br><span class="line">aveleft = heightofleft/sumofleft;</span><br><span class="line"></span><br><span class="line">averight = heightofright/sumofright;</span><br><span class="line"></span><br><span class="line">k = (aveleft - averight)/((maxx - minx)/<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">DW = imrotate(DW,-<span class="built_in">atan</span>(k)*<span class="number">180</span>/<span class="built_in">pi</span>);</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/06/05/汽车牌照提取/6.png" alt></p>
+<h3 id="字符分割-2"><a href="#字符分割-2" class="headerlink" title="字符分割"></a><em>字符分割</em></h3><p><em>(1)    首先计算列级灰度值，确定阈值范围，将满足阈值范围的列号设为逻辑真值1，用连续的两个0作为分割符，进行初步分割，对分割后的部分进行判断，取连续超过5个的逻辑真值列，作为分割后的字符位置。</em></p>
+<p><em>先对定位后的图像进行再次抠图，得到更精确的逻辑矩阵，之后设立一维矩阵selectcol，如果列级灰度值的范围在（2，20），则将selectcol对应的列置为1</em></p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">a = DW;</span><br><span class="line">dd1 = (a(:,:,<span class="number">1</span>)&lt;=<span class="number">200</span>&amp;a(:,:,<span class="number">1</span>)&gt;=<span class="number">100</span>&amp;a(:,:,<span class="number">2</span>)&lt;=<span class="number">220</span>&amp;a(:,:,<span class="number">2</span>)&gt;=<span class="number">100</span>&amp;a(:,:,<span class="number">3</span>)&lt;=<span class="number">220</span>&amp;a(:,:,<span class="number">3</span>)&gt;=<span class="number">100</span>); <span class="comment">%由RGB颜色范围抠图 结果为逻辑矩阵（只包含0与1）</span></span><br><span class="line"><span class="comment">% figure , subplot(1,2,1),imshow(dd1);</span></span><br><span class="line"></span><br><span class="line">[y,x,]=<span class="built_in">size</span>(dd1);</span><br><span class="line">sumofrow = <span class="number">0</span>;</span><br><span class="line">sumofcol = <span class="number">0</span>;</span><br><span class="line">selectrow = <span class="built_in">zeros</span>(y,<span class="number">1</span>);</span><br><span class="line">selectcol = <span class="built_in">zeros</span>(<span class="number">1</span>,x);</span><br><span class="line">row_min = <span class="number">1</span>;</span><br><span class="line">row_max = y;</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:y</span><br><span class="line">    sumofrow = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">j</span> = <span class="number">1</span>:x</span><br><span class="line">        <span class="keyword">if</span>(dd1(<span class="built_in">i</span>,<span class="built_in">j</span>) == <span class="number">1</span>)</span><br><span class="line">            sumofrow = sumofrow + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">if</span>(sumofrow &gt; <span class="number">0</span> &amp;&amp; sumofrow &lt; <span class="number">20</span>)</span><br><span class="line">        selectrow(<span class="built_in">i</span>,<span class="number">1</span>) = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:y</span><br><span class="line">    <span class="keyword">if</span>(selectrow(<span class="built_in">i</span>,<span class="number">1</span>) == <span class="number">1</span>)</span><br><span class="line">        row_min = <span class="built_in">i</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = y:<span class="number">-1</span>:<span class="number">1</span></span><br><span class="line">    <span class="keyword">if</span>(selectrow(<span class="built_in">i</span>,<span class="number">1</span>) == <span class="number">1</span>)</span><br><span class="line">        row_max = <span class="built_in">i</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">j</span> = <span class="number">1</span>:x</span><br><span class="line">    sumofcol = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">i</span> = row_min:row_max</span><br><span class="line">        <span class="keyword">if</span>(dd1(<span class="built_in">i</span>,<span class="built_in">j</span>) == <span class="number">1</span>)</span><br><span class="line">            sumofcol = sumofcol + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">if</span>(sumofcol &gt; <span class="number">2</span> &amp;&amp; sumofcol &lt; <span class="number">20</span>)</span><br><span class="line">            selectcol(<span class="number">1</span>,<span class="built_in">j</span>) = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p><em>之所以要将范围下限设置为2，是为了排除一些干扰，由于下一步的分割要用连续的两个0作为分割符，但是对于图片五来说，第四个和第五个数字‘0’上方出现了车牌铆钉的干扰，如果不设置下界，则第四个和第五个数字被识别为连续的部分，不能进行分割。</em></p>
+<p><img src="/2019/06/05/汽车牌照提取/7.png" alt></p>
+<h4 id="分割"><a href="#分割" class="headerlink" title="分割"></a><em>分割</em></h4><p><em>以连续的两个0作为分割符，并且只取长度超过5的部分（这是为了排除包括车牌中点号在内的干扰）</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">[y,x,]=size(dd1);</span><br><span class="line">sum = 0;</span><br><span class="line">cur = 1;</span><br><span class="line">% figure;</span><br><span class="line">for i = 1:7</span><br><span class="line">    sum = 0;</span><br><span class="line">    while(sum &lt; 5)</span><br><span class="line">        while(cur &lt; x &amp;&amp; selectcol(1,cur) == 0)</span><br><span class="line">            cur = cur + 1;</span><br><span class="line">        end</span><br><span class="line">        if(cur &gt; x-3)</span><br><span class="line">            break;</span><br><span class="line">        end</span><br><span class="line">        tempstart = cur;</span><br><span class="line">        while(~(selectcol(1,cur+1) == 0 &amp;&amp; selectcol(1,cur+2) == 0) &amp;&amp; cur &lt; x-3)</span><br><span class="line">            sum = sum + 1;</span><br><span class="line">            cur = cur + 1;</span><br><span class="line">        end</span><br><span class="line">        cur = cur + 1;</span><br><span class="line">    end</span><br><span class="line">    tempend = cur;</span><br><span class="line"></span><br><span class="line">    z = dd1(1:y,tempstart:tempend,:);</span><br><span class="line">%     se=strel(&apos;rectangle&apos;,[2,2]);  %矩形结构元素</span><br><span class="line">%     z = imclose(z,se);      %再次填充</span><br><span class="line">    switch (i)</span><br><span class="line">        case 1</span><br><span class="line">            pic1 = z;</span><br><span class="line">        case 2 </span><br><span class="line">            pic2 = z;</span><br><span class="line">        case 3</span><br><span class="line">            pic3 = z;</span><br><span class="line">        case 4</span><br><span class="line">            pic4 = z;</span><br><span class="line">        case 5</span><br><span class="line">            pic5 = z;</span><br><span class="line">        case 6</span><br><span class="line">            pic6 = z;</span><br><span class="line">        case 7</span><br><span class="line">            pic7 = z;</span><br><span class="line">    end</span><br><span class="line">    subplot(1,7,i),imshow(z);</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/06/05/汽车牌照提取/8.png" alt></p>
+<p><img src="/2019/06/05/汽车牌照提取/9.png" alt></p>
+<h3 id="字符识别-2"><a href="#字符识别-2" class="headerlink" title="字符识别"></a><em>字符识别</em></h3><h4 id="建立模板库"><a href="#建立模板库" class="headerlink" title="建立模板库"></a><em>建立模板库</em></h4><p>模板库中包含部分字母以及数字</p>
+<h4 id="预处理"><a href="#预处理" class="headerlink" title="预处理"></a><em>预处理</em></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function  inpt  = pretreatment(I)</span><br><span class="line">% 训练样本前期处理</span><br><span class="line">if (ndims(I)==3)</span><br><span class="line">    I1 = rgb2gray(I);</span><br><span class="line">else</span><br><span class="line">    I1=I;</span><br><span class="line">end</span><br><span class="line">I1=imresize(I1,[50 25]);%将图片统一划为50*25大小</span><br><span class="line">I1=im2bw(I1,0.9);</span><br><span class="line">[m,n]=size(I1);</span><br><span class="line">inpt=zeros(1,m*n);</span><br><span class="line">% 将图像按列转换成一个行向量</span><br><span class="line">for j=1:n</span><br></pre></td></tr></table></figure>
+<h4 id="BP神经网络训练"><a href="#BP神经网络训练" class="headerlink" title="BP神经网络训练"></a><em>BP神经网络训练</em></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br></pre></td><td class="code"><pre><span class="line">close all;</span><br><span class="line">clear all;</span><br><span class="line">% 归一化训练样本</span><br><span class="line">I0=pretreatment(imread(&apos;pics/num0.png&apos;));</span><br><span class="line">I1=pretreatment(imread(&apos;pics/num1.png&apos;));</span><br><span class="line">I2=pretreatment(imread(&apos;pics/num2.png&apos;));</span><br><span class="line">I3=pretreatment(imread(&apos;pics/num3.png&apos;));</span><br><span class="line">I4=pretreatment(imread(&apos;pics/num4.png&apos;));</span><br><span class="line">I5=pretreatment(imread(&apos;pics/num5.png&apos;));</span><br><span class="line">I6=pretreatment(imread(&apos;pics/num6.png&apos;));</span><br><span class="line">I7=pretreatment(imread(&apos;pics/num7.png&apos;));</span><br><span class="line">I8=pretreatment(imread(&apos;pics/num8.png&apos;));</span><br><span class="line">I9=pretreatment(imread(&apos;pics/num9.png&apos;));</span><br><span class="line">I10=pretreatment(imread(&apos;pics/charA.png&apos;));</span><br><span class="line">I11=pretreatment(imread(&apos;pics/charB.png&apos;));</span><br><span class="line">I12=pretreatment(imread(&apos;pics/charC.png&apos;));</span><br><span class="line">I13=pretreatment(imread(&apos;pics/charD.png&apos;));</span><br><span class="line">I14=pretreatment(imread(&apos;pics/charK.png&apos;));</span><br><span class="line">I15=pretreatment(imread(&apos;pics/charM.png&apos;));</span><br><span class="line">I16=pretreatment(imread(&apos;pics/charP.png&apos;));</span><br><span class="line">I17=pretreatment(imread(&apos;pics/charQ.png&apos;));</span><br><span class="line">P=[I0&apos;,I1&apos;,I2&apos;,I3&apos;,I4&apos;,I5&apos;,I6&apos;,I7&apos;,I8&apos;,I9&apos;,I10&apos;,I11&apos;,I12&apos;,I13&apos;,I14&apos;,I15&apos;,I16&apos;,I17&apos;];</span><br><span class="line">T=eye(18,18);   %输出样本</span><br><span class="line"></span><br><span class="line">% bp神经网络参数设置</span><br><span class="line">net=newff(minmax(P),[1250,300,18],&#123;&apos;logsig&apos;,&apos;logsig&apos;,&apos;logsig&apos;&#125;,&apos;trainrp&apos;);</span><br><span class="line">net.inputWeights&#123;1,1&#125;.initFcn =&apos;randnr&apos;;</span><br><span class="line">net.layerWeights&#123;2,1&#125;.initFcn =&apos;randnr&apos;;</span><br><span class="line">net.trainparam.epochs=5000;</span><br><span class="line">net.trainparam.show=50;</span><br><span class="line">%net.trainparam.lr=0.01;</span><br><span class="line">net.trainparam.goal=0.000000000001;</span><br><span class="line">net=init(net);</span><br><span class="line">[net,tr]=train(net,P,T);    %训练样本</span><br><span class="line"></span><br><span class="line">% 测试</span><br><span class="line">path = &apos;pics/2.jpg&apos;;</span><br><span class="line">[PIN0,PIN1,PIN2,PIN3,PIN4,PIN5,PIN6]=blue_main(path);%字符分割及处理</span><br><span class="line"></span><br><span class="line">% 测试字符，得到识别数值</span><br><span class="line">PIN0=pretreatment(PIN0);</span><br><span class="line">PIN1=pretreatment(PIN1);</span><br><span class="line">PIN2=pretreatment(PIN2);</span><br><span class="line">PIN3=pretreatment(PIN3);</span><br><span class="line">PIN4=pretreatment(PIN4);</span><br><span class="line">PIN5=pretreatment(PIN5);</span><br><span class="line">PIN6=pretreatment(PIN6);</span><br><span class="line">P0=[PIN0&apos;,PIN1&apos;,PIN2&apos;,PIN3&apos;,PIN4&apos;,PIN5&apos;,PIN6&apos;];</span><br><span class="line"></span><br><span class="line">for i=2:7</span><br><span class="line">  T0= sim(net ,P0(:,i));</span><br><span class="line">  T1 = compet (T0) ;</span><br><span class="line">  d = find(T1 == 1) - 1;</span><br><span class="line"> if (d==10)</span><br><span class="line">    str=&apos;A&apos;;</span><br><span class="line"> elseif (d==11)</span><br><span class="line">     str=&apos;B&apos;;</span><br><span class="line"> elseif (d==12)</span><br><span class="line">     str=&apos;C&apos;;</span><br><span class="line"> elseif (d==13)</span><br><span class="line">     str=&apos;D&apos;;</span><br><span class="line"> elseif (d==14)</span><br><span class="line">     str=&apos;K&apos;;</span><br><span class="line"> elseif (d==15)</span><br><span class="line">     str=&apos;M&apos;;</span><br><span class="line"> elseif (d==16)</span><br><span class="line">     str=&apos;P&apos;;</span><br><span class="line"> elseif (d==17)</span><br><span class="line">     str=&apos;Q&apos;;</span><br><span class="line"> elseif (d==0)</span><br><span class="line">     str=&apos;0&apos;;</span><br><span class="line"> elseif (d==1)</span><br><span class="line">     str=&apos;1&apos;;</span><br><span class="line"> elseif (d==2)</span><br><span class="line">     str=&apos;2&apos;;</span><br><span class="line"> elseif (d==3)</span><br><span class="line">     str=&apos;3&apos;;</span><br><span class="line"> elseif (d==4)</span><br><span class="line">     str=&apos;4&apos;;</span><br><span class="line"> elseif (d==5)</span><br><span class="line">     str=&apos;5&apos;;</span><br><span class="line"> elseif (d==6)</span><br><span class="line">     str=&apos;6&apos;;</span><br><span class="line"> elseif (d==7)</span><br><span class="line">     str=&apos;7&apos;;</span><br><span class="line"> elseif (d==8)</span><br><span class="line">     str=&apos;8&apos;;</span><br><span class="line"> elseif (d==9)</span><br><span class="line">     str=&apos;9&apos;;</span><br><span class="line"> else</span><br><span class="line">    str=num2str(d);</span><br><span class="line"> end</span><br><span class="line"> switch i</span><br><span class="line">     case 2</span><br><span class="line">         str2=str;</span><br><span class="line">     case 3</span><br><span class="line">         str3=str;</span><br><span class="line">     case 4</span><br><span class="line">         str4=str;</span><br><span class="line">     case 5</span><br><span class="line">         str5=str;</span><br><span class="line">     case 6</span><br><span class="line">         str6=str;</span><br><span class="line">     otherwise</span><br><span class="line">         str7=str;</span><br><span class="line">  end</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">% 识别出的结果以标题形式显示在图上</span><br><span class="line">S=strcat(&apos;鲁&apos;,str2,&apos; &apos;,str3,str4,str5,str6,str7); </span><br><span class="line">figure();</span><br><span class="line">imshow(imread(path)),title(S);</span><br></pre></td></tr></table></figure>
+<h2 id="结果呈现"><a href="#结果呈现" class="headerlink" title="结果呈现"></a><em>结果呈现</em></h2><p> <img src="/2019/06/05/汽车牌照提取/10.png" alt></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Matlab/" rel="tag"># Matlab</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/22/数据库范式/" rel="next" title="数据库范式">
+                <i class="fa fa-chevron-left"></i> 数据库范式
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/ava.jpg" alt="sh">
+            
+              <p class="site-author-name" itemprop="name">sh</p>
+              <p class="site-description motion-element" itemprop="description">so we beat on, boats against the current, borne back ceaselessly into the past.</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-name">Artikel</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">Kategorien</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-name">Tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/croook" title="GitHub &rarr; https://github.com/croook" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:sh5672186@sina.com" title="E-Mail &rarr; mailto:sh5672186@sina.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#问题分析"><span class="nav-number">1.</span> <span class="nav-text">问题分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#车牌特点"><span class="nav-number">1.1.</span> <span class="nav-text">车牌特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实验流程"><span class="nav-number">1.2.</span> <span class="nav-text">实验流程</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实验过程"><span class="nav-number">2.</span> <span class="nav-text">实验过程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#解决思路"><span class="nav-number">2.1.</span> <span class="nav-text">解决思路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#车牌定位"><span class="nav-number">2.1.1.</span> <span class="nav-text">车牌定位</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符分割"><span class="nav-number">2.1.2.</span> <span class="nav-text">字符分割</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符识别"><span class="nav-number">2.1.3.</span> <span class="nav-text">字符识别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法设计"><span class="nav-number">2.2.</span> <span class="nav-text">方法设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#车牌定位-1"><span class="nav-number">2.2.1.</span> <span class="nav-text">车牌定位</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#倾斜校正"><span class="nav-number">2.2.2.</span> <span class="nav-text">倾斜校正</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符分割-1"><span class="nav-number">2.2.3.</span> <span class="nav-text">字符分割</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符识别-1"><span class="nav-number">2.2.4.</span> <span class="nav-text">字符识别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小组分工"><span class="nav-number">2.3.</span> <span class="nav-text">小组分工</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现过程"><span class="nav-number">2.4.</span> <span class="nav-text">实现过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#牌照定位"><span class="nav-number">2.4.1.</span> <span class="nav-text">牌照定位</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#边缘检测"><span class="nav-number">2.4.1.1.</span> <span class="nav-text">边缘检测</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#颜色提取"><span class="nav-number">2.4.1.2.</span> <span class="nav-text">颜色提取</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#确定范围"><span class="nav-number">2.4.1.3.</span> <span class="nav-text">确定范围</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#倾斜校正-1"><span class="nav-number">2.4.1.4.</span> <span class="nav-text">倾斜校正</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符分割-2"><span class="nav-number">2.4.2.</span> <span class="nav-text">字符分割</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#分割"><span class="nav-number">2.4.2.1.</span> <span class="nav-text">分割</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符识别-2"><span class="nav-number">2.4.3.</span> <span class="nav-text">字符识别</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#建立模板库"><span class="nav-number">2.4.3.1.</span> <span class="nav-text">建立模板库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#预处理"><span class="nav-number">2.4.3.2.</span> <span class="nav-text">预处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BP神经网络训练"><span class="nav-number">2.4.3.3.</span> <span class="nav-text">BP神经网络训练</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结果呈现"><span class="nav-number">2.5.</span> <span class="nav-text">结果呈现</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">sh</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.0</div>
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.0"></script>
+
+  <script src="/js/src/motion.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/js/src/post-details.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+  
+  <script>
+    
+    function addCount(Counter) {
+      var $visitors = $('.leancloud_visitors');
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            
+            Counter('put', '/classes/Counter/' + counter.objectId, JSON.stringify({ time: { '__op': 'Increment', 'amount': 1 } }))
+            
+              .done(function() {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.time + 1);
+              })
+            
+              .fail(function ({ responseJSON }) {
+                console.log(`Failed to save Visitor num, with error message: ${responseJSON.error}`);
+              })
+          } else {
+            
+              Counter('post', '/classes/Counter', JSON.stringify({ title: title, url: url, time: 1 }))
+                .done(function() {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(1);
+                })
+                .fail(function() {
+                  console.log('Failed to create');
+                });
+            
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log(`LeanCloud Counter Error: ${responseJSON.code} ${responseJSON.error}`);
+        });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + 'FKPTBi1uAoXKAYkTu5qVmYU8-gzGzoHsz')
+        .done(function({ api_server }) {
+          var Counter = function(method, url, data) {
+            return $.ajax({
+              method: method,
+              url: 'https://' + api_server + '/1.1' + url,
+              headers: {
+                'X-LC-Id': 'FKPTBi1uAoXKAYkTu5qVmYU8-gzGzoHsz',
+                'X-LC-Key': 'fSe2tiDLznbEiATi2CiqRljO',
+                'Content-Type': 'application/json',
+              },
+              data: data
+            });
+          };
+          
+            addCount(Counter);
+          
+        });
+    });
+  </script>
+
+
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

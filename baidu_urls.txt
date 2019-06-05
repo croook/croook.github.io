@@ -1,3 +1,4 @@
+https://croook.github.io/2019/06/05/汽车牌照提取/
 https://croook.github.io/2019/05/22/数据库范式/
 https://croook.github.io/2019/05/11/语言SUM到栈式计算机STACK的机器语言的翻译/
 https://croook.github.io/2019/05/11/验证Yacc的使用/
