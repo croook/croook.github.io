@@ -1,0 +1,1390 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="En">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+  <meta name="google-site-verification" content="7Oev-o_nVgfEcRT4Mc9fXSxqXK0_WXFBAuBh4GdzGuM">
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="5Nq4yOLRnQ">
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.ico?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.ico?v=7.0.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="实验二 Hadoop平台安装与配置一、创建三台虚拟机1、 为创建好的虚拟机配置网络使用命令 vi /etc/sysconfig/network-scripts/ifcfg-eth0  重启服务，并验证配置好的网络  2、 使用模板创建另外两台虚拟机使用实验一中创建的CentOS 6虚拟机，并使用OVF模板创建另外两台虚拟机 二、配置网络1、 生成MAC地址由于直接使用OVF模板创建了虚拟机，所以需">
+<meta name="keywords" content="Exp,云计算,Hadoop">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hadoop安装配置">
+<meta property="og:url" content="https://croook.github.io/2019/11/05/Hadoop安装配置/index.html">
+<meta property="og:site_name" content="Crookshank">
+<meta property="og:description" content="实验二 Hadoop平台安装与配置一、创建三台虚拟机1、 为创建好的虚拟机配置网络使用命令 vi /etc/sysconfig/network-scripts/ifcfg-eth0  重启服务，并验证配置好的网络  2、 使用模板创建另外两台虚拟机使用实验一中创建的CentOS 6虚拟机，并使用OVF模板创建另外两台虚拟机 二、配置网络1、 生成MAC地址由于直接使用OVF模板创建了虚拟机，所以需">
+<meta property="og:locale" content="En">
+<meta property="og:image" content="https://croook.github.io/2019/11/05/Hadoop安装配置/TIM截图20191103145010.png">
+<meta property="og:image" content="https://croook.github.io/2019/11/05/Hadoop安装配置/TIM截图20191103145117.png">
+<meta property="og:image" content="https://croook.github.io/2019/11/05/Hadoop安装配置/TIM截图20191103150224.png">
+<meta property="og:image" content="https://croook.github.io/2019/11/05/Hadoop安装配置/TIM截图20191103150722.png">
+<meta property="og:image" content="https://croook.github.io/2019/11/05/Hadoop安装配置/TIM截图20191103150925.png">
+<meta property="og:image" content="https://croook.github.io/2019/11/05/Hadoop安装配置/TIM截图20191103151025.png">
+<meta property="og:image" content="https://croook.github.io/2019/11/05/Hadoop安装配置/TIM截图20191103160106.png">
+<meta property="og:image" content="https://croook.github.io/2019/11/05/Hadoop安装配置/TIM截图20191103160505.png">
+<meta property="og:image" content="https://croook.github.io/2019/11/05/Hadoop安装配置/TIM截图20191103190613.png">
+<meta property="og:image" content="https://croook.github.io/2019/11/05/Hadoop安装配置/TIM截图20191103195112.png">
+<meta property="og:image" content="https://croook.github.io/2019/11/05/Hadoop安装配置/TIM截图20191103195213.png">
+<meta property="og:image" content="https://croook.github.io/2019/11/05/Hadoop安装配置/TIM截图20191103220500.png">
+<meta property="og:image" content="https://croook.github.io/2019/11/05/Hadoop安装配置/TIM截图20191104202137.png">
+<meta property="og:updated_time" content="2019-11-05T13:13:13.209Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hadoop安装配置">
+<meta name="twitter:description" content="实验二 Hadoop平台安装与配置一、创建三台虚拟机1、 为创建好的虚拟机配置网络使用命令 vi /etc/sysconfig/network-scripts/ifcfg-eth0  重启服务，并验证配置好的网络  2、 使用模板创建另外两台虚拟机使用实验一中创建的CentOS 6虚拟机，并使用OVF模板创建另外两台虚拟机 二、配置网络1、 生成MAC地址由于直接使用OVF模板创建了虚拟机，所以需">
+<meta name="twitter:image" content="https://croook.github.io/2019/11/05/Hadoop安装配置/TIM截图20191103145010.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://croook.github.io/2019/11/05/Hadoop安装配置/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Hadoop安装配置 | Crookshank</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="En">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Crookshank</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://croook.github.io/2019/11/05/Hadoop安装配置/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="sh">
+      <meta itemprop="description" content="so we beat on, boats against the current, borne back ceaselessly into the past.">
+      <meta itemprop="image" content="/images/ava.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Crookshank">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Hadoop安装配置
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-11-05 21:08:46 / Modified: 21:13:13" itemprop="dateCreated datePublished" datetime="2019-11-05T21:08:46+08:00">2019-11-05</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/云计算/" itemprop="url" rel="index"><span itemprop="name">云计算</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+            <span id="/2019/11/05/Hadoop安装配置/" class="leancloud_visitors" data-flag-title="Hadoop安装配置">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Views: </span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="实验二-Hadoop平台安装与配置"><a href="#实验二-Hadoop平台安装与配置" class="headerlink" title="实验二 Hadoop平台安装与配置"></a>实验二 Hadoop平台安装与配置</h1><h2 id="一、创建三台虚拟机"><a href="#一、创建三台虚拟机" class="headerlink" title="一、创建三台虚拟机"></a>一、创建三台虚拟机</h2><h3 id="1、-为创建好的虚拟机配置网络"><a href="#1、-为创建好的虚拟机配置网络" class="headerlink" title="1、 为创建好的虚拟机配置网络"></a>1、 为创建好的虚拟机配置网络</h3><p>使用命令 <code>vi /etc/sysconfig/network-scripts/ifcfg-eth0</code></p>
+<p><img src="/2019/11/05/Hadoop安装配置/TIM截图20191103145010.png" alt></p>
+<p>重启服务，并验证配置好的网络</p>
+<p><img src="/2019/11/05/Hadoop安装配置/TIM截图20191103145117.png" alt></p>
+<h3 id="2、-使用模板创建另外两台虚拟机"><a href="#2、-使用模板创建另外两台虚拟机" class="headerlink" title="2、 使用模板创建另外两台虚拟机"></a>2、 使用模板创建另外两台虚拟机</h3><p>使用实验一中创建的CentOS 6虚拟机，并使用OVF模板创建另外两台虚拟机</p>
+<h2 id="二、配置网络"><a href="#二、配置网络" class="headerlink" title="二、配置网络"></a>二、配置网络</h2><h3 id="1、-生成MAC地址"><a href="#1、-生成MAC地址" class="headerlink" title="1、 生成MAC地址"></a>1、 生成MAC地址</h3><p>由于直接使用OVF模板创建了虚拟机，所以需要为两台模板虚拟机生成MAC地址</p>
+<p><img src="/2019/11/05/Hadoop安装配置/TIM截图20191103150224.png" alt></p>
+<h3 id="2、-修改MAC地址"><a href="#2、-修改MAC地址" class="headerlink" title="2、 修改MAC地址"></a>2、 修改MAC地址</h3><p>使用命令  <code>vi /etc/sysconfig/network-scripts/ifcfg-eth0</code></p>
+<p><img src="/2019/11/05/Hadoop安装配置/TIM截图20191103150722.png" alt></p>
+<p>删除旧网卡规则映射</p>
+<p>使用命令 <code>rm /etc/udev/rules.d/70-persistent-net.rules</code></p>
+<p>删除后重启机器</p>
+<h3 id="3、-修改ip、子网掩码、网关"><a href="#3、-修改ip、子网掩码、网关" class="headerlink" title="3、 修改ip、子网掩码、网关"></a>3、 修改ip、子网掩码、网关</h3><p>使用命令 <code>ifconfig</code> 、 <code>netstat -rn</code>  查看ip、子网掩码、网关地址</p>
+<p><img src="/2019/11/05/Hadoop安装配置/TIM截图20191103150925.png" alt></p>
+<p><img src="/2019/11/05/Hadoop安装配置/TIM截图20191103151025.png" alt></p>
+<p>修改ip、子网掩码、网关，在网卡配置中增加 IPADDR、NETMASK、GATEWAY</p>
+<p><img src="/2019/11/05/Hadoop安装配置/TIM截图20191103160106.png" alt></p>
+<h3 id="4、重启服务，关闭防火墙"><a href="#4、重启服务，关闭防火墙" class="headerlink" title="4、重启服务，关闭防火墙"></a>4、重启服务，关闭防火墙</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">service network restart</span><br><span class="line">service iptables stop</span><br></pre></td></tr></table></figure>
+<h3 id="5、-测试网络"><a href="#5、-测试网络" class="headerlink" title="5、 测试网络"></a>5、 测试网络</h3><p>三个虚拟机ip:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">CentOS 6     : 192.168.112.129</span><br><span class="line">CentOS 6 - 1 : 192.168.112.130</span><br><span class="line">CentOS 6 - 2 : 192.168.112.131</span><br></pre></td></tr></table></figure>
+<p>测试网络：</p>
+<p><img src="/2019/11/05/Hadoop安装配置/TIM截图20191103160505.png" alt></p>
+<h2 id="三、修改hosts"><a href="#三、修改hosts" class="headerlink" title="三、修改hosts"></a>三、修改hosts</h2><h3 id="1、分别修改虚拟机hosts文件"><a href="#1、分别修改虚拟机hosts文件" class="headerlink" title="1、分别修改虚拟机hosts文件"></a>1、分别修改虚拟机hosts文件</h3><p>使用命令 <code>vi /etc/hosts</code></p>
+<p><img src="/2019/11/05/Hadoop安装配置/TIM截图20191103190613.png" alt></p>
+<h2 id="四、配置SSH免登录"><a href="#四、配置SSH免登录" class="headerlink" title="四、配置SSH免登录"></a>四、配置SSH免登录</h2><h3 id="1、ssh-keygen"><a href="#1、ssh-keygen" class="headerlink" title="1、ssh-keygen"></a>1、ssh-keygen</h3><p>使用命令 <code>ssh-kengen</code></p>
+<h3 id="2、配置两两间的免登录"><a href="#2、配置两两间的免登录" class="headerlink" title="2、配置两两间的免登录"></a>2、配置两两间的免登录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh-copy-id -i .ssh/id_rsa.pub root@Slave1 </span><br><span class="line">ssh-copy-id -i .ssh/id_rsa.pub root@Slave2</span><br></pre></td></tr></table></figure>
+<h2 id="五、安装Hadoop平台"><a href="#五、安装Hadoop平台" class="headerlink" title="五、安装Hadoop平台"></a>五、安装Hadoop平台</h2><h3 id="1、安装java"><a href="#1、安装java" class="headerlink" title="1、安装java"></a>1、安装java</h3><p><img src="/2019/11/05/Hadoop安装配置/TIM截图20191103195112.png" alt></p>
+<h3 id="2、将下载的java安装包传入虚拟机"><a href="#2、将下载的java安装包传入虚拟机" class="headerlink" title="2、将下载的java安装包传入虚拟机"></a>2、将下载的java安装包传入虚拟机</h3><p><img src="/2019/11/05/Hadoop安装配置/TIM截图20191103195213.png" alt></p>
+<h3 id="3、解压"><a href="#3、解压" class="headerlink" title="3、解压"></a>3、解压</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf jdk-8u231-linux-x64.tar.gz </span><br><span class="line">mv ./jdk1.8.0_231 /opt/jdk</span><br></pre></td></tr></table></figure>
+<h3 id="4、添加环境变量"><a href="#4、添加环境变量" class="headerlink" title="4、添加环境变量"></a>4、添加环境变量</h3><p><code>vi /etc/profile</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export JAVA_HOME=/opt/jdk</span><br><span class="line">CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar export PATH=$PATH:$JAVA_HOME/bin</span><br></pre></td></tr></table></figure>
+<h3 id="5、安装Hadoop"><a href="#5、安装Hadoop" class="headerlink" title="5、安装Hadoop"></a>5、安装Hadoop</h3><p>网址： <code>https://archive.apache.org/dist/hadoop/core/hadoop-2.8.2/</code></p>
+<p><img src="/2019/11/05/Hadoop安装配置/TIM截图20191103220500.png" alt></p>
+<p>解压后添加环境变量，修改 <code>.bashrc</code> 添加</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export HADOOP_HOME=/opt/hadoop </span><br><span class="line">export PATH=$PATH:$HADOOP_HOME/sbin:$HADOOP_HOME/bin</span><br></pre></td></tr></table></figure>
+<p>修改 hadoop-env.sh 和 yarn-env.sh</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export JAVA_HOME=/opt/jdk</span><br></pre></td></tr></table></figure>
+<p>修改 slaves ，添加Slave1、Slave2</p>
+<p>修改 core-site.xml</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;configuration&gt;</span><br><span class="line">	&lt;property&gt;</span><br><span class="line">		&lt;name&gt;fs.defaultFS&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;hdfs://Master:9000&lt;/value&gt; </span><br><span class="line">    &lt;/property&gt;        </span><br><span class="line">    &lt;property&gt;                </span><br><span class="line">    	&lt;name&gt;hadoop.tmp.dir&lt;/name&gt;                </span><br><span class="line">    	&lt;value&gt;/home/hadoop/tmp&lt;/value&gt;        </span><br><span class="line">    	&lt;/property&gt; </span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
+<p>修改 hdfs-site.xml ， 设置副本数、心跳间隔</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;configuration&gt;</span><br><span class="line">        &lt;property&gt;</span><br><span class="line">                &lt;name&gt;dfs.replication&lt;/name&gt;</span><br><span class="line">                &lt;value&gt;2&lt;/value&gt;</span><br><span class="line">        &lt;/property&gt;</span><br><span class="line">        &lt;property&gt;</span><br><span class="line">                &lt;name&gt;dfs.http.address&lt;/name&gt;</span><br><span class="line">                &lt;value&gt;Master:50070&lt;/value&gt;</span><br><span class="line">        &lt;/property&gt;</span><br><span class="line">                &lt;property&gt;</span><br><span class="line">                &lt;name&gt;dfs.heartbeat.interval&lt;/name&gt;</span><br><span class="line">                &lt;value&gt;2&lt;/value&gt;</span><br><span class="line">        &lt;/property&gt;</span><br><span class="line">        &lt;property&gt;</span><br><span class="line">                &lt;name&gt;dfs.namenode.name.dir&lt;/name&gt;</span><br><span class="line">                &lt;value&gt;/home/hadoop/tmp/name&lt;/value&gt;</span><br><span class="line">        &lt;/property&gt;</span><br><span class="line">        &lt;property&gt;</span><br><span class="line">                &lt;name&gt;dfs.datanode.data.dir&lt;/name&gt;</span><br><span class="line">                &lt;value&gt;/home/hadoop/tmp/data&lt;/value&gt;</span><br><span class="line">        &lt;/property&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
+<p>修改 mapred-site.xml</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;configuration&gt;</span><br><span class="line">    &lt;property&gt;</span><br><span class="line">        &lt;name&gt;mapreduce.framework.name&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;yarn&lt;/value&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
+<p>修改 yarn-site.xml</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;configuration&gt;</span><br><span class="line">    &lt;property&gt;</span><br><span class="line">        &lt;name&gt;yarn.nodemanager.aux-services&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;mapreduce_shuffle&lt;/value&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
+<p>格式化文件系统</p>
+<p><code>hdfs namenode -format</code></p>
+<p>启动Hadoop</p>
+<p><code>start-all.sh</code></p>
+<p>查看jps</p>
+<p><img src="/2019/11/05/Hadoop安装配置/TIM截图20191104202137.png" alt></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Exp/" rel="tag"># Exp</a>
+          
+            <a href="/tags/云计算/" rel="tag"># 云计算</a>
+          
+            <a href="/tags/Hadoop/" rel="tag"># Hadoop</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/11/hexo_baidu_verify/" rel="next" title="Next主题baidu验证">
+                <i class="fa fa-chevron-left"></i> Next主题baidu验证
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/ava.jpg" alt="sh">
+            
+              <p class="site-author-name" itemprop="name">sh</p>
+              <p class="site-description motion-element" itemprop="description">so we beat on, boats against the current, borne back ceaselessly into the past.</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">15</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/croook" title="GitHub &rarr; https://github.com/croook" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:sh5672186@sina.com" title="E-Mail &rarr; mailto:sh5672186@sina.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#实验二-Hadoop平台安装与配置"><span class="nav-number">1.</span> <span class="nav-text">实验二 Hadoop平台安装与配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、创建三台虚拟机"><span class="nav-number">1.1.</span> <span class="nav-text">一、创建三台虚拟机</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、-为创建好的虚拟机配置网络"><span class="nav-number">1.1.1.</span> <span class="nav-text">1、 为创建好的虚拟机配置网络</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、-使用模板创建另外两台虚拟机"><span class="nav-number">1.1.2.</span> <span class="nav-text">2、 使用模板创建另外两台虚拟机</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、配置网络"><span class="nav-number">1.2.</span> <span class="nav-text">二、配置网络</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、-生成MAC地址"><span class="nav-number">1.2.1.</span> <span class="nav-text">1、 生成MAC地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、-修改MAC地址"><span class="nav-number">1.2.2.</span> <span class="nav-text">2、 修改MAC地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、-修改ip、子网掩码、网关"><span class="nav-number">1.2.3.</span> <span class="nav-text">3、 修改ip、子网掩码、网关</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、重启服务，关闭防火墙"><span class="nav-number">1.2.4.</span> <span class="nav-text">4、重启服务，关闭防火墙</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5、-测试网络"><span class="nav-number">1.2.5.</span> <span class="nav-text">5、 测试网络</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、修改hosts"><span class="nav-number">1.3.</span> <span class="nav-text">三、修改hosts</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、分别修改虚拟机hosts文件"><span class="nav-number">1.3.1.</span> <span class="nav-text">1、分别修改虚拟机hosts文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、配置SSH免登录"><span class="nav-number">1.4.</span> <span class="nav-text">四、配置SSH免登录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、ssh-keygen"><span class="nav-number">1.4.1.</span> <span class="nav-text">1、ssh-keygen</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、配置两两间的免登录"><span class="nav-number">1.4.2.</span> <span class="nav-text">2、配置两两间的免登录</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、安装Hadoop平台"><span class="nav-number">1.5.</span> <span class="nav-text">五、安装Hadoop平台</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、安装java"><span class="nav-number">1.5.1.</span> <span class="nav-text">1、安装java</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、将下载的java安装包传入虚拟机"><span class="nav-number">1.5.2.</span> <span class="nav-text">2、将下载的java安装包传入虚拟机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、解压"><span class="nav-number">1.5.3.</span> <span class="nav-text">3、解压</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、添加环境变量"><span class="nav-number">1.5.4.</span> <span class="nav-text">4、添加环境变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5、安装Hadoop"><span class="nav-number">1.5.5.</span> <span class="nav-text">5、安装Hadoop</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">sh</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.0</div>
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.0"></script>
+
+  <script src="/js/src/motion.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/js/src/post-details.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+  
+  <script>
+    
+    function addCount(Counter) {
+      var $visitors = $('.leancloud_visitors');
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            
+            Counter('put', '/classes/Counter/' + counter.objectId, JSON.stringify({ time: { '__op': 'Increment', 'amount': 1 } }))
+            
+              .done(function() {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.time + 1);
+              })
+            
+              .fail(function ({ responseJSON }) {
+                console.log(`Failed to save Visitor num, with error message: ${responseJSON.error}`);
+              })
+          } else {
+            
+              Counter('post', '/classes/Counter', JSON.stringify({ title: title, url: url, time: 1 }))
+                .done(function() {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(1);
+                })
+                .fail(function() {
+                  console.log('Failed to create');
+                });
+            
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log(`LeanCloud Counter Error: ${responseJSON.code} ${responseJSON.error}`);
+        });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + 'FKPTBi1uAoXKAYkTu5qVmYU8-gzGzoHsz')
+        .done(function({ api_server }) {
+          var Counter = function(method, url, data) {
+            return $.ajax({
+              method: method,
+              url: 'https://' + api_server + '/1.1' + url,
+              headers: {
+                'X-LC-Id': 'FKPTBi1uAoXKAYkTu5qVmYU8-gzGzoHsz',
+                'X-LC-Key': 'fSe2tiDLznbEiATi2CiqRljO',
+                'Content-Type': 'application/json',
+              },
+              data: data
+            });
+          };
+          
+            addCount(Counter);
+          
+        });
+    });
+  </script>
+
+
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

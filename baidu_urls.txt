@@ -1,3 +1,4 @@
+https://croook.github.io/2019/11/05/Hadoop安装配置/
 https://croook.github.io/2019/10/11/hexo_baidu_verify/
 https://croook.github.io/2019/10/11/hello-world/
 https://croook.github.io/2019/06/05/汽车牌照提取/
