@@ -1,3 +1,6 @@
+https://croook.github.io/2020/01/01/HBase/
+https://croook.github.io/2020/01/01/MapReduce/
+https://croook.github.io/2020/01/01/hdfs使用方法/
 https://croook.github.io/2019/11/05/Hadoop安装配置/
 https://croook.github.io/2019/10/11/hexo_baidu_verify/
 https://croook.github.io/2019/10/11/hello-world/
