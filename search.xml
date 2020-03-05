@@ -1,12 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[tensorflow学习]]></title>
+    <url>%2F2020%2F02%2F05%2Ftensorflow%E5%AD%A6%E4%B9%A0%2F</url>
+    <content type="text"><![CDATA[Tensorflowhello world123456789import tensorflow.compat.v1 as tftf.disable_v2_behavior()vec_1 = tf.constant([1, 2, 3, 4])vec_2 = tf.constant([1, 2, 3, 4])v_add = tf.add(vec_1,vec_2)with tf.Session() as sess: print(sess.run(v_add)) 12345678910111213import tensorflow.compat.v1 as tftf.disable_v2_behavior()vec_1 = tf.constant([1, 2, 3, 4])vec_2 = tf.constant([1, 2, 3, 4])sess = tf.InteractiveSession()v_add = tf.add(vec_1,vec_2)print(v_add.eval())sess.close() 张量所有的数据都通过张量的形式来表示 TensorFlow的张量和Numpy的数组不同，他计算的结果不是一个具体的数字，而是一个张量的结构。从上面结果来看，一个张量主要保存了三个属性，名字（name），维度（shape）和类型（type） 123456789#_*_coding:utf-8_*_import tensorflow as tf # tf.constant 是一个计算，这个计算的结果为一个张量，保存在变量a中a = tf.constant([1.0, 2.0], name='a')b = tf.constant([2.0, 3.0], name='b') result = a + b# print(result) # Tensor("add:0", shape=(2,), dtype=float32) 张量的第一个属性名字不仅是一个张量的唯一标识符，它同样也给出了这个张量是如何计算的，TensorFlow的计算都可以通过计算图的模型来建立，而计算图上的每一个节点代表一个计算，计算的结果就保存在张量之中。所以张量和计算图上节点所代表的计算结果是对应的。所以张量的命名就可以通过“node : src_output”的形式来给出。其中node为节点的名称，src_output 表示当前张量来自节点的第几个输出。比如上面的“add:0” 就说明了result这个张量是计算节点“add” 输出的第一个结果（编号从0 开始）。 张量的第二个属性是张量的维度。这个属性描述了一个张量的维度信息，比如上面样例中 shape = (2, ) 说明了张量 result 是一个一维数组，这个数组的长度为2。维度是张量一个很重要的属性，围绕张量的维度TensorFlow也给出了很多有用的运算。 张量的第三个属性就是类型（type），每一个张量会有一个唯一的类型。TensorFlow 会对参与运算的所有张量进行类型的检查，当发现类型不匹配的时候会报错 常量、随机数、变量大规模常量张量对象最好定义成 t_large = tf.Varible(large_array,trainable = False) 可训练标志位为False 12345678910111213t_1 = tf.constant(4)zero_t = tf.zeros([2,3],tf.int32)tf.zeros_like(t_2)tf.ones_like(t_2)range_t = tf.linspace(2.0,5.0,5)#We get:[2. 2.75 3.5 4.25 5.]tf.range(start,limit,delta)#start 默认0，delta 默认1range_t = tf.range(10)#Result:[0 1 2 3 4 5 6 7 8 9] 123456#随机数t_random = tf.random_normal([2,3],mean=2.0,stddev=4,seed = 12)#要想得到同样的随机数，seed需要设置相同，均值默认0，标准差默认1tf.random_crop(t_random,[2,5],seed=12)#将给定的张量随机剪裁为指定的大小 123456789rand_t = tf.random_uniform([50,50]，0，10，seed=0)t_a = tf.Variable(rand_t)#随机均匀分布，min 0 max 10weight2 = tf.Variable(weights.initialized_value(),name='w2')#用原有变量定义saver = tf.train.Saver()#保存变量 占位符定义过程，执行时再赋具体值 1tf.placeholder(dtype,shape=None,name=None) 常用函数123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687(1)tf.argmax(input, axis=None, name=None, dimension=None)此函数是对矩阵按行或列计算最大值参数 input：输入Tensor axis：0表示按列，1表示按行 name：名称 dimension：和axis功能一样，默认axis取值优先。新加的字段返回：Tensor 行或列的最大值下标向量 (2)tf.equal(a, b)此函数比较等维度的a, b矩阵相应位置的元素是否相等，相等返回True,否则为False返回：同维度的矩阵，元素值为True或False (3)tf.cast(x, dtype, name=None)将x的数据格式转化成dtype.例如，原来x的数据格式是bool，那么将其转化成float以后，就能够将其转化成0和1的序列。反之也可以 (4)tf.reduce_max(input_tensor, reduction_indices=None,keep_dims=False, name=None) 功能：求某维度的最大值 (5)tf.reduce_mean(input_tensor, reduction_indices=None, keep_dims=False, name=None)功能：求某维度的均值参数1--input_tensor:待求值的tensor。参数2--reduction_indices:在哪一维上求解。0表示按列，1表示按行参数（3）（4）可忽略例：x = [ 1, 2 3, 4]x = tf.constant([[1,2],[3,4]], &quot;float&quot;)tf.reduce_mean(x) = 2.5tf.reduce_mean(x, 0) = [2, 3]tf.reduce_mean(x, 1) = [1.5, 3.5] (6)tf.truncated_normal(shape, mean=0.0, stddev=1.0,dtype=tf.float32, seed=None, name=None)从截断的正态分布中输出随机值 shape: 输出的张量的维度尺寸。 mean: 正态分布的均值。 stddev: 正态分布的标准差。 dtype: 输出的类型。 seed: 一个整数，当设置之后，每次生成的随机数都一样。 name: 操作的名字。 (7）tf.random_normal(shape, mean=0.0, stddev=1.0, dtype=tf.float32, seed=None, name=None)从标准正态分布中输出随机值 (8) tf.nn.conv2d(input, filter, strides, padding,use_cudnn_on_gpu=None, data_format=None, name=None)在给定的4D input与 filter下计算2D卷积 1，输入shape为 [batch, height, width, in_channels]: batch为图片数量，in_channels为图片通道数 2，第二个参数filter：相当于CNN中的卷积核，它要求是一个Tensor，具有[filter_height, filter_width, in_channels, out_channels]这样的shape，具体含义是[卷积核的高度，卷积核的宽度，图像通道数，卷积核个数]，要求类型与参数input相同，有一个地方需要注意，第三维in_channels，就是参数input的第四维 3，第三个参数strides：卷积时在图像每一维的步长，这是一个一维的向量，长度4 4，第四个参数padding：string类型的量，只能是&quot;SAME&quot;,&quot;VALID&quot;其中之一，这个值决定了不同的卷积方式（后面会介绍） 5，第五个参数：use_cudnn_on_gpu:bool类型，是否使用cudnn加速，默认为true 结果返回一个Tensor，这个输出，就是我们常说的feature map，shape仍然是[batch, height, width, channels]这种形式。 (9)tf.nn.max_pool(value, ksize, strides, padding, name=None)参数是四个，和卷积很类似：第一个参数value：需要池化的输入，一般池化层接在卷积层后面，所以输入通常是feature map，依然是[batch, height, width, channels]这样的shape第二个参数ksize：池化窗口的大小，取一个四维向量，一般是[1, height, width, 1]，因为我们不想在batch和channels上做池化，所以这两个维度设为了1第三个参数strides：和卷积类似，窗口在每一个维度上滑动的步长，一般也是[1, stride,stride, 1]第四个参数padding：和卷积类似，可以取&apos;VALID&apos; 或者&apos;SAME&apos; 返回一个Tensor，类型不变，shape仍然是[batch, height, width, channels]这种形式 (10) tf.reshape(tensor, shape, name=None)函数的作用是将tensor变换为参数shape的形式。其中shape为一个列表形式，特殊的一点是列表中可以存在-1。-1代表的含义是不用我们自己指定这一维的大小，函数会自动计算，但列表中只能存在一个-1。（当然如果存在多个-1，就是一个存在多解的方程了） (11)tf.nn.dropout(x, keep_prob, noise_shape=None, seed=None,name=None)为了减少过拟合，随机扔掉一些神经元，这些神经元不参与权重的更新和运算参数： x : 输入tensor keep_prob : float类型，每个元素被保留下来的概率 noise_shape : 一个1维的int32张量，代表了随机产生“保留/丢弃”标志的shape。 seed : 整形变量，随机数种子。 name : 名字，没啥用。 feed_dict字符串拼接123456789Str1 = tf.placeholder(tf.string)Str2 = tf.placeholder(tf.string)Str3 = tf.placeholder(tf.string)Str = tf.string_join([Str1, Str2, Str3], separator=" ") with tf.Session() as sess: output = sess.run(Str, feed_dict=&#123;Str1: 'I', Str2: 'like', Str3: 'TensorFlow !'&#125;) print(output.decode()) 浮点数乘积1234567Num1 = tf.placeholder(tf.float32)Num2 = tf.placeholder(tf.float32)Result = tf.multiply(Num1, Num2)with tf.Session() as sess: print(sess.run(Result, feed_dict=&#123;Num1:[5.],Num2:[6.]&#125;)) tensorboard12345678910import tensorflow.compat.v1 as tftf.disable_v2_behavior()A = tf.random_uniform([2,3] , 2 , 10 , dtype = tf.int32 ,name = "A")B = tf.eye(3 , dtype = tf.int32 , name = "B")C = tf.matmul(A , B , name = "ans")with tf.Session() as sess: write = tf.summary.FileWriter('logs' , sess.graph) sess.run(C) logs上级目录下打开shell，命令： tensorboard --logdir &quot;logs&quot;，新版tensorflow将 = 换成了双引号 更改命名空间： 1234567891011121314import tensorflow.compat.v1 as tftf.disable_v2_behavior()with tf.name_scope("A"): A = tf.random_uniform([2,3] , 2 , 10 , dtype = tf.int32 ,name = "A")with tf.name_scope("B"): B = tf.eye(3 , dtype = tf.int32 , name = "B")C = tf.matmul(A , B , name = "ans")with tf.Session() as sess: write = tf.summary.FileWriter('logs' , sess.graph) sess.run(C)]]></content>
+      <categories>
+        <category>AI</category>
+      </categories>
+      <tags>
+        <tag>AI</tag>
+        <tag>tensorflow</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[HBase]]></title>
     <url>%2F2020%2F01%2F01%2FHBase%2F</url>
     <content type="text"><![CDATA[HBase安装hbase下载wget https://archive.apache.org/dist/hbase/2.0.0-alpha4/hbase-2.0.0-alpha4-bin.tar.gz 安装后解压到/opt/hbase文件夹 配置环境变量修改~/.bashrc文件，添加以下代码 12export HBASE_HOME=/opt/hbase export PATH=$PATH:$HBASE_HOME/bin 立即生效，source ~/.bashrc 修改配置文件修改以下内容，/opt/hbase/conf/hbase-env.sh 12export HBASE_MANAGES_ZK=true export JAVA_HOME=/opt/jdk 使用hbase自带的zookeeper，java路径为/opt/jdk 修改以下内容，/opt/hbase/conf/hbase-site.xml 1234567891011121314151617181920&lt;configuration&gt; &lt;property&gt; &lt;name&gt;hbase.rootdir&lt;/name&gt; &lt;value&gt;hdfs://Master:9000/hbase&lt;/value&gt; &lt;/property&gt; &lt;property&gt; &lt;name&gt;hbase.zookeeper.quorum&lt;/name&gt; &lt;value&gt;Master:2181,Slave1:2181,Slave2:2181&lt;/value&gt; &lt;/property&gt; &lt;property&gt; &lt;name&gt;hbase.cluster.distributed&lt;/name&gt; &lt;value&gt;true&lt;/value&gt; &lt;/property&gt; &lt;property&gt; &lt;name&gt;hbase.zookeeper.property.dataDir&lt;/name&gt; &lt;value&gt;/home/hadoop/zookeeper&lt;/value&gt; &lt;/property&gt;&lt;/configuration&gt; 设置储存位置为hdfs://Master:9000/hbase 使用完全分布式模式，指定zookeeper集群的地址列表，指定zookeeper本地快照位置 修改以下内容：/opt/hbase/conf/regionservers 123MasterSlave1Slave2 HMaster闪退1、时间同步造成HMaster闪退，可能是由于节点的时间未同步，使用ntpdate 123456yum install -y ntpdate#设置时区cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtimeyes | cp -f /usr/share/zoneinfo/Asia/Shanghai /etc/localtime#同步时间ntpdate us.pool.ntp.org 配置后检查各个节点的date，看时间是否同步 2、zookeeper未连接使用hbase自带的zookeeper的话，要保证之前安装的zookeeper不会抢占2181端口，如果已有进程抢占2181端口，使用kill命令杀死进程。 保证各个节点防火墙已关闭，使2181端口能够正常访问 1service iptables stop 启动hbase先启动Hadoop，start -all.sh ，之后启动hbase，使用shell HBase Shellcreate alter删除menber中的member_id列族 list put12345678910111213put 'member','scutshuxue','info:age','24' put 'member','scutshuxue','info:birthday','1987-06-17' put 'member','scutshuxue','info:company','alibaba' put 'member','scutshuxue','address:contry','china' put 'member','scutshuxue','address:province','zhejiang' put 'member','scutshuxue','address:city','hangzhou' put 'member','xiaofeng','info:birthday','1987-4-17' put 'member','xiaofeng','info:favorite','movie' put 'member','xiaofeng','info:company','alibaba' put 'member','xiaofeng','address:contry','china' put 'member','xiaofeng','address:province','guangdong' put 'member','xiaofeng','address:city','jieyang' put 'member','xiaofeng','address:town','xianqiao' get12get 'member','scutshuxue','info' get 'member','scutshuxue','info:age' count Java APIwindows下安装hadoop下载hadoop_2.8.2 解压到合适位置后，添加环境变量 由于是在windows上安装，使用编译好的windows版本二进制文件进行替换，下载地址： https://github.com/steveloughran/winutils 由于没有2.8.2版本，所以使用2.8.3版本替换bin文件夹下全部内容 修改配置文件后，格式化hdfs，到sbin目录下启动hadoop 可以通过http://localhost:8088/ 、 http://localhost:50070/ 查看hadoop相关信息 windows下安装hbase官网下载安装包，版本选择的是 HBase 2.0.0-alpha4，下载地址：http://archive.apache.org/dist/hbase/ 修改环境变量等配置文件，在运行时报错 原因是缺少jar包导致，在网上下载 jline-2.12.1.jar，替换掉hadoop目录里的两个低版本的 jline-0.9.94.jar，并复制一份添加到yarn/lib中去 运行 java项目创建Java项目，导入本机hbase\lib下的所有jar包 创建HBaseUtils类、Run类 建立连接 12345678 HBaseUtils() throws IOException &#123; conf = HBaseConfiguration.create(); conf.set("hbase.rootdir", "hdfs://Master:9000/hbase"); conf.set("hbase.zookeeper.quorum", "Master,Slave1,Slave2"); config.set("hbase.zookeeper.property.clientPort", "2181");// zookeeper端口connection = ConnectionFactory.createConnection(config);admin = conn.getAdmin(); &#125; 创建表 12345678910111213public void createTable(String tableName, String[] family) throws Exception &#123; HTableDescriptor desc =new HTableDescriptor(tableName); for(int i=0;i&lt;family.length;i++)&#123; desc.addFamily(new HColumnDescriptor(family[i])); &#125; if(admin.tableExists(tableName))&#123; System.out.println("Already Exits"); &#125;else&#123; admin.createTable(desc); System.out.println("Create Success"); &#125;&#125; 插入数据 12345678910public void insertRecord(String tableName, String row, String col, String values) throws IOException &#123; createConn(); Table table = conn.getTable(TableName.valueOf(tableName)); Put put = new Put(row.getBytes()); String[] cols = col.split(":"); put.addColumn(cols[0].getBytes(), cols[1].getBytes(), values.getBytes()); table.put(put); table.close(); closeConn();&#125; 删除数据 1234567public void deleteRow(String tName, String row) throws IOException &#123; createConn(); Table table = conn.getTable(TableName.valueOf(tName)); Delete del = new Delete(row.getBytes()); table.delete(del); table.close();&#125; 遍历表 12345678910111213141516171819202122public ResultScanner getResultScann(String tableName) throws Exception &#123; Scan scan=new Scan(); ResultScanner rs =null; HTable htable=new HTable(conf, tableName); try&#123; rs=htable.getScanner(scan); for(Result r: rs)&#123; for(KeyValue kv:r.list())&#123; System.out.println(Bytes.toString(kv.getRow())); System.out.println(Bytes.toString(kv.getFamily())); System.out.println(Bytes.toString(kv.getQualifier())); System.out.println(Bytes.toString(kv.getValue())); System.out.println(kv.getTimestamp()); &#125; &#125; &#125;finally&#123; rs.close(); &#125; return rs; &#125; 结果 在虚拟机中查看结果，可以看到通过java api成功创建了menber表 如果在虚拟机中使用hbase shell时出现错误 Can&#39;t get master address from ZooKeeper; znode data == null 只需重新启动hbase]]></content>
       <categories>
         <category>云计算</category>
       </categories>
+      <tags>
+        <tag>Exp</tag>
+        <tag>云计算</tag>
+        <tag>Hadoop</tag>
+        <tag>HBase</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[MapReduce]]></title>
@@ -16,9 +34,9 @@
         <category>云计算</category>
       </categories>
       <tags>
+        <tag>Exp</tag>
         <tag>云计算</tag>
         <tag>Hadoop</tag>
-        <tag>Exp</tag>
       </tags>
   </entry>
   <entry>
@@ -29,9 +47,9 @@
         <category>云计算</category>
       </categories>
       <tags>
+        <tag>Exp</tag>
         <tag>云计算</tag>
         <tag>Hadoop</tag>
-        <tag>Exp</tag>
       </tags>
   </entry>
   <entry>
@@ -42,9 +60,9 @@
         <category>云计算</category>
       </categories>
       <tags>
+        <tag>Exp</tag>
         <tag>云计算</tag>
         <tag>Hadoop</tag>
-        <tag>Exp</tag>
       </tags>
   </entry>
   <entry>
@@ -98,8 +116,8 @@
         <category>编译原理</category>
       </categories>
       <tags>
-        <tag>Exp</tag>
         <tag>编译原理</tag>
+        <tag>Exp</tag>
       </tags>
   </entry>
   <entry>
@@ -110,8 +128,8 @@
         <category>编译原理</category>
       </categories>
       <tags>
-        <tag>Exp</tag>
         <tag>编译原理</tag>
+        <tag>Exp</tag>
       </tags>
   </entry>
   <entry>
@@ -122,8 +140,8 @@
         <category>编译原理</category>
       </categories>
       <tags>
-        <tag>Exp</tag>
         <tag>编译原理</tag>
+        <tag>Exp</tag>
       </tags>
   </entry>
   <entry>
@@ -134,8 +152,8 @@
         <category>编译原理</category>
       </categories>
       <tags>
-        <tag>Exp</tag>
         <tag>编译原理</tag>
+        <tag>Exp</tag>
       </tags>
   </entry>
   <entry>

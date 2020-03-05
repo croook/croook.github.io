@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://croook.github.io/2020/02/05/tensorflow%E5%AD%A6%E4%B9%A0/</loc>
+    
+    <lastmod>2020-03-04T08:07:36.700Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://croook.github.io/2020/01/01/HBase/</loc>
+    
+    <lastmod>2020-02-05T06:32:42.475Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://croook.github.io/2020/01/01/MapReduce/</loc>
     
     <lastmod>2020-01-01T11:58:04.740Z</lastmod>
@@ -19,13 +33,6 @@
     <loc>https://croook.github.io/2019/11/05/Hadoop%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/</loc>
     
     <lastmod>2020-01-01T11:57:43.786Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://croook.github.io/2020/01/01/HBase/</loc>
-    
-    <lastmod>2020-01-01T11:56:17.462Z</lastmod>
     
   </url>
   
