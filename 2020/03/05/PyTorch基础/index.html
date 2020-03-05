@@ -100,31 +100,31 @@
 
 
 
-  <meta name="description" content="图像分割选择特定拓展名12345678img_path =  &amp;apos;pics/&amp;apos;;ext = &amp;#123;&amp;apos;*.jpeg&amp;apos;,&amp;apos;*.jpg&amp;apos;,&amp;apos;*.png&amp;apos;&amp;#125;;img_list = [];for i = 1:numel(ext)    img_list = [img_list ; dir(fullfile(img_">
-<meta name="keywords" content="Matlab">
+  <meta name="description" content="PyTorch基础pytorchPyTorch是一个python库，它主要提供了两个高级功能：  GPU加速的张量计算  构建在反向自动求导系统上的深度神经网络   数据类型数据类型： torch.float32, torch.float64, torch.float16, torch.uint8, torch.int8, torch.int16, torch.int32, torch.int64">
+<meta name="keywords" content="AI,pytorch">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数字图像处理-图像合成">
-<meta property="og:url" content="https://croook.github.io/2019/03/28/数字图像处理-图像合成/index.html">
+<meta property="og:title" content="Pytorch基础">
+<meta property="og:url" content="https://croook.github.io/2020/03/05/PyTorch基础/index.html">
 <meta property="og:site_name" content="Crookshank">
-<meta property="og:description" content="图像分割选择特定拓展名12345678img_path =  &amp;apos;pics/&amp;apos;;ext = &amp;#123;&amp;apos;*.jpeg&amp;apos;,&amp;apos;*.jpg&amp;apos;,&amp;apos;*.png&amp;apos;&amp;#125;;img_list = [];for i = 1:numel(ext)    img_list = [img_list ; dir(fullfile(img_">
+<meta property="og:description" content="PyTorch基础pytorchPyTorch是一个python库，它主要提供了两个高级功能：  GPU加速的张量计算  构建在反向自动求导系统上的深度神经网络   数据类型数据类型： torch.float32, torch.float64, torch.float16, torch.uint8, torch.int8, torch.int16, torch.int32, torch.int64">
 <meta property="og:locale" content="En">
-<meta property="og:image" content="https://croook.github.io/2019/03/28/数字图像处理-图像合成/3.png">
-<meta property="og:image" content="https://croook.github.io/2019/03/28/数字图像处理-图像合成/1.png">
-<meta property="og:image" content="https://croook.github.io/2019/03/28/数字图像处理-图像合成/5.jpg">
-<meta property="og:image" content="https://croook.github.io/2019/03/28/数字图像处理-图像合成/2.png">
-<meta property="og:image" content="https://croook.github.io/2019/03/28/数字图像处理-图像合成/4.jpg">
-<meta property="og:updated_time" content="2019-06-05T12:24:16.000Z">
+<meta property="og:image" content="https://croook.github.io/2020/03/05/PyTorch基础/1.png">
+<meta property="og:image" content="https://croook.github.io/2020/03/05/PyTorch基础/2.png">
+<meta property="og:image" content="https://croook.github.io/2020/03/05/PyTorch基础/3.png">
+<meta property="og:image" content="https://croook.github.io/2020/03/05/PyTorch基础/4.png">
+<meta property="og:image" content="https://croook.github.io/2020/03/05/PyTorch基础/5.png">
+<meta property="og:updated_time" content="2020-03-05T06:20:15.145Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="数字图像处理-图像合成">
-<meta name="twitter:description" content="图像分割选择特定拓展名12345678img_path =  &amp;apos;pics/&amp;apos;;ext = &amp;#123;&amp;apos;*.jpeg&amp;apos;,&amp;apos;*.jpg&amp;apos;,&amp;apos;*.png&amp;apos;&amp;#125;;img_list = [];for i = 1:numel(ext)    img_list = [img_list ; dir(fullfile(img_">
-<meta name="twitter:image" content="https://croook.github.io/2019/03/28/数字图像处理-图像合成/3.png">
+<meta name="twitter:title" content="Pytorch基础">
+<meta name="twitter:description" content="PyTorch基础pytorchPyTorch是一个python库，它主要提供了两个高级功能：  GPU加速的张量计算  构建在反向自动求导系统上的深度神经网络   数据类型数据类型： torch.float32, torch.float64, torch.float16, torch.uint8, torch.int8, torch.int16, torch.int32, torch.int64">
+<meta name="twitter:image" content="https://croook.github.io/2020/03/05/PyTorch基础/1.png">
 
 
 
 
 
 
-  <link rel="canonical" href="https://croook.github.io/2019/03/28/数字图像处理-图像合成/">
+  <link rel="canonical" href="https://croook.github.io/2020/03/05/PyTorch基础/">
 
 
 
@@ -134,7 +134,7 @@
   };
 </script>
 
-  <title>数字图像处理-图像合成 | Crookshank</title>
+  <title>Pytorch基础 | Crookshank</title>
   
 
 
@@ -362,7 +362,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://croook.github.io/2019/03/28/数字图像处理-图像合成/">
+    <link itemprop="mainEntityOfPage" href="https://croook.github.io/2020/03/05/PyTorch基础/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="sh">
@@ -379,7 +379,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">数字图像处理-图像合成
+          <h1 class="post-title" itemprop="name headline">Pytorch基础
 
               
             
@@ -405,24 +405,12 @@
                 
               
 
-              <time title="Created: 2019-03-28 14:24:10" itemprop="dateCreated datePublished" datetime="2019-03-28T14:24:10+08:00">2019-03-28</time>
+              <time title="Created: 2020-03-05 11:16:00 / Modified: 14:20:15" itemprop="dateCreated datePublished" datetime="2020-03-05T11:16:00+08:00">2020-03-05</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-06-05 20:24:16" itemprop="dateModified" datetime="2019-06-05T20:24:16+08:00">2019-06-05</time>
               
             
           </span>
@@ -439,7 +427,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数字图像处理/" itemprop="url" rel="index"><span itemprop="name">数字图像处理</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a></span>
 
                 
                 
@@ -454,7 +442,7 @@
 
           
           
-            <span id="/2019/03/28/数字图像处理-图像合成/" class="leancloud_visitors" data-flag-title="数字图像处理-图像合成">
+            <span id="/2020/03/05/PyTorch基础/" class="leancloud_visitors" data-flag-title="Pytorch基础">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -485,15 +473,168 @@
       
 
       
-        <h2 id="图像分割"><a href="#图像分割" class="headerlink" title="图像分割"></a>图像分割</h2><h3 id="选择特定拓展名"><a href="#选择特定拓展名" class="headerlink" title="选择特定拓展名"></a>选择特定拓展名</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">img_path =  &apos;pics/&apos;;</span><br><span class="line"></span><br><span class="line">ext = &#123;&apos;*.jpeg&apos;,&apos;*.jpg&apos;,&apos;*.png&apos;&#125;;</span><br><span class="line">img_list = [];</span><br><span class="line">for i = 1:numel(ext)</span><br><span class="line">    img_list = [img_list ; dir(fullfile(img_path,ext&#123;i&#125;))];</span><br><span class="line">end</span><br><span class="line">img_num = length(img_list);</span><br></pre></td></tr></table></figure>
-<h3 id="转换为特定尺寸的灰度图像"><a href="#转换为特定尺寸的灰度图像" class="headerlink" title="转换为特定尺寸的灰度图像"></a>转换为特定尺寸的灰度图像</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">if img_num &gt; 0</span><br><span class="line">    for j = 1 : img_num</span><br><span class="line">        img_name = img_list(j).name;</span><br><span class="line">        img = imread(strcat(img_path,img_name));</span><br><span class="line">        img = imresize(img,[640 480]);</span><br><span class="line">        G = rgb2gray(img);</span><br><span class="line">        strname =  strsplit(img_name,&apos;.&apos;);</span><br><span class="line">        name = strname&#123;1,1&#125;;</span><br><span class="line">        imwrite(G , strcat(img_path, name , &apos;.gif&apos;));</span><br><span class="line">    end</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
-<h2 id="求素材图片的RGB平均值"><a href="#求素材图片的RGB平均值" class="headerlink" title="求素材图片的RGB平均值"></a>求素材图片的RGB平均值</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">SIZE = 5;</span><br><span class="line"></span><br><span class="line">img_RGB = zeros(img_num,SIZE,SIZE,3);</span><br><span class="line">average_rgb = zeros(img_num,3);</span><br><span class="line"></span><br><span class="line">if img_num &gt; 0</span><br><span class="line">        for j = 1:img_num</span><br><span class="line">            img_name = img_list(j).name;</span><br><span class="line">            img =  imread(strcat(img_path,img_name));</span><br><span class="line">            img = imresize(img,[SIZE SIZE]);</span><br><span class="line">            img_RGB(j,:,:,:) = img; </span><br><span class="line"></span><br><span class="line">            R = img(:,:,1);</span><br><span class="line">            G = img(:,:,2);</span><br><span class="line">            B = img(:,:,3);</span><br><span class="line"></span><br><span class="line">            average_rgb(j,1)=mean(mean(R));</span><br><span class="line">            average_rgb(j,2)=mean(mean(G));</span><br><span class="line">            average_rgb(j,3)=mean(mean(B));</span><br><span class="line">        end</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
-<h2 id="替换为素材图片"><a href="#替换为素材图片" class="headerlink" title="替换为素材图片"></a>替换为素材图片</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">original_Img = 	(&apos;original.png&apos;);</span><br><span class="line">Image_size = size(original_Img);</span><br><span class="line"></span><br><span class="line">Image_RGB = zeros(Image_size(1),Image_size(2),3);</span><br><span class="line">Image_RGB = original_Img(:,:,:);</span><br><span class="line"></span><br><span class="line">for row = 1 : SIZE :Image_size(1)-SIZE</span><br><span class="line">    for col = 1 : SIZE :Image_size(2)-SIZE</span><br><span class="line">       rgb_mean = zeros(3);</span><br><span class="line">       for k = 1:3</span><br><span class="line">            temp = original_Img(row:row+SIZE-1 ,col:col+SIZE-1,k);</span><br><span class="line">            rgb_mean(k) = mean(mean(temp));</span><br><span class="line">       end</span><br><span class="line"></span><br><span class="line">       deviation = zeros(1,img_num);</span><br><span class="line">       for k = 1:img_num</span><br><span class="line">           deviation(k) = abs(average_rgb(k,1) - rgb_mean(1)) + abs(average_rgb(k,2) - rgb_mean(2)) + abs(average_rgb(k,3) - rgb_mean(3)); 求目标区域与每一个素材图片的RGB误差</span><br><span class="line">       end</span><br><span class="line"></span><br><span class="line">       [min_value,min_position] = min(deviation);  %得到最小值下标</span><br><span class="line"></span><br><span class="line">       Image_RGB(row:row+SIZE-1 ,col:col+SIZE-1,:) = img_RGB(min_position,:,:,:);</span><br><span class="line">    end</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">Image_RGB = uint8(Image_RGB);</span><br><span class="line">imwrite(Image_RGB,&apos;0.jpg&apos;);</span><br></pre></td></tr></table></figure>
-<h2 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h2><h3 id="素材图片"><a href="#素材图片" class="headerlink" title="素材图片"></a>素材图片</h3><p><img src="/2019/03/28/数字图像处理-图像合成/3.png" alt></p>
-<h3 id="original-pic"><a href="#original-pic" class="headerlink" title="original pic"></a>original pic</h3><p><img src="/2019/03/28/数字图像处理-图像合成/1.png" alt></p>
-<p><img src="/2019/03/28/数字图像处理-图像合成/5.jpg" alt></p>
-<h3 id="After"><a href="#After" class="headerlink" title="After"></a>After</h3><p><img src="/2019/03/28/数字图像处理-图像合成/2.png" alt></p>
-<p><img src="/2019/03/28/数字图像处理-图像合成/4.jpg" alt></p>
+        <h1 id="PyTorch基础"><a href="#PyTorch基础" class="headerlink" title="PyTorch基础"></a>PyTorch基础</h1><h2 id="pytorch"><a href="#pytorch" class="headerlink" title="pytorch"></a>pytorch</h2><p>PyTorch是一个python库，它主要提供了两个高级功能：</p>
+<ul>
+<li><p>GPU加速的张量计算</p>
+</li>
+<li><p>构建在反向自动求导系统上的深度神经网络</p>
+</li>
+</ul>
+<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><p>数据类型： <code>torch.float32, torch.float64, torch.float16, torch.uint8, torch.int8, torch.int16, torch.int32, torch.int64</code></p>
+<p>创建Tensor方法：<code>ones, zeros, eye, arange, linspace, rand, randn, normal, uniform, randperm</code></p>
+<h2 id="定义数据"><a href="#定义数据" class="headerlink" title="定义数据"></a>定义数据</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">x = torch.tensor(<span class="number">666</span>)</span><br><span class="line"><span class="comment"># tensor(666)</span></span><br><span class="line"></span><br><span class="line">x = torch.tensor([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>])</span><br><span class="line"><span class="comment"># tensor([1,2,3,4,5,6])</span></span><br><span class="line"></span><br><span class="line">x = torch.ones(<span class="number">2</span>,<span class="number">3</span>)</span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">tensor([[1., 1., 1.],</span></span><br><span class="line"><span class="string">        [1., 1., 1.]])</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line">x = torch.empty(<span class="number">5</span>,<span class="number">3</span>)</span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">tensor([[1.4178e-36, 0.0000e+00, 4.4842e-44],</span></span><br><span class="line"><span class="string">        [0.0000e+00,        nan, 0.0000e+00],</span></span><br><span class="line"><span class="string">        [1.0979e-05, 4.2008e-05, 2.1296e+23],</span></span><br><span class="line"><span class="string">        [1.0386e+21, 4.4160e-05, 1.0742e-05],</span></span><br><span class="line"><span class="string">        [2.6963e+23, 4.2421e-08, 3.4548e-09]])</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line">x = torch.rand(<span class="number">5</span>,<span class="number">3</span>)</span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">tensor([[0.3077, 0.0347, 0.3033],</span></span><br><span class="line"><span class="string">        [0.9099, 0.2716, 0.4310],</span></span><br><span class="line"><span class="string">        [0.8286, 0.3317, 0.0536],</span></span><br><span class="line"><span class="string">        [0.9529, 0.4905, 0.1403],</span></span><br><span class="line"><span class="string">        [0.6899, 0.8349, 0.4015]])</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line">x = torch.zeros(<span class="number">5</span>,<span class="number">3</span>,dtype=torch.long)</span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">tensor([[0, 0, 0],</span></span><br><span class="line"><span class="string">        [0, 0, 0],</span></span><br><span class="line"><span class="string">        [0, 0, 0],</span></span><br><span class="line"><span class="string">        [0, 0, 0],</span></span><br><span class="line"><span class="string">        [0, 0, 0]])</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 基于现有的tensor，创建一个新tensor，</span></span><br><span class="line"><span class="comment"># 从而可以利用原有的tensor的dtype，device，size之类的属性信息</span></span><br><span class="line">y = x.new_ones(<span class="number">5</span>,<span class="number">3</span>)   <span class="comment">#tensor new_* 方法，利用原来tensor的dtype，device</span></span><br><span class="line"></span><br><span class="line">z = torch.randn_like(x, dtype=torch.float)    <span class="comment"># 利用原来的tensor的大小，但是重新定义了dtype</span></span><br></pre></td></tr></table></figure>
+<h2 id="定义操作"><a href="#定义操作" class="headerlink" title="定义操作"></a>定义操作</h2><p> 凡是用Tensor进行各种运算的，都是Function </p>
+<ul>
+<li>基本运算，加减乘除，求幂求余</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">函数</th>
+<th style="text-align:center">功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">abs/sqrt/div/exp/fmod/log/pow</td>
+<td style="text-align:center">绝对值/平方根/除法/指数/求余/求幂</td>
+</tr>
+<tr>
+<td style="text-align:center">cos/sin/asin/atan2 ···</td>
+<td style="text-align:center">三角函数</td>
+</tr>
+<tr>
+<td style="text-align:center">ceil/round/floor/trunc</td>
+<td style="text-align:center">上取整/四舍五入/下取整/只保留整数</td>
+</tr>
+<tr>
+<td style="text-align:center">clamp(input, min, max)</td>
+<td style="text-align:center">超过min和max截断</td>
+</tr>
+<tr>
+<td style="text-align:center">mean/sum/mode</td>
+<td style="text-align:center">均值/和/众数</td>
+</tr>
+<tr>
+<td style="text-align:center">norm/dist</td>
+<td style="text-align:center">范数/距离</td>
+</tr>
+<tr>
+<td style="text-align:center">std/var</td>
+<td style="text-align:center">标准差/方差</td>
+</tr>
+<tr>
+<td style="text-align:center">cumsum/cumprod</td>
+<td style="text-align:center">累加/累乘</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>布尔运算，大于小于，最大最小</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">函数</th>
+<th style="text-align:center">功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">gt/lt/ge/le/eq/ne</td>
+<td style="text-align:center">大于/小于/大于等于/小于等于/等于/不等</td>
+</tr>
+<tr>
+<td style="text-align:center">topk</td>
+<td style="text-align:center">最大的k个数</td>
+</tr>
+<tr>
+<td style="text-align:center">sort</td>
+<td style="text-align:center">排序</td>
+</tr>
+<tr>
+<td style="text-align:center">max/min</td>
+<td style="text-align:center">比较两个tensor最大最小值</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>线性运算，矩阵乘法，求模，求行列式</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">函数</th>
+<th style="text-align:center">功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">trace</td>
+<td style="text-align:center">对角线元素之和（矩阵的迹）</td>
+</tr>
+<tr>
+<td style="text-align:center">diag</td>
+<td style="text-align:center">对角线元素</td>
+</tr>
+<tr>
+<td style="text-align:center">triu/tril</td>
+<td style="text-align:center">矩阵的上三角/下三角，可指定偏移</td>
+</tr>
+<tr>
+<td style="text-align:center">mm/bmm</td>
+<td style="text-align:center">矩阵乘法，batch的矩阵乘法</td>
+</tr>
+<tr>
+<td style="text-align:center">addmm/addbmm/addmv/addr/badbmm</td>
+<td style="text-align:center">矩阵运算</td>
+</tr>
+<tr>
+<td style="text-align:center">t</td>
+<td style="text-align:center">转置</td>
+</tr>
+<tr>
+<td style="text-align:center">dot/cross</td>
+<td style="text-align:center">内积/外积</td>
+</tr>
+<tr>
+<td style="text-align:center">inverse</td>
+<td style="text-align:center">求逆矩阵</td>
+</tr>
+<tr>
+<td style="text-align:center">svd</td>
+<td style="text-align:center">奇异值分解</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建一个 2x4 的tensor</span></span><br><span class="line">m = torch.Tensor([[<span class="number">2</span>, <span class="number">5</span>, <span class="number">3</span>, <span class="number">7</span>],</span><br><span class="line">                  [<span class="number">4</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">9</span>]])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 返回 m 中元素的数量</span></span><br><span class="line">print(m.numel())</span><br><span class="line"></span><br><span class="line"><span class="comment"># 返回 第1列的全部元素</span></span><br><span class="line">print(m[:, <span class="number">1</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 返回 第0行的全部元素</span></span><br><span class="line">print(m[<span class="number">0</span>, :])</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create tensor of numbers from 1 to 5</span></span><br><span class="line"><span class="comment"># 注意这里结果是1到4，没有5</span></span><br><span class="line">v = torch.arange(<span class="number">1</span>, <span class="number">5</span>)</span><br><span class="line"><span class="comment"># tensor([1, 2, 3, 4])</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Scalar product 点积</span></span><br><span class="line">m @ v</span><br><span class="line"><span class="comment"># tensor([49., 47.])</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Calculated by 1*2 + 2*5 + 3*3 + 4*7</span></span><br><span class="line">m[[<span class="number">0</span>], :] @ v</span><br><span class="line"><span class="comment"># tensor([49.])</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 转置，由 2x4 变为 4x2</span></span><br><span class="line">print(m.t())</span><br><span class="line"><span class="comment"># 使用 transpose 也可以达到相同的效果</span></span><br><span class="line">print(m.transpose(<span class="number">0</span>, <span class="number">1</span>))</span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">tensor([[2., 4.],</span></span><br><span class="line"><span class="string">        [5., 2.],</span></span><br><span class="line"><span class="string">        [3., 1.],</span></span><br><span class="line"><span class="string">        [7., 9.]])</span></span><br><span class="line"><span class="string">tensor([[2., 4.],</span></span><br><span class="line"><span class="string">        [5., 2.],</span></span><br><span class="line"><span class="string">        [3., 1.],</span></span><br><span class="line"><span class="string">        [7., 9.]])</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># returns a 1D tensor of steps equally spaced points between start=3, end=8 and steps=20</span></span><br><span class="line">torch.linspace(<span class="number">3</span>, <span class="number">8</span>, <span class="number">20</span>)</span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">tensor([3.0000, 3.2632, 3.5263, 3.7895, 4.0526, 4.3158, 4.5789, 4.8421, 5.1053,</span></span><br><span class="line"><span class="string">        5.3684, 5.6316, 5.8947, 6.1579, 6.4211, 6.6842, 6.9474, 7.2105, 7.4737,</span></span><br><span class="line"><span class="string">        7.7368, 8.0000])</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建两个 1x4 的tensor</span></span><br><span class="line">a = torch.Tensor([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]])</span><br><span class="line">b = torch.Tensor([[<span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>]])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在 0 方向拼接 （即在 Y 方各上拼接）, 会得到 2x4 的矩阵</span></span><br><span class="line">print( torch.cat((a,b), <span class="number">0</span>))</span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">tensor([[1., 2., 3., 4.],</span></span><br><span class="line"><span class="string">        [5., 6., 7., 8.]])</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 在 1 方向拼接 （即在 X 方各上拼接）, 会得到 1x8 的矩阵</span></span><br><span class="line">print( torch.cat((a,b), <span class="number">1</span>))</span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">tensor([[1., 2., 3., 4., 5., 6., 7., 8.]])</span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
+<h2 id="张量"><a href="#张量" class="headerlink" title="张量"></a>张量</h2><p><img src="/2020/03/05/PyTorch基础/1.png" alt></p>
+<h2 id="反向传播"><a href="#反向传播" class="headerlink" title="反向传播"></a>反向传播</h2><p><img src="/2020/03/05/PyTorch基础/2.png" alt></p>
+<p>PyTorch里并没有显式的Graph定义，计算步骤，存在Tensor的grad_fn里，沿着Tensor的grad_fn往后走，就是反向传播</p>
+<h2 id="计算图"><a href="#计算图" class="headerlink" title="计算图"></a>计算图</h2><p><img src="/2020/03/05/PyTorch基础/3.png" alt></p>
+<p><img src="/2020/03/05/PyTorch基础/4.png" alt></p>
+<p>对于上述过程，公式如下：</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+x_i = 1\\
+y_i = x_i+2\\
+z_i = 3y_i^2\\
+out = \frac{1}{4}\sum_i z_i\\
+\end{cases}</script><p>所以：</p>
+<script type="math/tex; mode=display">
+\frac{\partial out}{\partial z_i} = \frac{1}{4}\\
+\frac{\partial z_i}{\partial y_i} = 6y_i\\
+\frac{\partial y_i}{\partial x_i} = 1</script><p>所以：</p>
+<script type="math/tex; mode=display">
+\frac{\partial out}{\partial x_i} = \frac{1}{4}*6y_i=\frac{3}{2}(x_i+2)\\
+
+\frac{\partial out}{\partial x_i} \vert_{x_i=1}=\frac{2}{9}=4.5</script><p><img src="/2020/03/05/PyTorch基础/5.png" alt></p>
 
       
     </div>
@@ -517,7 +658,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Matlab/" rel="tag"># Matlab</a>
+            <a href="/tags/AI/" rel="tag"># AI</a>
+          
+            <a href="/tags/pytorch/" rel="tag"># pytorch</a>
           
         </div>
       
@@ -530,8 +673,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/04/AI-02深度学习概述/" rel="next" title="AI-02深度学习概述">
-                <i class="fa fa-chevron-left"></i> AI-02深度学习概述
+              <a href="/2020/02/05/tensorflow学习/" rel="next" title="tensorflow学习">
+                <i class="fa fa-chevron-left"></i> tensorflow学习
               </a>
             
           </div>
@@ -539,10 +682,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/04/08/博客搭建/" rel="prev" title="博客搭建">
-                博客搭建 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -742,7 +881,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#图像分割"><span class="nav-number">1.</span> <span class="nav-text">图像分割</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#选择特定拓展名"><span class="nav-number">1.1.</span> <span class="nav-text">选择特定拓展名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#转换为特定尺寸的灰度图像"><span class="nav-number">1.2.</span> <span class="nav-text">转换为特定尺寸的灰度图像</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#求素材图片的RGB平均值"><span class="nav-number">2.</span> <span class="nav-text">求素材图片的RGB平均值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#替换为素材图片"><span class="nav-number">3.</span> <span class="nav-text">替换为素材图片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实验结果"><span class="nav-number">4.</span> <span class="nav-text">实验结果</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#素材图片"><span class="nav-number">4.1.</span> <span class="nav-text">素材图片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#original-pic"><span class="nav-number">4.2.</span> <span class="nav-text">original pic</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#After"><span class="nav-number">4.3.</span> <span class="nav-text">After</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#PyTorch基础"><span class="nav-number">1.</span> <span class="nav-text">PyTorch基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#pytorch"><span class="nav-number">1.1.</span> <span class="nav-text">pytorch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据类型"><span class="nav-number">1.2.</span> <span class="nav-text">数据类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#定义数据"><span class="nav-number">1.3.</span> <span class="nav-text">定义数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#定义操作"><span class="nav-number">1.4.</span> <span class="nav-text">定义操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#张量"><span class="nav-number">1.5.</span> <span class="nav-text">张量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#反向传播"><span class="nav-number">1.6.</span> <span class="nav-text">反向传播</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计算图"><span class="nav-number">1.7.</span> <span class="nav-text">计算图</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -1298,6 +1437,43 @@
   
   
 
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+      for (i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+  overflow: auto hidden;
+}
+</style>
+
+    
   
 
 

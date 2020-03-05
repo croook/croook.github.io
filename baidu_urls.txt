@@ -1,3 +1,4 @@
+https://croook.github.io/2020/03/05/PyTorch基础/
 https://croook.github.io/2020/02/05/tensorflow学习/
 https://croook.github.io/2020/01/01/HBase/
 https://croook.github.io/2020/01/01/MapReduce/
