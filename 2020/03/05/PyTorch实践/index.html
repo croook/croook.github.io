@@ -1,0 +1,1440 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="En">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+  <meta name="google-site-verification" content="7Oev-o_nVgfEcRT4Mc9fXSxqXK0_WXFBAuBh4GdzGuM">
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="5Nq4yOLRnQ">
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.ico?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.ico?v=7.0.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="PyTorch实践数据集处理官方数据集从PyTorch开源项目：vision或者text中加载数据集，对应的包是torchvision、torchtext 12345678910111213#torchvisionimport torchvisionmnist = torchvision.datasets.MNIST(root=&apos;./&apos;,download=&quot;True&quot;)#torchtextimpo">
+<meta name="keywords" content="AI,pytorch">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PyTorch实践">
+<meta property="og:url" content="https://croook.github.io/2020/03/05/PyTorch实践/index.html">
+<meta property="og:site_name" content="Crookshank">
+<meta property="og:description" content="PyTorch实践数据集处理官方数据集从PyTorch开源项目：vision或者text中加载数据集，对应的包是torchvision、torchtext 12345678910111213#torchvisionimport torchvisionmnist = torchvision.datasets.MNIST(root=&apos;./&apos;,download=&quot;True&quot;)#torchtextimpo">
+<meta property="og:locale" content="En">
+<meta property="og:image" content="https://croook.github.io/2020/03/05/PyTorch实践/1.png">
+<meta property="og:image" content="https://croook.github.io/2020/03/05/PyTorch实践/2.png">
+<meta property="og:image" content="https://croook.github.io/2020/03/05/PyTorch实践/3.png">
+<meta property="og:image" content="https://croook.github.io/2020/03/05/PyTorch实践/4.png">
+<meta property="og:updated_time" content="2020-03-05T13:09:36.812Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PyTorch实践">
+<meta name="twitter:description" content="PyTorch实践数据集处理官方数据集从PyTorch开源项目：vision或者text中加载数据集，对应的包是torchvision、torchtext 12345678910111213#torchvisionimport torchvisionmnist = torchvision.datasets.MNIST(root=&apos;./&apos;,download=&quot;True&quot;)#torchtextimpo">
+<meta name="twitter:image" content="https://croook.github.io/2020/03/05/PyTorch实践/1.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://croook.github.io/2020/03/05/PyTorch实践/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>PyTorch实践 | Crookshank</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="En">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Crookshank</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Category</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archive</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://croook.github.io/2020/03/05/PyTorch实践/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="sh">
+      <meta itemprop="description" content="so we beat on, boats against the current, borne back ceaselessly into the past.">
+      <meta itemprop="image" content="/images/ava.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Crookshank">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">PyTorch实践
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2020-03-05 14:22:58 / Updated at: 21:09:36" itemprop="dateCreated datePublished" datetime="2020-03-05T14:22:58+08:00">2020-03-05</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+            <span id="/2020/03/05/PyTorch实践/" class="leancloud_visitors" data-flag-title="PyTorch实践">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Views: </span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="PyTorch实践"><a href="#PyTorch实践" class="headerlink" title="PyTorch实践"></a>PyTorch实践</h1><h1 id="数据集处理"><a href="#数据集处理" class="headerlink" title="数据集处理"></a>数据集处理</h1><h2 id="官方数据集"><a href="#官方数据集" class="headerlink" title="官方数据集"></a>官方数据集</h2><p>从PyTorch开源项目：vision或者text中加载数据集，对应的包是torchvision、torchtext</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#torchvision</span></span><br><span class="line"><span class="keyword">import</span> torchvision</span><br><span class="line">mnist = torchvision.datasets.MNIST(root=<span class="string">'./'</span>,download=<span class="string">"True"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#torchtext</span></span><br><span class="line"><span class="keyword">import</span> torchtext</span><br><span class="line">WORD = torchtext.data.Field(init_token=<span class="string">"&lt;bos&gt;"</span>,eos_token=<span class="string">"&lt;eos&gt;"</span>)</span><br><span class="line">UD_TAG = torchtext.data.Field(init_token=<span class="string">"&lt;bos&gt;"</span>,eos_token=<span class="string">"&lt;eos&gt;"</span>)</span><br><span class="line"></span><br><span class="line">train,val,text = torchtext.datasets.UDPOS.splits(field=((<span class="string">'word'</span>,WORD),(<span class="string">'udtag'</span>,UD_TAG),(<span class="keyword">None</span>,<span class="keyword">None</span>)))</span><br><span class="line"></span><br><span class="line">print(train.examples[<span class="number">0</span>].word)</span><br><span class="line">print(train.examples[<span class="number">0</span>].udtag)</span><br></pre></td></tr></table></figure>
+<h2 id="构建自定义数据集"><a href="#构建自定义数据集" class="headerlink" title="构建自定义数据集"></a>构建自定义数据集</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch.utils.data <span class="keyword">as</span> Data</span><br><span class="line"></span><br><span class="line">x = torch.tensor([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line">y = torch.tensor([<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>])</span><br><span class="line"><span class="comment">#小于2都是0，大于2为1</span></span><br><span class="line"></span><br><span class="line">dataset = Data.TensorDataset(x,y)</span><br></pre></td></tr></table></figure>
+<h2 id="细粒度构建自定义数据集"><a href="#细粒度构建自定义数据集" class="headerlink" title="细粒度构建自定义数据集"></a>细粒度构建自定义数据集</h2><p>继承torch.utils.data.Dataset ，然后重载函数len，getitem来构建</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch.utils.data <span class="keyword">as</span> Data</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Mydataset</span><span class="params">(Data.Dataset)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="comment">#读取文件</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__getitem__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="comment">#获取数据</span></span><br><span class="line">        <span class="comment">#预处理</span></span><br><span class="line">        <span class="comment">#返回数据对（x,y）</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__len__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="comment">#返回数据集大小</span></span><br><span class="line">        <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch.utils.data <span class="keyword">as</span> Data</span><br><span class="line"></span><br><span class="line">person_1 = [<span class="string">'tall'</span>,<span class="string">'rich'</span>,<span class="string">'handsome'</span>,<span class="string">'1'</span>]</span><br><span class="line">person_2 = [<span class="string">'n_tall'</span>,<span class="string">'rich'</span>,<span class="string">'handsome'</span>,<span class="string">'1'</span>]</span><br><span class="line">person_3 = [<span class="string">'n_tall'</span>,<span class="string">'n_rich'</span>,<span class="string">'handsome'</span>,<span class="string">'1'</span>]</span><br><span class="line">person_4 = [<span class="string">'n_tall'</span>,<span class="string">'n_rich'</span>,<span class="string">'n_handsome'</span>,<span class="string">'0'</span>]</span><br><span class="line"></span><br><span class="line">person = [person_1,person_2,person_3,person_4]</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span><span class="params">(Data.Dataset)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,person)</span>:</span></span><br><span class="line">        self.data = person</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__getitem__</span><span class="params">(self,index)</span>:</span></span><br><span class="line">        item = self.data[index]</span><br><span class="line">        x = item[:<span class="number">3</span>]</span><br><span class="line">        y = item[<span class="number">-1</span>]</span><br><span class="line">        <span class="keyword">return</span> x,y</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__len__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span>(len(self.data))</span><br><span class="line">    </span><br><span class="line">p = Person(person)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> index, (x,y) <span class="keyword">in</span> enumerate(p):</span><br><span class="line">    print(<span class="string">f"<span class="subst">&#123;index&#125;</span> : x:<span class="subst">&#123;x&#125;</span>,y:<span class="subst">&#123;y&#125;</span>"</span>)</span><br><span class="line">    </span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">0 : x:['tall', 'rich', 'handsome'],y:1</span></span><br><span class="line"><span class="string">1 : x:['n_tall', 'rich', 'handsome'],y:1</span></span><br><span class="line"><span class="string">2 : x:['n_tall', 'n_rich', 'handsome'],y:1</span></span><br><span class="line"><span class="string">3 : x:['n_tall', 'n_rich', 'n_handsome'],y:0</span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
+<h2 id="加载数据集"><a href="#加载数据集" class="headerlink" title="加载数据集"></a>加载数据集</h2><p>使用torch.utils.data.Dataloader加载数据集</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tensor_person_data_loader = Data.DataLoader(dataset = person_dataset,</span><br><span class="line">											batch_size = batch_size,</span><br><span class="line">											shuffle = <span class="keyword">True</span>,</span><br><span class="line">											sampler = sampler,			<span class="comment">#怎么抽样</span></span><br><span class="line">											collate_fn = my_collate_fn)	<span class="comment">#抽样的样本怎么处理</span></span><br></pre></td></tr></table></figure>
+<p>加载自定义数据集：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">person_loader = Data.Dataloader(dataset = p,</span><br><span class="line">                               batch_size = <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> index,data <span class="keyword">in</span> enumerate(person_loader):</span><br><span class="line">    x,y = data</span><br><span class="line">    print(<span class="string">f"<span class="subst">&#123;index&#125;</span> : x:<span class="subst">&#123;x&#125;</span>,y:<span class="subst">&#123;y&#125;</span>"</span>)</span><br><span class="line">    </span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">0 : x:[('tall', 'n_tall'), ('rich', 'rich'), ('handsome', 'handsome')],y:('1', '1')</span></span><br><span class="line"><span class="string">1 : x:[('n_tall', 'n_tall'), ('n_rich', 'n_rich'), ('handsome', 'n_handsome')],y:('1', '0')</span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
+<h2 id="预处理数据集"><a href="#预处理数据集" class="headerlink" title="预处理数据集"></a>预处理数据集</h2><h3 id="通过-getitem-方法"><a href="#通过-getitem-方法" class="headerlink" title="通过_getitem_方法"></a>通过_<em>getitem_</em>方法</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">word2id = &#123;</span><br><span class="line"><span class="string">'tall'</span>:<span class="number">1</span>,</span><br><span class="line"><span class="string">'rich'</span>:<span class="number">1</span>,</span><br><span class="line"><span class="string">'handsome'</span>:<span class="number">1</span>,</span><br><span class="line"><span class="string">'n_tall'</span>:<span class="number">0</span>,</span><br><span class="line"><span class="string">'n_rich'</span>:<span class="number">0</span>,</span><br><span class="line"><span class="string">'n_handsome'</span>:<span class="number">0</span>,</span><br><span class="line"><span class="string">'1'</span>:<span class="number">1</span>,</span><br><span class="line"><span class="string">'0'</span>:<span class="number">0</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TensorPerson</span><span class="params">(Data.Dataset)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,person)</span>:</span></span><br><span class="line">        self.data = person</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__getitem__</span><span class="params">(self,index)</span>:</span></span><br><span class="line">        item = self.data[index]</span><br><span class="line">        new_item = []</span><br><span class="line">        <span class="keyword">for</span> feature <span class="keyword">in</span> item:</span><br><span class="line">            new_item.append(word2id[feature])</span><br><span class="line">        x = new_item[:<span class="number">3</span>]</span><br><span class="line">        y = new_item[<span class="number">-1</span>]</span><br><span class="line">        <span class="keyword">return</span> x,y</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__len__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span>(len(self.data))</span><br><span class="line">    </span><br><span class="line">p = TensorPerson(person)</span><br><span class="line">person_loader = Data.DataLoader(dataset = p,</span><br><span class="line">                				batch_size = <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> index, data <span class="keyword">in</span> enumerate(person_loader):</span><br><span class="line">  x,y = data</span><br><span class="line">  print(<span class="string">f"<span class="subst">&#123;index&#125;</span> : x:<span class="subst">&#123;x&#125;</span>,y:<span class="subst">&#123;y&#125;</span>"</span>)</span><br><span class="line">    </span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">0 : x:[tensor([1, 0]), tensor([1, 1]), tensor([1, 1])],y:tensor([1, 1])</span></span><br><span class="line"><span class="string">1 : x:[tensor([0, 0]), tensor([0, 0]), tensor([1, 0])],y:tensor([1, 0])</span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
+<h3 id="通过collate-fn"><a href="#通过collate-fn" class="headerlink" title="通过collate_fn"></a>通过collate_fn</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#定义抽样样本处理方法：</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">my_collate_fn</span><span class="params">(batch_data)</span>:</span></span><br><span class="line">    print(<span class="string">"----------"</span>)</span><br><span class="line">    x_batch = []</span><br><span class="line">    y_batch = []</span><br><span class="line">    <span class="keyword">for</span> example <span class="keyword">in</span> batch_data:</span><br><span class="line">        x,y = example</span><br><span class="line">        x_batch.append(x)</span><br><span class="line">        y_batch.append(y)</span><br><span class="line">    x_batch = torch.tensor(x_batch,dtype = torch.float32)</span><br><span class="line">    y_batch = torch.tensor(y_batch,dtype = torch.float32)</span><br><span class="line">    print(<span class="string">"----------"</span>)</span><br><span class="line">    <span class="keyword">return</span> x_batch,y_batch</span><br><span class="line"></span><br><span class="line">person_loader = Data.DataLoader(dataset = p,</span><br><span class="line">                				batch_size = <span class="number">2</span>,</span><br><span class="line">                               collate_fn = my_collate_fn)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> index, data <span class="keyword">in</span> enumerate(person_loader):</span><br><span class="line">  x,y = data</span><br><span class="line">  print(<span class="string">f"<span class="subst">&#123;index&#125;</span> : x:<span class="subst">&#123;x&#125;</span>,y:<span class="subst">&#123;y&#125;</span>"</span>)</span><br><span class="line">    </span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">----------</span></span><br><span class="line"><span class="string">----------</span></span><br><span class="line"><span class="string">0 : x:tensor([[1., 1., 1.],</span></span><br><span class="line"><span class="string">        [0., 1., 1.]]),y:tensor([1., 1.])</span></span><br><span class="line"><span class="string">----------</span></span><br><span class="line"><span class="string">----------</span></span><br><span class="line"><span class="string">1 : x:tensor([[0., 0., 1.],</span></span><br><span class="line"><span class="string">        [0., 0., 0.]]),y:tensor([1., 0.])</span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
+<h1 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h1><p>TorchVision支持一些经典模型</p>
+<ul>
+<li>Alexnet</li>
+<li>VGG</li>
+<li>ResNet</li>
+<li>SqueezeNet</li>
+<li>DenseNet</li>
+<li>Inception v3</li>
+</ul>
+<p>TorchText没有统一模型</p>
+<h2 id="经典模型以及可视化"><a href="#经典模型以及可视化" class="headerlink" title="经典模型以及可视化"></a>经典模型以及可视化</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torchvision.models</span><br><span class="line"><span class="keyword">import</span> hiddenlayer <span class="keyword">as</span> hl</span><br><span class="line"><span class="keyword">from</span> torchviz <span class="keyword">import</span> make_dot</span><br><span class="line"></span><br><span class="line">resnet = torchvision.models.resnet18()</span><br><span class="line"><span class="comment"># hl.build_graph(resnet,torch.randn([1,3,224,224]))</span></span><br><span class="line"><span class="comment"># 由于版本问题，使用hiddenlayer的可视化可能找不到get_trace_graph方法，从而报错</span></span><br><span class="line">make_dot(resnet(torch.randn([<span class="number">1</span>,<span class="number">3</span>,<span class="number">224</span>,<span class="number">224</span>]))).view()</span><br></pre></td></tr></table></figure>
+<p><img src="/2020/03/05/PyTorch实践/1.png" alt></p>
+<p>可以使用torchviz的方法进行可视化，会在目录下生成一个pdf文件</p>
+<p><img src="/2020/03/05/PyTorch实践/2.png" alt></p>
+<h2 id="构建自己的神经网络结构"><a href="#构建自己的神经网络结构" class="headerlink" title="构建自己的神经网络结构"></a>构建自己的神经网络结构</h2><h3 id="sample"><a href="#sample" class="headerlink" title="sample"></a>sample</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">my_net = torch.nn.Sequential(</span><br><span class="line">    torch.nn.Linear(<span class="number">1</span>,<span class="number">10</span>),</span><br><span class="line">    torch.nn.ReLU(inplace=<span class="keyword">True</span>),</span><br><span class="line">    torch.nn.Linear(<span class="number">10</span>,<span class="number">1</span>)</span><br><span class="line">)</span><br><span class="line">my_net</span><br><span class="line"></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">Sequential(</span></span><br><span class="line"><span class="string">  (0): Linear(in_features=1, out_features=10, bias=True)</span></span><br><span class="line"><span class="string">  (1): ReLU(inplace=True)</span></span><br><span class="line"><span class="string">  (2): Linear(in_features=10, out_features=1, bias=True)</span></span><br><span class="line"><span class="string">)</span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
+<h3 id="构建多层网络"><a href="#构建多层网络" class="headerlink" title="构建多层网络"></a>构建多层网络</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">hun_layer = [torch.nn.Linear(<span class="number">10</span>,<span class="number">10</span>) <span class="keyword">for</span> _ <span class="keyword">in</span>  range(<span class="number">100</span>)]</span><br><span class="line"></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">[Linear(in_features=10, out_features=10, bias=True),</span></span><br><span class="line"><span class="string"> Linear(in_features=10, out_features=10, bias=True),</span></span><br><span class="line"><span class="string"> ``````````````````````````</span></span><br><span class="line"><span class="string"> Linear(in_features=10, out_features=10, bias=True)]</span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
+<h3 id="深度自定义"><a href="#深度自定义" class="headerlink" title="深度自定义"></a>深度自定义</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyNET</span><span class="params">(nn.Module)</span>:</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">    super(MyNET,self).__init__()</span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self,x)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SingleDogCls</span><span class="params">(nn.Module)</span>:</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,n_feature,n_hidden,n_output)</span>:</span></span><br><span class="line">    super(SingleDogCls,self).__init__()</span><br><span class="line">    self.hidden = nn.Linear(n_feature,n_hidden)</span><br><span class="line">    self.relu = nn.ReLU()</span><br><span class="line">    self.predict = nn.Linear(n_hidden,n_output)</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self,x)</span>:</span></span><br><span class="line">    x = self.hidden(x)</span><br><span class="line">    x = self.relu(x)</span><br><span class="line">    x = self.predict(x)</span><br><span class="line">    <span class="keyword">return</span> x</span><br><span class="line"></span><br><span class="line">w = SingleDogCls(n_feature=<span class="number">3</span>, n_hidden=<span class="number">10</span>, n_output=<span class="number">1</span>)</span><br><span class="line">make_dot(w(torch.randn([<span class="number">10</span>,<span class="number">3</span>]))).view()</span><br></pre></td></tr></table></figure>
+<p><img src="/2020/03/05/PyTorch实践/3.png" alt></p>
+<p>使用torchviz产生的可视化图不如hiddenlayer的简洁：</p>
+<p><img src="/2020/03/05/PyTorch实践/4.png" alt></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> index,data <span class="keyword">in</span> enumerate(person_loader):</span><br><span class="line">  print(<span class="string">f"迭代次数<span class="subst">&#123;index&#125;</span>"</span>)</span><br><span class="line">  print(<span class="string">f"data:<span class="subst">&#123;data&#125;</span>"</span>)</span><br><span class="line">  input_x,ground_truth = data</span><br><span class="line">  predict = w(input_x)</span><br><span class="line">  print(predict,ground_truth)</span><br><span class="line"></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">----------</span></span><br><span class="line"><span class="string">----------</span></span><br><span class="line"><span class="string">迭代次数0</span></span><br><span class="line"><span class="string">data:(tensor([[1., 1., 1.],</span></span><br><span class="line"><span class="string">        [0., 1., 1.]]), tensor([1., 1.]))</span></span><br><span class="line"><span class="string">tensor([[-0.2159],</span></span><br><span class="line"><span class="string">        [-0.2262]], grad_fn=&lt;AddmmBackward&gt;) tensor([1., 1.])</span></span><br><span class="line"><span class="string">----------</span></span><br><span class="line"><span class="string">----------</span></span><br><span class="line"><span class="string">迭代次数1</span></span><br><span class="line"><span class="string">data:(tensor([[0., 0., 1.],</span></span><br><span class="line"><span class="string">        [0., 0., 0.]]), tensor([1., 0.]))</span></span><br><span class="line"><span class="string">tensor([[-0.0682],</span></span><br><span class="line"><span class="string">        [-0.2633]], grad_fn=&lt;AddmmBackward&gt;) tensor([1., 0.])</span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
+<h1 id="定义损失"><a href="#定义损失" class="headerlink" title="定义损失"></a>定义损失</h1><p>官方定义的损失函数在两个地方</p>
+<ul>
+<li>torch.nn</li>
+<li>torch.nn.functional</li>
+</ul>
+<p>torch.nn下面的loss函数，是作为模型的一部分存在，实际上是torch.nn.functional下loss函数的封装，实际上它还是调用了torch.nn.functional下面的函数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">a = torch.tensor(<span class="number">2.</span>)</span><br><span class="line">b = torch.tensor(<span class="number">5.</span>)</span><br><span class="line">print(F.l1_loss(a,b))</span><br><span class="line">print(F.mse_loss(a,b))</span><br><span class="line"></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">tensor(3.)</span></span><br><span class="line"><span class="string">tensor(9.)</span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
+<h2 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h2><p>torch.nn.functional:</p>
+<ul>
+<li>binary_cross_entropy</li>
+<li>binary_cross_entropy_with_logits</li>
+<li>poisson_nll_loss</li>
+<li>cross_entropy</li>
+<li>cosine_embedding_loss</li>
+<li>ctc_loss</li>
+<li>hinge_embedding_loss</li>
+<li>kl_div</li>
+<li>l1_loss</li>
+<li>mse_loss</li>
+<li>margin_ranking_loss</li>
+<li>multilabel_margin_loss</li>
+<li>multilabel_soft_margin_loss</li>
+<li>multi_margin_loss</li>
+<li>nll_loss</li>
+<li>smooth_l1_loss</li>
+<li>soft_margin_loss</li>
+<li>triplet_margin_loss</li>
+</ul>
+<p>如果要定义自己的损失函数，可以：</p>
+<ul>
+<li>继承torch.nn.module实现loss（当成模型，计算图中的方块）</li>
+<li>继承torch.autograd.function实现loss（当成函数，计算图中的椭圆）</li>
+</ul>
+<p>实际区别在于谁去进行反向传播，官方实现中，loss是一个module</p>
+<h3 id="继承torch-nn-module实现loss"><a href="#继承torch-nn-module实现loss" class="headerlink" title="继承torch.nn.module实现loss"></a>继承torch.nn.module实现loss</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyLoss</span><span class="params">(nn.Module)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        super(MyLoss,self).__init__()</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self,x,y)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> x*<span class="number">100</span>-y</span><br><span class="line">    </span><br><span class="line">loss = MyLoss()</span><br><span class="line">loss(a,b)</span><br><span class="line"></span><br><span class="line"><span class="comment"># tensor(195.)</span></span><br></pre></td></tr></table></figure>
+<h3 id="继承torch-autograd-funcion实现loss"><a href="#继承torch-autograd-funcion实现loss" class="headerlink" title="继承torch.autograd.funcion实现loss"></a>继承torch.autograd.funcion实现loss</h3><p>适合损失函数非常难求导时</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> torch.autograd <span class="keyword">import</span> Function</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyLossFunc</span><span class="params">(torch.autograd.Function)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self,a,b)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">2</span>*(a-b)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">backward</span><span class="params">(self,grad_output)</span>:</span></span><br><span class="line">        print(<span class="string">"----------"</span>)</span><br><span class="line">        <span class="keyword">return</span> grad_output*<span class="number">2</span>,grad_output*<span class="number">2</span> <span class="comment"># a_grad, b_grad</span></span><br><span class="line">    </span><br><span class="line">a = torch.tensor(<span class="number">1.</span>,requires_grad=<span class="keyword">True</span>)</span><br><span class="line">b = torch.tensor(<span class="number">2.</span>,requires_grad=<span class="keyword">True</span>)</span><br><span class="line">f_loss = MyLossFunc()</span><br><span class="line">c = f_loss(a,b)</span><br><span class="line"></span><br><span class="line"><span class="comment"># tensor(-2., grad_fn=&lt;MyLossFunc&gt;)</span></span><br></pre></td></tr></table></figure>
+<h1 id="实现优化算法"><a href="#实现优化算法" class="headerlink" title="实现优化算法"></a>实现优化算法</h1><p>pytorch集成了常见的优化算法：</p>
+<ul>
+<li>torch.optim.Adadelta</li>
+<li>torch.optim.Adagrad</li>
+<li>torch.optim.Adam</li>
+<li>torch.optim.Adamax</li>
+<li>torch.optim.SparseAdam</li>
+<li>torch.optim.LBFGS</li>
+<li>torch.optim..RMSprop</li>
+<li>torch.optim.Rprop</li>
+<li>torch.optim.SGD</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> torch.optim <span class="keyword">import</span> Optimizer</span><br><span class="line"></span><br><span class="line">optimizer = torch.optim.SGD(w.parameters(),lr=<span class="number">0.05</span>,mometum=<span class="number">0.9</span>)</span><br></pre></td></tr></table></figure>
+<p>如果自定义优化算法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyOptimizer</span><span class="params">(Optimizer)</span>:</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">step</span><span class="params">(self,closure=None)</span>:</span></span><br><span class="line">    <span class="comment">#每一步是怎么优化的</span></span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<h2 id="调整学习率"><a href="#调整学习率" class="headerlink" title="调整学习率"></a>调整学习率</h2><p>pytorch官方，提供了torch.optim.lr_scheduler类来基于动态调整学习率</p>
+<ul>
+<li>torch.optim.lr.scheduler.LambdaLR</li>
+<li>torch.optim.lr.scheduler.StepLR</li>
+<li>torch.optim.lr.scheduler.MultiStepLR</li>
+<li>torch.optim.lr.scheduler.ExponentialLR</li>
+<li>torch.optim.lr.scheduler.CosineAnnealingLR</li>
+<li>torch.optim.lr.scheduler.ReduceLROnPlateau</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> torch.optim.lr_scheduler <span class="keyword">import</span> StepLR</span><br><span class="line"></span><br><span class="line">scheduler = StepLR(optimizer,step_size=<span class="number">30</span>,gamma=<span class="number">0.1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 每隔30次迭代就乘gamma,在迭代固定的次数之后以一定的比例降低学习率</span></span><br></pre></td></tr></table></figure>
+<h1 id="迭代训练"><a href="#迭代训练" class="headerlink" title="迭代训练"></a>迭代训练</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.utils.data <span class="keyword">as</span> Data</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">from</span> torch.optim <span class="keyword">import</span> Optimizer</span><br><span class="line"><span class="keyword">from</span> torch.optim.lr_scheduler <span class="keyword">import</span> StepLR</span><br><span class="line"></span><br><span class="line">person_1 = [<span class="string">'tall'</span>,<span class="string">'rich'</span>,<span class="string">'handsome'</span>,<span class="string">'1'</span>]</span><br><span class="line">person_2 = [<span class="string">'n_tall'</span>,<span class="string">'rich'</span>,<span class="string">'handsome'</span>,<span class="string">'1'</span>]</span><br><span class="line">person_3 = [<span class="string">'n_tall'</span>,<span class="string">'n_rich'</span>,<span class="string">'handsome'</span>,<span class="string">'1'</span>]</span><br><span class="line">person_4 = [<span class="string">'n_tall'</span>,<span class="string">'n_rich'</span>,<span class="string">'n_handsome'</span>,<span class="string">'0'</span>]</span><br><span class="line">person = [person_1,person_2,person_3,person_4]</span><br><span class="line"></span><br><span class="line">word2id = &#123;</span><br><span class="line"><span class="string">'tall'</span>:<span class="number">1</span>,</span><br><span class="line"><span class="string">'rich'</span>:<span class="number">1</span>,</span><br><span class="line"><span class="string">'handsome'</span>:<span class="number">1</span>,</span><br><span class="line"><span class="string">'n_tall'</span>:<span class="number">0</span>,</span><br><span class="line"><span class="string">'n_rich'</span>:<span class="number">0</span>,</span><br><span class="line"><span class="string">'n_handsome'</span>:<span class="number">0</span>,</span><br><span class="line"><span class="string">'1'</span>:<span class="number">1</span>,</span><br><span class="line"><span class="string">'0'</span>:<span class="number">0</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将数据表进行封装</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ManDataset</span><span class="params">(Data.Dataset)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,person)</span>:</span></span><br><span class="line">        self.data = person;</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__getitem__</span><span class="params">(self,index)</span>:</span></span><br><span class="line">        item = self.data[index]</span><br><span class="line">        new_item = []</span><br><span class="line">        <span class="keyword">for</span> feature <span class="keyword">in</span> item:</span><br><span class="line">            new_item.append(word2id[feature])</span><br><span class="line">        x = new_item[:<span class="number">3</span>]</span><br><span class="line">        y = new_item[<span class="number">-1</span>]</span><br><span class="line">        <span class="keyword">return</span> x,y</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__len__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span>(len(self.data))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 对数据进行预处理</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">my_collate_fn</span><span class="params">(batch_data)</span>:</span></span><br><span class="line">    x_batch = []</span><br><span class="line">    y_batch = []</span><br><span class="line">    <span class="keyword">for</span> example <span class="keyword">in</span> batch_data:</span><br><span class="line">        x,y = example</span><br><span class="line">        x_batch.append(x)</span><br><span class="line">        y_batch.append(y)</span><br><span class="line">    x_batch = torch.tensor(x_batch,dtype = torch.float32)</span><br><span class="line">    y_batch = torch.tensor(y_batch,dtype = torch.float32)</span><br><span class="line">    <span class="keyword">return</span> x_batch,y_batch</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建数据集实例</span></span><br><span class="line">person_dataset = ManDataset(person)</span><br><span class="line"><span class="comment"># 创建加载器，加载数据集</span></span><br><span class="line">batch_size = <span class="number">1</span></span><br><span class="line">person_data_loader = Data.DataLoader(</span><br><span class="line">    dataset=person_dataset,</span><br><span class="line">    batch_size=batch_size,</span><br><span class="line">    collate_fn=my_collate_fn</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 实现模型</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SingleDog</span><span class="params">(nn.Module)</span>:</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,n_feature,n_hidden,n_output)</span>:</span></span><br><span class="line">    super(SingleDog,self).__init__()</span><br><span class="line">    self.hidden = nn.Linear(n_feature,n_hidden)</span><br><span class="line">    self.relu = nn.ReLU()</span><br><span class="line">    self.predict = nn.Linear(n_hidden,n_output)</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self,x)</span>:</span></span><br><span class="line">    x = self.hidden(x)</span><br><span class="line">    x = self.relu(x)</span><br><span class="line">    x = self.predict(x)</span><br><span class="line">    <span class="keyword">return</span> x</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建模型实例</span></span><br><span class="line">will_u_be_single = SingleDog(n_feature=<span class="number">3</span>,n_hidden=<span class="number">10</span>,n_output=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#########</span></span><br><span class="line">will_u_be_single.cuda()</span><br><span class="line"><span class="comment">#########</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建loss函数</span></span><br><span class="line">single_loss = nn.L1Loss()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建优化器</span></span><br><span class="line">optimizer = torch.optim.SGD(will_u_be_single.parameters(),lr=<span class="number">0.1</span>,momentum=<span class="number">0.9</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 根据epoch，自动更新优化器参数</span></span><br><span class="line">scheduled_optimizer = StepLR(optimizer,step_size=<span class="number">10</span>,gamma=<span class="number">0.1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 开始迭代训练</span></span><br><span class="line">total_epoch = <span class="number">100</span></span><br><span class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> range(total_epoch):</span><br><span class="line">  <span class="keyword">for</span> index,data <span class="keyword">in</span> enumerate(person_data_loader):</span><br><span class="line">    input_x,ground_truth = data</span><br><span class="line">    </span><br><span class="line">    <span class="comment">##########</span></span><br><span class="line">    input_x = input_x.cuda()</span><br><span class="line">    ground_truth = ground_truth.cuda()</span><br><span class="line">    <span class="comment">##########</span></span><br><span class="line">    </span><br><span class="line">    predict = will_u_be_single(input_x)</span><br><span class="line">    loss = single_loss(predict.squeeze(),ground_truth)</span><br><span class="line">    optimizer.zero_grad()</span><br><span class="line">    loss.backward()</span><br><span class="line">    optimizer.step()</span><br><span class="line">  scheduled_optimizer.step()</span><br><span class="line">  print(<span class="string">f"Epoch <span class="subst">&#123;epoch&#125;</span>,loss: <span class="subst">&#123;loss.item()&#125;</span>, current lr:<span class="subst">&#123;scheduled_optimizer.get_lr()&#125;</span>"</span>)</span><br></pre></td></tr></table></figure>
+<p>测试：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">will_u_be_single(torch.tensor([1.,1.,0.]))</span><br></pre></td></tr></table></figure>
+<h1 id="加速计算"><a href="#加速计算" class="headerlink" title="加速计算"></a>加速计算</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">torch.cuda.is_available()</span><br><span class="line"></span><br><span class="line">#########</span><br><span class="line">will_u_be_single.cuda()</span><br><span class="line">#########</span><br><span class="line"></span><br><span class="line">##########</span><br><span class="line">input_x = input_x.cuda()</span><br><span class="line">ground_truth = ground_truth.cuda()</span><br><span class="line">##########</span><br></pre></td></tr></table></figure>
+<h1 id="储存和加载模型"><a href="#储存和加载模型" class="headerlink" title="储存和加载模型"></a>储存和加载模型</h1><p>储存整个模型：</p>
+<p><code>torch.save(will_u_be_single,&quot;./will_u_be_single.pkl&quot;)</code></p>
+<p>加载整个模型：</p>
+<p><code>model_from_file = torch.load(&quot;./will_u_be_single.pkl&quot;)</code></p>
+<p>储存参数：</p>
+<p><code>torch.save(will_u_be_single.state_dict(),&quot;./will_u_be_single_2.pkl&quot;)</code></p>
+<p>加载参数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">model_parameter = torch.load(<span class="string">"./will_u_be_single_2.pkl"</span>)</span><br><span class="line">will_u_be_single.load_state_dict(model_parameter)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/AI/" rel="tag"># AI</a>
+          
+            <a href="/tags/pytorch/" rel="tag"># pytorch</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/03/05/PyTorch基础/" rel="next" title="Pytorch基础">
+                <i class="fa fa-chevron-left"></i> Pytorch基础
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/ava.jpg" alt="sh">
+            
+              <p class="site-author-name" itemprop="name">sh</p>
+              <p class="site-description motion-element" itemprop="description">so we beat on, boats against the current, borne back ceaselessly into the past.</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">21</span>
+                    <span class="site-state-item-name">Artikel</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">Kategorien</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-name">Tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/croook" title="GitHub &rarr; https://github.com/croook" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:sh5672186@sina.com" title="E-Mail &rarr; mailto:sh5672186@sina.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#PyTorch实践"><span class="nav-number">1.</span> <span class="nav-text">PyTorch实践</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据集处理"><span class="nav-number">2.</span> <span class="nav-text">数据集处理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#官方数据集"><span class="nav-number">2.1.</span> <span class="nav-text">官方数据集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构建自定义数据集"><span class="nav-number">2.2.</span> <span class="nav-text">构建自定义数据集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#细粒度构建自定义数据集"><span class="nav-number">2.3.</span> <span class="nav-text">细粒度构建自定义数据集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加载数据集"><span class="nav-number">2.4.</span> <span class="nav-text">加载数据集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#预处理数据集"><span class="nav-number">2.5.</span> <span class="nav-text">预处理数据集</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#通过-getitem-方法"><span class="nav-number">2.5.1.</span> <span class="nav-text">通过_getitem_方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通过collate-fn"><span class="nav-number">2.5.2.</span> <span class="nav-text">通过collate_fn</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#模型"><span class="nav-number">3.</span> <span class="nav-text">模型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#经典模型以及可视化"><span class="nav-number">3.1.</span> <span class="nav-text">经典模型以及可视化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构建自己的神经网络结构"><span class="nav-number">3.2.</span> <span class="nav-text">构建自己的神经网络结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#sample"><span class="nav-number">3.2.1.</span> <span class="nav-text">sample</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构建多层网络"><span class="nav-number">3.2.2.</span> <span class="nav-text">构建多层网络</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#深度自定义"><span class="nav-number">3.2.3.</span> <span class="nav-text">深度自定义</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#定义损失"><span class="nav-number">4.</span> <span class="nav-text">定义损失</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#损失函数"><span class="nav-number">4.1.</span> <span class="nav-text">损失函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#继承torch-nn-module实现loss"><span class="nav-number">4.1.1.</span> <span class="nav-text">继承torch.nn.module实现loss</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#继承torch-autograd-funcion实现loss"><span class="nav-number">4.1.2.</span> <span class="nav-text">继承torch.autograd.funcion实现loss</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实现优化算法"><span class="nav-number">5.</span> <span class="nav-text">实现优化算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#调整学习率"><span class="nav-number">5.1.</span> <span class="nav-text">调整学习率</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#迭代训练"><span class="nav-number">6.</span> <span class="nav-text">迭代训练</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#加速计算"><span class="nav-number">7.</span> <span class="nav-text">加速计算</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#储存和加载模型"><span class="nav-number">8.</span> <span class="nav-text">储存和加载模型</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">sh</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.0</div>
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.0"></script>
+
+  <script src="/js/src/motion.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/js/src/post-details.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+  
+  <script>
+    
+    function addCount(Counter) {
+      var $visitors = $('.leancloud_visitors');
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            
+            Counter('put', '/classes/Counter/' + counter.objectId, JSON.stringify({ time: { '__op': 'Increment', 'amount': 1 } }))
+            
+              .done(function() {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.time + 1);
+              })
+            
+              .fail(function ({ responseJSON }) {
+                console.log(`Failed to save Visitor num, with error message: ${responseJSON.error}`);
+              })
+          } else {
+            
+              Counter('post', '/classes/Counter', JSON.stringify({ title: title, url: url, time: 1 }))
+                .done(function() {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(1);
+                })
+                .fail(function() {
+                  console.log('Failed to create');
+                });
+            
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log(`LeanCloud Counter Error: ${responseJSON.code} ${responseJSON.error}`);
+        });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + 'FKPTBi1uAoXKAYkTu5qVmYU8-gzGzoHsz')
+        .done(function({ api_server }) {
+          var Counter = function(method, url, data) {
+            return $.ajax({
+              method: method,
+              url: 'https://' + api_server + '/1.1' + url,
+              headers: {
+                'X-LC-Id': 'FKPTBi1uAoXKAYkTu5qVmYU8-gzGzoHsz',
+                'X-LC-Key': 'fSe2tiDLznbEiATi2CiqRljO',
+                'Content-Type': 'application/json',
+              },
+              data: data
+            });
+          };
+          
+            addCount(Counter);
+          
+        });
+    });
+  </script>
+
+
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

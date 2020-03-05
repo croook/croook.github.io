@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://croook.github.io/2020/03/05/PyTorch%E5%AE%9E%E8%B7%B5/</loc>
+    
+    <lastmod>2020-03-05T13:09:36.812Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://croook.github.io/2020/03/05/PyTorch%E5%9F%BA%E7%A1%80/</loc>
     
     <lastmod>2020-03-05T06:20:15.145Z</lastmod>
