@@ -100,13 +100,13 @@
 
 
 
-  <meta name="description" content="M-P神经元 为什么需要激活函数 激活函数举例  权重人工设置m-p神经元的权重由人工设置，无法学习 单层感知器首个可以学习的神经网络 逻辑实现 多层感知器异或 单层感知器，无法实现异或关系，无法找到一条线完美分开数据（0、1） 同或 单隐层神经网络可视化urlhttp://playground.tensorflow.org/ 万有逼近定理 双隐层感知器 神经网络每一层作用 更深 or 更宽">
+  <meta name="description" content="M-P神经元 为什么需要激活函数 激活函数举例  权重人工设置m-p神经元的权重由人工设置，无法学习 单层感知器首个可以学习的神经网络 逻辑实现 多层感知器异或 单层感知器，无法实现异或关系，无法找到一条线完美分开数据（0、1） 同或三层感知机实现同或关系  单隐层神经网络可视化urlhttp://playground.tensorflow.org/ 万有逼近定理 双隐层感知器 神经网络每一层作用">
 <meta name="keywords" content="AI">
 <meta property="og:type" content="article">
 <meta property="og:title" content="AI-02深度学习概述">
 <meta property="og:url" content="https://croook.github.io/2019/03/04/AI-02深度学习概述/index.html">
 <meta property="og:site_name" content="Crookshank">
-<meta property="og:description" content="M-P神经元 为什么需要激活函数 激活函数举例  权重人工设置m-p神经元的权重由人工设置，无法学习 单层感知器首个可以学习的神经网络 逻辑实现 多层感知器异或 单层感知器，无法实现异或关系，无法找到一条线完美分开数据（0、1） 同或 单隐层神经网络可视化urlhttp://playground.tensorflow.org/ 万有逼近定理 双隐层感知器 神经网络每一层作用 更深 or 更宽">
+<meta property="og:description" content="M-P神经元 为什么需要激活函数 激活函数举例  权重人工设置m-p神经元的权重由人工设置，无法学习 单层感知器首个可以学习的神经网络 逻辑实现 多层感知器异或 单层感知器，无法实现异或关系，无法找到一条线完美分开数据（0、1） 同或三层感知机实现同或关系  单隐层神经网络可视化urlhttp://playground.tensorflow.org/ 万有逼近定理 双隐层感知器 神经网络每一层作用">
 <meta property="og:locale" content="En">
 <meta property="og:image" content="https://croook.github.io/2019/03/04/AI-02深度学习概述/01.png">
 <meta property="og:image" content="https://croook.github.io/2019/03/04/AI-02深度学习概述/02.png">
@@ -120,10 +120,18 @@
 <meta property="og:image" content="https://croook.github.io/2019/03/04/AI-02深度学习概述/10.png">
 <meta property="og:image" content="https://croook.github.io/2019/03/04/AI-02深度学习概述/11.png">
 <meta property="og:image" content="https://croook.github.io/2019/03/04/AI-02深度学习概述/12.png">
-<meta property="og:updated_time" content="2019-03-04T12:13:00.000Z">
+<meta property="og:image" content="https://croook.github.io/2019/03/04/AI-02深度学习概述/13.png">
+<meta property="og:image" content="https://croook.github.io/2019/03/04/AI-02深度学习概述/14.png">
+<meta property="og:image" content="https://croook.github.io/2019/03/04/AI-02深度学习概述/15.png">
+<meta property="og:image" content="https://croook.github.io/2019/03/04/AI-02深度学习概述/16.png">
+<meta property="og:image" content="https://croook.github.io/2019/03/04/AI-02深度学习概述/17.png">
+<meta property="og:image" content="https://croook.github.io/2019/03/04/AI-02深度学习概述/18.png">
+<meta property="og:image" content="https://croook.github.io/2019/03/04/AI-02深度学习概述/19.png">
+<meta property="og:image" content="https://croook.github.io/2019/03/04/AI-02深度学习概述/20.png">
+<meta property="og:updated_time" content="2020-03-07T07:37:16.260Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AI-02深度学习概述">
-<meta name="twitter:description" content="M-P神经元 为什么需要激活函数 激活函数举例  权重人工设置m-p神经元的权重由人工设置，无法学习 单层感知器首个可以学习的神经网络 逻辑实现 多层感知器异或 单层感知器，无法实现异或关系，无法找到一条线完美分开数据（0、1） 同或 单隐层神经网络可视化urlhttp://playground.tensorflow.org/ 万有逼近定理 双隐层感知器 神经网络每一层作用 更深 or 更宽">
+<meta name="twitter:description" content="M-P神经元 为什么需要激活函数 激活函数举例  权重人工设置m-p神经元的权重由人工设置，无法学习 单层感知器首个可以学习的神经网络 逻辑实现 多层感知器异或 单层感知器，无法实现异或关系，无法找到一条线完美分开数据（0、1） 同或三层感知机实现同或关系  单隐层神经网络可视化urlhttp://playground.tensorflow.org/ 万有逼近定理 双隐层感知器 神经网络每一层作用">
 <meta name="twitter:image" content="https://croook.github.io/2019/03/04/AI-02深度学习概述/01.png">
 
 
@@ -271,7 +279,7 @@
 
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Category</a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
 
   </li>
         
@@ -288,7 +296,7 @@
 
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archive</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
 
   </li>
 
@@ -405,19 +413,31 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
 
               
                 
               
 
-              <time title="Post created: 2019-03-04 18:23:21 / Updated at: 20:13:00" itemprop="dateCreated datePublished" datetime="2019-03-04T18:23:21+08:00">2019-03-04</time>
+              <time title="Created: 2019-03-04 18:23:21" itemprop="dateCreated datePublished" datetime="2019-03-04T18:23:21+08:00">2019-03-04</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2020-03-07 15:37:16" itemprop="dateModified" datetime="2020-03-07T15:37:16+08:00">2020-03-07</time>
               
             
           </span>
@@ -431,7 +451,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">in</span>
+                <span class="post-meta-item-text">In</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a></span>
@@ -489,12 +509,57 @@
 <h3 id="逻辑实现"><a href="#逻辑实现" class="headerlink" title="逻辑实现"></a>逻辑实现</h3><p><img src="/2019/03/04/AI-02深度学习概述/06.png" alt></p>
 <h2 id="多层感知器"><a href="#多层感知器" class="headerlink" title="多层感知器"></a>多层感知器</h2><h3 id="异或"><a href="#异或" class="headerlink" title="异或"></a>异或</h3><p><img src="/2019/03/04/AI-02深度学习概述/07.png" alt></p>
 <p>单层感知器，无法实现异或关系，无法找到一条线完美分开数据（0、1）</p>
-<h3 id="同或"><a href="#同或" class="headerlink" title="同或"></a>同或</h3><p><img src="/2019/03/04/AI-02深度学习概述/08.png" alt></p>
+<h3 id="同或"><a href="#同或" class="headerlink" title="同或"></a>同或</h3><p>三层感知机实现同或关系</p>
+<p><img src="/2019/03/04/AI-02深度学习概述/08.png" alt></p>
 <h2 id="单隐层神经网络可视化"><a href="#单隐层神经网络可视化" class="headerlink" title="单隐层神经网络可视化"></a>单隐层神经网络可视化</h2><h3 id="url"><a href="#url" class="headerlink" title="url"></a>url</h3><p><a href="http://playground.tensorflow.org/" target="_blank" rel="noopener">http://playground.tensorflow.org/</a></p>
 <h2 id="万有逼近定理"><a href="#万有逼近定理" class="headerlink" title="万有逼近定理"></a>万有逼近定理</h2><p><img src="/2019/03/04/AI-02深度学习概述/09.png" alt></p>
 <h2 id="双隐层感知器"><a href="#双隐层感知器" class="headerlink" title="双隐层感知器"></a>双隐层感知器</h2><p><img src="/2019/03/04/AI-02深度学习概述/10.png" alt></p>
 <h2 id="神经网络每一层作用"><a href="#神经网络每一层作用" class="headerlink" title="神经网络每一层作用"></a>神经网络每一层作用</h2><p><img src="/2019/03/04/AI-02深度学习概述/11.png" alt></p>
 <h2 id="更深-or-更宽"><a href="#更深-or-更宽" class="headerlink" title="更深 or 更宽"></a>更深 or 更宽</h2><p><img src="/2019/03/04/AI-02深度学习概述/12.png" alt></p>
+<h2 id="误差反向传播"><a href="#误差反向传播" class="headerlink" title="误差反向传播"></a>误差反向传播</h2><p>在训练神经网络的过程中，各个神经元的权重是通过误差的反向传播确定的，更新权重时，权重沿着误差函数梯度下降方向改变，使误差下降最快。</p>
+<p>对于整个神经网络最后的误差来说，每一个神经元对于误差做出的贡献不同，如果激活函数选择sigmoid函数的话，输出层和隐层神经元的责任如图，计算出每个神经元的责任就可以将结果带入权重的更新公式，来调整权重。由于整个计算过程是从输出层开始，反向计算，所以也叫做误差的反向传播。</p>
+<p><img src="/2019/03/04/AI-02深度学习概述/13.png" alt></p>
+<p><img src="/2019/03/04/AI-02深度学习概述/14.png" alt></p>
+<h2 id="梯度消失"><a href="#梯度消失" class="headerlink" title="梯度消失"></a>梯度消失</h2><p>反向传播是误差沿着梯度方向反向传播，求偏导的过程中要计算激活函数的导数</p>
+<p><img src="/2019/03/04/AI-02深度学习概述/15.png" alt></p>
+<p><img src="/2019/03/04/AI-02深度学习概述/16.png" alt></p>
+<p>如果激活函数选择sigmoid函数的话，那么函数的导数值最大仅为4分之1，在1/2处取得，但很多情况下，函数值会落入饱和区，即sigmoid函数上下平滑的部分，这些地方的导数值可能会很小很小。而且这仅为一层网络，如果是多层网络的话，这个偏导值就会非常小，误差在反向传播的过程中就会消失，最后的结果可能是只改变了输出层的权重，而前面的网络权重都没有更新。</p>
+<h2 id="逐层预训练"><a href="#逐层预训练" class="headerlink" title="逐层预训练"></a>逐层预训练</h2><p><img src="/2019/03/04/AI-02深度学习概述/17.png" alt></p>
+<p>多层神经网络可能出现的两个问题，一是局部极小值，初始值选取不同，可能会导致网络收敛到局部极小值点，随着神经网络隐层的增多，局部极小值的数量会成倍增加。二就是梯度消失。</p>
+<p>解决这两个问题的一个途径就是通过逐层预训练进行参数的初始化，如果参数的初始值选取得当，那么网络就会收敛到全局的极小值点，同时，由于梯度消失可能会导致前面几层网络权重无法更新，但是如果在开始的时候，就有一个较好的初始值，也可以使得网络训练出一个较好的结果。</p>
+<h3 id="自编码器"><a href="#自编码器" class="headerlink" title="自编码器"></a>自编码器</h3><p><img src="/2019/03/04/AI-02深度学习概述/18.png" alt></p>
+<p>逐层预训练是想得到一个好的初始值，但是如果网络有多个隐层，并不是每个隐层都能看到输出，也就是没有监督信息。在没有监督信息的情况下进行预训练主要有两种方法，自编码器和受限玻尔兹曼机。</p>
+<p>自编码器假设输出与输入相同，是一种 尽可能复现输入信号的神经网络。</p>
+<p>堆叠自编码器就是将多个自编码器进行串联，首先训练所有的隐层，在隐层训练完之后，通过输出层得到的监督结果，重新对整个网络进行微调</p>
+<h3 id="受限玻尔兹曼机"><a href="#受限玻尔兹曼机" class="headerlink" title="受限玻尔兹曼机"></a>受限玻尔兹曼机</h3><p><img src="/2019/03/04/AI-02深度学习概述/19.png" alt></p>
+<p>受限玻尔兹曼机是一个两层神经网络，包括可见层和隐藏层，不同层全连接，层内无连接，是二分图。</p>
+<p>他的过程是首先通过可见层的输入，得到一个输出，再将输出传入隐藏层，重新得到一个可见层，在正向和反向的传播过程中，同一路线的权重相同，但是偏置不同。目的是让得到的可见层与原来的一致，这样就可以将隐藏层作为输入的一个特征，从而得到初始化。</p>
+<p>之所以叫受限玻尔兹曼机是因为应用了热力学中的玻尔兹曼分布。巧合的是根据玻尔兹曼分布，假设所有的节点都用0，1二进制来表示，推导出的条件概率结果正好是sigmoid函数。</p>
+<h4 id="深度信念网络DBN"><a href="#深度信念网络DBN" class="headerlink" title="深度信念网络DBN"></a>深度信念网络DBN</h4><p><img src="/2019/03/04/AI-02深度学习概述/20.png" alt></p>
+<h3 id="自编码器与RBM对比"><a href="#自编码器与RBM对比" class="headerlink" title="自编码器与RBM对比"></a>自编码器与RBM对比</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">自编码器</th>
+<th style="text-align:center">RBM</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">自编码器编码和解码函数不同</td>
+<td style="text-align:center">RBM共享权重矩阵W，两个偏置向量</td>
+</tr>
+<tr>
+<td style="text-align:center">自编码器通过非线性变换学习特征，是确定的，特征值可以为任何实数</td>
+<td style="text-align:center">RBM基于概率分布定义，高层表示为底层特征的条件概率，输出只有两种状态 （未激活激活），用二进制0/1表示</td>
+</tr>
+<tr>
+<td style="text-align:center">自编码器直接对条件概率 建模，是判别式模型</td>
+<td style="text-align:center">RBM对联合概率密度建模， 是生成式模型</td>
+</tr>
+</tbody>
+</table>
+</div>
 
       
     </div>
@@ -531,7 +596,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/04/AI-01/" rel="next" title="AI_01人工智能概述">
+              <a href="/2019/03/04/AI-01机器学习概述/" rel="next" title="AI_01人工智能概述">
                 <i class="fa fa-chevron-left"></i> AI_01人工智能概述
               </a>
             
@@ -590,10 +655,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Inhaltsverzeichnis
+            Table of Contents
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Übersicht
+            Overview
           </li>
         </ul>
       
@@ -616,7 +681,7 @@
                   <a href="/archives/">
                 
                     <span class="site-state-item-count">21</span>
-                    <span class="site-state-item-name">Artikel</span>
+                    <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
               
@@ -641,7 +706,7 @@
                       
                     
                     <span class="site-state-item-count">6</span>
-                    <span class="site-state-item-name">Kategorien</span>
+                    <span class="site-state-item-name">categories</span>
                   </a>
                 </div>
               
@@ -682,7 +747,7 @@
                       
                     
                     <span class="site-state-item-count">14</span>
-                    <span class="site-state-item-name">Tags</span>
+                    <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
               
@@ -743,7 +808,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#M-P神经元"><span class="nav-number">1.</span> <span class="nav-text">M-P神经元</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么需要激活函数"><span class="nav-number">1.1.</span> <span class="nav-text">为什么需要激活函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#激活函数举例"><span class="nav-number">1.2.</span> <span class="nav-text">激活函数举例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#权重人工设置"><span class="nav-number">1.3.</span> <span class="nav-text">权重人工设置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单层感知器"><span class="nav-number">2.</span> <span class="nav-text">单层感知器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#首个可以学习的神经网络"><span class="nav-number">2.1.</span> <span class="nav-text">首个可以学习的神经网络</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#逻辑实现"><span class="nav-number">2.2.</span> <span class="nav-text">逻辑实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多层感知器"><span class="nav-number">3.</span> <span class="nav-text">多层感知器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#异或"><span class="nav-number">3.1.</span> <span class="nav-text">异或</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#同或"><span class="nav-number">3.2.</span> <span class="nav-text">同或</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单隐层神经网络可视化"><span class="nav-number">4.</span> <span class="nav-text">单隐层神经网络可视化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#url"><span class="nav-number">4.1.</span> <span class="nav-text">url</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#万有逼近定理"><span class="nav-number">5.</span> <span class="nav-text">万有逼近定理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#双隐层感知器"><span class="nav-number">6.</span> <span class="nav-text">双隐层感知器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#神经网络每一层作用"><span class="nav-number">7.</span> <span class="nav-text">神经网络每一层作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更深-or-更宽"><span class="nav-number">8.</span> <span class="nav-text">更深 or 更宽</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#M-P神经元"><span class="nav-number">1.</span> <span class="nav-text">M-P神经元</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么需要激活函数"><span class="nav-number">1.1.</span> <span class="nav-text">为什么需要激活函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#激活函数举例"><span class="nav-number">1.2.</span> <span class="nav-text">激活函数举例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#权重人工设置"><span class="nav-number">1.3.</span> <span class="nav-text">权重人工设置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单层感知器"><span class="nav-number">2.</span> <span class="nav-text">单层感知器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#首个可以学习的神经网络"><span class="nav-number">2.1.</span> <span class="nav-text">首个可以学习的神经网络</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#逻辑实现"><span class="nav-number">2.2.</span> <span class="nav-text">逻辑实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多层感知器"><span class="nav-number">3.</span> <span class="nav-text">多层感知器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#异或"><span class="nav-number">3.1.</span> <span class="nav-text">异或</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#同或"><span class="nav-number">3.2.</span> <span class="nav-text">同或</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单隐层神经网络可视化"><span class="nav-number">4.</span> <span class="nav-text">单隐层神经网络可视化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#url"><span class="nav-number">4.1.</span> <span class="nav-text">url</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#万有逼近定理"><span class="nav-number">5.</span> <span class="nav-text">万有逼近定理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#双隐层感知器"><span class="nav-number">6.</span> <span class="nav-text">双隐层感知器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#神经网络每一层作用"><span class="nav-number">7.</span> <span class="nav-text">神经网络每一层作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更深-or-更宽"><span class="nav-number">8.</span> <span class="nav-text">更深 or 更宽</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#误差反向传播"><span class="nav-number">9.</span> <span class="nav-text">误差反向传播</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#梯度消失"><span class="nav-number">10.</span> <span class="nav-text">梯度消失</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#逐层预训练"><span class="nav-number">11.</span> <span class="nav-text">逐层预训练</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#自编码器"><span class="nav-number">11.1.</span> <span class="nav-text">自编码器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#受限玻尔兹曼机"><span class="nav-number">11.2.</span> <span class="nav-text">受限玻尔兹曼机</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#深度信念网络DBN"><span class="nav-number">11.2.1.</span> <span class="nav-text">深度信念网络DBN</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自编码器与RBM对比"><span class="nav-number">11.3.</span> <span class="nav-text">自编码器与RBM对比</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -775,7 +840,7 @@
 </div>
 
 
-  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
 
 
 

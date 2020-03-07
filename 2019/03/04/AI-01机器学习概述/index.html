@@ -1,0 +1,1452 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="En">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+  <meta name="google-site-verification" content="7Oev-o_nVgfEcRT4Mc9fXSxqXK0_WXFBAuBh4GdzGuM">
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="5Nq4yOLRnQ">
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.ico?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.ico?v=7.0.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="概述什么是人工智能人工智能(Artificial Intelligence)使一部机器像人一样进行感知、认知、决策、执行的人工程序或系统 标志性事件 人工智能发展阶段 人工智能三个层面计算智能能存能算 感知智能能听会说、能看会认 认知智能能理解、会思考 人工智能 &amp;gt; 机器学习 &amp;gt; 深度学习  逻辑演绎 vs 归纳总结 专家系统根据专家定义的知识和经验，进行推理和判断，从而模拟人类专家的">
+<meta name="keywords" content="AI">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AI_01人工智能概述">
+<meta property="og:url" content="https://croook.github.io/2019/03/04/AI-01机器学习概述/index.html">
+<meta property="og:site_name" content="Crookshank">
+<meta property="og:description" content="概述什么是人工智能人工智能(Artificial Intelligence)使一部机器像人一样进行感知、认知、决策、执行的人工程序或系统 标志性事件 人工智能发展阶段 人工智能三个层面计算智能能存能算 感知智能能听会说、能看会认 认知智能能理解、会思考 人工智能 &amp;gt; 机器学习 &amp;gt; 深度学习  逻辑演绎 vs 归纳总结 专家系统根据专家定义的知识和经验，进行推理和判断，从而模拟人类专家的">
+<meta property="og:locale" content="En">
+<meta property="og:image" content="https://croook.github.io/2019/03/04/AI-01机器学习概述/01.png">
+<meta property="og:image" content="https://croook.github.io/2019/03/04/AI-01机器学习概述/02.png">
+<meta property="og:image" content="https://croook.github.io/2019/03/04/AI-01机器学习概述/03.png">
+<meta property="og:image" content="https://croook.github.io/2019/03/04/AI-01机器学习概述/13.png">
+<meta property="og:image" content="https://croook.github.io/2019/03/04/AI-01机器学习概述/04.png">
+<meta property="og:image" content="https://croook.github.io/2019/03/04/AI-01机器学习概述/05.png">
+<meta property="og:image" content="https://croook.github.io/2019/03/04/AI-01机器学习概述/07.png">
+<meta property="og:image" content="https://croook.github.io/2019/03/04/AI-01机器学习概述/08.png">
+<meta property="og:image" content="https://croook.github.io/2019/03/04/AI-01机器学习概述/09.png">
+<meta property="og:image" content="https://croook.github.io/2019/03/04/AI-01机器学习概述/10.png">
+<meta property="og:image" content="https://croook.github.io/2019/03/04/AI-01机器学习概述/11.png">
+<meta property="og:image" content="https://croook.github.io/2019/03/04/AI-01机器学习概述/12.png">
+<meta property="og:image" content="https://croook.github.io/2019/03/04/AI-01机器学习概述/06.png">
+<meta property="og:image" content="https://croook.github.io/2019/03/04/AI-01机器学习概述/14.png">
+<meta property="og:image" content="https://croook.github.io/2019/03/04/AI-01机器学习概述/15.png">
+<meta property="og:image" content="https://croook.github.io/2019/03/04/AI-01机器学习概述/16.png">
+<meta property="og:image" content="https://croook.github.io/2019/03/04/AI-01机器学习概述/17.png">
+<meta property="og:image" content="https://croook.github.io/2019/03/04/AI-01机器学习概述/18.png">
+<meta property="og:image" content="https://croook.github.io/2019/03/04/AI-01机器学习概述/19.png">
+<meta property="og:image" content="https://croook.github.io/2019/03/04/AI-01机器学习概述/20.png">
+<meta property="og:image" content="https://croook.github.io/2019/03/04/AI-01机器学习概述/22.png">
+<meta property="og:image" content="https://croook.github.io/2019/03/04/AI-01机器学习概述/23.png">
+<meta property="og:image" content="https://croook.github.io/2019/03/04/AI-01机器学习概述/24.png">
+<meta property="og:image" content="https://croook.github.io/2019/03/04/AI-01机器学习概述/25.png">
+<meta property="og:image" content="https://croook.github.io/2019/03/04/AI-01机器学习概述/26.png">
+<meta property="og:image" content="https://croook.github.io/2019/03/04/AI-01机器学习概述/27.png">
+<meta property="og:image" content="https://croook.github.io/2019/03/04/AI-01机器学习概述/28.png">
+<meta property="og:image" content="https://croook.github.io/2019/03/04/AI-01机器学习概述/33.png">
+<meta property="og:image" content="https://croook.github.io/2019/03/04/AI-01机器学习概述/35.png">
+<meta property="og:image" content="https://croook.github.io/2019/03/04/AI-01机器学习概述/34.png">
+<meta property="og:updated_time" content="2020-03-07T08:15:30.453Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AI_01人工智能概述">
+<meta name="twitter:description" content="概述什么是人工智能人工智能(Artificial Intelligence)使一部机器像人一样进行感知、认知、决策、执行的人工程序或系统 标志性事件 人工智能发展阶段 人工智能三个层面计算智能能存能算 感知智能能听会说、能看会认 认知智能能理解、会思考 人工智能 &amp;gt; 机器学习 &amp;gt; 深度学习  逻辑演绎 vs 归纳总结 专家系统根据专家定义的知识和经验，进行推理和判断，从而模拟人类专家的">
+<meta name="twitter:image" content="https://croook.github.io/2019/03/04/AI-01机器学习概述/01.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://croook.github.io/2019/03/04/AI-01机器学习概述/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>AI_01人工智能概述 | Crookshank</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="En">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Crookshank</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://croook.github.io/2019/03/04/AI-01机器学习概述/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="sh">
+      <meta itemprop="description" content="so we beat on, boats against the current, borne back ceaselessly into the past.">
+      <meta itemprop="image" content="/images/ava.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Crookshank">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">AI_01人工智能概述
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-03-04 08:21:15" itemprop="dateCreated datePublished" datetime="2019-03-04T08:21:15+08:00">2019-03-04</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2020-03-07 16:15:30" itemprop="dateModified" datetime="2020-03-07T16:15:30+08:00">2020-03-07</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+            <span id="/2019/03/04/AI-01机器学习概述/" class="leancloud_visitors" data-flag-title="AI_01人工智能概述">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Views: </span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><h2 id="什么是人工智能"><a href="#什么是人工智能" class="headerlink" title="什么是人工智能"></a>什么是人工智能</h2><p>人工智能(Artificial Intelligence)<br>使一部机器像人一样进行感知、认知、决策、执行的人工程序或系统</p>
+<h2 id="标志性事件"><a href="#标志性事件" class="headerlink" title="标志性事件"></a>标志性事件</h2><p><img src="/2019/03/04/AI-01机器学习概述/01.png" alt></p>
+<h2 id="人工智能发展阶段"><a href="#人工智能发展阶段" class="headerlink" title="人工智能发展阶段"></a>人工智能发展阶段</h2><p><img src="/2019/03/04/AI-01机器学习概述/02.png" alt></p>
+<h2 id="人工智能三个层面"><a href="#人工智能三个层面" class="headerlink" title="人工智能三个层面"></a>人工智能三个层面</h2><h3 id="计算智能"><a href="#计算智能" class="headerlink" title="计算智能"></a>计算智能</h3><p>能存能算</p>
+<h3 id="感知智能"><a href="#感知智能" class="headerlink" title="感知智能"></a>感知智能</h3><p>能听会说、能看会认</p>
+<h3 id="认知智能"><a href="#认知智能" class="headerlink" title="认知智能"></a>认知智能</h3><p>能理解、会思考</p>
+<h2 id="人工智能-gt-机器学习-gt-深度学习"><a href="#人工智能-gt-机器学习-gt-深度学习" class="headerlink" title="人工智能 &gt; 机器学习 &gt; 深度学习"></a>人工智能 &gt; 机器学习 &gt; 深度学习</h2><p><img src="/2019/03/04/AI-01机器学习概述/03.png" alt></p>
+<p><img src="/2019/03/04/AI-01机器学习概述/13.png" alt></p>
+<h2 id="逻辑演绎-vs-归纳总结"><a href="#逻辑演绎-vs-归纳总结" class="headerlink" title="逻辑演绎 vs 归纳总结"></a>逻辑演绎 vs 归纳总结</h2><p><img src="/2019/03/04/AI-01机器学习概述/04.png" alt></p>
+<h2 id="专家系统"><a href="#专家系统" class="headerlink" title="专家系统"></a>专家系统</h2><p>根据专家定义的知识和经验，进行推理和判断，从而模拟人类专家的决策过程来解决问题。</p>
+<h2 id="知识工程-vs-机器学习"><a href="#知识工程-vs-机器学习" class="headerlink" title="知识工程 vs 机器学习"></a>知识工程 vs 机器学习</h2><p><img src="/2019/03/04/AI-01机器学习概述/05.png" alt></p>
+<h2 id="计算机视觉"><a href="#计算机视觉" class="headerlink" title="计算机视觉"></a>计算机视觉</h2><h3 id="人脸识别"><a href="#人脸识别" class="headerlink" title="人脸识别"></a>人脸识别</h3><h3 id="图像分类"><a href="#图像分类" class="headerlink" title="图像分类"></a>图像分类</h3><h3 id="目标检测"><a href="#目标检测" class="headerlink" title="目标检测"></a>目标检测</h3><h3 id="图像搜索"><a href="#图像搜索" class="headerlink" title="图像搜索"></a>图像搜索</h3><h3 id="图像分割"><a href="#图像分割" class="headerlink" title="图像分割"></a>图像分割</h3><h3 id="视频监控"><a href="#视频监控" class="headerlink" title="视频监控"></a>视频监控</h3><h2 id="语音技术"><a href="#语音技术" class="headerlink" title="语音技术"></a>语音技术</h2><h3 id="语音识别"><a href="#语音识别" class="headerlink" title="语音识别"></a>语音识别</h3><h3 id="语音合成"><a href="#语音合成" class="headerlink" title="语音合成"></a>语音合成</h3><h3 id="声纹识别"><a href="#声纹识别" class="headerlink" title="声纹识别"></a>声纹识别</h3><h2 id="自然语言处理"><a href="#自然语言处理" class="headerlink" title="自然语言处理"></a>自然语言处理</h2><h3 id="文本分类"><a href="#文本分类" class="headerlink" title="文本分类"></a>文本分类</h3><h3 id="机器翻译"><a href="#机器翻译" class="headerlink" title="机器翻译"></a>机器翻译</h3><h3 id="知识图谱"><a href="#知识图谱" class="headerlink" title="知识图谱"></a>知识图谱</h3><h3 id="自动问答"><a href="#自动问答" class="headerlink" title="自动问答"></a>自动问答</h3><h3 id="信息检索"><a href="#信息检索" class="headerlink" title="信息检索"></a>信息检索</h3><h3 id="文本生成"><a href="#文本生成" class="headerlink" title="文本生成"></a>文本生成</h3><h2 id="机器学习的定义"><a href="#机器学习的定义" class="headerlink" title="机器学习的定义"></a>机器学习的定义</h2><h3 id="最常用定义"><a href="#最常用定义" class="headerlink" title="最常用定义"></a>最常用定义</h3><p>计算机系统能够利用经验提高自身的性能</p>
+<h3 id="可操作定义"><a href="#可操作定义" class="headerlink" title="可操作定义"></a>可操作定义</h3><p>机器学习本质是一个基于经验数据的函数估计问题</p>
+<h3 id="统计学定义"><a href="#统计学定义" class="headerlink" title="统计学定义"></a>统计学定义</h3><p>提取重要模式、趋势，并理解数据，即从数据中学习</p>
+<h2 id="机器学习-怎么学"><a href="#机器学习-怎么学" class="headerlink" title="机器学习-怎么学"></a>机器学习-怎么学</h2><h3 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h3><p>对要学习问题映射的假设（问题建模，确定假设空间）</p>
+<h4 id="模型分类"><a href="#模型分类" class="headerlink" title="模型分类"></a>模型分类</h4><h5 id="数据标记"><a href="#数据标记" class="headerlink" title="数据标记"></a>数据标记</h5><ul>
+<li>监督学习模型 </li>
+<li>无监督学习模型</li>
+</ul>
+<p><img src="/2019/03/04/AI-01机器学习概述/07.png" alt></p>
+<p><img src="/2019/03/04/AI-01机器学习概述/08.png" alt></p>
+<p><img src="/2019/03/04/AI-01机器学习概述/09.png" alt></p>
+<p><img src="/2019/03/04/AI-01机器学习概述/10.png" alt></p>
+<h5 id="数据分布"><a href="#数据分布" class="headerlink" title="数据分布"></a>数据分布</h5><p>参数模型 、 无参数模型</p>
+<p><img src="/2019/03/04/AI-01机器学习概述/11.png" alt></p>
+<h5 id="建模对象"><a href="#建模对象" class="headerlink" title="建模对象"></a>建模对象</h5><ul>
+<li>判别模型 </li>
+<li>生成模型</li>
+</ul>
+<p><img src="/2019/03/04/AI-01机器学习概述/12.png" alt></p>
+<h3 id="策略"><a href="#策略" class="headerlink" title="策略"></a>策略</h3><p>从假设空间中学习/选择最优模型的准则<br>（确定目标函数）</p>
+<h3 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h3><p>根据目标函数求解最优模型的具体计算方法<br>（求解模型参数）</p>
+<p><img src="/2019/03/04/AI-01机器学习概述/06.png" alt></p>
+<h1 id="深度学习"><a href="#深度学习" class="headerlink" title="深度学习"></a>深度学习</h1><h2 id="传统机器学习：人工设计特征"><a href="#传统机器学习：人工设计特征" class="headerlink" title="传统机器学习：人工设计特征"></a>传统机器学习：人工设计特征</h2><p><img src="/2019/03/04/AI-01机器学习概述/14.png" alt></p>
+<h2 id="传统机器学习VS-深度学习"><a href="#传统机器学习VS-深度学习" class="headerlink" title="传统机器学习VS 深度学习"></a>传统机器学习VS 深度学习</h2><p><img src="/2019/03/04/AI-01机器学习概述/15.png" alt></p>
+<ul>
+<li>手动设计程序</li>
+<li>手动设计特征</li>
+</ul>
+<h2 id="神经网络结构发展"><a href="#神经网络结构发展" class="headerlink" title="神经网络结构发展"></a>神经网络结构发展</h2><p><img src="/2019/03/04/AI-01机器学习概述/16.png" alt></p>
+<h2 id="深度学习的不能"><a href="#深度学习的不能" class="headerlink" title="深度学习的不能"></a>深度学习的不能</h2><p><img src="/2019/03/04/AI-01机器学习概述/17.png" alt></p>
+<h2 id="连接主义-vs-符号主义"><a href="#连接主义-vs-符号主义" class="headerlink" title="连接主义 vs 符号主义"></a>连接主义 vs 符号主义</h2><p><img src="/2019/03/04/AI-01机器学习概述/18.png" alt></p>
+<ul>
+<li>从对立到合作</li>
+</ul>
+<h2 id="连接主义-符号主义"><a href="#连接主义-符号主义" class="headerlink" title="连接主义+ 符号主义"></a>连接主义+ 符号主义</h2><p><img src="/2019/03/04/AI-01机器学习概述/19.png" alt></p>
+<h1 id="算法-1"><a href="#算法-1" class="headerlink" title="算法"></a>算法</h1><h2 id="模型分类-1"><a href="#模型分类-1" class="headerlink" title="模型分类"></a>模型分类</h2><p>根据有无监督，进行区分。对于有监督的情况，又可以分为分类和回归两类问题</p>
+<p>定量输出称为回归，或者说是连续变量预测</p>
+<p>定性输出称为分类，或者说是离散变量预测</p>
+<p>无监督的情况下，有聚类和降维两种方法</p>
+<p><img src="/2019/03/04/AI-01机器学习概述/20.png" alt></p>
+<h2 id="线性分类器"><a href="#线性分类器" class="headerlink" title="线性分类器"></a>线性分类器</h2><p>线性分类器就是用线性方程去拟合数据，在二维的情况下就是寻找一条直线，三维就是一个平面，更高维叫做超平面。寻找这个超平面的过程，其实就是求解所有权重参数的过程</p>
+<h3 id="学习过程"><a href="#学习过程" class="headerlink" title="学习过程"></a>学习过程</h3><p><img src="/2019/03/04/AI-01机器学习概述/22.png" alt></p>
+<h3 id="学习率"><a href="#学习率" class="headerlink" title="学习率"></a>学习率</h3><p>学习率低的话，学习过程会比较缓慢，学习率较高的话，学习过程更快，但是会更加跳跃。如果学习率过高的话，可能越过了好的分界面，得到了比较差的结果，但是如果训练集还足够多，可以通过后续的学习，弥补这一步产生的不良影响，重新找到好的分界面，但是整个学习过程更加曲折。在某些情况下，学习率也不是一成不变的。</p>
+<p>第一种情况，可以根据训练集的大小来调整学习率，如将学习率乘上1/N，N代表训练集的大小</p>
+<p>第二种情况，可以在每次迭代的过程中调整学习率，基本的思路是，需要朝着最优值移动的距离越远，学习率就应该越大，距离越近，学习率就应该更小。用自适应的方法来调整学习率。但是在实际中，可能并不知道和最优值之间的距离，所以可以在每一次迭代的最后，使用估计的模型参数检查误差函数。如果相对于上一次迭代，错误率减少了，可以增大学习率，用5%作为增大的幅度，如果相对于上一次迭代，错误率增大了，也就是跳过了最优值，那么应该重新设置上一轮迭代的权重wi，并且减少学习率到之前的50%</p>
+<h2 id="多项式分类器"><a href="#多项式分类器" class="headerlink" title="多项式分类器"></a>多项式分类器</h2><p><img src="/2019/03/04/AI-01机器学习概述/23.png" alt></p>
+<h3 id="过拟合"><a href="#过拟合" class="headerlink" title="过拟合"></a>过拟合</h3><p>过拟合，高阶多项式为了避免犯任何错误，可能很深地切入了其他类的区域，会导致有些样本被错分</p>
+<p><img src="/2019/03/04/AI-01机器学习概述/24.png" alt></p>
+<h2 id="线性回归"><a href="#线性回归" class="headerlink" title="线性回归"></a>线性回归</h2><p>一元线性回归和线性分类器类似，都是用一条直线去拟合数据，高维的情况也是一样，寻找一个超平面来拟合数据，目的都是求解出这个超平面方程，也就是求解出所有的参数wi,和常数项b</p>
+<p>但是求解的过程不同，线性回归的求解过程是通过引入均方误差来实现的，均方误差代表样本中所有点到直线的距离之和，w、b的选取应该使均方误差达到最小。通过对w求偏导，可以直接导出w和b的结果。</p>
+<p>过程：</p>
+<p><img src="/2019/03/04/AI-01机器学习概述/25.png" alt></p>
+<p>引入均方误差：</p>
+<p><img src="/2019/03/04/AI-01机器学习概述/26.png" alt></p>
+<p>求解参数：</p>
+<p><img src="/2019/03/04/AI-01机器学习概述/27.png" alt></p>
+<h2 id="逻辑回归"><a href="#逻辑回归" class="headerlink" title="逻辑回归"></a>逻辑回归</h2><p>之所以叫逻辑回归，是因为用到了逻辑函数sigmoid，逻辑回归和svm有相似之处，都是根据已知的（xi，yi）这样的二元组，在空间上进行拟合，确定一条曲线，但是由于是分类问题，确定了曲线之后还需要阶跃函数，确定类标号，如果是二分类的话，根据（x,y）和曲线的位置关系，可以确定标号，阶跃函数为 z＜0，0，z＝0，0.5，z＞0，1，但是这个函数是不连续的，不利于计算优化，所以取sigmiod函数作为阶跃函数，sigmiod函数在＜0时取值大于0小于0.5，在＞0时，取值大于0.5小于1，所以只需要比较和0.5的关系即可。z的值越大，表明元组的空间位置距离分类面越远，他就越可能属于类1，所以图中z越大，函数值也就越接近1；同理，z越小，表明元组越不可能属于类1。</p>
+<h3 id="与线性回归区别"><a href="#与线性回归区别" class="headerlink" title="与线性回归区别"></a>与线性回归区别</h3><p>逻辑回归用于分类，而不是回归。</p>
+<p>线性回归模型中，输出一般是连续的，对于每一个x，都有一个对应的输出y。模型的定义域与值域都可以是无穷。</p>
+<p>逻辑回归输入可以是连续的无穷，但是输出一般是离散的，通常只有{0，1}</p>
+<p><img src="/2019/03/04/AI-01机器学习概述/28.png" alt></p>
+<h2 id="支持向量机SVM"><a href="#支持向量机SVM" class="headerlink" title="支持向量机SVM"></a>支持向量机SVM</h2><p>svm，支持向量机，既可用于回归又可用于分类</p>
+<p>在深度学习出现之前，svm被认为是机器学习最好，最成功的算法</p>
+<p>SVM是指将实例映射为二维中的点，以二分类举例的话，svm的目的就是画出一条线，来区分这两类点，理想的情况下，即使后来加入了新的点，这条线也能够进行很好的区分。理论上这条线有无数种画法，但他们有好坏的区分。期望的最理想的这条线叫做划分超平面，(叫做超平面是因为特征可能是高维的)。svm寻找可以区分两个类，并且使边际最大的超平面。边际指的是某一条线距离它两侧最近的点的距离之和。在边际最大的情况下，选取的平面应该是到两侧最近点距离相等的平面。</p>
+<p>因为SVM要映射到高维空间，再来求分离超平面，但是这样的话，运算量会非常庞大，又因为上面的核函数和和映射到高维空间的解类似，所以求SVM分离超平面时，可以用求核函数方法代替在高维空间中计算，从而实现在一维平面上计算达到高维空间计算的效果</p>
+<p><img src="/2019/03/04/AI-01机器学习概述/33.png" alt></p>
+<h2 id="决策树"><a href="#决策树" class="headerlink" title="决策树"></a>决策树</h2><p><img src="/2019/03/04/AI-01机器学习概述/35.png" alt></p>
+<h3 id="构建决策树"><a href="#构建决策树" class="headerlink" title="构建决策树"></a>构建决策树</h3><p><img src="/2019/03/04/AI-01机器学习概述/34.png" alt></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/AI/" rel="tag"># AI</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/23/hexo-google-verify/" rel="next" title="next主题Google验证">
+                <i class="fa fa-chevron-left"></i> next主题Google验证
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/04/AI-02深度学习概述/" rel="prev" title="AI-02深度学习概述">
+                AI-02深度学习概述 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/ava.jpg" alt="sh">
+            
+              <p class="site-author-name" itemprop="name">sh</p>
+              <p class="site-description motion-element" itemprop="description">so we beat on, boats against the current, borne back ceaselessly into the past.</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">21</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/croook" title="GitHub &rarr; https://github.com/croook" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:sh5672186@sina.com" title="E-Mail &rarr; mailto:sh5672186@sina.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是人工智能"><span class="nav-number">1.1.</span> <span class="nav-text">什么是人工智能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#标志性事件"><span class="nav-number">1.2.</span> <span class="nav-text">标志性事件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#人工智能发展阶段"><span class="nav-number">1.3.</span> <span class="nav-text">人工智能发展阶段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#人工智能三个层面"><span class="nav-number">1.4.</span> <span class="nav-text">人工智能三个层面</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#计算智能"><span class="nav-number">1.4.1.</span> <span class="nav-text">计算智能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#感知智能"><span class="nav-number">1.4.2.</span> <span class="nav-text">感知智能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#认知智能"><span class="nav-number">1.4.3.</span> <span class="nav-text">认知智能</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#人工智能-gt-机器学习-gt-深度学习"><span class="nav-number">1.5.</span> <span class="nav-text">人工智能 &gt; 机器学习 &gt; 深度学习</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#逻辑演绎-vs-归纳总结"><span class="nav-number">1.6.</span> <span class="nav-text">逻辑演绎 vs 归纳总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#专家系统"><span class="nav-number">1.7.</span> <span class="nav-text">专家系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#知识工程-vs-机器学习"><span class="nav-number">1.8.</span> <span class="nav-text">知识工程 vs 机器学习</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计算机视觉"><span class="nav-number">1.9.</span> <span class="nav-text">计算机视觉</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#人脸识别"><span class="nav-number">1.9.1.</span> <span class="nav-text">人脸识别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图像分类"><span class="nav-number">1.9.2.</span> <span class="nav-text">图像分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#目标检测"><span class="nav-number">1.9.3.</span> <span class="nav-text">目标检测</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图像搜索"><span class="nav-number">1.9.4.</span> <span class="nav-text">图像搜索</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图像分割"><span class="nav-number">1.9.5.</span> <span class="nav-text">图像分割</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#视频监控"><span class="nav-number">1.9.6.</span> <span class="nav-text">视频监控</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#语音技术"><span class="nav-number">1.10.</span> <span class="nav-text">语音技术</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#语音识别"><span class="nav-number">1.10.1.</span> <span class="nav-text">语音识别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#语音合成"><span class="nav-number">1.10.2.</span> <span class="nav-text">语音合成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#声纹识别"><span class="nav-number">1.10.3.</span> <span class="nav-text">声纹识别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自然语言处理"><span class="nav-number">1.11.</span> <span class="nav-text">自然语言处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#文本分类"><span class="nav-number">1.11.1.</span> <span class="nav-text">文本分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#机器翻译"><span class="nav-number">1.11.2.</span> <span class="nav-text">机器翻译</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#知识图谱"><span class="nav-number">1.11.3.</span> <span class="nav-text">知识图谱</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自动问答"><span class="nav-number">1.11.4.</span> <span class="nav-text">自动问答</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#信息检索"><span class="nav-number">1.11.5.</span> <span class="nav-text">信息检索</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文本生成"><span class="nav-number">1.11.6.</span> <span class="nav-text">文本生成</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#机器学习的定义"><span class="nav-number">1.12.</span> <span class="nav-text">机器学习的定义</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#最常用定义"><span class="nav-number">1.12.1.</span> <span class="nav-text">最常用定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可操作定义"><span class="nav-number">1.12.2.</span> <span class="nav-text">可操作定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#统计学定义"><span class="nav-number">1.12.3.</span> <span class="nav-text">统计学定义</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#机器学习-怎么学"><span class="nav-number">1.13.</span> <span class="nav-text">机器学习-怎么学</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模型"><span class="nav-number">1.13.1.</span> <span class="nav-text">模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#模型分类"><span class="nav-number">1.13.1.1.</span> <span class="nav-text">模型分类</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#数据标记"><span class="nav-number">1.13.1.1.1.</span> <span class="nav-text">数据标记</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#数据分布"><span class="nav-number">1.13.1.1.2.</span> <span class="nav-text">数据分布</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#建模对象"><span class="nav-number">1.13.1.1.3.</span> <span class="nav-text">建模对象</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#策略"><span class="nav-number">1.13.2.</span> <span class="nav-text">策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算法"><span class="nav-number">1.13.3.</span> <span class="nav-text">算法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#深度学习"><span class="nav-number">2.</span> <span class="nav-text">深度学习</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#传统机器学习：人工设计特征"><span class="nav-number">2.1.</span> <span class="nav-text">传统机器学习：人工设计特征</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#传统机器学习VS-深度学习"><span class="nav-number">2.2.</span> <span class="nav-text">传统机器学习VS 深度学习</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#神经网络结构发展"><span class="nav-number">2.3.</span> <span class="nav-text">神经网络结构发展</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#深度学习的不能"><span class="nav-number">2.4.</span> <span class="nav-text">深度学习的不能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#连接主义-vs-符号主义"><span class="nav-number">2.5.</span> <span class="nav-text">连接主义 vs 符号主义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#连接主义-符号主义"><span class="nav-number">2.6.</span> <span class="nav-text">连接主义+ 符号主义</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#算法-1"><span class="nav-number">3.</span> <span class="nav-text">算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#模型分类-1"><span class="nav-number">3.1.</span> <span class="nav-text">模型分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线性分类器"><span class="nav-number">3.2.</span> <span class="nav-text">线性分类器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#学习过程"><span class="nav-number">3.2.1.</span> <span class="nav-text">学习过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#学习率"><span class="nav-number">3.2.2.</span> <span class="nav-text">学习率</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多项式分类器"><span class="nav-number">3.3.</span> <span class="nav-text">多项式分类器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#过拟合"><span class="nav-number">3.3.1.</span> <span class="nav-text">过拟合</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线性回归"><span class="nav-number">3.4.</span> <span class="nav-text">线性回归</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#逻辑回归"><span class="nav-number">3.5.</span> <span class="nav-text">逻辑回归</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#与线性回归区别"><span class="nav-number">3.5.1.</span> <span class="nav-text">与线性回归区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#支持向量机SVM"><span class="nav-number">3.6.</span> <span class="nav-text">支持向量机SVM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#决策树"><span class="nav-number">3.7.</span> <span class="nav-text">决策树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#构建决策树"><span class="nav-number">3.7.1.</span> <span class="nav-text">构建决策树</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">sh</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.0</div>
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.0"></script>
+
+  <script src="/js/src/motion.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/js/src/post-details.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+  
+  <script>
+    
+    function addCount(Counter) {
+      var $visitors = $('.leancloud_visitors');
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            
+            Counter('put', '/classes/Counter/' + counter.objectId, JSON.stringify({ time: { '__op': 'Increment', 'amount': 1 } }))
+            
+              .done(function() {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.time + 1);
+              })
+            
+              .fail(function ({ responseJSON }) {
+                console.log(`Failed to save Visitor num, with error message: ${responseJSON.error}`);
+              })
+          } else {
+            
+              Counter('post', '/classes/Counter', JSON.stringify({ title: title, url: url, time: 1 }))
+                .done(function() {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(1);
+                })
+                .fail(function() {
+                  console.log('Failed to create');
+                });
+            
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log(`LeanCloud Counter Error: ${responseJSON.code} ${responseJSON.error}`);
+        });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + 'FKPTBi1uAoXKAYkTu5qVmYU8-gzGzoHsz')
+        .done(function({ api_server }) {
+          var Counter = function(method, url, data) {
+            return $.ajax({
+              method: method,
+              url: 'https://' + api_server + '/1.1' + url,
+              headers: {
+                'X-LC-Id': 'FKPTBi1uAoXKAYkTu5qVmYU8-gzGzoHsz',
+                'X-LC-Key': 'fSe2tiDLznbEiATi2CiqRljO',
+                'Content-Type': 'application/json',
+              },
+              data: data
+            });
+          };
+          
+            addCount(Counter);
+          
+        });
+    });
+  </script>
+
+
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

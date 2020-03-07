@@ -16,6 +16,6 @@ https://croook.github.io/2019/05/11/Cygwin环境的熟悉和lex的使用1/
 https://croook.github.io/2019/04/08/博客搭建/
 https://croook.github.io/2019/03/28/数字图像处理-图像合成/
 https://croook.github.io/2019/03/04/AI-02深度学习概述/
-https://croook.github.io/2019/03/04/AI-01/
+https://croook.github.io/2019/03/04/AI-01机器学习概述/
 https://croook.github.io/2019/02/23/hexo-google-verify/
 https://croook.github.io/2019/02/19/hexo-image/

@@ -112,7 +112,7 @@
 <meta property="og:image" content="https://croook.github.io/2020/03/05/PyTorch实践/2.png">
 <meta property="og:image" content="https://croook.github.io/2020/03/05/PyTorch实践/3.png">
 <meta property="og:image" content="https://croook.github.io/2020/03/05/PyTorch实践/4.png">
-<meta property="og:updated_time" content="2020-03-05T13:09:36.812Z">
+<meta property="og:updated_time" content="2020-03-05T13:13:05.875Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PyTorch实践">
 <meta name="twitter:description" content="PyTorch实践数据集处理官方数据集从PyTorch开源项目：vision或者text中加载数据集，对应的包是torchvision、torchtext 12345678910111213#torchvisionimport torchvisionmnist = torchvision.datasets.MNIST(root=&apos;./&apos;,download=&quot;True&quot;)#torchtextimpo">
@@ -263,7 +263,7 @@
 
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Category</a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
 
   </li>
         
@@ -280,7 +280,7 @@
 
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archive</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
 
   </li>
 
@@ -397,14 +397,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
 
               
                 
               
 
-              <time title="Post created: 2020-03-05 14:22:58 / Updated at: 21:09:36" itemprop="dateCreated datePublished" datetime="2020-03-05T14:22:58+08:00">2020-03-05</time>
+              <time title="Created: 2020-03-05 14:22:58 / Modified: 21:13:05" itemprop="dateCreated datePublished" datetime="2020-03-05T14:22:58+08:00">2020-03-05</time>
             
 
             
@@ -423,7 +423,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">in</span>
+                <span class="post-meta-item-text">In</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a></span>
@@ -479,7 +479,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch.utils.data <span class="keyword">as</span> Data</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Mydataset</span><span class="params">(Data.Dataset)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="comment">#读取文件</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__getitem__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="comment">#获取数据</span></span><br><span class="line">        <span class="comment">#预处理</span></span><br><span class="line">        <span class="comment">#返回数据对（x,y）</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__len__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="comment">#返回数据集大小</span></span><br><span class="line">        <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch.utils.data <span class="keyword">as</span> Data</span><br><span class="line"></span><br><span class="line">person_1 = [<span class="string">'tall'</span>,<span class="string">'rich'</span>,<span class="string">'handsome'</span>,<span class="string">'1'</span>]</span><br><span class="line">person_2 = [<span class="string">'n_tall'</span>,<span class="string">'rich'</span>,<span class="string">'handsome'</span>,<span class="string">'1'</span>]</span><br><span class="line">person_3 = [<span class="string">'n_tall'</span>,<span class="string">'n_rich'</span>,<span class="string">'handsome'</span>,<span class="string">'1'</span>]</span><br><span class="line">person_4 = [<span class="string">'n_tall'</span>,<span class="string">'n_rich'</span>,<span class="string">'n_handsome'</span>,<span class="string">'0'</span>]</span><br><span class="line"></span><br><span class="line">person = [person_1,person_2,person_3,person_4]</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span><span class="params">(Data.Dataset)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,person)</span>:</span></span><br><span class="line">        self.data = person</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__getitem__</span><span class="params">(self,index)</span>:</span></span><br><span class="line">        item = self.data[index]</span><br><span class="line">        x = item[:<span class="number">3</span>]</span><br><span class="line">        y = item[<span class="number">-1</span>]</span><br><span class="line">        <span class="keyword">return</span> x,y</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__len__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span>(len(self.data))</span><br><span class="line">    </span><br><span class="line">p = Person(person)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> index, (x,y) <span class="keyword">in</span> enumerate(p):</span><br><span class="line">    print(<span class="string">f"<span class="subst">&#123;index&#125;</span> : x:<span class="subst">&#123;x&#125;</span>,y:<span class="subst">&#123;y&#125;</span>"</span>)</span><br><span class="line">    </span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">0 : x:['tall', 'rich', 'handsome'],y:1</span></span><br><span class="line"><span class="string">1 : x:['n_tall', 'rich', 'handsome'],y:1</span></span><br><span class="line"><span class="string">2 : x:['n_tall', 'n_rich', 'handsome'],y:1</span></span><br><span class="line"><span class="string">3 : x:['n_tall', 'n_rich', 'n_handsome'],y:0</span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
 <h2 id="加载数据集"><a href="#加载数据集" class="headerlink" title="加载数据集"></a>加载数据集</h2><p>使用torch.utils.data.Dataloader加载数据集</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tensor_person_data_loader = Data.DataLoader(dataset = person_dataset,</span><br><span class="line">											batch_size = batch_size,</span><br><span class="line">											shuffle = <span class="keyword">True</span>,</span><br><span class="line">											sampler = sampler,			<span class="comment">#怎么抽样</span></span><br><span class="line">											collate_fn = my_collate_fn)	<span class="comment">#抽样的样本怎么处理</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tensor_person_data_loader = Data.DataLoader(dataset = person_dataset,</span><br><span class="line">										batch_size = batch_size,</span><br><span class="line">										shuffle = <span class="keyword">True</span>,</span><br><span class="line">										sampler = sampler,			<span class="comment">#怎么抽样</span></span><br><span class="line">										collate_fn = my_collate_fn)	<span class="comment">#抽样的样本怎么处理</span></span><br></pre></td></tr></table></figure>
 <p>加载自定义数据集：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">person_loader = Data.Dataloader(dataset = p,</span><br><span class="line">                               batch_size = <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> index,data <span class="keyword">in</span> enumerate(person_loader):</span><br><span class="line">    x,y = data</span><br><span class="line">    print(<span class="string">f"<span class="subst">&#123;index&#125;</span> : x:<span class="subst">&#123;x&#125;</span>,y:<span class="subst">&#123;y&#125;</span>"</span>)</span><br><span class="line">    </span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">0 : x:[('tall', 'n_tall'), ('rich', 'rich'), ('handsome', 'handsome')],y:('1', '1')</span></span><br><span class="line"><span class="string">1 : x:[('n_tall', 'n_tall'), ('n_rich', 'n_rich'), ('handsome', 'n_handsome')],y:('1', '0')</span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
 <h2 id="预处理数据集"><a href="#预处理数据集" class="headerlink" title="预处理数据集"></a>预处理数据集</h2><h3 id="通过-getitem-方法"><a href="#通过-getitem-方法" class="headerlink" title="通过_getitem_方法"></a>通过_<em>getitem_</em>方法</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">word2id = &#123;</span><br><span class="line"><span class="string">'tall'</span>:<span class="number">1</span>,</span><br><span class="line"><span class="string">'rich'</span>:<span class="number">1</span>,</span><br><span class="line"><span class="string">'handsome'</span>:<span class="number">1</span>,</span><br><span class="line"><span class="string">'n_tall'</span>:<span class="number">0</span>,</span><br><span class="line"><span class="string">'n_rich'</span>:<span class="number">0</span>,</span><br><span class="line"><span class="string">'n_handsome'</span>:<span class="number">0</span>,</span><br><span class="line"><span class="string">'1'</span>:<span class="number">1</span>,</span><br><span class="line"><span class="string">'0'</span>:<span class="number">0</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TensorPerson</span><span class="params">(Data.Dataset)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,person)</span>:</span></span><br><span class="line">        self.data = person</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__getitem__</span><span class="params">(self,index)</span>:</span></span><br><span class="line">        item = self.data[index]</span><br><span class="line">        new_item = []</span><br><span class="line">        <span class="keyword">for</span> feature <span class="keyword">in</span> item:</span><br><span class="line">            new_item.append(word2id[feature])</span><br><span class="line">        x = new_item[:<span class="number">3</span>]</span><br><span class="line">        y = new_item[<span class="number">-1</span>]</span><br><span class="line">        <span class="keyword">return</span> x,y</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__len__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span>(len(self.data))</span><br><span class="line">    </span><br><span class="line">p = TensorPerson(person)</span><br><span class="line">person_loader = Data.DataLoader(dataset = p,</span><br><span class="line">                				batch_size = <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> index, data <span class="keyword">in</span> enumerate(person_loader):</span><br><span class="line">  x,y = data</span><br><span class="line">  print(<span class="string">f"<span class="subst">&#123;index&#125;</span> : x:<span class="subst">&#123;x&#125;</span>,y:<span class="subst">&#123;y&#125;</span>"</span>)</span><br><span class="line">    </span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">0 : x:[tensor([1, 0]), tensor([1, 1]), tensor([1, 1])],y:tensor([1, 1])</span></span><br><span class="line"><span class="string">1 : x:[tensor([0, 0]), tensor([0, 0]), tensor([1, 0])],y:tensor([1, 0])</span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
@@ -672,10 +672,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Inhaltsverzeichnis
+            Table of Contents
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Übersicht
+            Overview
           </li>
         </ul>
       
@@ -698,7 +698,7 @@
                   <a href="/archives/">
                 
                     <span class="site-state-item-count">21</span>
-                    <span class="site-state-item-name">Artikel</span>
+                    <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
               
@@ -723,7 +723,7 @@
                       
                     
                     <span class="site-state-item-count">6</span>
-                    <span class="site-state-item-name">Kategorien</span>
+                    <span class="site-state-item-name">categories</span>
                   </a>
                 </div>
               
@@ -764,7 +764,7 @@
                       
                     
                     <span class="site-state-item-count">14</span>
-                    <span class="site-state-item-name">Tags</span>
+                    <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
               
@@ -857,7 +857,7 @@
 </div>
 
 
-  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
 
 
 
