@@ -128,7 +128,19 @@
 <meta property="og:image" content="https://croook.github.io/2019/03/04/AI-02深度学习概述/18.png">
 <meta property="og:image" content="https://croook.github.io/2019/03/04/AI-02深度学习概述/19.png">
 <meta property="og:image" content="https://croook.github.io/2019/03/04/AI-02深度学习概述/20.png">
-<meta property="og:updated_time" content="2020-03-07T07:37:16.260Z">
+<meta property="og:image" content="https://croook.github.io/2019/03/04/AI-02深度学习概述/21.png">
+<meta property="og:image" content="https://croook.github.io/2019/03/04/AI-02深度学习概述/22.png">
+<meta property="og:image" content="https://croook.github.io/2019/03/04/AI-02深度学习概述/23.png">
+<meta property="og:image" content="https://croook.github.io/2019/03/04/AI-02深度学习概述/24.png">
+<meta property="og:image" content="https://croook.github.io/2019/03/04/AI-02深度学习概述/25.png">
+<meta property="og:image" content="https://croook.github.io/2019/03/04/AI-02深度学习概述/26.png">
+<meta property="og:image" content="https://croook.github.io/2019/03/04/AI-02深度学习概述/27.png">
+<meta property="og:image" content="https://croook.github.io/2019/03/04/AI-02深度学习概述/28.png">
+<meta property="og:image" content="https://croook.github.io/2019/03/04/AI-02深度学习概述/29.png">
+<meta property="og:image" content="https://croook.github.io/2019/03/04/AI-02深度学习概述/30.png">
+<meta property="og:image" content="https://croook.github.io/2019/03/04/AI-02深度学习概述/31.png">
+<meta property="og:image" content="https://croook.github.io/2019/03/04/AI-02深度学习概述/32.png">
+<meta property="og:updated_time" content="2020-03-09T01:39:31.566Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AI-02深度学习概述">
 <meta name="twitter:description" content="M-P神经元 为什么需要激活函数 激活函数举例  权重人工设置m-p神经元的权重由人工设置，无法学习 单层感知器首个可以学习的神经网络 逻辑实现 多层感知器异或 单层感知器，无法实现异或关系，无法找到一条线完美分开数据（0、1） 同或三层感知机实现同或关系  单隐层神经网络可视化urlhttp://playground.tensorflow.org/ 万有逼近定理 双隐层感知器 神经网络每一层作用">
@@ -437,7 +449,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2020-03-07 15:37:16" itemprop="dateModified" datetime="2020-03-07T15:37:16+08:00">2020-03-07</time>
+                <time title="Modified: 2020-03-09 09:39:31" itemprop="dateModified" datetime="2020-03-09T09:39:31+08:00">2020-03-09</time>
               
             
           </span>
@@ -560,6 +572,35 @@
 </tbody>
 </table>
 </div>
+<h2 id="矩阵线性变换"><a href="#矩阵线性变换" class="headerlink" title="矩阵线性变换"></a>矩阵线性变换</h2><p><img src="/2019/03/04/AI-02深度学习概述/21.png" alt></p>
+<h3 id="求解特征值、特征向量"><a href="#求解特征值、特征向量" class="headerlink" title="求解特征值、特征向量"></a>求解特征值、特征向量</h3><p><img src="/2019/03/04/AI-02深度学习概述/22.png" alt></p>
+<p><img src="/2019/03/04/AI-02深度学习概述/23.png" alt></p>
+<h2 id="秩、奇异值与数据降维"><a href="#秩、奇异值与数据降维" class="headerlink" title="秩、奇异值与数据降维"></a>秩、奇异值与数据降维</h2><ul>
+<li><p>方阵才有奇异矩阵和非奇异矩阵的概念</p>
+</li>
+<li><p>矩阵秩不为满秩则为奇异矩阵</p>
+</li>
+<li><p>矩阵行列式等于0，说明不满秩</p>
+</li>
+<li><p>设A为m<em>n阶矩阵，q=min(m,n)，A\</em>A的q个非负特征值的算术平方根叫作A的奇异值。</p>
+</li>
+</ul>
+<p><img src="/2019/03/04/AI-02深度学习概述/24.png" alt></p>
+<p>奇异值标识着矩阵的“本质信息”，只保留奇异值分解之后奇异值更高的矩阵即可基本还原原始数据</p>
+<p><img src="/2019/03/04/AI-02深度学习概述/25.png" alt></p>
+<p><img src="/2019/03/04/AI-02深度学习概述/26.png" alt></p>
+<h2 id="奇异值分解与低秩近似"><a href="#奇异值分解与低秩近似" class="headerlink" title="奇异值分解与低秩近似"></a>奇异值分解与低秩近似</h2><p>矩阵的低秩近似是一种稀疏表示形式,即利用一个秩较低的矩阵来近似表达原矩阵,不但能保留原矩阵的主要特征,而且可以降低数据的存储空间和计算复杂度  </p>
+<p><img src="/2019/03/04/AI-02深度学习概述/27.png" alt></p>
+<h2 id="逻辑回归与最大似然"><a href="#逻辑回归与最大似然" class="headerlink" title="逻辑回归与最大似然"></a>逻辑回归与最大似然</h2><p>逻辑回归是分类任务，但采用了回归的方法，以二分类为例，如果采用线性回归的方法就是希望用一条直线将正负样例分开，由于直线的局限性，所以企图引入Sigmoid函数，从而引入曲线</p>
+<p><img src="/2019/03/04/AI-02深度学习概述/28.png" alt></p>
+<p>确定函数形式之后，希望确定一组参数W，从而找到能够完成分类任务的曲线，从而引入最大似然估计</p>
+<h3 id="最大似然"><a href="#最大似然" class="headerlink" title="最大似然"></a>最大似然</h3><p>概率描述的是在一定条件下某个事件发生的可能性，概率越大说明这件事情越可能会发生；而似然描述的是结果已知的情况下，该事件在不同条件下发生的可能性，似然函数的值越大说明该事件在对应的条件下发生的可能性越大</p>
+<p>假如有一个罐子，里面有黑白两种颜色的球，数目多少不知，两种颜色的比例也不知。我 们想知道罐中白球和黑球的比例，但我们不能把罐中的球全部拿出来数。现在我们可以每次任意从已经摇匀的罐中拿一个球出来，记录球的颜色，然后把拿出来的球 再放回罐中。这个过程可以重复，我们可以用记录的球的颜色来估计罐中黑白球的比例。假如在前面的一百次重复记录中，有七十次是白球，请问罐中白球所占的比例最有可能是多少？</p>
+<p><img src="/2019/03/04/AI-02深度学习概述/29.png" alt></p>
+<p>因此在逻辑回归中，若想让预测出的结果全部正确的概率最大,根据最大似然估计，就是所有样本预测正确的概率相乘得到的P(总体正确)最大</p>
+<p><img src="/2019/03/04/AI-02深度学习概述/30.png" alt></p>
+<p><img src="/2019/03/04/AI-02深度学习概述/31.png" alt></p>
+<h2 id="频率学派与贝叶斯学派"><a href="#频率学派与贝叶斯学派" class="headerlink" title="频率学派与贝叶斯学派"></a>频率学派与贝叶斯学派</h2><p><img src="/2019/03/04/AI-02深度学习概述/32.png" alt></p>
 
       
     </div>
@@ -808,7 +849,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#M-P神经元"><span class="nav-number">1.</span> <span class="nav-text">M-P神经元</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么需要激活函数"><span class="nav-number">1.1.</span> <span class="nav-text">为什么需要激活函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#激活函数举例"><span class="nav-number">1.2.</span> <span class="nav-text">激活函数举例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#权重人工设置"><span class="nav-number">1.3.</span> <span class="nav-text">权重人工设置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单层感知器"><span class="nav-number">2.</span> <span class="nav-text">单层感知器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#首个可以学习的神经网络"><span class="nav-number">2.1.</span> <span class="nav-text">首个可以学习的神经网络</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#逻辑实现"><span class="nav-number">2.2.</span> <span class="nav-text">逻辑实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多层感知器"><span class="nav-number">3.</span> <span class="nav-text">多层感知器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#异或"><span class="nav-number">3.1.</span> <span class="nav-text">异或</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#同或"><span class="nav-number">3.2.</span> <span class="nav-text">同或</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单隐层神经网络可视化"><span class="nav-number">4.</span> <span class="nav-text">单隐层神经网络可视化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#url"><span class="nav-number">4.1.</span> <span class="nav-text">url</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#万有逼近定理"><span class="nav-number">5.</span> <span class="nav-text">万有逼近定理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#双隐层感知器"><span class="nav-number">6.</span> <span class="nav-text">双隐层感知器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#神经网络每一层作用"><span class="nav-number">7.</span> <span class="nav-text">神经网络每一层作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更深-or-更宽"><span class="nav-number">8.</span> <span class="nav-text">更深 or 更宽</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#误差反向传播"><span class="nav-number">9.</span> <span class="nav-text">误差反向传播</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#梯度消失"><span class="nav-number">10.</span> <span class="nav-text">梯度消失</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#逐层预训练"><span class="nav-number">11.</span> <span class="nav-text">逐层预训练</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#自编码器"><span class="nav-number">11.1.</span> <span class="nav-text">自编码器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#受限玻尔兹曼机"><span class="nav-number">11.2.</span> <span class="nav-text">受限玻尔兹曼机</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#深度信念网络DBN"><span class="nav-number">11.2.1.</span> <span class="nav-text">深度信念网络DBN</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自编码器与RBM对比"><span class="nav-number">11.3.</span> <span class="nav-text">自编码器与RBM对比</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#M-P神经元"><span class="nav-number">1.</span> <span class="nav-text">M-P神经元</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么需要激活函数"><span class="nav-number">1.1.</span> <span class="nav-text">为什么需要激活函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#激活函数举例"><span class="nav-number">1.2.</span> <span class="nav-text">激活函数举例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#权重人工设置"><span class="nav-number">1.3.</span> <span class="nav-text">权重人工设置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单层感知器"><span class="nav-number">2.</span> <span class="nav-text">单层感知器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#首个可以学习的神经网络"><span class="nav-number">2.1.</span> <span class="nav-text">首个可以学习的神经网络</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#逻辑实现"><span class="nav-number">2.2.</span> <span class="nav-text">逻辑实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多层感知器"><span class="nav-number">3.</span> <span class="nav-text">多层感知器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#异或"><span class="nav-number">3.1.</span> <span class="nav-text">异或</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#同或"><span class="nav-number">3.2.</span> <span class="nav-text">同或</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单隐层神经网络可视化"><span class="nav-number">4.</span> <span class="nav-text">单隐层神经网络可视化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#url"><span class="nav-number">4.1.</span> <span class="nav-text">url</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#万有逼近定理"><span class="nav-number">5.</span> <span class="nav-text">万有逼近定理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#双隐层感知器"><span class="nav-number">6.</span> <span class="nav-text">双隐层感知器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#神经网络每一层作用"><span class="nav-number">7.</span> <span class="nav-text">神经网络每一层作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更深-or-更宽"><span class="nav-number">8.</span> <span class="nav-text">更深 or 更宽</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#误差反向传播"><span class="nav-number">9.</span> <span class="nav-text">误差反向传播</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#梯度消失"><span class="nav-number">10.</span> <span class="nav-text">梯度消失</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#逐层预训练"><span class="nav-number">11.</span> <span class="nav-text">逐层预训练</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#自编码器"><span class="nav-number">11.1.</span> <span class="nav-text">自编码器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#受限玻尔兹曼机"><span class="nav-number">11.2.</span> <span class="nav-text">受限玻尔兹曼机</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#深度信念网络DBN"><span class="nav-number">11.2.1.</span> <span class="nav-text">深度信念网络DBN</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自编码器与RBM对比"><span class="nav-number">11.3.</span> <span class="nav-text">自编码器与RBM对比</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#矩阵线性变换"><span class="nav-number">12.</span> <span class="nav-text">矩阵线性变换</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#求解特征值、特征向量"><span class="nav-number">12.1.</span> <span class="nav-text">求解特征值、特征向量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#秩、奇异值与数据降维"><span class="nav-number">13.</span> <span class="nav-text">秩、奇异值与数据降维</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#奇异值分解与低秩近似"><span class="nav-number">14.</span> <span class="nav-text">奇异值分解与低秩近似</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#逻辑回归与最大似然"><span class="nav-number">15.</span> <span class="nav-text">逻辑回归与最大似然</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#最大似然"><span class="nav-number">15.1.</span> <span class="nav-text">最大似然</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#频率学派与贝叶斯学派"><span class="nav-number">16.</span> <span class="nav-text">频率学派与贝叶斯学派</span></a></li></ol></div>
             
 
           </div>
