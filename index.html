@@ -355,6 +355,425 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://croook.github.io/2020/03/09/GAN/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="sh">
+      <meta itemprop="description" content="so we beat on, boats against the current, borne back ceaselessly into the past.">
+      <meta itemprop="image" content="/images/ava.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Crookshank">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/03/09/GAN/" class="post-title-link" itemprop="url">GAN</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2020-03-09 11:42:30 / Modified: 14:35:01" itemprop="dateCreated datePublished" datetime="2020-03-09T11:42:30+08:00">2020-03-09</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+            <span id="/2020/03/09/GAN/" class="leancloud_visitors" data-flag-title="GAN">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Views: </span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>
+              GAN
+判别器的目标函数：
+最大化真实样本的期望（输出为Real），最小化从人为定义的分布中随机采样的向量（输出为Fake）
+生成器目标函数：
+最大化从人为定义的分布中随机采样的向量，去欺骗判别器
+训练算法
+
+KL散度、JS散度KL散度：衡量两个概率分布匹配程度的指标，当P1=P2时，KL散度为0
+
+
+KL散度具有非负性，根据吉布斯不等式：
+
+
+
+KL散度不具有对称性，即 KL(P1||P2) ≠ KL(P2||P1)
+
+
+因此在试图去拟合两种分布，使KL散度最小时，采用KL(p||q)，和KL(q||p)会得到两种不同的结果
+JS散度：
+
+极大似然与最小化KL散度
+判别器D
+生成器G最大化判
+              ...
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2020/03/09/GAN/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://croook.github.io/2020/03/09/RNN/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="sh">
+      <meta itemprop="description" content="so we beat on, boats against the current, borne back ceaselessly into the past.">
+      <meta itemprop="image" content="/images/ava.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Crookshank">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/03/09/RNN/" class="post-title-link" itemprop="url">RNN</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2020-03-09 11:14:48 / Modified: 11:41:57" itemprop="dateCreated datePublished" datetime="2020-03-09T11:14:48+08:00">2020-03-09</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+            <span id="/2020/03/09/RNN/" class="leancloud_visitors" data-flag-title="RNN">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Views: </span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>
+              与CNN区别
+CNN输入、输出相互独立
+
+RNN可以更好地处理有时序关系的任务
+
+RNN通过循环结构引入“记忆”概念（输出不仅依赖于输入，还依赖于记忆，将同一个结构循环利用）
+
+
+基本结构
+深度RNN
+
+双向RNN
+
+BPTT算法
+每一个时刻t的损失，取输出的y与真实值的交叉熵
+总损失为各个时刻t的总损失
+
+
+由于h3与h2相关，具有时序关系，所以需要展开对h2求偏导，根据链式法则，得到偏导：
+
+传统RNN问题
+
+
+对权重求偏导，对于累乘项来说，当t比较大时，
+
+如果0&lt;W&lt;1,梯度趋于0
+如果W&gt;1,梯度趋于无穷
+
+
+LSTM
+
+LSTM与RNN区别
+
+RNN记忆单元ht是
+              ...
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2020/03/09/RNN/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://croook.github.io/2020/03/05/PyTorch实践/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1899,395 +2318,6 @@ hadoop fs -rm -r /test/user/del
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://croook.github.io/2019/10/11/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="sh">
-      <meta itemprop="description" content="so we beat on, boats against the current, borne back ceaselessly into the past.">
-      <meta itemprop="image" content="/images/ava.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Crookshank">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/10/11/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-10-11 17:58:52" itemprop="dateCreated datePublished" datetime="2019-10-11T17:58:52+08:00">2019-10-11</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-02-19 15:03:22" itemprop="dateModified" datetime="2019-02-19T15:03:22+08:00">2019-02-19</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/hexo/" itemprop="url" rel="index"><span itemprop="name">hexo</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-            <span id="/2019/10/11/hello-world/" class="leancloud_visitors" data-flag-title="Hello World">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Views: </span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>
-              Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick StartCreate a new post$ hexo new "My New Post"
-More info: Writing
-Run server$ hexo server
-More info
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/10/11/hello-world/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://croook.github.io/2019/06/05/汽车牌照提取/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="sh">
-      <meta itemprop="description" content="so we beat on, boats against the current, borne back ceaselessly into the past.">
-      <meta itemprop="image" content="/images/ava.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Crookshank">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/06/05/汽车牌照提取/" class="post-title-link" itemprop="url">汽车牌照提取</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-06-05 20:19:13 / Modified: 21:59:34" itemprop="dateCreated datePublished" datetime="2019-06-05T20:19:13+08:00">2019-06-05</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数字图像处理/" itemprop="url" rel="index"><span itemprop="name">数字图像处理</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-            <span id="/2019/06/05/汽车牌照提取/" class="leancloud_visitors" data-flag-title="汽车牌照提取">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Views: </span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>
-              ​       
-问题分析车牌特点样例车牌可以分为两类：
-（1）       小功率汽车使用的蓝底白字牌照；
-（2）       国外驻华机构使用黑底白字牌照
-这些牌照的长度均为45cm，宽为15cm，共有字符7个。一般民用牌照第一个字符为汉字，且是各省市的简称；第二个字符为大写英文字母，如“E”；第三个字符是英文字母或阿拉伯数字，第四至第七个字符为阿拉伯数字。
-实验流程实验流程包括：车牌定位、倾斜校正、字符分割、字符识别4个部分
-
-(1)    原始图像：样例中所给的汽车图像；
-(2)    图像预处理：对原始图像进行二值化等预处理操作；
-(3)    车牌定位：定位出汽车牌照所在的矩形范围
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/06/05/汽车牌照提取/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2337,7 +2367,7 @@ More info
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">21</span>
+                    <span class="site-state-item-count">23</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -3004,11 +3034,11 @@ More info
       
     
       
+    
+      
+    
+      
         
-      
-    
-      
-    
       
     
       

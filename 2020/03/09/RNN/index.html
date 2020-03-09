@@ -1,0 +1,1477 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="En">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+  <meta name="google-site-verification" content="7Oev-o_nVgfEcRT4Mc9fXSxqXK0_WXFBAuBh4GdzGuM">
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="5Nq4yOLRnQ">
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.ico?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.ico?v=7.0.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="与CNN区别 CNN输入、输出相互独立  RNN可以更好地处理有时序关系的任务  RNN通过循环结构引入“记忆”概念（输出不仅依赖于输入，还依赖于记忆，将同一个结构循环利用）   基本结构 深度RNN  双向RNN  BPTT算法 每一个时刻t的损失，取输出的y与真实值的交叉熵 总损失为各个时刻t的总损失   由于h3与h2相关，具有时序关系，所以需要展开对h2求偏导，根据链式法则，得到偏导：">
+<meta name="keywords" content="AI">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RNN">
+<meta property="og:url" content="https://croook.github.io/2020/03/09/RNN/index.html">
+<meta property="og:site_name" content="Crookshank">
+<meta property="og:description" content="与CNN区别 CNN输入、输出相互独立  RNN可以更好地处理有时序关系的任务  RNN通过循环结构引入“记忆”概念（输出不仅依赖于输入，还依赖于记忆，将同一个结构循环利用）   基本结构 深度RNN  双向RNN  BPTT算法 每一个时刻t的损失，取输出的y与真实值的交叉熵 总损失为各个时刻t的总损失   由于h3与h2相关，具有时序关系，所以需要展开对h2求偏导，根据链式法则，得到偏导：">
+<meta property="og:locale" content="En">
+<meta property="og:image" content="https://croook.github.io/2020/03/09/RNN/1.png">
+<meta property="og:image" content="https://croook.github.io/2020/03/09/RNN/2.png">
+<meta property="og:image" content="https://croook.github.io/2020/03/09/RNN/3.png">
+<meta property="og:image" content="https://croook.github.io/2020/03/09/RNN/4.png">
+<meta property="og:image" content="https://croook.github.io/2020/03/09/RNN/5.png">
+<meta property="og:image" content="https://croook.github.io/2020/03/09/RNN/6.png">
+<meta property="og:image" content="https://croook.github.io/2020/03/09/RNN/7.png">
+<meta property="og:image" content="https://croook.github.io/2020/03/09/RNN/8.png">
+<meta property="og:image" content="https://croook.github.io/2020/03/09/RNN/9.png">
+<meta property="og:image" content="https://croook.github.io/2020/03/09/RNN/10.png">
+<meta property="og:image" content="https://croook.github.io/2020/03/09/RNN/11.png">
+<meta property="og:image" content="https://croook.github.io/2020/03/09/RNN/12.png">
+<meta property="og:image" content="https://croook.github.io/2020/03/09/RNN/13.png">
+<meta property="og:image" content="https://croook.github.io/2020/03/09/RNN/14.png">
+<meta property="og:image" content="https://croook.github.io/2020/03/09/RNN/15.png">
+<meta property="og:image" content="https://croook.github.io/2020/03/09/RNN/16.png">
+<meta property="og:image" content="https://croook.github.io/2020/03/09/RNN/17.png">
+<meta property="og:image" content="https://croook.github.io/2020/03/09/RNN/18.png">
+<meta property="og:image" content="https://croook.github.io/2020/03/09/RNN/19.png">
+<meta property="og:image" content="https://croook.github.io/2020/03/09/RNN/20.png">
+<meta property="og:image" content="https://croook.github.io/2020/03/09/RNN/21.png">
+<meta property="og:image" content="https://croook.github.io/2020/03/09/RNN/22.png">
+<meta property="og:image" content="https://croook.github.io/2020/03/09/RNN/23.png">
+<meta property="og:image" content="https://croook.github.io/2020/03/09/RNN/24.png">
+<meta property="og:image" content="https://croook.github.io/2020/03/09/RNN/25.png">
+<meta property="og:image" content="https://croook.github.io/2020/03/09/RNN/26.png">
+<meta property="og:image" content="https://croook.github.io/2020/03/09/RNN/27.png">
+<meta property="og:image" content="https://croook.github.io/2020/03/09/RNN/28.png">
+<meta property="og:image" content="https://croook.github.io/2020/03/09/RNN/29.png">
+<meta property="og:image" content="https://croook.github.io/2020/03/09/RNN/30.png">
+<meta property="og:image" content="https://croook.github.io/2020/03/09/RNN/31.png">
+<meta property="og:image" content="https://croook.github.io/2020/03/09/RNN/32.png">
+<meta property="og:image" content="https://croook.github.io/2020/03/09/RNN/33.png">
+<meta property="og:image" content="https://croook.github.io/2020/03/09/RNN/34.png">
+<meta property="og:image" content="https://croook.github.io/2020/03/09/RNN/35.png">
+<meta property="og:image" content="https://croook.github.io/2020/03/09/RNN/36.png">
+<meta property="og:image" content="https://croook.github.io/2020/03/09/RNN/37.png">
+<meta property="og:updated_time" content="2020-03-09T03:41:57.051Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="RNN">
+<meta name="twitter:description" content="与CNN区别 CNN输入、输出相互独立  RNN可以更好地处理有时序关系的任务  RNN通过循环结构引入“记忆”概念（输出不仅依赖于输入，还依赖于记忆，将同一个结构循环利用）   基本结构 深度RNN  双向RNN  BPTT算法 每一个时刻t的损失，取输出的y与真实值的交叉熵 总损失为各个时刻t的总损失   由于h3与h2相关，具有时序关系，所以需要展开对h2求偏导，根据链式法则，得到偏导：">
+<meta name="twitter:image" content="https://croook.github.io/2020/03/09/RNN/1.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://croook.github.io/2020/03/09/RNN/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>RNN | Crookshank</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="En">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Crookshank</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://croook.github.io/2020/03/09/RNN/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="sh">
+      <meta itemprop="description" content="so we beat on, boats against the current, borne back ceaselessly into the past.">
+      <meta itemprop="image" content="/images/ava.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Crookshank">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">RNN
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2020-03-09 11:14:48 / Modified: 11:41:57" itemprop="dateCreated datePublished" datetime="2020-03-09T11:14:48+08:00">2020-03-09</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+            <span id="/2020/03/09/RNN/" class="leancloud_visitors" data-flag-title="RNN">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Views: </span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="与CNN区别"><a href="#与CNN区别" class="headerlink" title="与CNN区别"></a>与CNN区别</h2><ul>
+<li><p>CNN输入、输出相互独立</p>
+</li>
+<li><p>RNN可以更好地处理有时序关系的任务</p>
+</li>
+<li><p>RNN通过循环结构引入“记忆”概念（输出不仅依赖于输入，还依赖于记忆，将同一个结构循环利用）</p>
+</li>
+</ul>
+<h2 id="基本结构"><a href="#基本结构" class="headerlink" title="基本结构"></a>基本结构</h2><p><img src="/2020/03/09/RNN/1.png" alt></p>
+<h2 id="深度RNN"><a href="#深度RNN" class="headerlink" title="深度RNN"></a>深度RNN</h2><p><img src="/2020/03/09/RNN/2.png" alt></p>
+<p><img src="/2020/03/09/RNN/3.png" alt></p>
+<h2 id="双向RNN"><a href="#双向RNN" class="headerlink" title="双向RNN"></a>双向RNN</h2><p><img src="/2020/03/09/RNN/4.png" alt></p>
+<p><img src="/2020/03/09/RNN/5.png" alt></p>
+<h2 id="BPTT算法"><a href="#BPTT算法" class="headerlink" title="BPTT算法"></a>BPTT算法</h2><p><img src="/2020/03/09/RNN/6.png" alt></p>
+<p>每一个时刻t的损失，取输出的y与真实值的交叉熵</p>
+<p>总损失为各个时刻t的总损失</p>
+<p><img src="/2020/03/09/RNN/7.png" alt></p>
+<p><img src="/2020/03/09/RNN/8.png" alt></p>
+<p>由于h3与h2相关，具有时序关系，所以需要展开对h2求偏导，根据链式法则，得到偏导：</p>
+<p><img src="/2020/03/09/RNN/9.png" alt></p>
+<h2 id="传统RNN问题"><a href="#传统RNN问题" class="headerlink" title="传统RNN问题"></a>传统RNN问题</h2><p><img src="/2020/03/09/RNN/10.png" alt></p>
+<p><img src="/2020/03/09/RNN/11.png" alt></p>
+<p><img src="/2020/03/09/RNN/12.png" alt></p>
+<p>对权重求偏导，对于累乘项来说，当t比较大时，</p>
+<ul>
+<li>如果0&lt;W&lt;1,梯度趋于0</li>
+<li>如果W&gt;1,梯度趋于无穷</li>
+</ul>
+<p><img src="/2020/03/09/RNN/13.png" alt></p>
+<h2 id="LSTM"><a href="#LSTM" class="headerlink" title="LSTM"></a>LSTM</h2><p><img src="/2020/03/09/RNN/14.png" alt></p>
+<p><img src="/2020/03/09/RNN/15.png" alt></p>
+<h2 id="LSTM与RNN区别"><a href="#LSTM与RNN区别" class="headerlink" title="LSTM与RNN区别"></a>LSTM与RNN区别</h2><p><img src="/2020/03/09/RNN/16.png" alt></p>
+<ul>
+<li><p>RNN记忆单元ht是累乘形式，复合函数的嵌套。</p>
+<p>LSTM是累加形式</p>
+</li>
+</ul>
+<ul>
+<li><p>由于RNN是通过tanh非线性变换，所以经过较长时间后，之前的记忆会被覆盖</p>
+<p>而LSTM是线性相加，而遗忘门ft通常接近1，所以之前的记忆会一定程度保存，解决了梯度消失问题</p>
+</li>
+<li><p>为了解决梯度爆炸问题，可以设置较小的learning rate</p>
+</li>
+</ul>
+<h2 id="GRU门控循环单元"><a href="#GRU门控循环单元" class="headerlink" title="GRU门控循环单元"></a>GRU门控循环单元</h2><p><img src="/2020/03/09/RNN/17.png" alt></p>
+<p><img src="/2020/03/09/RNN/18.png" alt></p>
+<h2 id="Clockwise-RNN"><a href="#Clockwise-RNN" class="headerlink" title="Clockwise RNN"></a>Clockwise RNN</h2><p>Clockwise RNN: 普通 RNN 都是隐层从前一个时间步连接到当前时间 步。而 CW-RNN 把隐层分成很多组，每组有不同的循环周期，有的周 期是 1（和普通 RNN 一样），有的周期更长（例如从前两个时间步连 接到当前时间步，不同周期的 cell 之间也有一些连接。这样一来，距离 较远的某个依赖关系就可以通过周期较长的 cell 少数几次循环访问到， 从而网络层数不太深，更容易学到。</p>
+<p><img src="/2020/03/09/RNN/19.png" alt></p>
+<h2 id="Attention"><a href="#Attention" class="headerlink" title="Attention"></a>Attention</h2><p><img src="/2020/03/09/RNN/20.png" alt></p>
+<p><img src="/2020/03/09/RNN/21.png" alt></p>
+<p>人们在进行观察图像的时候，大多是根据需求将注意力集中到图像的特定部分。而且人类会根据之前观察的图像学习到未来要观察图像注意力应该集中的位置。</p>
+<p><img src="/2020/03/09/RNN/22.png" alt></p>
+<h2 id="评价准则"><a href="#评价准则" class="headerlink" title="评价准则"></a>评价准则</h2><p><img src="/2020/03/09/RNN/23.png" alt></p>
+<p>更高的召回率可能导致准确率下降，二者围成的面积称为平均准确率。</p>
+<h2 id="R-CNN"><a href="#R-CNN" class="headerlink" title="R-CNN"></a>R-CNN</h2><p><img src="/2020/03/09/RNN/24.png" alt></p>
+<ul>
+<li><p>用Selective Search方法产生目标候选</p>
+</li>
+<li><p>由于卷积时全连接层对输入尺寸的要求，先进性规整，然后利用CNN提取特征</p>
+</li>
+<li><p>传入SVM进行分类</p>
+<p>（1）CNN需要大量的训练样本（对样本质量的要求松）；</p>
+<p>（2）SVM用少量的样本就可以训练（对样本质量的要求严）。</p>
+</li>
+</ul>
+<h2 id="SPP-NET"><a href="#SPP-NET" class="headerlink" title="SPP-NET"></a>SPP-NET</h2><p><img src="/2020/03/09/RNN/25.png" alt></p>
+<p>传统CNN要求输入图片尺寸一致，SPP-net在全连接层之前加入一个空间金字塔池化层</p>
+<p><img src="/2020/03/09/RNN/26.png" alt></p>
+<h2 id="Fast-RCNN"><a href="#Fast-RCNN" class="headerlink" title="Fast-RCNN"></a>Fast-RCNN</h2><p><img src="/2020/03/09/RNN/27.png" alt></p>
+<p><img src="/2020/03/09/RNN/28.png" alt></p>
+<p>将图片的规整转化为对特征图的规整</p>
+<p>将单独的SVM分类任务转化为CNN中的Softmax分类任务，并且将误差反向传播，进行全局的优化</p>
+<p>Faster RCNN没有使用ss提取方法，而是使用RPN方法,RPN插入到最后一个卷积层后，用于直接产生候选区域，不需要额外算法，RPN之后，使用ROI Poling和后续的分类器、回归器</p>
+<h2 id="Faster-RCNN"><a href="#Faster-RCNN" class="headerlink" title="Faster-RCNN"></a>Faster-RCNN</h2><p><img src="/2020/03/09/RNN/29.png" alt></p>
+<p>RoI Pooling层利用proposals从feature maps中提取proposal feature送入后续全连接和softmax网络作classification（即分类proposal到底是什么object）</p>
+<ol>
+<li><p>Conv layers。作为一种CNN网络目标检测方法，Faster RCNN首先使用一组基础的conv+relu+pooling层提取image的feature maps。该feature maps被共享用于后续RPN层和全连接层。</p>
+</li>
+<li><p>Region Proposal Networks。RPN网络用于生成region proposals。该层通过softmax判断anchors属于positive或者negative，再利用bounding box regression修正anchors获得精确的proposals。</p>
+</li>
+<li><p>Roi Pooling。该层收集输入的feature maps和proposals，综合这些信息后提取proposal feature maps，送入后续全连接层判定目标类别。</p>
+</li>
+<li><p>Classification。利用proposal feature maps计算proposal的类别，同时再次bounding box regression获得检测框最终的精确位置。</p>
+</li>
+</ol>
+<h2 id="RPN"><a href="#RPN" class="headerlink" title="RPN"></a>RPN</h2><p><img src="/2020/03/09/RNN/30.png" alt></p>
+<h2 id="RFCN"><a href="#RFCN" class="headerlink" title="RFCN"></a>RFCN</h2><p><img src="/2020/03/09/RNN/31.png" alt></p>
+<p> 共有k<em>k = 9个颜色，每个颜色的立体块（W</em>H<em>(C+1)）表示的是不同位置存在目标的概率值（第一块黄色表示的是左上角位置，最后一块淡蓝色表示的是右下角位置）。共有k^2</em>(C+1)个feature map。每个feature map，z(i,j,c)是第i+k(j-1)个立体块上的第c个map（1&lt;= i,j &lt;=3）。(i,j)决定了9种位置的某一种位置，假设为左上角位置（i=j=1），c决定了哪一类，假设为person类。在z(i,j,c)这个feature map上的某一个像素的位置是（x,y），像素值是value，则value表示的是原图对应的(x,y)这个位置上可能是人（c=‘person’）且是人的左上部位（i=j=1）的概率值</p>
+<h2 id="YOLO"><a href="#YOLO" class="headerlink" title="YOLO"></a>YOLO</h2><p><img src="/2020/03/09/RNN/32.png" alt></p>
+<p><img src="/2020/03/09/RNN/33.png" alt></p>
+<ol>
+<li><p>把输入图像划分为S*S个网格（S=7）。位于目标中心的网格负责检测该目标</p>
+</li>
+<li><p>(1) 每个网格预测B个边界框和这个边界框是物体的概率（Objectness）；具体 的，每个边界框会预测出5个值：x,y,w,h和置信度Pr(Object)*IOU(truth&amp;pred) </p>
+</li>
+<li><p>(2) 每个网格预测C个条件概率Pr（Classi|Object） </p>
+</li>
+<li><p>在测试阶段，预测每个检测框的分数：</p>
+</li>
+</ol>
+<p><img src="/2020/03/09/RNN/34.png" alt></p>
+<h2 id="SSD"><a href="#SSD" class="headerlink" title="SSD"></a>SSD</h2><p><img src="/2020/03/09/RNN/35.png" alt></p>
+<p>在Yolo中，每个单元预测多个边界框，但是其都是相对这个单元本身（正方块），但是真实目标的形状是多变的，Yolo需要在训练过程中自适应目标的形状。而SSD借鉴了Faster R-CNN中anchor的理念，每个单元设置尺度或者长宽比不同的先验框，预测的边界框（bounding boxes）是以这些先验框为基准的，在一定程度上减少训练难度。</p>
+<p>对于每个单元的每个先验框，其都输出一套独立的检测值，对应一个边界框，主要分为两个部分。第一部分是各个类别的置信度或者评分，SSD将背景也当做了一个特殊的类别，如果检测目标共有 c个类别，SSD其实需要预测 c+1 个置信度值，其中第一个置信度指的是不含目标或者属于背景的评分。</p>
+<p>第二部分就是边界框的location，包含4个值 (cx、cy、w、h)，分别表示边界框的中心坐标以及宽高。</p>
+<p><img src="/2020/03/09/RNN/36.png" alt></p>
+<h2 id="Retina-Net"><a href="#Retina-Net" class="headerlink" title="Retina Net"></a>Retina Net</h2><p>由于One Stage方法背景较多，模型大量聚焦在背景中，虽然有些背景很容易分类，但由于数量巨大，导致总和的loss对检测器产生影响。</p>
+<p>所以Retina Net通过Focal Loss使得越接近背景的样本权重越小，从而使loss主要来源于更复杂的样本，而不是简单的背景样本</p>
+<p><img src="/2020/03/09/RNN/37.png" alt></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/AI/" rel="tag"># AI</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/03/05/PyTorch实践/" rel="next" title="PyTorch实践">
+                <i class="fa fa-chevron-left"></i> PyTorch实践
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/03/09/GAN/" rel="prev" title="GAN">
+                GAN <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/ava.jpg" alt="sh">
+            
+              <p class="site-author-name" itemprop="name">sh</p>
+              <p class="site-description motion-element" itemprop="description">so we beat on, boats against the current, borne back ceaselessly into the past.</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">23</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/croook" title="GitHub &rarr; https://github.com/croook" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:sh5672186@sina.com" title="E-Mail &rarr; mailto:sh5672186@sina.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#与CNN区别"><span class="nav-number">1.</span> <span class="nav-text">与CNN区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本结构"><span class="nav-number">2.</span> <span class="nav-text">基本结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#深度RNN"><span class="nav-number">3.</span> <span class="nav-text">深度RNN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#双向RNN"><span class="nav-number">4.</span> <span class="nav-text">双向RNN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BPTT算法"><span class="nav-number">5.</span> <span class="nav-text">BPTT算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#传统RNN问题"><span class="nav-number">6.</span> <span class="nav-text">传统RNN问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LSTM"><span class="nav-number">7.</span> <span class="nav-text">LSTM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LSTM与RNN区别"><span class="nav-number">8.</span> <span class="nav-text">LSTM与RNN区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GRU门控循环单元"><span class="nav-number">9.</span> <span class="nav-text">GRU门控循环单元</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Clockwise-RNN"><span class="nav-number">10.</span> <span class="nav-text">Clockwise RNN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Attention"><span class="nav-number">11.</span> <span class="nav-text">Attention</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#评价准则"><span class="nav-number">12.</span> <span class="nav-text">评价准则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#R-CNN"><span class="nav-number">13.</span> <span class="nav-text">R-CNN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SPP-NET"><span class="nav-number">14.</span> <span class="nav-text">SPP-NET</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fast-RCNN"><span class="nav-number">15.</span> <span class="nav-text">Fast-RCNN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Faster-RCNN"><span class="nav-number">16.</span> <span class="nav-text">Faster-RCNN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RPN"><span class="nav-number">17.</span> <span class="nav-text">RPN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RFCN"><span class="nav-number">18.</span> <span class="nav-text">RFCN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#YOLO"><span class="nav-number">19.</span> <span class="nav-text">YOLO</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SSD"><span class="nav-number">20.</span> <span class="nav-text">SSD</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Retina-Net"><span class="nav-number">21.</span> <span class="nav-text">Retina Net</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">sh</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.0</div>
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.0"></script>
+
+  <script src="/js/src/motion.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/js/src/post-details.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+  
+  <script>
+    
+    function addCount(Counter) {
+      var $visitors = $('.leancloud_visitors');
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            
+            Counter('put', '/classes/Counter/' + counter.objectId, JSON.stringify({ time: { '__op': 'Increment', 'amount': 1 } }))
+            
+              .done(function() {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.time + 1);
+              })
+            
+              .fail(function ({ responseJSON }) {
+                console.log(`Failed to save Visitor num, with error message: ${responseJSON.error}`);
+              })
+          } else {
+            
+              Counter('post', '/classes/Counter', JSON.stringify({ title: title, url: url, time: 1 }))
+                .done(function() {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(1);
+                })
+                .fail(function() {
+                  console.log('Failed to create');
+                });
+            
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log(`LeanCloud Counter Error: ${responseJSON.code} ${responseJSON.error}`);
+        });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + 'FKPTBi1uAoXKAYkTu5qVmYU8-gzGzoHsz')
+        .done(function({ api_server }) {
+          var Counter = function(method, url, data) {
+            return $.ajax({
+              method: method,
+              url: 'https://' + api_server + '/1.1' + url,
+              headers: {
+                'X-LC-Id': 'FKPTBi1uAoXKAYkTu5qVmYU8-gzGzoHsz',
+                'X-LC-Key': 'fSe2tiDLznbEiATi2CiqRljO',
+                'Content-Type': 'application/json',
+              },
+              data: data
+            });
+          };
+          
+            addCount(Counter);
+          
+        });
+    });
+  </script>
+
+
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
