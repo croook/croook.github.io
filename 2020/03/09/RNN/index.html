@@ -145,7 +145,7 @@
 <meta property="og:image" content="https://croook.github.io/2020/03/09/RNN/35.png">
 <meta property="og:image" content="https://croook.github.io/2020/03/09/RNN/36.png">
 <meta property="og:image" content="https://croook.github.io/2020/03/09/RNN/37.png">
-<meta property="og:updated_time" content="2020-03-09T03:41:57.051Z">
+<meta property="og:updated_time" content="2020-04-09T09:22:35.208Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RNN">
 <meta name="twitter:description" content="与CNN区别 CNN输入、输出相互独立  RNN可以更好地处理有时序关系的任务  RNN通过循环结构引入“记忆”概念（输出不仅依赖于输入，还依赖于记忆，将同一个结构循环利用）   基本结构 深度RNN  双向RNN  BPTT算法 每一个时刻t的损失，取输出的y与真实值的交叉熵 总损失为各个时刻t的总损失   由于h3与h2相关，具有时序关系，所以需要展开对h2求偏导，根据链式法则，得到偏导：">
@@ -437,12 +437,24 @@
                 
               
 
-              <time title="Created: 2020-03-09 11:14:48 / Modified: 11:41:57" itemprop="dateCreated datePublished" datetime="2020-03-09T11:14:48+08:00">2020-03-09</time>
+              <time title="Created: 2020-03-09 11:14:48" itemprop="dateCreated datePublished" datetime="2020-03-09T11:14:48+08:00">2020-03-09</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2020-04-09 17:22:35" itemprop="dateModified" datetime="2020-04-09T17:22:35+08:00">2020-04-09</time>
               
             
           </span>
@@ -518,16 +530,16 @@
 <p><img src="/2020/03/09/RNN/3.png" alt></p>
 <h2 id="双向RNN"><a href="#双向RNN" class="headerlink" title="双向RNN"></a>双向RNN</h2><p><img src="/2020/03/09/RNN/4.png" alt></p>
 <p><img src="/2020/03/09/RNN/5.png" alt></p>
-<h2 id="BPTT算法"><a href="#BPTT算法" class="headerlink" title="BPTT算法"></a>BPTT算法</h2><p><img src="/2020/03/09/RNN/6.png" alt></p>
+<h2 id="BPTT算法"><a href="#BPTT算法" class="headerlink" title="BPTT算法"></a>BPTT算法</h2><p><img src="/2020/03/09/RNN/6.png" style="zoom:67%;"></p>
 <p>每一个时刻t的损失，取输出的y与真实值的交叉熵</p>
 <p>总损失为各个时刻t的总损失</p>
 <p><img src="/2020/03/09/RNN/7.png" alt></p>
-<p><img src="/2020/03/09/RNN/8.png" alt></p>
+<p><img src="/2020/03/09/RNN/8.png" style="zoom:80%;"></p>
 <p>由于h3与h2相关，具有时序关系，所以需要展开对h2求偏导，根据链式法则，得到偏导：</p>
 <p><img src="/2020/03/09/RNN/9.png" alt></p>
-<h2 id="传统RNN问题"><a href="#传统RNN问题" class="headerlink" title="传统RNN问题"></a>传统RNN问题</h2><p><img src="/2020/03/09/RNN/10.png" alt></p>
-<p><img src="/2020/03/09/RNN/11.png" alt></p>
-<p><img src="/2020/03/09/RNN/12.png" alt></p>
+<h2 id="传统RNN问题"><a href="#传统RNN问题" class="headerlink" title="传统RNN问题"></a>传统RNN问题</h2><p><img src="/2020/03/09/RNN/10.png" style="zoom:80%;"></p>
+<p><img src="/2020/03/09/RNN/11.png" style="zoom:67%;"></p>
+<p><img src="/2020/03/09/RNN/12.png" style="zoom: 67%;"></p>
 <p>对权重求偏导，对于累乘项来说，当t比较大时，</p>
 <ul>
 <li>如果0&lt;W&lt;1,梯度趋于0</li>
@@ -550,11 +562,11 @@
 </li>
 </ul>
 <h2 id="GRU门控循环单元"><a href="#GRU门控循环单元" class="headerlink" title="GRU门控循环单元"></a>GRU门控循环单元</h2><p><img src="/2020/03/09/RNN/17.png" alt></p>
-<p><img src="/2020/03/09/RNN/18.png" alt></p>
+<p><img src="/2020/03/09/RNN/18.png" style="zoom:67%;"></p>
 <h2 id="Clockwise-RNN"><a href="#Clockwise-RNN" class="headerlink" title="Clockwise RNN"></a>Clockwise RNN</h2><p>Clockwise RNN: 普通 RNN 都是隐层从前一个时间步连接到当前时间 步。而 CW-RNN 把隐层分成很多组，每组有不同的循环周期，有的周 期是 1（和普通 RNN 一样），有的周期更长（例如从前两个时间步连 接到当前时间步，不同周期的 cell 之间也有一些连接。这样一来，距离 较远的某个依赖关系就可以通过周期较长的 cell 少数几次循环访问到， 从而网络层数不太深，更容易学到。</p>
 <p><img src="/2020/03/09/RNN/19.png" alt></p>
-<h2 id="Attention"><a href="#Attention" class="headerlink" title="Attention"></a>Attention</h2><p><img src="/2020/03/09/RNN/20.png" alt></p>
-<p><img src="/2020/03/09/RNN/21.png" alt></p>
+<h2 id="Attention"><a href="#Attention" class="headerlink" title="Attention"></a>Attention</h2><p><img src="/2020/03/09/RNN/20.png" style="zoom:80%;"></p>
+<p><img src="/2020/03/09/RNN/21.png" style="zoom:67%;"></p>
 <p>人们在进行观察图像的时候，大多是根据需求将注意力集中到图像的特定部分。而且人类会根据之前观察的图像学习到未来要观察图像注意力应该集中的位置。</p>
 <p><img src="/2020/03/09/RNN/22.png" alt></p>
 <h2 id="评价准则"><a href="#评价准则" class="headerlink" title="评价准则"></a>评价准则</h2><p><img src="/2020/03/09/RNN/23.png" alt></p>
@@ -572,9 +584,9 @@
 </ul>
 <h2 id="SPP-NET"><a href="#SPP-NET" class="headerlink" title="SPP-NET"></a>SPP-NET</h2><p><img src="/2020/03/09/RNN/25.png" alt></p>
 <p>传统CNN要求输入图片尺寸一致，SPP-net在全连接层之前加入一个空间金字塔池化层</p>
-<p><img src="/2020/03/09/RNN/26.png" alt></p>
+<p><img src="/2020/03/09/RNN/26.png" style="zoom: 80%;"></p>
 <h2 id="Fast-RCNN"><a href="#Fast-RCNN" class="headerlink" title="Fast-RCNN"></a>Fast-RCNN</h2><p><img src="/2020/03/09/RNN/27.png" alt></p>
-<p><img src="/2020/03/09/RNN/28.png" alt></p>
+<p><img src="/2020/03/09/RNN/28.png" style="zoom:80%;"></p>
 <p>将图片的规整转化为对特征图的规整</p>
 <p>将单独的SVM分类任务转化为CNN中的Softmax分类任务，并且将误差反向传播，进行全局的优化</p>
 <p>Faster RCNN没有使用ss提取方法，而是使用RPN方法,RPN插入到最后一个卷积层后，用于直接产生候选区域，不需要额外算法，RPN之后，使用ROI Poling和后续的分类器、回归器</p>
@@ -593,8 +605,8 @@
 <h2 id="RPN"><a href="#RPN" class="headerlink" title="RPN"></a>RPN</h2><p><img src="/2020/03/09/RNN/30.png" alt></p>
 <h2 id="RFCN"><a href="#RFCN" class="headerlink" title="RFCN"></a>RFCN</h2><p><img src="/2020/03/09/RNN/31.png" alt></p>
 <p> 共有k<em>k = 9个颜色，每个颜色的立体块（W</em>H<em>(C+1)）表示的是不同位置存在目标的概率值（第一块黄色表示的是左上角位置，最后一块淡蓝色表示的是右下角位置）。共有k^2</em>(C+1)个feature map。每个feature map，z(i,j,c)是第i+k(j-1)个立体块上的第c个map（1&lt;= i,j &lt;=3）。(i,j)决定了9种位置的某一种位置，假设为左上角位置（i=j=1），c决定了哪一类，假设为person类。在z(i,j,c)这个feature map上的某一个像素的位置是（x,y），像素值是value，则value表示的是原图对应的(x,y)这个位置上可能是人（c=‘person’）且是人的左上部位（i=j=1）的概率值</p>
-<h2 id="YOLO"><a href="#YOLO" class="headerlink" title="YOLO"></a>YOLO</h2><p><img src="/2020/03/09/RNN/32.png" alt></p>
-<p><img src="/2020/03/09/RNN/33.png" alt></p>
+<h2 id="YOLO"><a href="#YOLO" class="headerlink" title="YOLO"></a>YOLO</h2><p><img src="/2020/03/09/RNN/32.png" style="zoom:67%;"></p>
+<p><img src="/2020/03/09/RNN/33.png" style="zoom:80%;"></p>
 <ol>
 <li><p>把输入图像划分为S*S个网格（S=7）。位于目标中心的网格负责检测该目标</p>
 </li>
@@ -605,12 +617,12 @@
 <li><p>在测试阶段，预测每个检测框的分数：</p>
 </li>
 </ol>
-<p><img src="/2020/03/09/RNN/34.png" alt></p>
-<h2 id="SSD"><a href="#SSD" class="headerlink" title="SSD"></a>SSD</h2><p><img src="/2020/03/09/RNN/35.png" alt></p>
+<p><img src="/2020/03/09/RNN/34.png" style="zoom:67%;"></p>
+<h2 id="SSD"><a href="#SSD" class="headerlink" title="SSD"></a>SSD</h2><p><img src="/2020/03/09/RNN/35.png" style="zoom:67%;"></p>
 <p>在Yolo中，每个单元预测多个边界框，但是其都是相对这个单元本身（正方块），但是真实目标的形状是多变的，Yolo需要在训练过程中自适应目标的形状。而SSD借鉴了Faster R-CNN中anchor的理念，每个单元设置尺度或者长宽比不同的先验框，预测的边界框（bounding boxes）是以这些先验框为基准的，在一定程度上减少训练难度。</p>
 <p>对于每个单元的每个先验框，其都输出一套独立的检测值，对应一个边界框，主要分为两个部分。第一部分是各个类别的置信度或者评分，SSD将背景也当做了一个特殊的类别，如果检测目标共有 c个类别，SSD其实需要预测 c+1 个置信度值，其中第一个置信度指的是不含目标或者属于背景的评分。</p>
 <p>第二部分就是边界框的location，包含4个值 (cx、cy、w、h)，分别表示边界框的中心坐标以及宽高。</p>
-<p><img src="/2020/03/09/RNN/36.png" alt></p>
+<p><img src="/2020/03/09/RNN/36.png" style="zoom:80%;"></p>
 <h2 id="Retina-Net"><a href="#Retina-Net" class="headerlink" title="Retina Net"></a>Retina Net</h2><p>由于One Stage方法背景较多，模型大量聚焦在背景中，虽然有些背景很容易分类，但由于数量巨大，导致总和的loss对检测器产生影响。</p>
 <p>所以Retina Net通过Focal Loss使得越接近背景的样本权重越小，从而使loss主要来源于更复杂的样本，而不是简单的背景样本</p>
 <p><img src="/2020/03/09/RNN/37.png" alt></p>
@@ -734,7 +746,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">23</span>
+                    <span class="site-state-item-count">24</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>

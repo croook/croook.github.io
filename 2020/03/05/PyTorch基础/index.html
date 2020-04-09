@@ -113,7 +113,7 @@
 <meta property="og:image" content="https://croook.github.io/2020/03/05/PyTorch基础/3.png">
 <meta property="og:image" content="https://croook.github.io/2020/03/05/PyTorch基础/4.png">
 <meta property="og:image" content="https://croook.github.io/2020/03/05/PyTorch基础/5.png">
-<meta property="og:updated_time" content="2020-03-05T06:20:15.145Z">
+<meta property="og:updated_time" content="2020-04-09T09:25:36.556Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Pytorch基础">
 <meta name="twitter:description" content="PyTorch基础pytorchPyTorch是一个python库，它主要提供了两个高级功能：  GPU加速的张量计算  构建在反向自动求导系统上的深度神经网络   数据类型数据类型： torch.float32, torch.float64, torch.float16, torch.uint8, torch.int8, torch.int16, torch.int32, torch.int64">
@@ -405,12 +405,24 @@
                 
               
 
-              <time title="Created: 2020-03-05 11:16:00 / Modified: 14:20:15" itemprop="dateCreated datePublished" datetime="2020-03-05T11:16:00+08:00">2020-03-05</time>
+              <time title="Created: 2020-03-05 11:16:00" itemprop="dateCreated datePublished" datetime="2020-03-05T11:16:00+08:00">2020-03-05</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2020-04-09 17:25:36" itemprop="dateModified" datetime="2020-04-09T17:25:36+08:00">2020-04-09</time>
               
             
           </span>
@@ -614,11 +626,11 @@
 </table>
 </div>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建一个 2x4 的tensor</span></span><br><span class="line">m = torch.Tensor([[<span class="number">2</span>, <span class="number">5</span>, <span class="number">3</span>, <span class="number">7</span>],</span><br><span class="line">                  [<span class="number">4</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">9</span>]])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 返回 m 中元素的数量</span></span><br><span class="line">print(m.numel())</span><br><span class="line"></span><br><span class="line"><span class="comment"># 返回 第1列的全部元素</span></span><br><span class="line">print(m[:, <span class="number">1</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 返回 第0行的全部元素</span></span><br><span class="line">print(m[<span class="number">0</span>, :])</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create tensor of numbers from 1 to 5</span></span><br><span class="line"><span class="comment"># 注意这里结果是1到4，没有5</span></span><br><span class="line">v = torch.arange(<span class="number">1</span>, <span class="number">5</span>)</span><br><span class="line"><span class="comment"># tensor([1, 2, 3, 4])</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Scalar product 点积</span></span><br><span class="line">m @ v</span><br><span class="line"><span class="comment"># tensor([49., 47.])</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Calculated by 1*2 + 2*5 + 3*3 + 4*7</span></span><br><span class="line">m[[<span class="number">0</span>], :] @ v</span><br><span class="line"><span class="comment"># tensor([49.])</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 转置，由 2x4 变为 4x2</span></span><br><span class="line">print(m.t())</span><br><span class="line"><span class="comment"># 使用 transpose 也可以达到相同的效果</span></span><br><span class="line">print(m.transpose(<span class="number">0</span>, <span class="number">1</span>))</span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">tensor([[2., 4.],</span></span><br><span class="line"><span class="string">        [5., 2.],</span></span><br><span class="line"><span class="string">        [3., 1.],</span></span><br><span class="line"><span class="string">        [7., 9.]])</span></span><br><span class="line"><span class="string">tensor([[2., 4.],</span></span><br><span class="line"><span class="string">        [5., 2.],</span></span><br><span class="line"><span class="string">        [3., 1.],</span></span><br><span class="line"><span class="string">        [7., 9.]])</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># returns a 1D tensor of steps equally spaced points between start=3, end=8 and steps=20</span></span><br><span class="line">torch.linspace(<span class="number">3</span>, <span class="number">8</span>, <span class="number">20</span>)</span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">tensor([3.0000, 3.2632, 3.5263, 3.7895, 4.0526, 4.3158, 4.5789, 4.8421, 5.1053,</span></span><br><span class="line"><span class="string">        5.3684, 5.6316, 5.8947, 6.1579, 6.4211, 6.6842, 6.9474, 7.2105, 7.4737,</span></span><br><span class="line"><span class="string">        7.7368, 8.0000])</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建两个 1x4 的tensor</span></span><br><span class="line">a = torch.Tensor([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]])</span><br><span class="line">b = torch.Tensor([[<span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>]])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在 0 方向拼接 （即在 Y 方各上拼接）, 会得到 2x4 的矩阵</span></span><br><span class="line">print( torch.cat((a,b), <span class="number">0</span>))</span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">tensor([[1., 2., 3., 4.],</span></span><br><span class="line"><span class="string">        [5., 6., 7., 8.]])</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 在 1 方向拼接 （即在 X 方各上拼接）, 会得到 1x8 的矩阵</span></span><br><span class="line">print( torch.cat((a,b), <span class="number">1</span>))</span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">tensor([[1., 2., 3., 4., 5., 6., 7., 8.]])</span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
-<h2 id="张量"><a href="#张量" class="headerlink" title="张量"></a>张量</h2><p><img src="/2020/03/05/PyTorch基础/1.png" alt></p>
+<h2 id="张量"><a href="#张量" class="headerlink" title="张量"></a>张量</h2><p><img src="/2020/03/05/PyTorch基础/1.png" style="zoom: 50%;"></p>
 <h2 id="反向传播"><a href="#反向传播" class="headerlink" title="反向传播"></a>反向传播</h2><p><img src="/2020/03/05/PyTorch基础/2.png" alt></p>
 <p>PyTorch里并没有显式的Graph定义，计算步骤，存在Tensor的grad_fn里，沿着Tensor的grad_fn往后走，就是反向传播</p>
-<h2 id="计算图"><a href="#计算图" class="headerlink" title="计算图"></a>计算图</h2><p><img src="/2020/03/05/PyTorch基础/3.png" alt></p>
-<p><img src="/2020/03/05/PyTorch基础/4.png" alt></p>
+<h2 id="计算图"><a href="#计算图" class="headerlink" title="计算图"></a>计算图</h2><p><img src="/2020/03/05/PyTorch基础/3.png" style="zoom:67%;"></p>
+<p><img src="/2020/03/05/PyTorch基础/4.png" style="zoom:67%;"></p>
 <p>对于上述过程，公式如下：</p>
 <script type="math/tex; mode=display">
 \begin{cases}
@@ -634,7 +646,7 @@ out = \frac{1}{4}\sum_i z_i\\
 <script type="math/tex; mode=display">
 \frac{\partial out}{\partial x_i} = \frac{1}{4}*6y_i=\frac{3}{2}(x_i+2)\\
 
-\frac{\partial out}{\partial x_i} \vert_{x_i=1}=\frac{2}{9}=4.5</script><p><img src="/2020/03/05/PyTorch基础/5.png" alt></p>
+\frac{\partial out}{\partial x_i} \vert_{x_i=1}=\frac{2}{9}=4.5</script><p><img src="/2020/03/05/PyTorch基础/5.png" style="zoom:67%;"></p>
 
       
     </div>
@@ -757,7 +769,7 @@ out = \frac{1}{4}\sum_i z_i\\
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">23</span>
+                    <span class="site-state-item-count">24</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
