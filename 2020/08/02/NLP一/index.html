@@ -125,7 +125,7 @@
 <meta property="og:image" content="https://croook.github.io/2020/08/02/NLP一/v2-d9d0700496b79f4456776df80856f37a_1440w.jpg">
 <meta property="og:image" content="https://croook.github.io/2020/08/02/NLP一/v2-e53505cae4d3fa21d29f1ff2c267eb49_1440w.jpg">
 <meta property="og:image" content="https://croook.github.io/2020/08/02/NLP一/20190411204526407.jpg">
-<meta property="og:updated_time" content="2020-08-02T09:36:19.997Z">
+<meta property="og:updated_time" content="2020-08-02T09:39:32.876Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NLP一">
 <meta name="twitter:description" content="NLP 正则表达式验证工具：http://regexr.com/  练习地址： https://alf.nu/RegexGolf   1234567891011import re # 将正则表达式编译成Pattern对象pattern = re.compile(r&apos;hello.*\!&apos;) # 使用Pattern匹配文本，获得匹配结果，无法匹配时将返回Nonematch = pattern.matc">
@@ -417,7 +417,7 @@
                 
               
 
-              <time title="Created: 2020-08-02 15:42:02 / Modified: 17:36:19" itemprop="dateCreated datePublished" datetime="2020-08-02T15:42:02+08:00">2020-08-02</time>
+              <time title="Created: 2020-08-02 15:42:02 / Modified: 17:39:32" itemprop="dateCreated datePublished" datetime="2020-08-02T15:42:02+08:00">2020-08-02</time>
             
 
             
@@ -582,7 +582,7 @@
 <p>例如，其中第一行，第二列 表示给定前一个词是 $i$时，当前词为$want$的情况一共出现了827次。据此，我们便可以算得相应的频率分布表如下。</p>
 <p><img src="/2020/08/02/NLP一/v2-e53505cae4d3fa21d29f1ff2c267eb49_1440w.jpg" alt="img"></p>
 <p>比如说，我们就以表中的$p(eat|i)=0.0036$这个概率值讲解，从表一得出$i$一共出现了2533次，而其后出现$eat$的次数一共有9次，$p(eat|i)=p(eat,i)/p(i)=count(i,eat)/count(i)=9/2533 = 0.0036$</p>
-<p>下面我们通过基于这个语料库来判断s1= \<s> i want english food&lt; /s&gt; ​与​s2 = <s\> want i english food&lt;/s>​哪个句子更合理：</s\></s></p>
+<p>下面我们通过基于这个语料库来判断s1= &lt; s&gt; i want english food&lt; /s&gt; ​与​s2 = &lt; s&gt; want i english food&lt; /s>​哪个句子更合理：</p>
 <p><strong>首先判断p(s1)</strong></p>
 <script type="math/tex; mode=display">
 P(s1)=P(i|<s>)P(want|i)P(english|want)P(food|english)P(</s>|food)
