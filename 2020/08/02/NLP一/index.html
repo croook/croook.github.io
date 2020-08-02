@@ -125,7 +125,7 @@
 <meta property="og:image" content="https://croook.github.io/2020/08/02/NLP一/v2-d9d0700496b79f4456776df80856f37a_1440w.jpg">
 <meta property="og:image" content="https://croook.github.io/2020/08/02/NLP一/v2-e53505cae4d3fa21d29f1ff2c267eb49_1440w.jpg">
 <meta property="og:image" content="https://croook.github.io/2020/08/02/NLP一/20190411204526407.jpg">
-<meta property="og:updated_time" content="2020-08-02T09:18:03.698Z">
+<meta property="og:updated_time" content="2020-08-02T09:26:40.380Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NLP一">
 <meta name="twitter:description" content="NLP 正则表达式验证工具：http://regexr.com/  练习地址： https://alf.nu/RegexGolf   1234567891011import re # 将正则表达式编译成Pattern对象pattern = re.compile(r&apos;hello.*\!&apos;) # 使用Pattern匹配文本，获得匹配结果，无法匹配时将返回Nonematch = pattern.matc">
@@ -417,7 +417,7 @@
                 
               
 
-              <time title="Created: 2020-08-02 15:42:02 / Modified: 17:18:03" itemprop="dateCreated datePublished" datetime="2020-08-02T15:42:02+08:00">2020-08-02</time>
+              <time title="Created: 2020-08-02 15:42:02 / Modified: 17:26:40" itemprop="dateCreated datePublished" datetime="2020-08-02T15:42:02+08:00">2020-08-02</time>
             
 
             
@@ -576,20 +576,22 @@
 <p><img src="/2020/08/02/NLP一/v2-43745e5526b6eb8341a896c8abe8c640_1440w.jpg" alt="img"></p>
 <p>下面的这些概率值作为已知条件：</p>
 <p><img src="/2020/08/02/NLP一/v2-a7c0d77143e0c997abd45e1535eaeb8c_1440w.jpg" alt="img"></p>
-<p>p(want|<s>) = 0.25</s></p>
+<p>$p(want|<s>) = 0.25$</s></p>
 <p>下面这个表给出的是基于Bigram模型进行计数之结果</p>
 <p><img src="/2020/08/02/NLP一/v2-d9d0700496b79f4456776df80856f37a_1440w.jpg" alt="img"></p>
-<p>例如，其中第一行，第二列 表示给定前一个词是 “i” 时，当前词为“want”的情况一共出现了827次。据此，我们便可以算得相应的频率分布表如下。</p>
+<p>例如，其中第一行，第二列 表示给定前一个词是 $i$时，当前词为$want$的情况一共出现了827次。据此，我们便可以算得相应的频率分布表如下。</p>
 <p><img src="/2020/08/02/NLP一/v2-e53505cae4d3fa21d29f1ff2c267eb49_1440w.jpg" alt="img"></p>
-<p>比如说，我们就以表中的p(eat|i)=0.0036这个概率值讲解，从表一得出“i”一共出现了2533次，而其后出现eat的次数一共有9次，p(eat|i)=p(eat,i)/p(i)=count(i,eat)/count(i)=9/2533 = 0.0036</p>
-<p>下面我们通过基于这个语料库来判断s1=“\<s> i want english food\</s>” 与s2 = “\<s> want i english food</s>“哪个句子更合理：</p>
+<p>比如说，我们就以表中的$p(eat|i)=0.0036$这个概率值讲解，从表一得出$i$一共出现了2533次，而其后出现$eat$的次数一共有9次，$p(eat|i)=p(eat,i)/p(i)=count(i,eat)/count(i)=9/2533 = 0.0036$</p>
+<p>下面我们通过基于这个语料库来判断$s1=<s> i want english food</s> $与$s2 = <s> want i english food</s>$哪个句子更合理：</p>
 <p><strong>首先判断p(s1)</strong></p>
-<p>P(s1)=P(i|\<s>)P(want|i)P(english|want)P(food|english)P(\</s>|food)</p>
-<p>=0.25×0.33×0.0011×0.5×0.68=0.000031</p>
-<p><strong>再求p(s2)？</strong></p>
-<p>P(s2)=P(want|\<s>)P(i|want)P(english|want)P(food|english)P(\</s>|food)</p>
-<p>=0.25<em>0.0022</em>0.0011<em>0.5\</em>0.68 = 0.00000002057</p>
-<p>通过比较我们可以明显发现0.00000002057&lt;0.000031,也就是说s1= “i want english food”更像人话。</p>
+<script type="math/tex; mode=display">
+P(s1)=P(i|<s>)P(want|i)P(english|want)P(food|english)P(</s>|food)
+
+=\\0.25×0.33×0.0011×0.5×0.68=0.000031</script><p><strong>再求p(s2)？</strong></p>
+<script type="math/tex; mode=display">
+P(s2)=P(want|<s>)P(i|want)P(english|want)P(food|english)P(</s>|food)
+
+=\\0.25*0.0022*0.0011*0.5*0.68 = 0.00000002057</script><p>通过比较我们可以明显发现$0.00000002057&lt;0.000031$,也就是说$s1= i want english food$更像人话。</p>
 <p>再深层次的分析，我们可以看到这两个句子的概率的不同，主要是由于顺序i want还是want i的问题，根据我们的直觉和常用搭配语法，i want要比want i出现的几率要大很多。所以两者的差异，第一个概率大，第二个概率小，也就能说的通了。</p>
 <h1 id="Beam-Search"><a href="#Beam-Search" class="headerlink" title="Beam Search"></a>Beam Search</h1><p>Beam search（集束）和Greedy search（贪心）解码常用的算法。</p>
 <p>在机器翻译中，beam search算法在测试的时候用的，因为在训练过程中，每一个decoder的输出是有与之对应的正确答案做参照，也就不需要beam search去加大输出的准确率。 </p>
