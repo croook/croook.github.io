@@ -1,0 +1,1556 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="En">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+  <meta name="google-site-verification" content="7Oev-o_nVgfEcRT4Mc9fXSxqXK0_WXFBAuBh4GdzGuM">
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="5Nq4yOLRnQ">
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.ico?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.ico?v=7.0.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="马尔可夫链每个状态的转移只依赖于之前的n个状态。最简单的马尔可夫过程是一阶过程，即每一个状态的转移只依赖于之前的那一个状态。  明天的概率分布为  (1,0)*\begin{pmatrix} 0.9 &amp; 0.1 \\ 0.5 &amp; 0.5  \end{pmatrix}=(0.9,0.1)后天的概率分布为继续乘上转移矩阵，最后概率趋于稳定，得到稳态分布。  我们为上面的一阶马尔可夫过程定义了以下三个部">
+<meta name="keywords" content="AI,NLP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NLP三">
+<meta property="og:url" content="https://croook.github.io/2020/08/04/NLP三/index.html">
+<meta property="og:site_name" content="Crookshank">
+<meta property="og:description" content="马尔可夫链每个状态的转移只依赖于之前的n个状态。最简单的马尔可夫过程是一阶过程，即每一个状态的转移只依赖于之前的那一个状态。  明天的概率分布为  (1,0)*\begin{pmatrix} 0.9 &amp; 0.1 \\ 0.5 &amp; 0.5  \end{pmatrix}=(0.9,0.1)后天的概率分布为继续乘上转移矩阵，最后概率趋于稳定，得到稳态分布。  我们为上面的一阶马尔可夫过程定义了以下三个部">
+<meta property="og:locale" content="En">
+<meta property="og:image" content="https://croook.github.io/2020/08/04/NLP三/image-20200804150614757.png">
+<meta property="og:image" content="https://croook.github.io/2020/08/04/NLP三/image-20200804151121452.png">
+<meta property="og:image" content="https://croook.github.io/2020/08/04/NLP三/image-20200804152044492.png">
+<meta property="og:image" content="https://croook.github.io/2020/08/04/NLP三/image-20200804152053204.png">
+<meta property="og:image" content="https://croook.github.io/2020/08/04/NLP三/image-20200804152106628.png">
+<meta property="og:image" content="https://croook.github.io/2020/08/04/NLP三/image-20200804160116483.png">
+<meta property="og:image" content="https://croook.github.io/2020/08/04/NLP三/1.png">
+<meta property="og:image" content="https://croook.github.io/2020/08/04/NLP三/3.png">
+<meta property="og:image" content="https://croook.github.io/2020/08/04/NLP三/2.png">
+<meta property="og:image" content="https://croook.github.io/2020/08/04/NLP三/image-20200805114827216.png">
+<meta property="og:image" content="https://croook.github.io/2020/08/04/NLP三/image-20200805115013862.png">
+<meta property="og:image" content="https://croook.github.io/2020/08/04/NLP三/image-20200805115345812.png">
+<meta property="og:image" content="https://croook.github.io/2020/08/04/NLP三/image-20200805115520733.png">
+<meta property="og:image" content="https://croook.github.io/2020/08/04/NLP三/image-20200805115602579.png">
+<meta property="og:image" content="https://croook.github.io/2020/08/04/NLP三/image-20200805115626814.png">
+<meta property="og:image" content="https://croook.github.io/2020/08/04/NLP三/image-20200805115655277.png">
+<meta property="og:image" content="https://croook.github.io/2020/08/04/NLP三/image-20200805115705981.png">
+<meta property="og:updated_time" content="2020-08-05T06:08:11.099Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="NLP三">
+<meta name="twitter:description" content="马尔可夫链每个状态的转移只依赖于之前的n个状态。最简单的马尔可夫过程是一阶过程，即每一个状态的转移只依赖于之前的那一个状态。  明天的概率分布为  (1,0)*\begin{pmatrix} 0.9 &amp; 0.1 \\ 0.5 &amp; 0.5  \end{pmatrix}=(0.9,0.1)后天的概率分布为继续乘上转移矩阵，最后概率趋于稳定，得到稳态分布。  我们为上面的一阶马尔可夫过程定义了以下三个部">
+<meta name="twitter:image" content="https://croook.github.io/2020/08/04/NLP三/image-20200804150614757.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://croook.github.io/2020/08/04/NLP三/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>NLP三 | Crookshank</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="En">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Crookshank</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://croook.github.io/2020/08/04/NLP三/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="sh">
+      <meta itemprop="description" content="so we beat on, boats against the current, borne back ceaselessly into the past.">
+      <meta itemprop="image" content="/images/ava.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Crookshank">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">NLP三
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2020-08-04 15:01:33" itemprop="dateCreated datePublished" datetime="2020-08-04T15:01:33+08:00">2020-08-04</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2020-08-05 14:08:11" itemprop="dateModified" datetime="2020-08-05T14:08:11+08:00">2020-08-05</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/AI/NLP/" itemprop="url" rel="index"><span itemprop="name">NLP</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+            <span id="/2020/08/04/NLP三/" class="leancloud_visitors" data-flag-title="NLP三">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Views: </span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="马尔可夫链"><a href="#马尔可夫链" class="headerlink" title="马尔可夫链"></a>马尔可夫链</h1><p>每个状态的转移只依赖于之前的n个状态。最简单的马尔可夫过程是一阶过程，即每一个状态的转移只依赖于之前的那一个状态。</p>
+<p><img src="/2020/08/04/NLP三/image-20200804150614757.png" alt="image-20200804150614757" style="zoom:67%;"></p>
+<p>明天的概率分布为</p>
+<script type="math/tex; mode=display">
+(1,0)*\begin{pmatrix}
+0.9 & 0.1 \\
+0.5 & 0.5 
+\end{pmatrix}=(0.9,0.1)</script><p>后天的概率分布为继续乘上转移矩阵，最后概率趋于稳定，得到稳态分布。</p>
+<p><img src="/2020/08/04/NLP三/image-20200804151121452.png" alt="image-20200804151121452" style="zoom:67%;"></p>
+<p>我们为上面的一阶马尔可夫过程定义了以下三个部分：</p>
+<ul>
+<li>状态：晴天、阴天</li>
+<li>初始向量：系统在时间为0的时候状态的分布概率，如（1，0）</li>
+<li>状态转移矩阵：每种状态转移的概率</li>
+</ul>
+<p>所有能被这样描述的系统都是一个马尔可夫过程。</p>
+<h1 id="隐马尔可夫模型（HMM）"><a href="#隐马尔可夫模型（HMM）" class="headerlink" title="隐马尔可夫模型（HMM）"></a>隐马尔可夫模型（HMM）</h1><p>隐马尔可夫模型（Hidden Markov Model）是一种统计模型，用来描述一个含有隐含未知参数的马尔可夫过程。难点是从可观测的参数中确定该过程的隐含参数，然后利用参数做进一步分析。</p>
+<p>用掷骰子举例，假设有三种骰子，分别为6面、4面、8面，选中每个骰子的概率都为1/3。</p>
+<p><img src="/2020/08/04/NLP三/image-20200804152044492.png" alt="image-20200804152044492" style="zoom: 67%;"></p>
+<p>隐藏的马尔可夫链随机生成的状态序列，称为<strong>状态序列</strong>；每个状态生成一个观测，而由此产生的观测随机序列，称为<strong>观测序列</strong>。序列的每个位置又可以看作是一个时刻。 </p>
+<p><img src="/2020/08/04/NLP三/image-20200804152053204.png" alt="image-20200804152053204" style="zoom:67%;"></p>
+<p><img src="/2020/08/04/NLP三/image-20200804152106628.png" alt="image-20200804152106628" style="zoom: 50%;"></p>
+<h2 id="基本假设"><a href="#基本假设" class="headerlink" title="基本假设"></a>基本假设</h2><ul>
+<li>齐次马尔可夫性假设，即假设隐藏的马尔可夫链在任意时刻t的状态只依赖于前一时刻的状态，与其他时刻的状态及观测无关。</li>
+<li>观测独立性假设，即假设任意时刻的观测只依赖与该时刻的马尔科夫链的状态，与其他观测及状态无关。</li>
+</ul>
+<h2 id="隐马尔可夫链三大问题"><a href="#隐马尔可夫链三大问题" class="headerlink" title="隐马尔可夫链三大问题"></a>隐马尔可夫链三大问题</h2><p>隐马尔可夫模型由三个概率确定：</p>
+<ol>
+<li><strong>初始概率分布</strong>，即初始的隐含状态的概率分布，记为$π$；</li>
+<li><strong>状态转移概率分布</strong>，即隐含状态间的转移概率分布, 记为$A$；</li>
+<li><strong>观测概率分布</strong>，即由隐含状态生成观测状态的概率分布, 记为$B$。</li>
+</ol>
+<p>以上的三个概率分布可以说就是隐马尔可夫模型的参数，而根据这三个概率，能够确定一个隐马尔可夫模型</p>
+<p>$λ=(A,B,π)$。</p>
+<p>而隐马尔科夫链的三个基本问题为：</p>
+<ol>
+<li><strong>概率计算问题</strong>。即给定模型$λ=(A,B,π)$和观测序列$O$，计算在模型$λ$下观测序列出现的最大概率$P(O|λ)$；</li>
+<li><strong>解码问题</strong>。给定模型$λ=(A,B,π)$和观测序列$O$，计算最有可能产生这个观测序列的隐含序列$X$, 即使得概率$P(X|O,λ)$最大的隐含序列$X$。</li>
+<li><strong>学习问题</strong>。即给定观测序列$O$，估计模型的参数$λ$, 使得在该参数下观测序列出现的概率最大，即$P(O|λ)$最大；</li>
+</ol>
+<p>也即：</p>
+<p><strong>1、给定一个模型，如何计算某个特定的输出序列的概率</strong></p>
+<p><strong>2、给定一个模型和某个模型的输出序列，如何找到最可能产生这种输出的状态序列</strong></p>
+<p><strong>3、给定足够量的观测数据，如何估计隐马尔可夫模型的参数</strong></p>
+<p>假设一个隐马尔可夫过程的例子，则$(A,B,π)$如下图所示：</p>
+<p><img src="/2020/08/04/NLP三/image-20200804160116483.png" alt="image-20200804160116483" style="zoom:67%;"></p>
+<p>则三个问题为：</p>
+<ul>
+<li>已知整个模型，观测到连续三天做的事情是：散步、购物、清理。那么根据模型，计算产生这些行为的概率是多少。</li>
+<li>已知整个模型，同样是这三件事，猜测这三天的天气如何。</li>
+<li>最复杂的问题，在只知道这三天做了这三件事的情况下，建立整个模型，给出$(A,B,π)$</li>
+</ul>
+<h2 id="隐马尔可夫链解法"><a href="#隐马尔可夫链解法" class="headerlink" title="隐马尔可夫链解法"></a>隐马尔可夫链解法</h2><ul>
+<li>问题一：Forward Algorithm，向前算法；或者Backward Algorithm，向后算法</li>
+<li>问题二：Viterbi Algorithm，维特比算法</li>
+<li>问题三：Baum-Welch Algorithm，鲍姆-韦尔奇算法</li>
+</ul>
+<h3 id="问题一"><a href="#问题一" class="headerlink" title="问题一"></a>问题一</h3><p>参考： <a href="https://www.jianshu.com/p/eff908608db7?utm_source=oschina-app" target="_blank" rel="noopener">前向算法、后向算法</a> </p>
+<h4 id="遍历算法"><a href="#遍历算法" class="headerlink" title="遍历算法"></a>遍历算法</h4><p>已知三天做的事情是：散步、购物、清理。三天的可能天气组合为$2^3=8$，遍历每种可能，求出概率。</p>
+<ul>
+<li>当状态和观测节点较少时，遍历法更有效，但随着节点数增多，计算复杂度急剧增加。</li>
+</ul>
+<h4 id="前向算法"><a href="#前向算法" class="headerlink" title="前向算法"></a>前向算法</h4><p><img src="/2020/08/04/NLP三/1.png" style="zoom: 67%;"></p>
+<p>看成时间序列，按照t=1、t=2···的顺序计算。</p>
+<ol>
+<li><p>先计算第一天散步的概率，包括$P(Walk_1,Rainy_1)和P(Walk_1,Sunny_1)$</p>
+</li>
+<li><p>计算第二天购物的概率：包括$P(Walk_1,Shop_2,Rainy_2)和P(walk_1,Shop_2,Sunny_2)$</p>
+<p>分别为：</p>
+<script type="math/tex; mode=display">
+P(Walk_1,Shop_2,Rainy_2)=P(Walk_1,Rainy_1)P(Rainy_2|Rainy_1)P(Shop_2|Rainy_2)+ \\P(Walk_1,Sunny_1)P(Rainy_2|Sunny_1)P(Shop_2|Rainy_2)
+\\
+P(walk_1,Shop_2,Sunny_2)=P(Walk_1,Rainy_1)P(Sunny_2|Rainy_1)P(Shop_2|Sunny_2)+ \\P(Walk_1,Sunny_1)P(Sunny_2|Sunny_1)P(Shop_2|Sunny_2)</script></li>
+<li><p>计算第三天清理的概率：包括$P(Walk_1,Shop_2,Clean_3,Rainy_3)和P(walk_1,Shop_2,Clean_3,Sunny_3)$</p>
+</li>
+</ol>
+<h4 id="后向算法"><a href="#后向算法" class="headerlink" title="后向算法"></a>后向算法</h4><p><img src="/2020/08/04/NLP三/3.png" style="zoom:67%;"></p>
+<p><img src="/2020/08/04/NLP三/2.png" style="zoom:67%;"></p>
+<p>计算所有后向概率$β_t$，最后通过后向概率求出观测序列概率</p>
+<ol>
+<li>定义最后时刻T所有状态的后向概率为1，即$ β_3(S)=1、 β_3(R)=1  $</li>
+<li>$a_{R\rightarrow R}$表示前一天下雨的情况下，后一天也下雨的概率，$b_R(O_3=C)$表示下雨的情况下清理的概率，则第二天的后向概率：</li>
+</ol>
+<script type="math/tex; mode=display">
+β_2(R)=a_{R\rightarrow R}·b_R(O_3=C)·β_3(R)+a_{R\rightarrow S}·b_S(O_3=C)·β_3(S)
+\\β_2(S)=a_{S\rightarrow R}·b_R(O_3=C)·β_3(R)+a_{S\rightarrow S}·b_S(O_3=C)·β_3(S)</script><h4 id="前后向算法代码"><a href="#前后向算法代码" class="headerlink" title="前后向算法代码"></a>前后向算法代码</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> numpy <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"></span><br><span class="line"><span class="comment">#隐马尔科链模型前向算法</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hmm_forward</span><span class="params">(A, PI, B, O)</span>:</span></span><br><span class="line">    M = shape(PI)[<span class="number">0</span>]   <span class="comment">#观测序列大小</span></span><br><span class="line">    N = shape(A)[<span class="number">1</span>]    <span class="comment">#状态序列大小</span></span><br><span class="line">    T = M   </span><br><span class="line">    alpha = mat(zeros((M, N)))</span><br><span class="line">    P = <span class="number">0.0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(N):  </span><br><span class="line">        alpha[<span class="number">0</span>, i] = PI[i, <span class="number">0</span>] * B[i, <span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> t <span class="keyword">in</span> range(T - <span class="number">1</span>):</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(N):</span><br><span class="line">            temp_value = <span class="number">0.0</span>;</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(N):</span><br><span class="line">                temp_value += alpha[t, j] * A[j, i]</span><br><span class="line">            index = <span class="number">0</span></span><br><span class="line">            <span class="keyword">if</span>(O[t + <span class="number">1</span>, <span class="number">0</span>] == <span class="number">0</span>):</span><br><span class="line">                index = <span class="number">0</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                index = <span class="number">1</span></span><br><span class="line">            alpha[t + <span class="number">1</span>, i] = temp_value * B[i, index]  </span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(N):</span><br><span class="line">        P += alpha[T - <span class="number">1</span>, i]</span><br><span class="line">    <span class="keyword">return</span> P,alpha</span><br><span class="line"></span><br><span class="line"><span class="comment">#隐马尔科链模型后向算法</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hmm_backword</span><span class="params">(A, PI, B, O)</span>:</span></span><br><span class="line">    T,N = shape(A)</span><br><span class="line">    beta = mat(zeros((T, N)))</span><br><span class="line">    P = <span class="number">0.0</span></span><br><span class="line"></span><br><span class="line">    beta[T - <span class="number">1</span>, :] = <span class="number">1</span></span><br><span class="line">    t = T - <span class="number">2</span></span><br><span class="line">    <span class="keyword">while</span> t &gt;= <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(N):</span><br><span class="line">            temp_value = <span class="number">0.0</span></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(N):</span><br><span class="line">                index = <span class="number">0</span></span><br><span class="line">                <span class="keyword">if</span>(O[t + <span class="number">1</span>, <span class="number">0</span>] == <span class="number">0</span>):</span><br><span class="line">                    index = <span class="number">0</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    index = <span class="number">1</span></span><br><span class="line">                temp_value += A[i, j] * B[j, index] * beta[t + <span class="number">1</span>, j]</span><br><span class="line">            beta[t, i] = temp_value</span><br><span class="line">        t -= <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(N):</span><br><span class="line">        index = <span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span>(O[<span class="number">0</span>, <span class="number">0</span>] == <span class="number">0</span>):</span><br><span class="line">            index = <span class="number">0</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            index = <span class="number">1</span></span><br><span class="line">        P += PI[i, <span class="number">0</span>] * B[i, index] * beta[<span class="number">0</span>, i]</span><br><span class="line">    <span class="keyword">return</span> P,beta</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    A = mat([[<span class="number">0.5</span>, <span class="number">0.2</span>, <span class="number">0.3</span>],</span><br><span class="line">             [<span class="number">0.3</span>, <span class="number">0.5</span>, <span class="number">0.2</span>],</span><br><span class="line">             [<span class="number">0.2</span>, <span class="number">0.3</span>, <span class="number">0.5</span>]])</span><br><span class="line">    B = mat([[<span class="number">0.5</span>, <span class="number">0.5</span>],</span><br><span class="line">             [<span class="number">0.4</span>, <span class="number">0.6</span>],</span><br><span class="line">             [<span class="number">0.7</span>, <span class="number">0.3</span>]])</span><br><span class="line">    PI = mat([[<span class="number">0.2</span>],</span><br><span class="line">              [<span class="number">0.4</span>],</span><br><span class="line">              [<span class="number">0.4</span>]])</span><br><span class="line">    <span class="comment">#红，白，红</span></span><br><span class="line">    O = mat([[<span class="number">0</span>],</span><br><span class="line">             [<span class="number">1</span>],</span><br><span class="line">             [<span class="number">0</span>]])</span><br><span class="line"></span><br><span class="line">    P,alpha = hmm_forward(A, PI, B, O)</span><br><span class="line">    print(P)</span><br><span class="line">    print(<span class="string">"--------------------------------------"</span>)</span><br><span class="line">    P,beta = hmm_backword(A, PI, B, O)</span><br><span class="line">    print(P)</span><br></pre></td></tr></table></figure>
+<h3 id="问题二"><a href="#问题二" class="headerlink" title="问题二"></a>问题二</h3><h4 id="viterbi算法"><a href="#viterbi算法" class="headerlink" title="viterbi算法"></a>viterbi算法</h4><p>参考： <a href="https://www.zhihu.com/question/20136144" target="_blank" rel="noopener">https://www.zhihu.com/question/20136144</a> </p>
+<p>参考： <a href="https://blog.csdn.net/hudashi/article/details/87875259" target="_blank" rel="noopener">https://blog.csdn.net/hudashi/article/details/87875259</a> </p>
+<p>隐马尔科夫的预测问题就是要求图中的一条路径，使得该路径对应的概率值最大。 对应上图来讲，假设每个时刻x可能取的值为3，如果直接求的话，有3^N的组合数，底数3为篱笆网络宽度，指数N为篱笆网络的长度，计算量非常大。维特比利用动态规划的思想来求解概率最大路径（可理解为求图最短路径），使得复杂度正比于序列长度，复杂度为O(N⋅D⋅D), N为长度，D为宽度，从而很好地解决了问题的求解。 </p>
+<p><strong>1、</strong>如果概率最大的路径经过篱笆网络的某点，则从开始点到该点的子路径也一定是从开始到该点路径中概率最大的。 </p>
+<p><strong>2、</strong>假定第i时刻有k个状态，从开始到i时刻的k个状态有k条最短路径，而最终的最短路径必然经过其中的一条。 </p>
+<p><strong>3、</strong>根据上述性质，在计算第i+1状态的最短路径时，只需要考虑从开始到当前的k个状态值的最短路径和当前状态值到第i+1状态值的最短路径即可，如求t=3时的最短路径，等于求t=2时的所有状态结点x2i的最短路径加上t=2到t=3的各节点的最短路径。</p>
+<h5 id="算法流程"><a href="#算法流程" class="headerlink" title="算法流程"></a>算法流程</h5><p> 定义t时刻状态为i的所有单个路径 (i1, i2, …, it) 中最大概率值（最短路径）为 </p>
+<p><img src="/2020/08/04/NLP三/image-20200805114827216.png" alt="image-20200805114827216"></p>
+<p>其中，$i_t$表示最短路径，得到变量的递推公式：</p>
+<p><img src="/2020/08/04/NLP三/image-20200805115013862.png" alt="image-20200805115013862" style="zoom: 50%;"></p>
+<p> 其中i = 1, 2, …, N; t = 1, 2, … , T-1，定义在时刻t状态为i的所有单个路径 (i1, i2, …, it, i) 中概率最大的路径的第t－1个结点为： </p>
+<p><img src="/2020/08/04/NLP三/image-20200805115345812.png" alt="image-20200805115345812" style="zoom:50%;"></p>
+<ol>
+<li><p>初始化参数</p>
+<p><img src="/2020/08/04/NLP三/image-20200805115520733.png" alt="image-20200805115520733" style="zoom: 50%;"></p>
+</li>
+<li><p>开始递推</p>
+</li>
+</ol>
+<p><img src="/2020/08/04/NLP三/image-20200805115602579.png" alt="image-20200805115602579" style="zoom:50%;"></p>
+<ol>
+<li>最后的终止状态（T状态）计算： </li>
+</ol>
+<p><img src="/2020/08/04/NLP三/image-20200805115626814.png" alt="image-20200805115626814" style="zoom:50%;"></p>
+<ol>
+<li>最优路径的回溯，对t＝T-1, T－2，…, 1 </li>
+</ol>
+<p><img src="/2020/08/04/NLP三/image-20200805115655277.png" alt="image-20200805115655277" style="zoom:50%;"></p>
+<p>则最优路径为：</p>
+<p><img src="/2020/08/04/NLP三/image-20200805115705981.png" alt="image-20200805115705981" style="zoom:50%;"></p>
+<h5 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h5><ol>
+<li>计算t=1时刻Walk的概率</li>
+</ol>
+<script type="math/tex; mode=display">
+δ_1(R) = P(Rainy,Walk) = π_R*b_R(O_1=W)=0.6×0.1=0.06\\
+δ_1(S) = P(Sunny,Walk) = π_S*b_S(O_1=W)=0.4×0.6=0.24</script><p>​    $\psi_1(R)=0、\psi_1(S)=0$</p>
+<ol>
+<li>计算t=2时刻Shop发生的概率 </li>
+</ol>
+<script type="math/tex; mode=display">
+δ_2(R) =Max[δ_1(R)*a_{R\rightarrow R}, δ_1(S)*a_{S \rightarrow R}]*b_R(O_2=Shop)\\
+=0.24*0.4*0.4=0.0384\\
+δ_2(S) =Max[δ_1(R)*a_{R\rightarrow S}, δ_1(S)*a_{S \rightarrow S}]*b_S(O_2=Shop)\\
+=0.24*0.6*0.3=0.001392\\</script><p>​        $\psi_2(R)=Rainy、\psi_2(S)=Rainy$</p>
+<ol>
+<li>计算t=3时刻Clean的概率</li>
+</ol>
+<script type="math/tex; mode=display">
+δ_3(R) =Max[δ_2(R)*a_{R\rightarrow R}, δ_2(S)*a_{S \rightarrow R}]*b_R(O_3=Clean)\\
+=0.0384*0.7*0.5=0.01344\\
+δ_3(S) =Max[δ_2(R)*a_{R\rightarrow S}, δ_2(S)*a_{S \rightarrow S}]*b_S(O_3=Clean)\\
+=0.0384*0.4*0.1=0.0432\\</script><p>​    $\psi_3(R)=Rainy、\psi_3(S)=Rainy$</p>
+<ol>
+<li><p>$i^<em>_T=Sunny，i^</em>_2=\psi_3(Sunny)=Rainy，i^*_1=\psi_2(Rainy)=Rainy$</p>
+<p>$I^*=(Rainy，Rainy,Sunny)$</p>
+</li>
+</ol>
+<h3 id="问题三"><a href="#问题三" class="headerlink" title="问题三"></a>问题三</h3><h4 id="先导：EM算法"><a href="#先导：EM算法" class="headerlink" title="先导：EM算法"></a>先导：EM算法</h4><h4 id="Baum-Welch算法"><a href="#Baum-Welch算法" class="headerlink" title="Baum-Welch算法"></a>Baum-Welch算法</h4><p>由于只知道观测值，所以算法没有全局最优解，只能找到局部最优解。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/AI/" rel="tag"># AI</a>
+          
+            <a href="/tags/NLP/" rel="tag"># NLP</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/08/03/NLP二/" rel="next" title="NLP二">
+                <i class="fa fa-chevron-left"></i> NLP二
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/08/05/极大似然与EM算法/" rel="prev" title="极大似然与EM算法">
+                极大似然与EM算法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/ava.jpg" alt="sh">
+            
+              <p class="site-author-name" itemprop="name">sh</p>
+              <p class="site-description motion-element" itemprop="description">so we beat on, boats against the current, borne back ceaselessly into the past.</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">28</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/croook" title="GitHub &rarr; https://github.com/croook" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:sh5672186@sina.com" title="E-Mail &rarr; mailto:sh5672186@sina.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#马尔可夫链"><span class="nav-number">1.</span> <span class="nav-text">马尔可夫链</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#隐马尔可夫模型（HMM）"><span class="nav-number">2.</span> <span class="nav-text">隐马尔可夫模型（HMM）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本假设"><span class="nav-number">2.1.</span> <span class="nav-text">基本假设</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#隐马尔可夫链三大问题"><span class="nav-number">2.2.</span> <span class="nav-text">隐马尔可夫链三大问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#隐马尔可夫链解法"><span class="nav-number">2.3.</span> <span class="nav-text">隐马尔可夫链解法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题一"><span class="nav-number">2.3.1.</span> <span class="nav-text">问题一</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#遍历算法"><span class="nav-number">2.3.1.1.</span> <span class="nav-text">遍历算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#前向算法"><span class="nav-number">2.3.1.2.</span> <span class="nav-text">前向算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#后向算法"><span class="nav-number">2.3.1.3.</span> <span class="nav-text">后向算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#前后向算法代码"><span class="nav-number">2.3.1.4.</span> <span class="nav-text">前后向算法代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题二"><span class="nav-number">2.3.2.</span> <span class="nav-text">问题二</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#viterbi算法"><span class="nav-number">2.3.2.1.</span> <span class="nav-text">viterbi算法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#算法流程"><span class="nav-number">2.3.2.1.1.</span> <span class="nav-text">算法流程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#例子"><span class="nav-number">2.3.2.1.2.</span> <span class="nav-text">例子</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题三"><span class="nav-number">2.3.3.</span> <span class="nav-text">问题三</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#先导：EM算法"><span class="nav-number">2.3.3.1.</span> <span class="nav-text">先导：EM算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Baum-Welch算法"><span class="nav-number">2.3.3.2.</span> <span class="nav-text">Baum-Welch算法</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">sh</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.0</div>
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.0"></script>
+
+  <script src="/js/src/motion.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/js/src/post-details.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+  
+  <script>
+    
+    function addCount(Counter) {
+      var $visitors = $('.leancloud_visitors');
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            
+            Counter('put', '/classes/Counter/' + counter.objectId, JSON.stringify({ time: { '__op': 'Increment', 'amount': 1 } }))
+            
+              .done(function() {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.time + 1);
+              })
+            
+              .fail(function ({ responseJSON }) {
+                console.log(`Failed to save Visitor num, with error message: ${responseJSON.error}`);
+              })
+          } else {
+            
+              Counter('post', '/classes/Counter', JSON.stringify({ title: title, url: url, time: 1 }))
+                .done(function() {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(1);
+                })
+                .fail(function() {
+                  console.log('Failed to create');
+                });
+            
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log(`LeanCloud Counter Error: ${responseJSON.code} ${responseJSON.error}`);
+        });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + 'FKPTBi1uAoXKAYkTu5qVmYU8-gzGzoHsz')
+        .done(function({ api_server }) {
+          var Counter = function(method, url, data) {
+            return $.ajax({
+              method: method,
+              url: 'https://' + api_server + '/1.1' + url,
+              headers: {
+                'X-LC-Id': 'FKPTBi1uAoXKAYkTu5qVmYU8-gzGzoHsz',
+                'X-LC-Key': 'fSe2tiDLznbEiATi2CiqRljO',
+                'Content-Type': 'application/json',
+              },
+              data: data
+            });
+          };
+          
+            addCount(Counter);
+          
+        });
+    });
+  </script>
+
+
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+      for (i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+  overflow: auto hidden;
+}
+</style>
+
+    
+  
+
+
+  
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

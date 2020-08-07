@@ -1,0 +1,1666 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="En">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+  <meta name="google-site-verification" content="7Oev-o_nVgfEcRT4Mc9fXSxqXK0_WXFBAuBh4GdzGuM">
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="5Nq4yOLRnQ">
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.ico?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.ico?v=7.0.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="极大似然估计参考： https://www.zhihu.com/question/24124998  极大似然是对概率模型参数学习优化目标的一种定义 。 就是利用已知的样本结果信息，反推最具有可能（最大概率）导致这些样本结果出现的模型参数值 。 对于离散型的随机变量：   如果是一个连续型的随机变量  ：    想对$L(\theta)$求最值，为了便于求导，两边取对数，有：    如果方程有唯一">
+<meta name="keywords" content="NLP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="极大似然与EM算法">
+<meta property="og:url" content="https://croook.github.io/2020/08/05/极大似然与EM算法/index.html">
+<meta property="og:site_name" content="Crookshank">
+<meta property="og:description" content="极大似然估计参考： https://www.zhihu.com/question/24124998  极大似然是对概率模型参数学习优化目标的一种定义 。 就是利用已知的样本结果信息，反推最具有可能（最大概率）导致这些样本结果出现的模型参数值 。 对于离散型的随机变量：   如果是一个连续型的随机变量  ：    想对$L(\theta)$求最值，为了便于求导，两边取对数，有：    如果方程有唯一">
+<meta property="og:locale" content="En">
+<meta property="og:image" content="https://croook.github.io/2020/08/05/极大似然与EM算法/equation.svg">
+<meta property="og:image" content="https://croook.github.io/2020/08/05/极大似然与EM算法/equation-1596608492814.svg">
+<meta property="og:image" content="https://croook.github.io/2020/08/05/极大似然与EM算法/equation-1596608606746.svg">
+<meta property="og:image" content="https://croook.github.io/2020/08/05/极大似然与EM算法/image-20200805143517546.png">
+<meta property="og:image" content="https://croook.github.io/2020/08/05/极大似然与EM算法/image-20200805143642975.png">
+<meta property="og:image" content="https://croook.github.io/2020/08/05/极大似然与EM算法/image-20200805144102552.png">
+<meta property="og:image" content="https://croook.github.io/2020/08/05/极大似然与EM算法/image-20200805144131847.png">
+<meta property="og:image" content="https://croook.github.io/2020/08/05/极大似然与EM算法/equation-1596609741462.svg">
+<meta property="og:image" content="https://croook.github.io/2020/08/05/极大似然与EM算法/equation-1596609741458.svg">
+<meta property="og:image" content="https://croook.github.io/2020/08/05/极大似然与EM算法/image-20200807120606412.png">
+<meta property="og:image" content="https://croook.github.io/2020/08/05/极大似然与EM算法/image-20200807130123302.png">
+<meta property="og:image" content="https://croook.github.io/2020/08/05/极大似然与EM算法/image-20200807135613136.png">
+<meta property="og:image" content="https://croook.github.io/2020/08/05/极大似然与EM算法/image-20200807135634212.png">
+<meta property="og:image" content="https://croook.github.io/2020/08/05/极大似然与EM算法/image-20200807140140867.png">
+<meta property="og:image" content="https://croook.github.io/2020/08/05/极大似然与EM算法/image-20200807144321657.png">
+<meta property="og:image" content="https://croook.github.io/2020/08/05/极大似然与EM算法/image-20200807152036734.png">
+<meta property="og:image" content="https://croook.github.io/2020/08/05/极大似然与EM算法/20190928161343662-1596785028326.png">
+<meta property="og:image" content="https://croook.github.io/2020/08/05/极大似然与EM算法/20180711182920940.png">
+<meta property="og:updated_time" content="2020-08-07T08:16:50.655Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="极大似然与EM算法">
+<meta name="twitter:description" content="极大似然估计参考： https://www.zhihu.com/question/24124998  极大似然是对概率模型参数学习优化目标的一种定义 。 就是利用已知的样本结果信息，反推最具有可能（最大概率）导致这些样本结果出现的模型参数值 。 对于离散型的随机变量：   如果是一个连续型的随机变量  ：    想对$L(\theta)$求最值，为了便于求导，两边取对数，有：    如果方程有唯一">
+<meta name="twitter:image" content="https://croook.github.io/2020/08/05/极大似然与EM算法/equation.svg">
+
+
+
+
+
+
+  <link rel="canonical" href="https://croook.github.io/2020/08/05/极大似然与EM算法/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>极大似然与EM算法 | Crookshank</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="En">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Crookshank</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://croook.github.io/2020/08/05/极大似然与EM算法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="sh">
+      <meta itemprop="description" content="so we beat on, boats against the current, borne back ceaselessly into the past.">
+      <meta itemprop="image" content="/images/ava.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Crookshank">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">极大似然与EM算法
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2020-08-05 14:08:44" itemprop="dateCreated datePublished" datetime="2020-08-05T14:08:44+08:00">2020-08-05</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2020-08-07 16:16:50" itemprop="dateModified" datetime="2020-08-07T16:16:50+08:00">2020-08-07</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/AI/NLP/" itemprop="url" rel="index"><span itemprop="name">NLP</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+            <span id="/2020/08/05/极大似然与EM算法/" class="leancloud_visitors" data-flag-title="极大似然与EM算法">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Views: </span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="极大似然估计"><a href="#极大似然估计" class="headerlink" title="极大似然估计"></a>极大似然估计</h1><p>参考： <a href="https://www.zhihu.com/question/24124998" target="_blank" rel="noopener">https://www.zhihu.com/question/24124998</a> </p>
+<p>极大似然是对概率模型参数学习优化目标的一种定义 。 <strong>就是利用已知的样本结果信息，反推最具有可能（最大概率）导致这些样本结果出现的模型参数值</strong> 。</p>
+<p>对于离散型的随机变量：</p>
+<p> <img src="/2020/08/05/极大似然与EM算法/equation.svg" alt="[公式]"></p>
+<p>如果是一个连续型的随机变量  ：</p>
+<p> <img src="/2020/08/05/极大似然与EM算法/equation-1596608492814.svg" alt="[公式]"> </p>
+<p>想对$L(\theta)$求最值，为了便于求导，两边取对数，有：</p>
+<p> <img src="/2020/08/05/极大似然与EM算法/equation-1596608606746.svg" alt="[公式]"> </p>
+<p>如果方程有唯一解，且是极大值点，那么我们就求得了极大似然估计值。 </p>
+<h2 id="例子1：抛硬币"><a href="#例子1：抛硬币" class="headerlink" title="例子1：抛硬币"></a>例子1：抛硬币</h2><p><img src="/2020/08/05/极大似然与EM算法/image-20200805143517546.png" alt="image-20200805143517546"></p>
+<h2 id="例子2：单参数"><a href="#例子2：单参数" class="headerlink" title="例子2：单参数"></a>例子2：单参数</h2><p><img src="/2020/08/05/极大似然与EM算法/image-20200805143642975.png" alt="image-20200805143642975"></p>
+<h2 id="例子3：多参数"><a href="#例子3：多参数" class="headerlink" title="例子3：多参数"></a>例子3：多参数</h2><p><img src="/2020/08/05/极大似然与EM算法/image-20200805144102552.png" alt="image-20200805144102552"></p>
+<p><img src="/2020/08/05/极大似然与EM算法/image-20200805144131847.png" alt="image-20200805144131847"></p>
+<p>总体方差的极大似然估计值的分母是 <img src="/2020/08/05/极大似然与EM算法/equation-1596609741462.svg" alt="[公式]"> 而不是 <img src="/2020/08/05/极大似然与EM算法/equation-1596609741458.svg" alt="[公式]"> ，因此他不是一个无偏估计量。但是可以说他是渐近无偏的 </p>
+<h1 id="EM算法"><a href="#EM算法" class="headerlink" title="EM算法"></a>EM算法</h1><p>参考： <a href="https://blog.csdn.net/wsp_1138886114/article/details/81002550" target="_blank" rel="noopener">https://blog.csdn.net/wsp_1138886114/article/details/81002550</a> </p>
+<p>参考： <a href="https://www.cnblogs.com/jerrylead/archive/2011/04/06/2006936.html" target="_blank" rel="noopener">https://www.cnblogs.com/jerrylead/archive/2011/04/06/2006936.html</a> </p>
+<p>EM算法是用于求解极大似然估计的一种迭代逼近的算法 。</p>
+<h2 id="Jensen不等式"><a href="#Jensen不等式" class="headerlink" title="Jensen不等式"></a>Jensen不等式</h2><p><img src="/2020/08/05/极大似然与EM算法/image-20200807120606412.png" alt="image-20200807120606412" style="zoom:67%;">、</p>
+<p>设f是定义域为实数的函数，如果对于所有的实数x， $f^{‘’}(x)\geqslant 0$ 那么f是凸函数，如果$f^{‘’}(x)&gt; 0$ 那么f是严格凸函数。</p>
+<p>jensen不等式： 如果f是凸函数，X是随机变量，那么 $E[f(x)]\geqslant f[E(x)]$，特别的，如果f是严格凸函数，那么当且仅当$p(x=E[x])=1$时（X为常量），取得 $E[f(x)]= f[E(x)]$</p>
+<h2 id="lazy-Statistician规则"><a href="#lazy-Statistician规则" class="headerlink" title="lazy Statistician规则"></a>lazy Statistician规则</h2><p>设 y 是随机变量 x 的函数，$y=g(x)(g是连续函数)$，那么：</p>
+<p>(1) x 是<strong>离散随机变量</strong>，分布为$p(x=x<em>k)=p_k,k∈N∗$,若$∑^∞</em>{k=1} g(x) p_k$绝对收敛，则</p>
+<script type="math/tex; mode=display">
+E(y)=E|g(x)|=∑^∞_{k=1}g(x_k)p_k</script><p> (2) x 是<strong>连续随机变量</strong>，分布概率为$f(x)$,若$∫^∞_{−∞}g(x)f(x)dx$ 绝对收敛，则</p>
+<script type="math/tex; mode=display">
+E(y)=E|g(x)|=∫^∞_{−∞}g(x)f(x)dx</script><h2 id="EM公式推导"><a href="#EM公式推导" class="headerlink" title="EM公式推导"></a>EM公式推导</h2><p>假设我们有一个样本集${x(1),…,x(m)}$，包含m个独立的样本。但每个样本i对应的类别z(i)是未知的，也即隐含变量。故我们需要估计概率模型$p(x,z)$的参数$θ$，但是由于里面包含隐含变量z，所以很难用最大似然求解。</p>
+<p>思路是既然不能直接最大化$L(\theta)$，我们可以不断地建立$L(\theta)$的下界（E步），然后优化下界，得到新参数$\theta$（M步） </p>
+<p><img src="/2020/08/05/极大似然与EM算法/image-20200807130123302.png" alt="image-20200807130123302" style="zoom:80%;"></p>
+<p>（1）对每个样例的每个可能类别z求联合分布概率和，由于”和的对数“求导困难（ log(f1(x)+ f2(x)+ f3(x)+··· 复合函数求导），因此进行化简。  对于每一个样例i，让$Q_t$ 表示该样例隐含变量z的某种分布， $Q_t$满足的条件是$\sum_zQ_i(z)=1，Q_i(z)\geqslant 0$，如果z是连续的，那么$Q_t$是概率密度函数，将求和号换成积分号。</p>
+<p>对于公式（3），由于$log(x)$是凹函数，且</p>
+<p><img src="/2020/08/05/极大似然与EM算法/image-20200807135613136.png" alt="image-20200807135613136" style="zoom:50%;"></p>
+<p>是<img src="/2020/08/05/极大似然与EM算法/image-20200807135634212.png" alt="image-20200807135634212" style="zoom:50%;">的期望，根据Jensen不等式，对于凹函数有：</p>
+<p>  <img src="/2020/08/05/极大似然与EM算法/image-20200807140140867.png" alt="image-20200807140140867" style="zoom:50%;"></p>
+<p>这个过程可以看作对$L(\theta)$求下界，固定$\theta$，那么$L(\theta)$的值就取决于$Q_i(z^{(i)})$和$p(x^{(i)},z^{(i)};\theta)$ 。我们可以通过调整这两个概率使下界不断上升，以逼近$L(θ)$的真实值，那么什么时候算是调整好了呢？当不等式变成等式时，说明我们调整后的概率都能够等价于$L(θ)$了。按照这个思路，我们要找到等式成立的条件。根据Jensen不等式，要想让等式成立，需要让随机变量变成常数值，这里得到 </p>
+<script type="math/tex; mode=display">
+\frac {p(x^{(i)},z^{(i)};θ)}{Q_i(z^{(i)})}=C</script><p>C为常数，不依赖于$z^{(i)}$，由于$\sum_zQ_i(z)=1$，分子分母同时求和（认为每个比值都是C，这样分子分母同时求和结果不变），于是得到$\sum_z p(x^{(i)},z^{(i)};\theta)=C$​，则</p>
+<p><img src="/2020/08/05/极大似然与EM算法/image-20200807144321657.png" alt="image-20200807144321657" style="zoom: 67%;"></p>
+<p>之前说$L(\theta)$的值取决于$Q_i(z^{(i)})$和$p(x^{(i)},z^{(i)};\theta)$，但我们为了取到等号，让两者的比值等于常数，也就是说$Q_i(z^{(i)})$和$p(x^{(i)},z^{(i)};\theta)$其实是同比例变化的。</p>
+<p>至此，我们推出了在固定参数$θ$后，使下界拉升的$Q(z)$的计算公式就是后验概率，解决了$Q(z)$如何选择的问题。这一步就是E步，建立$L(θ)$的下界。接下来的M步，就是在给定$Q(z)$后，调整$θ$，去极大化$L(θ)$的下界J（在固定$Q(z)$后，下界还可以调整的更大）。那么一般的EM算法的步骤如下： </p>
+<ul>
+<li>在 E-step：固定$\theta$，找到对于当前参数 $θ$使不等式成立的 $Q$分布，使得下界$J(Z,Q)$不断上升，直到与$L(θ)$在$θ$点重合。</li>
+<li>在 M-step：固定$Q(z)$，对似然函数下界进行极大似然估计，找到$J(Z,θ)$的极大值，得到新的参数</li>
+</ul>
+<p>形式化表示为：</p>
+<ul>
+<li><strong>E-step</strong>        $Q_i(z^{(i)})=p(z^{(i)}∣x^{(i)};θ) $</li>
+<li><strong>M-step</strong>       $θ=\arg \max<em>\theta{∑^n</em>{i=1}∑_{z^{(i)}}Qi(z^{(i)})log\frac {p(x^{(i)}),z^{(i)};θ)}{Qi(z^{(i)})}} $</li>
+</ul>
+<p>由于$L(\theta)$会单调增加。因此EM算法收敛。</p>
+<p>证明：<a href="https://www.cnblogs.com/jerrylead/archive/2011/04/06/2006936.html" target="_blank" rel="noopener">收敛证明</a></p>
+<h2 id="直线式迭代优化"><a href="#直线式迭代优化" class="headerlink" title="直线式迭代优化"></a>直线式迭代优化</h2><p>每一步都会向最优值前进一步，而且前进路线是平行于坐标轴的，因为每一步只优化一个变量。这犹如在x-y坐标系中找一个曲线的极值，然而曲线函数不能直接求导，因此梯度下降方法不适用。</p>
+<p>但固定一个变量后，另外一个可以通过求导得到，因此可以使用坐标上升法，一次固定一个变量，对另外的求极值，最后逐步逼近极值。<br>对应到EM上， <strong>E步</strong>：固定θ，优化Q；<strong>M步</strong>：固定Q，优化θ；交替将极值推向最大。 </p>
+<p><img src="/2020/08/05/极大似然与EM算法/image-20200807152036734.png" alt="image-20200807152036734" style="zoom:50%;"></p>
+<p> <img src="/2020/08/05/极大似然与EM算法/20190928161343662-1596785028326.png" alt="在这里插入图片描述" style="zoom:80%;"> </p>
+<h2 id="EM算法实例"><a href="#EM算法实例" class="headerlink" title="EM算法实例"></a>EM算法实例</h2><p> ● 假设现在有两枚硬币1和2,随机抛掷后正面朝上概率分别为$P_1、P_2$。为了估计这两个概率，每次取一枚硬币，连掷5下，记录下结果，如下</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th><strong>表一（实验数据）</strong></th>
+<th></th>
+<th></th>
+<th></th>
+<th>表二（测试数据）</th>
+<th style="text-align:center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>硬币</strong></td>
+<td><strong>结果</strong></td>
+<td><strong>统计</strong></td>
+<td></td>
+<td><strong>硬币</strong></td>
+<td><strong>结果</strong></td>
+<td style="text-align:center"><strong>统计</strong></td>
+</tr>
+<tr>
+<td>1</td>
+<td>正正反正反</td>
+<td>3正-2反</td>
+<td></td>
+<td>UnKnow</td>
+<td>正正反正反</td>
+<td style="text-align:center">3正-2反</td>
+</tr>
+<tr>
+<td>2</td>
+<td>反反正正反</td>
+<td>2正-3反</td>
+<td></td>
+<td>UnKnow</td>
+<td>反反正正反</td>
+<td style="text-align:center">2正-3反</td>
+</tr>
+<tr>
+<td>1</td>
+<td>正反反反反</td>
+<td>1正-4反</td>
+<td></td>
+<td>UnKnow</td>
+<td>正反反反反</td>
+<td style="text-align:center">1正-4反</td>
+</tr>
+<tr>
+<td>2</td>
+<td>正反反正正</td>
+<td>3正-2反</td>
+<td></td>
+<td>UnKnow</td>
+<td>正反反正正</td>
+<td style="text-align:center">3正-2反</td>
+</tr>
+<tr>
+<td>1</td>
+<td>反正正反反</td>
+<td>2正-3反</td>
+<td></td>
+<td>UnKnow</td>
+<td>反正正反反</td>
+<td style="text-align:center">2正-3反</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>表一：可以很容易地估计出P1和P2，如下：<br>P1 = （3+1+2）/ 15 = 0.4<br>P2= （2+3）/10 = 0.5 </p>
+<p> ● 现在我们抹去每轮投掷时使用的硬币标记，如上右表（表二（测试数据））。 </p>
+<p>目标没变，还是估计P1和P2:</p>
+<p>此时多了一个隐变量z，可以把它认为是一个5维的向量（z1,z2,z3,z4,z5)，<br>代表每次投掷时所使用的硬币，比如z1，就代表第一轮投掷时使用的硬币是1还是2。<br>但是，这个变量z不知道，就无法去估计P1和P2。</p>
+<p>我们可以先随机初始化一个P1和P2，用它来估计z，然后基于z，还是按照最大似然概率法则去估计新的P1和P2<br>当与我们初始化的P1和P2一样时，说明是P1和P2很有可能就是真实的值。这里面包含了两个交互的最大似然估计。（参数$\theta$在这里就是需要求解的P1、P2）</p>
+<h3 id="计算过程"><a href="#计算过程" class="headerlink" title="计算过程"></a>计算过程</h3><p><strong>当假设P1 = 0.2，P2 = 0.8时： （看看第一轮抛掷最可能是哪个硬币。）</strong> </p>
+<p>如果是硬币1，得出3正2反的概率为：<br>0.2×0.2×0.2×0.8×0.8= 0.00512<br>如果是硬币2，得出3正2反的概率为：<br>0.8×0.8×0.8×0.2×0.2=0.03087<br>依次求出其他4轮中的相应概率。（如：表三） </p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th><strong>按照最大似然法则：（表三）</strong></th>
+<th><strong>轮数</strong></th>
+<th><strong>若是硬币1</strong></th>
+<th><strong>若是硬币2</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>第1轮中最有可能的是硬币2</td>
+<td>1</td>
+<td>0.00512</td>
+<td><strong>0.03087</strong></td>
+</tr>
+<tr>
+<td>第2轮中最有可能的是硬币1</td>
+<td>2</td>
+<td><strong>0.02048</strong></td>
+<td>0.01323</td>
+</tr>
+<tr>
+<td>第3轮中最有可能的是硬币1</td>
+<td>3</td>
+<td><strong>0.08192</strong></td>
+<td>0.00567</td>
+</tr>
+<tr>
+<td>第4轮中最有可能的是硬币2</td>
+<td>4</td>
+<td>0.00512</td>
+<td><strong>0.02048</strong></td>
+</tr>
+<tr>
+<td>第5轮中最有可能的是硬币1</td>
+<td>5</td>
+<td><strong>0.02048</strong></td>
+<td>0.01323</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>我们就把上面的值作为z的估计值。</strong></p>
+<p>然后按照最大似然概率法则来估计新的P1和P2。（由表三，查到 表二的正反数据计算P值） </p>
+<p>P1 = （2+1+2）/15 = 0.33 </p>
+<p>P2=（3+3）/10 = 0.6 </p>
+<p>将算的的P1P2反复迭代：</p>
+<p>设想我们知道每轮抛掷时的硬币就是如标示的那样，那么，P1和P2的最大似然估计就是0.4和0.5 （下文中将这两个值称为P1和P2的真实值）。那么对比下我们初始化的P1和P2和新估计出的P1和P2：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>初始化P1</th>
+<th>估计出P1</th>
+<th>真实的P1</th>
+<th></th>
+<th>初始化P2</th>
+<th>估计出P2</th>
+<th>真实的P2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0.2</td>
+<td>0.33</td>
+<td>0.4</td>
+<td></td>
+<td>0.8</td>
+<td>0.6</td>
+<td>0.5</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h3><p>新估计出的 P1和P2 一定会更接近真实的 P1和P2<br>迭代不一定会收敛到真实的P1和P2。取决于P1和P2的初始化值。 </p>
+<p><strong>用期望来简化运算</strong> </p>
+<p>再次利用表三：我们可以算出每轮抛掷中使用硬币1或者使用硬币2的概率。</p>
+<p>比如第1轮，使用硬币1的概率是：0.00512/(0.00512+0.03087)=0.14<br>使用硬币2的概率是：1-0.14=0.86</p>
+<p>我们按照期望最大似然概率的法则来估计新的P1和P2：<br>以P1估计为例，（表二）第1轮的3正2反相当于<br>0.14*3=0.42正<br>0.14*2=0.28反<br>依次算出其他四轮，表四如下：new_P1=4.22/(4.22+7.98)=0.35</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>轮数</th>
+<th>正面</th>
+<th>反面</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>0.42</td>
+<td>0.28</td>
+</tr>
+<tr>
+<td>2</td>
+<td>1.22</td>
+<td>1.83</td>
+</tr>
+<tr>
+<td>3</td>
+<td>0.94</td>
+<td>3.76</td>
+</tr>
+<tr>
+<td>4</td>
+<td>0.42</td>
+<td>0.28</td>
+</tr>
+<tr>
+<td>5</td>
+<td>1.22</td>
+<td>1.83</td>
+</tr>
+<tr>
+<td>总计</td>
+<td>4.22</td>
+<td>7.98</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>可以看到，改变了z值的估计方法后，新估计出的P1要更加接近0.4。原因就是我们使用了所有抛掷的数据，而不是之前只使用了部分的数据。我们根据E步中求出的z的概率分布，依据最大似然概率法则去估计P1和P2，被称作M步。 </p>
+<p> <img src="/2020/08/05/极大似然与EM算法/20180711182920940.png" alt="这里写图片描述"> </p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/NLP/" rel="tag"># NLP</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/08/04/NLP三/" rel="next" title="NLP三">
+                <i class="fa fa-chevron-left"></i> NLP三
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/ava.jpg" alt="sh">
+            
+              <p class="site-author-name" itemprop="name">sh</p>
+              <p class="site-description motion-element" itemprop="description">so we beat on, boats against the current, borne back ceaselessly into the past.</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">28</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/croook" title="GitHub &rarr; https://github.com/croook" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:sh5672186@sina.com" title="E-Mail &rarr; mailto:sh5672186@sina.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#极大似然估计"><span class="nav-number">1.</span> <span class="nav-text">极大似然估计</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#例子1：抛硬币"><span class="nav-number">1.1.</span> <span class="nav-text">例子1：抛硬币</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#例子2：单参数"><span class="nav-number">1.2.</span> <span class="nav-text">例子2：单参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#例子3：多参数"><span class="nav-number">1.3.</span> <span class="nav-text">例子3：多参数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#EM算法"><span class="nav-number">2.</span> <span class="nav-text">EM算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Jensen不等式"><span class="nav-number">2.1.</span> <span class="nav-text">Jensen不等式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lazy-Statistician规则"><span class="nav-number">2.2.</span> <span class="nav-text">lazy Statistician规则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#EM公式推导"><span class="nav-number">2.3.</span> <span class="nav-text">EM公式推导</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#直线式迭代优化"><span class="nav-number">2.4.</span> <span class="nav-text">直线式迭代优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#EM算法实例"><span class="nav-number">2.5.</span> <span class="nav-text">EM算法实例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#计算过程"><span class="nav-number">2.5.1.</span> <span class="nav-text">计算过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优化"><span class="nav-number">2.5.2.</span> <span class="nav-text">优化</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">sh</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.0</div>
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.0"></script>
+
+  <script src="/js/src/motion.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/js/src/post-details.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+  
+  <script>
+    
+    function addCount(Counter) {
+      var $visitors = $('.leancloud_visitors');
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            
+            Counter('put', '/classes/Counter/' + counter.objectId, JSON.stringify({ time: { '__op': 'Increment', 'amount': 1 } }))
+            
+              .done(function() {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.time + 1);
+              })
+            
+              .fail(function ({ responseJSON }) {
+                console.log(`Failed to save Visitor num, with error message: ${responseJSON.error}`);
+              })
+          } else {
+            
+              Counter('post', '/classes/Counter', JSON.stringify({ title: title, url: url, time: 1 }))
+                .done(function() {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(1);
+                })
+                .fail(function() {
+                  console.log('Failed to create');
+                });
+            
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log(`LeanCloud Counter Error: ${responseJSON.code} ${responseJSON.error}`);
+        });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + 'FKPTBi1uAoXKAYkTu5qVmYU8-gzGzoHsz')
+        .done(function({ api_server }) {
+          var Counter = function(method, url, data) {
+            return $.ajax({
+              method: method,
+              url: 'https://' + api_server + '/1.1' + url,
+              headers: {
+                'X-LC-Id': 'FKPTBi1uAoXKAYkTu5qVmYU8-gzGzoHsz',
+                'X-LC-Key': 'fSe2tiDLznbEiATi2CiqRljO',
+                'Content-Type': 'application/json',
+              },
+              data: data
+            });
+          };
+          
+            addCount(Counter);
+          
+        });
+    });
+  </script>
+
+
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+      for (i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+  overflow: auto hidden;
+}
+</style>
+
+    
+  
+
+
+  
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

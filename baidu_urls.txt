@@ -1,4 +1,6 @@
-https://croook.github.io/2020/08/03/image-caption一/
+https://croook.github.io/2020/08/05/极大似然与EM算法/
+https://croook.github.io/2020/08/04/NLP三/
+https://croook.github.io/2020/08/03/NLP二/
 https://croook.github.io/2020/08/02/NLP一/
 https://croook.github.io/2020/04/08/线性代数、概率论/
 https://croook.github.io/2020/03/09/GAN/

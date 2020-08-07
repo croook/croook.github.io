@@ -355,7 +355,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://croook.github.io/2020/08/03/image-caption一/">
+    <link itemprop="mainEntityOfPage" href="https://croook.github.io/2020/08/05/极大似然与EM算法/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="sh">
@@ -375,7 +375,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2020/08/03/image-caption一/" class="post-title-link" itemprop="url">image-caption一</a>
+                <a href="/2020/08/05/极大似然与EM算法/" class="post-title-link" itemprop="url">极大似然与EM算法</a>
               
             
           </h1>
@@ -400,12 +400,24 @@
                 
               
 
-              <time title="Created: 2020-08-03 10:44:01 / Modified: 21:55:22" itemprop="dateCreated datePublished" datetime="2020-08-03T10:44:01+08:00">2020-08-03</time>
+              <time title="Created: 2020-08-05 14:08:44" itemprop="dateCreated datePublished" datetime="2020-08-05T14:08:44+08:00">2020-08-05</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2020-08-07 16:16:50" itemprop="dateModified" datetime="2020-08-07T16:16:50+08:00">2020-08-07</time>
               
             
           </span>
@@ -429,7 +441,7 @@
                   , 
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/AI/image-caption/" itemprop="url" rel="index"><span itemprop="name">image caption</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/AI/NLP/" itemprop="url" rel="index"><span itemprop="name">NLP</span></a></span>
 
                 
                 
@@ -444,7 +456,438 @@
 
           
           
-            <span id="/2020/08/03/image-caption一/" class="leancloud_visitors" data-flag-title="image-caption一">
+            <span id="/2020/08/05/极大似然与EM算法/" class="leancloud_visitors" data-flag-title="极大似然与EM算法">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Views: </span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>
+              极大似然估计参考： https://www.zhihu.com/question/24124998 
+极大似然是对概率模型参数学习优化目标的一种定义 。 就是利用已知的样本结果信息，反推最具有可能（最大概率）导致这些样本结果出现的模型参数值 。
+对于离散型的随机变量：
+ 
+如果是一个连续型的随机变量  ：
+  
+想对$L(\theta)$求最值，为了便于求导，两边取对数，有：
+  
+如果方程有唯一解，且是极大值点，那么我们就求得了极大似然估计值。 
+例子1：抛硬币
+例子2：单参数
+例子3：多参数
+
+总体方差的极大似然估计值的分母是  而不是  ，因此他不是一个无偏估计量。但是可以说他是渐近无偏
+              ...
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2020/08/05/极大似然与EM算法/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://croook.github.io/2020/08/04/NLP三/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="sh">
+      <meta itemprop="description" content="so we beat on, boats against the current, borne back ceaselessly into the past.">
+      <meta itemprop="image" content="/images/ava.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Crookshank">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/08/04/NLP三/" class="post-title-link" itemprop="url">NLP三</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2020-08-04 15:01:33" itemprop="dateCreated datePublished" datetime="2020-08-04T15:01:33+08:00">2020-08-04</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2020-08-05 14:08:11" itemprop="dateModified" datetime="2020-08-05T14:08:11+08:00">2020-08-05</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/AI/NLP/" itemprop="url" rel="index"><span itemprop="name">NLP</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+            <span id="/2020/08/04/NLP三/" class="leancloud_visitors" data-flag-title="NLP三">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Views: </span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>
+              马尔可夫链每个状态的转移只依赖于之前的n个状态。最简单的马尔可夫过程是一阶过程，即每一个状态的转移只依赖于之前的那一个状态。
+
+明天的概率分布为
+
+(1,0)*\begin{pmatrix}
+0.9 & 0.1 \\
+0.5 & 0.5 
+\end{pmatrix}=(0.9,0.1)后天的概率分布为继续乘上转移矩阵，最后概率趋于稳定，得到稳态分布。
+
+我们为上面的一阶马尔可夫过程定义了以下三个部分：
+
+状态：晴天、阴天
+初始向量：系统在时间为0的时候状态的分布概率，如（1，0）
+状态转移矩阵：每种状态转移的概率
+
+所有能被这样描述的系统都是一个马尔可夫过程。
+隐马尔可夫模型（HMM）隐马尔可
+              ...
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2020/08/04/NLP三/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://croook.github.io/2020/08/03/NLP二/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="sh">
+      <meta itemprop="description" content="so we beat on, boats against the current, borne back ceaselessly into the past.">
+      <meta itemprop="image" content="/images/ava.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Crookshank">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/08/03/NLP二/" class="post-title-link" itemprop="url">NLP二</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2020-08-03 10:44:01" itemprop="dateCreated datePublished" datetime="2020-08-03T10:44:01+08:00">2020-08-03</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2020-08-05 14:07:58" itemprop="dateModified" datetime="2020-08-05T14:07:58+08:00">2020-08-05</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/AI/NLP/" itemprop="url" rel="index"><span itemprop="name">NLP</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+            <span id="/2020/08/03/NLP二/" class="leancloud_visitors" data-flag-title="NLP二">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -487,7 +930,7 @@ Visual Attention注意力包括软注意力(soft attention)和强注意力
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2020/08/03/image-caption一/#more" rel="contents">
+              <a class="btn" href="/2020/08/03/NLP二/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -609,7 +1052,7 @@ Visual Attention注意力包括软注意力(soft attention)和强注意力
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2020-08-03 22:04:00" itemprop="dateModified" datetime="2020-08-03T22:04:00+08:00">2020-08-03</time>
+                <time title="Modified: 2020-08-05 14:05:36" itemprop="dateModified" datetime="2020-08-05T14:05:36+08:00">2020-08-05</time>
               
             
           </span>
@@ -1990,395 +2433,6 @@ import tensorflow.compat.v1 as tftf.disable_v2_behavior()vec_1 = tf.constant([1
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://croook.github.io/2020/01/01/HBase/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="sh">
-      <meta itemprop="description" content="so we beat on, boats against the current, borne back ceaselessly into the past.">
-      <meta itemprop="image" content="/images/ava.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Crookshank">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2020/01/01/HBase/" class="post-title-link" itemprop="url">HBase</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2020-01-01 19:53:28" itemprop="dateCreated datePublished" datetime="2020-01-01T19:53:28+08:00">2020-01-01</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2020-02-05 14:32:42" itemprop="dateModified" datetime="2020-02-05T14:32:42+08:00">2020-02-05</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/云计算/" itemprop="url" rel="index"><span itemprop="name">云计算</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-            <span id="/2020/01/01/HBase/" class="leancloud_visitors" data-flag-title="HBase">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Views: </span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>
-              HBase安装hbase下载wget https://archive.apache.org/dist/hbase/2.0.0-alpha4/hbase-2.0.0-alpha4-bin.tar.gz
-安装后解压到/opt/hbase文件夹
-配置环境变量修改~/.bashrc文件，添加以下代码
-export HBASE_HOME=/opt/hbase export PATH=$PATH:$HBASE_HOME/bin
-立即生效，source ~/.bashrc
-修改配置文件修改以下内容，/opt/hbase/conf/hbase-env.sh
-export HBASE_MANAGES_ZK=tr
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2020/01/01/HBase/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://croook.github.io/2020/01/01/MapReduce/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="sh">
-      <meta itemprop="description" content="so we beat on, boats against the current, borne back ceaselessly into the past.">
-      <meta itemprop="image" content="/images/ava.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Crookshank">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2020/01/01/MapReduce/" class="post-title-link" itemprop="url">MapReduce</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2020-01-01 19:50:04 / Modified: 19:58:04" itemprop="dateCreated datePublished" datetime="2020-01-01T19:50:04+08:00">2020-01-01</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/云计算/" itemprop="url" rel="index"><span itemprop="name">云计算</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-            <span id="/2020/01/01/MapReduce/" class="leancloud_visitors" data-flag-title="MapReduce">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Views: </span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>
-              MapReduce的编程方法与实践MapReduce框架
-MapReduce将复杂的，运行大规模集群上的并行计算过程高度地抽象两个函数：Map和Reduce 
-
-MapReduce采用“分而治之”策略，将一个分布式文件系统中的大规模数据集，分成许多独立的分片。这些分片可以被多个Map任务并行处理。
-
-MapReduce设计的一个理念就是“计算向数据靠拢”，而不是“数据向计算靠拢”，原因是，移动数据需要大量的网络传输开销
-
-MapReduce框架采用了Master/Slave架构，包括一个Master和若干个Slave，Master上运行JobTracker，Slave运行TaskTracker
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2020/01/01/MapReduce/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2428,7 +2482,7 @@ MapReduce框架采用了Master/Slave架构，包括一个Master和若干个Slave
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">26</span>
+                    <span class="site-state-item-count">28</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -2455,13 +2509,7 @@ MapReduce框架采用了Master/Slave架构，包括一个Master和若干个Slave
                     
                       
                     
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">categories</span>
                   </a>
                 </div>
@@ -2473,8 +2521,6 @@ MapReduce框架采用了Master/Slave架构，包括一个Master和若干个Slave
                 <div class="site-state-item site-state-tags">
                   <a href="/tags/index.html">
                     
-                    
-                      
                     
                       
                     
