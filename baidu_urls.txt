@@ -1,3 +1,5 @@
+https://croook.github.io/2020/10/12/目标检测二/
+https://croook.github.io/2020/10/11/目标检测一/
 https://croook.github.io/2020/08/05/极大似然与EM算法/
 https://croook.github.io/2020/08/04/NLP三/
 https://croook.github.io/2020/08/03/NLP二/

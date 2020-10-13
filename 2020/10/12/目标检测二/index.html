@@ -1,0 +1,1488 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="En">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+  <meta name="google-site-verification" content="7Oev-o_nVgfEcRT4Mc9fXSxqXK0_WXFBAuBh4GdzGuM">
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="5Nq4yOLRnQ">
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.ico?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.ico?v=7.0.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="目标检测二R-CNN论文： 《Rich feature hierarchies for accurate oject detection and semantic segmentation》  项目地址：https://github.com/rbgirshick/rcnn    R-CNN概括起来就是selective search+CNN+L-SVM的检测器   用selective searc">
+<meta name="keywords" content="AI,CV">
+<meta property="og:type" content="article">
+<meta property="og:title" content="目标检测二">
+<meta property="og:url" content="https://croook.github.io/2020/10/12/目标检测二/index.html">
+<meta property="og:site_name" content="Crookshank">
+<meta property="og:description" content="目标检测二R-CNN论文： 《Rich feature hierarchies for accurate oject detection and semantic segmentation》  项目地址：https://github.com/rbgirshick/rcnn    R-CNN概括起来就是selective search+CNN+L-SVM的检测器   用selective searc">
+<meta property="og:locale" content="En">
+<meta property="og:image" content="https://croook.github.io/2020/10/12/目标检测二/owzgVal.png">
+<meta property="og:image" content="https://croook.github.io/2020/10/12/目标检测二/20190227094134367.png">
+<meta property="og:image" content="https://croook.github.io/2020/10/12/目标检测二/20190522155757536.png">
+<meta property="og:image" content="https://croook.github.io/2020/10/12/目标检测二/20190522160859372.png">
+<meta property="og:image" content="https://croook.github.io/2020/10/12/目标检测二/20190522160808326.png">
+<meta property="og:image" content="https://croook.github.io/2020/10/12/目标检测二/20190227100825864.png">
+<meta property="og:image" content="https://croook.github.io/2020/10/12/目标检测二/20170618164303201-1602591555802.png">
+<meta property="og:image" content="https://croook.github.io/2020/10/12/目标检测二/20190227102249944.png">
+<meta property="og:image" content="https://croook.github.io/2020/10/12/目标检测二/20170618165250909.png">
+<meta property="og:updated_time" content="2020-10-13T13:21:48.221Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="目标检测二">
+<meta name="twitter:description" content="目标检测二R-CNN论文： 《Rich feature hierarchies for accurate oject detection and semantic segmentation》  项目地址：https://github.com/rbgirshick/rcnn    R-CNN概括起来就是selective search+CNN+L-SVM的检测器   用selective searc">
+<meta name="twitter:image" content="https://croook.github.io/2020/10/12/目标检测二/owzgVal.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://croook.github.io/2020/10/12/目标检测二/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>目标检测二 | Crookshank</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="En">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Crookshank</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://croook.github.io/2020/10/12/目标检测二/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="sh">
+      <meta itemprop="description" content="so we beat on, boats against the current, borne back ceaselessly into the past.">
+      <meta itemprop="image" content="/images/ava.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Crookshank">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">目标检测二
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2020-10-12 21:30:17" itemprop="dateCreated datePublished" datetime="2020-10-12T21:30:17+08:00">2020-10-12</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2020-10-13 21:21:48" itemprop="dateModified" datetime="2020-10-13T21:21:48+08:00">2020-10-13</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/AI/CV/" itemprop="url" rel="index"><span itemprop="name">CV</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/AI/CV/目标检测二/" itemprop="url" rel="index"><span itemprop="name">目标检测二</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+            <span id="/2020/10/12/目标检测二/" class="leancloud_visitors" data-flag-title="目标检测二">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Views: </span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="目标检测二"><a href="#目标检测二" class="headerlink" title="目标检测二"></a>目标检测二</h1><h2 id="R-CNN"><a href="#R-CNN" class="headerlink" title="R-CNN"></a>R-CNN</h2><p>论文： 《Rich feature hierarchies for accurate oject detection and semantic segmentation》 </p>
+<p>项目地址：<a href="https://github.com/rbgirshick/rcnn" target="_blank" rel="noopener">https://github.com/rbgirshick/rcnn</a></p>
+<p> <img src="/2020/10/12/目标检测二/owzgVal.png" alt="img"></p>
+<p> R-CNN概括起来就是selective search+CNN+L-SVM的检测器 </p>
+<ul>
+<li>用selective search代替传统的滑动窗口，提取出2k个候选region proposal</li>
+<li>对于每个region，用摘掉了最后一层softmax层的AlexNet来提取特征</li>
+<li>训练出来K个L-SVM作为分类器(每个目标类一个SVM分类器，K目标类个数)，使用AlexNet提取出来的特征作为输出，得到每个region属于某一类的得分</li>
+<li>最后对每个类别用NMS(non-maximum-suppression)来舍弃掉一部分region，得到detection的结果(对得到的结果做针对boundingbox回归，用来修正预测的boundingbox的位置)</li>
+</ul>
+<h3 id="迁移学习"><a href="#迁移学习" class="headerlink" title="迁移学习"></a>迁移学习</h3><p>采用在 ImageNet （ ImageNet ILSVC 2012 ， 一千万图像，1000类 ）上已经训练好的模型，然后在 PASCAL VOC （ PASCAL VOC 2007 ， 一万图像，20类 ）数据集上进行 fine-tune。</p>
+<p>因为 ImageNet 的图像高达几百万张，利用卷积神经网络充分学习浅层的特征，然后在小规模数据集做规模化训练，从而可以达到好的效果。 这里在 ImageNet 上训练的是模型识别物体类型的能力，而不是预测 bbox 位置的能力 </p>
+<h3 id="特征提取"><a href="#特征提取" class="headerlink" title="特征提取"></a>特征提取</h3><p>R-CNN 抽取了一个 4096 维的特征向量，采用的是 Alexnet，基于 Caffe 进行代码开发，之后送入4096-&gt;1000的全连接层进行分类，学习率0.01。</p>
+<p>需要注意的是 Alextnet 的输入图像大小是 227x227。</p>
+<p>而通过 Selective Search 产生的候选区域大小不一，为了与 Alexnet 兼容，R-CNN 采用了非常暴力的手段，那就是无视候选区域的大小和形状，统一变换到 227*227 的尺寸。</p>
+<p>有一个细节，在对 Region 进行变换的时候，首先对这些区域进行膨胀处理，在其 box 周围附加了 p 个像素，也就是人为添加了边框，在这里 p=16。</p>
+<h3 id="调优训练"><a href="#调优训练" class="headerlink" title="调优训练"></a>调优训练</h3><p>同样使用上述网络，最后一层换成4096-&gt;21的全连接网络。<br>学习率0.001，每一个batch包含32个正样本（属于20类）和96个背景（主要由于正样本过少）。</p>
+<p>使用PASCAL VOC 2007的训练集，输入一张图片，输出21维的类别标号，表示20类+背景。<br>考察一个候选框和当前图像上所有标定框重叠面积最大的一个。如果重叠比例大于0.5，则认为此候选框为此标定的类别；否则认为此候选框为背景。 </p>
+<h3 id="分类器"><a href="#分类器" class="headerlink" title="分类器"></a>分类器</h3><p>对每一类目标，使用一个线性SVM二类分类器进行判别。输入为深度网络输出的4096维特征，输出是否属于此类。<br>由于负样本很多，使用hard negative mining方法。<br>正样本 ：本类的真值标定框。<br>负样本 ：考察每一个候选框，如果和本类所有标定框的重叠都小于0.3，认定其为负样本 </p>
+<h3 id="bbox回归"><a href="#bbox回归" class="headerlink" title="bbox回归"></a>bbox回归</h3><p>输入为深度网络pool5层的4096维特征，输出为xy方向的缩放和平移。 训练样本判定为本类的候选框中，和真值重叠面积大于0.6的候选框。 </p>
+<h2 id="SPP-Net"><a href="#SPP-Net" class="headerlink" title="SPP-Net"></a>SPP-Net</h2><p>论文：《Spatial Pyramid Pooling in Deep Convolutional Networks for Visual Recognition》</p>
+<p>消除了CNN对于图像输入尺寸的限制， SPP-net结构能够产生固定大小的表示（fixed-length representation）,而不关心输入图像的尺寸或比例。金字塔池化对物体形变很鲁棒(robust to object deformations)。 由于以上优点，SPP-net可普遍改进各种基于CNN的图像分类方法。 </p>
+<p>SPP-net在目标检测上也表现突出。用SPP-net，<strong>我们只需要从整张图片计算一次特征图（feature map），然后对任意尺寸的区域（子图像）进行特征池化，以产生一个固定尺寸的表示(representation)用于训练检测器(detectors)。</strong> 这个方法避免了反复计算卷积特征。在处理测试图像时，我们的方法在VOC2007数据集上，达到相同或更好的性能情况下，比R-CNN方法快24-102X倍。 </p>
+<p> <img src="/2020/10/12/目标检测二/20190227094134367.png" alt="img" style="zoom: 67%;"> </p>
+<p>为了解决剪裁带来的信息丢失和变形导致的信息扭曲，采用空间金字塔池化( spatial pyramid pooling，SPP)层，移除对网络固定尺寸的限制（通常将其放在卷积后，FC层之前）。</p>
+<h3 id="SPP原理"><a href="#SPP原理" class="headerlink" title="SPP原理"></a>SPP原理</h3><p> <img src="/2020/10/12/目标检测二/20190522155757536.png" alt="在这里插入图片描述"> </p>
+<p>三种颜色的网格，是将从conv5得到的特征分别映射成16、4、1份，16X256中的256表示的是channel，即SPP对每一层都分成16份(不一定是等比分)。将特征映射后进行最大池化。</p>
+<p>通过SPP，对任意的输入可以得到固定的21*256大小的输出，21指的是20个类别加上1个背景。</p>
+<h4 id="公式"><a href="#公式" class="headerlink" title="公式"></a>公式</h4><p> <img src="/2020/10/12/目标检测二/20190522160859372.png" alt="在这里插入图片描述"></p>
+<p>因此，当输出的尺寸为224<em>224时，conv5后得到的特征图大小为13\</em>13，设为a，第一个映射为4*4，设为n。</p>
+<p>如果想要运算后得到的大小也为n。那么令： $windows_size=[a/n]$ 向上取整 ， $stride_size=[a/n]$向下取整。 </p>
+<p>一般情况下这时有：$ans = (a-n)/(a/n)+1=n$</p>
+<p>但如果对于输入：(7,11)，金字塔bins=(4,4)，这时K=(2,3)，Stride=(1,2)，结果为(6,5)，并不是(4,4)</p>
+<p>修订公式后：</p>
+<p> <img src="/2020/10/12/目标检测二/20190522160808326.png" alt="在这里插入图片描述"> </p>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><p> <a href="https://github.com/marsggbo/sppnet-pytorch/blob/master/spp_layer.py" target="_blank" rel="noopener">marsggbo/sppnet-pytorch</a> </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F</span><br><span class="line"></span><br><span class="line"><span class="comment"># 构建SPP层(空间金字塔池化层)</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SPPLayer</span><span class="params">(torch.nn.Module)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, num_levels, pool_type=<span class="string">'max_pool'</span>)</span>:</span></span><br><span class="line">        super(SPPLayer, self).__init__()</span><br><span class="line"></span><br><span class="line">        self.num_levels = num_levels</span><br><span class="line">        self.pool_type = pool_type</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        num, c, h, w = x.size() <span class="comment"># num:样本数量 c:通道数 h:高 w:宽</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(self.num_levels):</span><br><span class="line">            level = i+<span class="number">1</span></span><br><span class="line">            kernel_size = (math.ceil(h / level), math.ceil(w / level))</span><br><span class="line">            stride = (math.ceil(h / level), math.ceil(w / level))</span><br><span class="line">            pooling = (math.floor((kernel_size[<span class="number">0</span>]*level-h+<span class="number">1</span>)/<span class="number">2</span>), math.floor((kernel_size[<span class="number">1</span>]*level-w+<span class="number">1</span>)/<span class="number">2</span>))</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 选择池化方式 </span></span><br><span class="line">            <span class="keyword">if</span> self.pool_type == <span class="string">'max_pool'</span>:</span><br><span class="line">                tensor = F.max_pool2d(x, kernel_size=kernel_size, stride=stride, padding=pooling).view(num, <span class="number">-1</span>)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                tensor = F.avg_pool2d(x, kernel_size=kernel_size, stride=stride, padding=pooling).view(num, <span class="number">-1</span>)</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 展开、拼接</span></span><br><span class="line">            <span class="keyword">if</span> (i == <span class="number">0</span>):</span><br><span class="line">                x_flatten = tensor.view(num, <span class="number">-1</span>)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                x_flatten = torch.cat((x_flatten, tensor.view(num, <span class="number">-1</span>)), <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> x_flatten</span><br></pre></td></tr></table></figure>
+<h4 id="多尺度训练"><a href="#多尺度训练" class="headerlink" title="多尺度训练"></a>多尺度训练</h4><p>除此之外， 训练阶段，图像可以有各种尺寸和缩放尺度。使用各种尺寸的图像进行训练,可以提高缩放不变性，以及减少过拟合。基于此的<strong>多尺度训练方法</strong>： 每个epoch，我们针对一个给定的输入尺寸进行网络训练，然后在下一个epoch，再切换到另一个尺寸。实验表明，这种多尺度训练和传统的单一尺度训练一样可以收敛，并且能达到更好的测试精度。  </p>
+<p>多尺寸训练的主要目的是在保证已经充分利用现在被较好优化的固定尺寸网络实现的同时，模拟不同的输入尺寸。 </p>
+<h4 id="R-CNN-vs-SPP-Net"><a href="#R-CNN-vs-SPP-Net" class="headerlink" title="R-CNN vs SPP-Net"></a>R-CNN vs SPP-Net</h4><ul>
+<li><p>R-CNN</p>
+<ol>
+<li>首先通过选择性搜索，对待检测的图片进行搜索出~2000个候选窗口。 </li>
+<li>把这2k个候选窗口的图片都缩放到227*227，然后分别输入CNN中，每个proposal提取出一个特征向量，也就是说利用CNN对每个proposal进行提取特征向量。 </li>
+<li>把上面每个候选窗口的对应特征向量，利用SVM算法进行分类识别。</li>
+</ol>
+</li>
+<li><p>SPP-Net</p>
+<ol>
+<li>首先通过选择性搜索，对待检测的图片进行搜索出2000个候选窗口。这一步和R-CNN一样。</li>
+<li>特征提取阶段。这一步就是和R-CNN最大的区别了，这一步骤的具体操作如下：把整张待检测的图片，输入CNN中，进行一次性特征提取，得到feature maps，然后在feature maps中找到各个候选框的区域，再对各个候选框采用金字塔空间池化，提取出固定长度的特征向量。而R-CNN输入的是每个候选框，然后在进入CNN，因为SPP-Net只需要一次对整张图片进行特征提取，速度会大大提升。</li>
+<li>最后一步也是和R-CNN一样，采用SVM算法进行特征向量分类识别。</li>
+</ol>
+</li>
+</ul>
+<h4 id="用于目标检测"><a href="#用于目标检测" class="headerlink" title="用于目标检测"></a>用于目标检测</h4><p> <img src="/2020/10/12/目标检测二/20190227100825864.png" alt="在这里插入图片描述"> </p>
+<p>我们将SPP-net应用于物体检测。只在整张图像上抽取一次特征。然后在每个特征图的候选窗口上应用空间金字塔池化，形成这个窗口的一个固定长度表示。因为只应用一次卷积网络，这种方法快得多。<br>SPP-net从特征图中直接抽取特征，而R-CNN则要从图像区域抽取。之前的一些工作中，可变性部件模型(Deformable Part Model, DPM)从HOG特征图的窗口中抽取图像，选择性搜索方法从SIFT编码后的特征图的窗口中抽取特征。Overfeat也是从卷积特征图中抽取特征，但需要预定义的窗口尺寸。作为对比，我们的特征抽取可以在任意尺寸的深度卷积特征图窗口上。 </p>
+<p>我们使用选择性搜索[20]的“fast”模式对每张图片产生2000个候选窗口。然后缩放图像以满足min(w;h) = s，并且从整张图像中抽取特征图。我们暂时使用ZF-5的SPP-net 模型（单一尺寸训练）。在每个候选窗口，我们使用一个4级空间金字塔（1×1, 2×2, 3×3, 6×6, 总共50块）。每个窗口将产生一个12800（256×50）维的表示。这些表示传递给网络的全连接层。然后我们针对每个分类训练一个二分线性SVM分类器。</p>
+<p><strong>将我们想要的proposal映射到特征图之上，从而进行SPP</strong> 。 原图中的proposal,经过多层卷积之后，位置还是相对于原图不变的。 </p>
+<p> <img src="/2020/10/12/目标检测二/20170618164303201-1602591555802.png" alt="img">  </p>
+<p>对于映射关系，论文中给出了一个公式：<br>假设(x’,y’)表示特征图上的坐标点，坐标点(x,y)表示原输入图片上的点，那么它们之间有如下转换关系，这种映射关心与网络结构有关： </p>
+<script type="math/tex; mode=display">
+(x,y)=(S∗x’,S∗y’)</script><p> 反过来，我们希望通过(x,y)坐标求解(x’,y’)，那么计算公式如下： </p>
+<script type="math/tex; mode=display">
+Left、Top：x′=⌊x/S⌋+1
+
+\\Right、Bottom： x ′ = ⌈ x / S ⌉ − 1</script><p>其中S就是CNN中所有的strides的乘积，包含了池化、卷积的stride。</p>
+<p>比如，对于下图的集中网络结构，S的计算如下： </p>
+<p> <img src="/2020/10/12/目标检测二/20190227102249944.png" alt="在这里插入图片描述"> </p>
+<p>  论文中使用的是 </p>
+<script type="math/tex; mode=display">
+ZF-5：             S=2*2*2*2=16
+\\Overfeat-5/7 :               S =2*3*2 =12</script><p> 完整流程如下：<img src="/2020/10/12/目标检测二/20170618165250909.png" alt="img"> </p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/AI/" rel="tag"># AI</a>
+          
+            <a href="/tags/CV/" rel="tag"># CV</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/10/11/目标检测一/" rel="next" title="目标检测一">
+                <i class="fa fa-chevron-left"></i> 目标检测一
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/ava.jpg" alt="sh">
+            
+              <p class="site-author-name" itemprop="name">sh</p>
+              <p class="site-description motion-element" itemprop="description">so we beat on, boats against the current, borne back ceaselessly into the past.</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">30</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/croook" title="GitHub &rarr; https://github.com/croook" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:sh5672186@sina.com" title="E-Mail &rarr; mailto:sh5672186@sina.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#目标检测二"><span class="nav-number">1.</span> <span class="nav-text">目标检测二</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#R-CNN"><span class="nav-number">1.1.</span> <span class="nav-text">R-CNN</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#迁移学习"><span class="nav-number">1.1.1.</span> <span class="nav-text">迁移学习</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特征提取"><span class="nav-number">1.1.2.</span> <span class="nav-text">特征提取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#调优训练"><span class="nav-number">1.1.3.</span> <span class="nav-text">调优训练</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分类器"><span class="nav-number">1.1.4.</span> <span class="nav-text">分类器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bbox回归"><span class="nav-number">1.1.5.</span> <span class="nav-text">bbox回归</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SPP-Net"><span class="nav-number">1.2.</span> <span class="nav-text">SPP-Net</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SPP原理"><span class="nav-number">1.2.1.</span> <span class="nav-text">SPP原理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#公式"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">公式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多尺度训练"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">多尺度训练</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#R-CNN-vs-SPP-Net"><span class="nav-number">1.2.1.4.</span> <span class="nav-text">R-CNN vs SPP-Net</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#用于目标检测"><span class="nav-number">1.2.1.5.</span> <span class="nav-text">用于目标检测</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">sh</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.0</div>
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.0"></script>
+
+  <script src="/js/src/motion.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/js/src/post-details.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+  
+  <script>
+    
+    function addCount(Counter) {
+      var $visitors = $('.leancloud_visitors');
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            
+            Counter('put', '/classes/Counter/' + counter.objectId, JSON.stringify({ time: { '__op': 'Increment', 'amount': 1 } }))
+            
+              .done(function() {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.time + 1);
+              })
+            
+              .fail(function ({ responseJSON }) {
+                console.log(`Failed to save Visitor num, with error message: ${responseJSON.error}`);
+              })
+          } else {
+            
+              Counter('post', '/classes/Counter', JSON.stringify({ title: title, url: url, time: 1 }))
+                .done(function() {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(1);
+                })
+                .fail(function() {
+                  console.log('Failed to create');
+                });
+            
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log(`LeanCloud Counter Error: ${responseJSON.code} ${responseJSON.error}`);
+        });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + 'FKPTBi1uAoXKAYkTu5qVmYU8-gzGzoHsz')
+        .done(function({ api_server }) {
+          var Counter = function(method, url, data) {
+            return $.ajax({
+              method: method,
+              url: 'https://' + api_server + '/1.1' + url,
+              headers: {
+                'X-LC-Id': 'FKPTBi1uAoXKAYkTu5qVmYU8-gzGzoHsz',
+                'X-LC-Key': 'fSe2tiDLznbEiATi2CiqRljO',
+                'Content-Type': 'application/json',
+              },
+              data: data
+            });
+          };
+          
+            addCount(Counter);
+          
+        });
+    });
+  </script>
+
+
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+      for (i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+  overflow: auto hidden;
+}
+</style>
+
+    
+  
+
+
+  
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
