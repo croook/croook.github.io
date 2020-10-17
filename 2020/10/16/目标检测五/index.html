@@ -1,0 +1,1557 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="En">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+  <meta name="google-site-verification" content="7Oev-o_nVgfEcRT4Mc9fXSxqXK0_WXFBAuBh4GdzGuM">
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="5Nq4yOLRnQ">
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.ico?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.ico?v=7.0.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="目标检测五SSDSSD，全称Single Shot MultiBox Detector，是Wei Liu在ECCV 2016上提出的一种目标检测算法，截至目前是主要的检测框架之一，相比Faster RCNN有明显的速度优势，相比YOLO又有明显的mAP优势（不过已经被CVPR 2017的YOLO9000超越）。   论文链接：https://arxiv.org/abs/1512.02325 论文翻">
+<meta name="keywords" content="AI,CV">
+<meta property="og:type" content="article">
+<meta property="og:title" content="目标检测五">
+<meta property="og:url" content="https://croook.github.io/2020/10/16/目标检测五/index.html">
+<meta property="og:site_name" content="Crookshank">
+<meta property="og:description" content="目标检测五SSDSSD，全称Single Shot MultiBox Detector，是Wei Liu在ECCV 2016上提出的一种目标检测算法，截至目前是主要的检测框架之一，相比Faster RCNN有明显的速度优势，相比YOLO又有明显的mAP优势（不过已经被CVPR 2017的YOLO9000超越）。   论文链接：https://arxiv.org/abs/1512.02325 论文翻">
+<meta property="og:locale" content="En">
+<meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测五/v2-6e4f9f1e9526c5ce7b12700bb52c4b58_1440w.jpg">
+<meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测五/20190427212254620.png">
+<meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测五/20190427212220602.png">
+<meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测五/20190427214419459.png">
+<meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测五/equation-1602919578134.svg">
+<meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测五/equation-1602919578142.svg">
+<meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测五/equation-1602919578134.svg">
+<meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测五/equation.svg">
+<meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测五/8904720-b2e8bcf4182ab555.webp">
+<meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测五/20190427214729871.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190427214959225.png">
+<meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测五/image-20201016201741985.png">
+<meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测五/20190427215213997.png">
+<meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测五/20190427215248724.png">
+<meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测五/equation-1602920771129.svg">
+<meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测五/equation-1602920771129.svg">
+<meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测五/equation-1602920771129.svg">
+<meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测五/equation-1602920771129.svg">
+<meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测五/equation-1602920771129.svg">
+<meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测五/v2-174bec5acd695bacbdaa051b730f998a_1440w.jpg">
+<meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测五/20190427215413791.png">
+<meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测五/equation-1602921556460.svg">
+<meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测五/equation-1602921556454.svg">
+<meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测五/equation-1602921556464.svg">
+<meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测五/equation-1602921556479.svg">
+<meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测五/equation-1602921556479.svg">
+<meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测五/equation-1602921556493.svg">
+<meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测五/equation-1602921556486.svg">
+<meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测五/equation-1602921556430.svg">
+<meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测五/20190427215537353.png">
+<meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测五/v2-5853bed6e8796de582647f1e557b623b_1440w.jpg">
+<meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测五/equation-1602921623255.svg">
+<meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测五/equation-1602921623263.svg">
+<meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测五/equation-1602921623332.svg">
+<meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测五/equation-1602921623275.svg">
+<meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测五/equation-1602921623311.svg">
+<meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测五/equation-1602921623385.svg">
+<meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测五/20190427215546322.png">
+<meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测五/v2-56d5a848cb8694a897ef0688c916293c_1440w.jpg">
+<meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测五/equation-1602922318451.svg">
+<meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测五/equation-1602922318429.svg">
+<meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测五/equation-1602922318453.svg">
+<meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测五/equation-1602922318440.svg">
+<meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测五/v2-801ac87e391865452c9f5a98f3d1b990_1440w.jpg">
+<meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测五/equation-1602922318460.svg">
+<meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测五/equation-1602922318461.svg">
+<meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测五/equation-1602922318461.svg">
+<meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测五/equation-1602922318404.svg">
+<meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测五/v2-712d1ad68df6644625d6c9ef2687ab8f_1440w.jpg">
+<meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测五/v2-22d6c936444ec4bc917b38e64f671d26_1440w.jpg">
+<meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测五/equation-1602922318504.svg">
+<meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测五/equation-1602922318520.svg">
+<meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测五/equation-1602922318449.svg">
+<meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测五/v2-3a360c548dd94cada980a25cd3062038_1440w.jpg">
+<meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测五/equation-1602922318504.svg">
+<meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测五/v2-f2fa5b0879976b140802d463f3622af4_1440w.jpg">
+<meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测五/equation-1602922318504.svg">
+<meta property="og:updated_time" content="2020-10-17T08:12:53.326Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="目标检测五">
+<meta name="twitter:description" content="目标检测五SSDSSD，全称Single Shot MultiBox Detector，是Wei Liu在ECCV 2016上提出的一种目标检测算法，截至目前是主要的检测框架之一，相比Faster RCNN有明显的速度优势，相比YOLO又有明显的mAP优势（不过已经被CVPR 2017的YOLO9000超越）。   论文链接：https://arxiv.org/abs/1512.02325 论文翻">
+<meta name="twitter:image" content="https://croook.github.io/2020/10/16/目标检测五/v2-6e4f9f1e9526c5ce7b12700bb52c4b58_1440w.jpg">
+
+
+
+
+
+
+  <link rel="canonical" href="https://croook.github.io/2020/10/16/目标检测五/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>目标检测五 | Crookshank</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="En">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Crookshank</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Category</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archive</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://croook.github.io/2020/10/16/目标检测五/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="sh">
+      <meta itemprop="description" content="so we beat on, boats against the current, borne back ceaselessly into the past.">
+      <meta itemprop="image" content="/images/ava.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Crookshank">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">目标检测五
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2020-10-16 14:52:09" itemprop="dateCreated datePublished" datetime="2020-10-16T14:52:09+08:00">2020-10-16</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2020-10-17 16:12:53" itemprop="dateModified" datetime="2020-10-17T16:12:53+08:00">2020-10-17</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a></span>
+
+                
+                
+                  . 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/AI/CV/" itemprop="url" rel="index"><span itemprop="name">CV</span></a></span>
+
+                
+                
+                  . 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/AI/CV/目标检测/" itemprop="url" rel="index"><span itemprop="name">目标检测</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+            <span id="/2020/10/16/目标检测五/" class="leancloud_visitors" data-flag-title="目标检测五">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Views: </span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="目标检测五"><a href="#目标检测五" class="headerlink" title="目标检测五"></a>目标检测五</h1><h2 id="SSD"><a href="#SSD" class="headerlink" title="SSD"></a>SSD</h2><p>SSD，全称Single Shot MultiBox Detector，是Wei Liu在ECCV 2016上提出的一种目标检测算法，截至目前是主要的检测框架之一，相比Faster RCNN有明显的速度优势，相比YOLO又有明显的mAP优势（不过已经被CVPR 2017的YOLO9000超越）。 </p>
+<ul>
+<li>论文链接：<a href="https://arxiv.org/abs/1512.02325" target="_blank" rel="noopener">https://arxiv.org/abs/1512.02325</a></li>
+<li>论文翻译：<a href="https://blog.csdn.net/denghecsdn/article/details/77429978" target="_blank" rel="noopener">https://blog.csdn.net/denghecsdn/article/details/77429978</a></li>
+<li>论文详解：<a href="https://blog.csdn.net/WZZ18191171661/article/details/79444217" target="_blank" rel="noopener">https://blog.csdn.net/WZZ18191171661/article/details/79444217</a></li>
+<li>论文代码：<a href="https://github.com/balancap/SSD-Tensorflow" target="_blank" rel="noopener">https://github.com/balancap/SSD-Tensorflow</a></li>
+<li>项目参考：<a href="https://blog.csdn.net/zzz_cming/article/details/81128460" target="_blank" rel="noopener">https://blog.csdn.net/zzz_cming/article/details/81128460</a></li>
+<li>参考：<a href="https://zhuanlan.zhihu.com/p/33544892" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/33544892</a></li>
+<li><p>参考：<a href="https://zhuanlan.zhihu.com/p/31427288" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/31427288</a></p>
+<p><img src="/2020/10/16/目标检测五/v2-6e4f9f1e9526c5ce7b12700bb52c4b58_1440w.jpg" alt="img" style="zoom: 50%;"></p>
+</li>
+</ul>
+<p>SSD具有如下主要特点：</p>
+<ul>
+<li>从YOLO中继承了将detection转化为regression的思路，一次完成目标定位与分类</li>
+<li>基于Faster RCNN中的Anchor，提出了相似的Prior box；</li>
+<li>加入基于特征金字塔（Pyramidal Feature Hierarchy）的检测方式，即在不同感受野的feature map上预测目标（FPN思路）</li>
+</ul>
+<h3 id="网络结构"><a href="#网络结构" class="headerlink" title="网络结构"></a>网络结构</h3><p> <img src="/2020/10/16/目标检测五/20190427212254620.png" alt="在这里插入图片描述"></p>
+<p> <img src="/2020/10/16/目标检测五/20190427212220602.png" alt="在这里插入图片描述">  </p>
+<h3 id="算法步骤"><a href="#算法步骤" class="headerlink" title="算法步骤"></a>算法步骤</h3><ol>
+<li>输入一幅图片（300x300），将其输入到预训练好的分类网络中来获得不同大小的特征映射，修改了传统的<strong>VGG16网络</strong>；<ul>
+<li>将VGG16的FC6和FC7层转化为卷积层，如图1上的Conv6和Conv7；</li>
+<li>去掉所有的Dropout层和FC8层；</li>
+<li>添加了<strong>Atrous算法</strong>（hole算法）；</li>
+<li>将Pool5从2x2-S2变换到3x3-S1；</li>
+</ul>
+</li>
+<li>抽取Conv4_3、Conv7、Conv8_2、Conv9_2、Conv10_2、Conv11_2层的<strong>feature map</strong>，然后分别在这些feature map层上面的每一个点构造6个不同尺度大小的bbox，然后分别进行检测和分类，生成多个bbox，如图2所示；</li>
+<li>将不同feature map获得的bbox结合起来，经过NMS（非极大值抑制）方法来抑制掉一部分重叠或者不正确的bbox，生成最终的bbox集合（即检测结果）；</li>
+</ol>
+<h4 id="Prior-box"><a href="#Prior-box" class="headerlink" title="Prior box"></a>Prior box</h4><p> <img src="/2020/10/16/目标检测五/20190427214419459.png" alt="在这里插入图片描述"> 如上图所示，在特征图的每个位置预测K个bbox，对于每一个bbox，预测C个类别得分，以及相对于Prior box(Default box)的4个偏移量值，这样总共需要 <strong>(C+4)×K</strong>个预测器，则在m×n的feature map上面将会产生 <strong>(C+4)×K×m×n</strong>个预测值 </p>
+<p>对于每个单元的每个先验框，其都输出一套独立的检测值，对应一个边界框，主要分为两个部分。第一部分是各个类别的置信度或者评分，值得注意的是SSD将背景也当做了一个特殊的类别，如果检测目标共有 <img src="/2020/10/16/目标检测五/equation-1602919578134.svg" alt="[公式]"> 个类别，SSD其实需要预测 <img src="/2020/10/16/目标检测五/equation-1602919578142.svg" alt="[公式]"> 个置信度值，其中第一个置信度指的是不含目标或者属于背景的评分。后面当我们说 <img src="/2020/10/16/目标检测五/equation-1602919578134.svg" alt="[公式]"> 个类别置信度时，请记住里面包含背景那个特殊的类别，即真实的检测类别只有 <img src="/2020/10/16/目标检测五/equation.svg" alt="[公式]"> 个。在预测过程中，置信度最高的那个类别就是边界框所属的类别，特别地，当第一个置信度值最高时，表示边界框中并不包含目标 </p>
+<p>作者认为仅仅靠同一层上的多个anchor来回归，还远远不够。因为有很大可能这层上所有anchor的IOU都比较小，就是说所有anchor离ground truth都比较远，用这种anchor来训练误差会很大。</p>
+<p> <img src="/2020/10/16/目标检测五/8904720-b2e8bcf4182ab555.webp" alt="img"> </p>
+<p> <img src="/2020/10/16/目标检测五/20190427214729871.png" alt="在这里插入图片描述"> </p>
+<p>SSD中的Defalut box和Faster-rcnn中的anchor机制很相似。就是预设一些目标预选框，后续通过<strong>softmax分类+bounding box regression</strong>获得真实目标的位置。对于不同尺度的feature map 上使用不同的Default boxes。如上图所示，我们选取的feature map包括38x38x512、19x19x1024、10x10x512、5x5x256、3x3x256、1x1x256，Conv4_3之后的feature map默认的box是4个，我们在38x38的这个平面上的每一点上面获得4个box，那么我们总共可以获得38x38x4=5776个；同理，我们依次将FC7、Conv8_2、Conv9_2、Conv10_2和Conv11_2的box数量设置为6、6、6、4、4，那么我们可以获得的box分别为2166、600、150、36、4，即我们总共可以获得8732个box，然后我们将这些box送入NMS模块中，获得最终的检测结果。 </p>
+<h4 id="Prior-box生成规则"><a href="#Prior-box生成规则" class="headerlink" title="Prior box生成规则"></a>Prior box生成规则</h4><ul>
+<li>以feature map上每个点的中点为中心（offset=0.5），生成一系列同心的Defalut box（然后中心点的坐标会乘以step，相当于从feature map位置映射回原图位置）</li>
+<li>正方形prior box最小边长为$min_size$，最大边长为$\sqrt{min_size*max_size}$</li>
+<li><p>每一个aspect radio会生成两个长方形，使用不同的ratio值，[1, 2, 3, 1/2, 1/3]，长宽为$\sqrt{aspect_radio}<em>min_size$和$\frac{1}{\sqrt{aspect_radio}}</em>min_size$</p>
+</li>
+<li><p>使用m(SSD300中m=6)个不同大小的feature map 来做预测，最底层的 feature map 的 scale 值为 Smin=0.2，最高层的为Smax=0.9，其他层通过下面的公式计算得到：<br><img src="https://img-blog.csdnimg.cn/20190427214959225.png" alt="在这里插入图片描述"></p>
+<p>第一层feature map对应的min_size=S1*300，max_size=S2*300；第二层min_size=S2*300，max_size=S3*300；其他类推。在原文中，Smin=0.2，Smax=0.9，但是在SSD 300中prior box设置并不能和paper中上述公式对应： </p>
+<p><img src="/2020/10/16/目标检测五/image-20201016201741985.png" alt="image-20201016201741985"></p>
+</li>
+<li><p>而对于ratio=0的情况，指定的scale如下所示，即总共有 6 中不同的 default box。<br><img src="/2020/10/16/目标检测五/20190427215213997.png" alt="在这里插入图片描述"></p>
+<p><img src="/2020/10/16/目标检测五/20190427215248724.png" alt="在这里插入图片描述"></p>
+</li>
+</ul>
+<p><strong>SSD使用低层feature map检测小目标，使用高层feature map检测大目标</strong>  </p>
+<h4 id="先验框匹配"><a href="#先验框匹配" class="headerlink" title="先验框匹配"></a>先验框匹配</h4><p>在训练过程中，首先要确定训练图片中的ground truth（真实目标）与哪个先验框来进行匹配，与之匹配的先验框所对应的边界框将负责预测它。在Yolo中，ground truth的中心落在哪个单元格，该单元格中与其IOU最大的边界框负责预测它。但是在SSD中却完全不一样，SSD的先验框与ground truth的匹配原则主要有两点。首先，对于图片中每个ground truth，找到与其IOU最大的先验框，该先验框与其匹配，这样，可以保证每个ground truth一定与某个先验框匹配。通常称与ground truth匹配的先验框为正样本（其实应该是先验框对应的预测box，不过由于是一一对应的就这样称呼了），反之，若一个先验框没有与任何ground truth进行匹配，那么该先验框只能与背景匹配，就是负样本。一个图片中ground truth是非常少的， 而先验框却很多，如果仅按第一个原则匹配，很多先验框会是负样本，正负样本极其不平衡，所以需要第二个原则。第二个原则是：对于剩余的未匹配先验框，若某个ground truth的 <img src="/2020/10/16/目标检测五/equation-1602920771129.svg" alt="[公式]"> 大于某个阈值（一般是0.5），那么该先验框也与这个ground truth进行匹配。这意味着某个ground truth可能与多个先验框匹配，这是可以的。但是反过来却不可以，因为一个先验框只能匹配一个ground truth，如果多个ground truth与某个先验框 <img src="/2020/10/16/目标检测五/equation-1602920771129.svg" alt="[公式]"> 大于阈值，那么先验框只与IOU最大的那个ground truth进行匹配。第二个原则一定在第一个原则之后进行，仔细考虑一下这种情况，如果某个ground truth所对应最大 <img src="/2020/10/16/目标检测五/equation-1602920771129.svg" alt="[公式]"> 小于阈值，并且所匹配的先验框却与另外一个ground truth的 <img src="/2020/10/16/目标检测五/equation-1602920771129.svg" alt="[公式]"> 大于阈值，那么该先验框应该匹配谁，答案应该是前者，首先要确保某个ground truth一定有一个先验框与之匹配。但是，这种情况我觉得基本上是不存在的。由于先验框很多，某个ground truth的最大 <img src="/2020/10/16/目标检测五/equation-1602920771129.svg" alt="[公式]"> 肯定大于阈值，所以可能只实施第二个原则既可以了，这里的<a href="https://link.zhihu.com/?target=https%3A//github.com/xiaohu2015/SSD-Tensorflow/blob/master/nets/ssd_common.py" target="_blank" rel="noopener">TensorFlow版本</a>就是只实施了第二个原则，但是这里的<a href="https://link.zhihu.com/?target=https%3A//github.com/amdegroot/ssd.pytorch/blob/master/layers/box_utils.py" target="_blank" rel="noopener">Pytorch</a>两个原则都实施了。图8为一个匹配示意图，其中绿色的GT是ground truth，红色为先验框，FP表示负样本，TP表示正样本。 </p>
+<p> <img src="/2020/10/16/目标检测五/v2-174bec5acd695bacbdaa051b730f998a_1440w.jpg" alt="img"></p>
+<p>尽管一个ground truth可以与多个先验框匹配，但是ground truth相对先验框还是太少了，所以负样本相对正样本会很多。为了保证正负样本尽量平衡，SSD采用了hard negative mining，就是对负样本进行抽样，抽样时按照置信度误差（预测背景的置信度越小，误差越大）进行降序排列，选取误差的较大的top-k作为训练的负样本，以保证正负样本比例接近1:3。  </p>
+<h4 id="预测过程"><a href="#预测过程" class="headerlink" title="预测过程"></a>预测过程</h4><p>预测过程比较简单，对于每个预测框，首先根据类别置信度确定其类别（置信度最大者）与置信度值，并过滤掉属于背景的预测框。然后根据置信度阈值（如0.5）过滤掉阈值较低的预测框。对于留下的预测框进行解码，根据先验框得到其真实的位置参数（解码后一般还需要做clip，防止预测框位置超出图片）。解码之后，一般需要根据置信度进行降序排列，然后仅保留top-k（如400）个预测框。最后就是进行NMS算法，过滤掉那些重叠度较大的预测框。最后剩余的预测框就是检测结果了。 </p>
+<h3 id="训练技巧"><a href="#训练技巧" class="headerlink" title="训练技巧"></a>训练技巧</h3><h4 id="数据增强"><a href="#数据增强" class="headerlink" title="数据增强"></a>数据增强</h4><p> SSD训练过程中使用的数据增强对网络性能影响很大，大约有6.7%的mAP提升。</p>
+<ol>
+<li>随机剪裁：采样一个片段，使剪裁部分与目标重叠分别为0.1, 0.3, 0.5, 0.7, 0.9，剪裁完resize到固定尺寸。</li>
+<li>以0.5的概率随机水平翻转。</li>
+</ol>
+<h4 id="conv4-3检测"><a href="#conv4-3检测" class="headerlink" title="conv4_3检测"></a>conv4_3检测</h4><p>基础网络部分特征图分辨率高，原图中信息更完整，感受野较小，可以用来检测图像中的小目标，这也是SSD相对于YOLO检测小目标的优势所在。增加对基础网络conv4_3的特征图的检测可以使mAP提升4%。 </p>
+<h4 id="长方形默认框"><a href="#长方形默认框" class="headerlink" title="长方形默认框"></a>长方形默认框</h4><p>挑选合适形状的默认框能够提高检测效果。作者实验得出使用瘦高与宽扁默认框相对于只使用正方形默认框有2.9%mAP提升。 </p>
+<h4 id="使用atrous卷积"><a href="#使用atrous卷积" class="headerlink" title="使用atrous卷积"></a>使用atrous卷积</h4><p> 通常卷积过程中为了使特征图尺寸特征图尺寸保持不变，通过会在边缘打padding，但人为加入的padding值会引入噪声，因此，使用atrous卷积能够在保持感受野不变的条件下，减少padding噪声，<a href="http://blog.csdn.net/u012759136/article/details/52434826#t9" target="_blank" rel="noopener">关于atrous参考</a>。本文SSD训练过程中并且没有使用atrous卷积，但预训练过程使用的模型为VGG-16-atrous，意味着作者给的预训练模型是使用atrous卷积训练出来的。使用atrous版本VGG-16作为预训模型比较普通VGG-16要提高0.7%mAP。 </p>
+<h3 id="Loss"><a href="#Loss" class="headerlink" title="Loss"></a>Loss</h3><p>loss函数分为两部分：计算相应的default box与目标类别的confidence loss以及相应的位置回归。<br><img src="/2020/10/16/目标检测五/20190427215413791.png" alt="在这里插入图片描述"><br>其中N先验框的正样本数量， 这里 <img src="/2020/10/16/目标检测五/equation-1602921556460.svg" alt="[公式]"> 为一个指示参数，当 <img src="/2020/10/16/目标检测五/equation-1602921556454.svg" alt="[公式]"> 时表示第 <img src="/2020/10/16/目标检测五/equation-1602921556464.svg" alt="[公式]"> 个先验框与第 <img src="/2020/10/16/目标检测五/equation-1602921556479.svg" alt="[公式]"> 个ground truth匹配，并且ground truth的类别为 <img src="/2020/10/16/目标检测五/equation-1602921556479.svg" alt="[公式]"> 。 <img src="/2020/10/16/目标检测五/equation-1602921556493.svg" alt="[公式]"> 为类别置信度预测值。 <img src="/2020/10/16/目标检测五/equation-1602921556486.svg" alt="[公式]"> 为先验框的所对应边界框的位置预测值，而 <img src="/2020/10/16/目标检测五/equation-1602921556430.svg" alt="[公式]"> 是ground truth的位置参数 ；而alpha参数用于调整confidence loss和location loss之间的比例，默认alpha=1。</p>
+<p>位置回归则是采用 <strong>Smooth L1 loss</strong>，loss函数为:<br><img src="/2020/10/16/目标检测五/20190427215537353.png" alt="在这里插入图片描述"></p>
+<p> <img src="/2020/10/16/目标检测五/v2-5853bed6e8796de582647f1e557b623b_1440w.jpg" alt="img"></p>
+<p>由于 <img src="/2020/10/16/目标检测五/equation-1602921623255.svg" alt="[公式]"> 的存在，所以位置误差仅针对正样本进行计算。值得注意的是，要先对ground truth的 <img src="/2020/10/16/目标检测五/equation-1602921623263.svg" alt="[公式]"> 进行编码得到 <img src="/2020/10/16/目标检测五/equation-1602921623332.svg" alt="[公式]"> ，因为预测值 <img src="/2020/10/16/目标检测五/equation-1602921623275.svg" alt="[公式]"> 也是编码值，若设置variance_encoded_in_target=True，编码时要加上variance：</p>
+<p><img src="/2020/10/16/目标检测五/equation-1602921623311.svg" alt="[公式]"></p>
+<p><img src="/2020/10/16/目标检测五/equation-1602921623385.svg" alt="[公式]"> </p>
+<p>confidence loss是典型的<strong>softmax loss</strong>：<br><img src="/2020/10/16/目标检测五/20190427215546322.png" alt="在这里插入图片描述"></p>
+<h2 id="Retina-NET"><a href="#Retina-NET" class="headerlink" title="Retina NET"></a>Retina NET</h2><p>代码地址：<a href="https://github.com/facebookresearch/Detectron" target="_blank" rel="noopener">https://github.com/facebookresearch/Detectron</a></p>
+<p>论文地址：<a href="https://arxiv.org/abs/1708.02002" target="_blank" rel="noopener">https://arxiv.org/abs/1708.02002</a></p>
+<h3 id="Focal-loss"><a href="#Focal-loss" class="headerlink" title="Focal loss"></a>Focal loss</h3><p>主要贡献为提出了Focal Loss， 解决了one-stage算法中正负样本的比例严重失衡的问题，不需要改变网络结构 。</p>
+<p>当样本不均衡的时候，如负样本很大，而且很多都是容易分类的（置信度很高的）,这样模型的优化方向就不是我们想要的方向，我是想让正负样本分开的，所以我们要把很多的注意力放在困难、难分类的样本上，所以作者在标准交叉熵损失的基础上进行了改进，首先我们把交叉熵二分类loss定义为：</p>
+<p><img src="/2020/10/16/目标检测五/v2-56d5a848cb8694a897ef0688c916293c_1440w.jpg" alt="img"></p>
+<p>然后 <img src="/2020/10/16/目标检测五/equation-1602922318451.svg" alt="[公式]"> {-1, 1}表示正负样本的标签， <img src="/2020/10/16/目标检测五/equation-1602922318429.svg" alt="[公式]"> 表示模型预测 <img src="/2020/10/16/目标检测五/equation-1602922318453.svg" alt="[公式]"> 的概率，所以我们定义 <img src="/2020/10/16/目标检测五/equation-1602922318440.svg" alt="[公式]"> 如下：</p>
+<p><img src="/2020/10/16/目标检测五/v2-801ac87e391865452c9f5a98f3d1b990_1440w.jpg" alt="img"></p>
+<p>然后我们重写交叉熵损失为 <img src="/2020/10/16/目标检测五/equation-1602922318460.svg" alt="[公式]"></p>
+<ul>
+<li>首先我们要解决样本不平衡的问题，我们使用一个平衡因子 <img src="/2020/10/16/目标检测五/equation-1602922318461.svg" alt="[公式]"> ,其范围是0到1，对于类别1乘以 <img src="/2020/10/16/目标检测五/equation-1602922318461.svg" alt="[公式]"> ,而对于类别-1乘以 <img src="/2020/10/16/目标检测五/equation-1602922318404.svg" alt="[公式]"> ，然后我们把损失函数重写为：</li>
+</ul>
+<p><img src="/2020/10/16/目标检测五/v2-712d1ad68df6644625d6c9ef2687ab8f_1440w.jpg" alt="img"></p>
+<ul>
+<li>虽然上面的方法使得可以调节正负样本对loss的贡献度，但是我们希望那些容易分的样本（置信度高的）提供的loss小一些，而那些难分的样本提供的loss几乎不变化，让分类器优化的方向更关注那些难分的样本。</li>
+</ul>
+<p><img src="/2020/10/16/目标检测五/v2-22d6c936444ec4bc917b38e64f671d26_1440w.jpg" alt="img"></p>
+<p>假如有这么一个样本，且 <img src="/2020/10/16/目标检测五/equation-1602922318504.svg" alt="[公式]"> =2时，如果其 <img src="/2020/10/16/目标检测五/equation-1602922318520.svg" alt="[公式]"> 时，FL loss会比原来的CE loss小100多倍，如果其 <img src="/2020/10/16/目标检测五/equation-1602922318449.svg" alt="[公式]"> ，那就会小1000多倍。</p>
+<p>最后我们把完整版的loss函数写下来，为：</p>
+<p><img src="/2020/10/16/目标检测五/v2-3a360c548dd94cada980a25cd3062038_1440w.jpg" alt="img"></p>
+<p>本文中，将 <img src="/2020/10/16/目标检测五/equation-1602922318504.svg" alt="[公式]"> 定义为2时效果最好！</p>
+<p><img src="/2020/10/16/目标检测五/v2-f2fa5b0879976b140802d463f3622af4_1440w.jpg" alt="img"></p>
+<p>可以看出，蓝色的线为CE loss, 随着 <img src="/2020/10/16/目标检测五/equation-1602922318504.svg" alt="[公式]"> 的增加，那些容易分类的样本所贡献的loss就越小，所以可以使模型的优化方向更加关注那些难分类的样本，这样就可以提高模型的精度，同时兼顾了速度。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/AI/" rel="tag"># AI</a>
+          
+            <a href="/tags/CV/" rel="tag"># CV</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/10/16/目标检测四/" rel="next" title="目标检测四">
+                <i class="fa fa-chevron-left"></i> 目标检测四
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/10/16/目标检测汇总/" rel="prev" title="目标检测汇总">
+                目标检测汇总 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/ava.jpg" alt="sh">
+            
+              <p class="site-author-name" itemprop="name">sh</p>
+              <p class="site-description motion-element" itemprop="description">so we beat on, boats against the current, borne back ceaselessly into the past.</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">34</span>
+                    <span class="site-state-item-name">Artikel</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-name">Kategorien</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">Tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/croook" title="GitHub &rarr; https://github.com/croook" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:sh5672186@sina.com" title="E-Mail &rarr; mailto:sh5672186@sina.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#目标检测五"><span class="nav-number">1.</span> <span class="nav-text">目标检测五</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SSD"><span class="nav-number">1.1.</span> <span class="nav-text">SSD</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#网络结构"><span class="nav-number">1.1.1.</span> <span class="nav-text">网络结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算法步骤"><span class="nav-number">1.1.2.</span> <span class="nav-text">算法步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Prior-box"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">Prior box</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Prior-box生成规则"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">Prior box生成规则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#先验框匹配"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">先验框匹配</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#预测过程"><span class="nav-number">1.1.2.4.</span> <span class="nav-text">预测过程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#训练技巧"><span class="nav-number">1.1.3.</span> <span class="nav-text">训练技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数据增强"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">数据增强</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#conv4-3检测"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">conv4_3检测</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#长方形默认框"><span class="nav-number">1.1.3.3.</span> <span class="nav-text">长方形默认框</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用atrous卷积"><span class="nav-number">1.1.3.4.</span> <span class="nav-text">使用atrous卷积</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Loss"><span class="nav-number">1.1.4.</span> <span class="nav-text">Loss</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Retina-NET"><span class="nav-number">1.2.</span> <span class="nav-text">Retina NET</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Focal-loss"><span class="nav-number">1.2.1.</span> <span class="nav-text">Focal loss</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">sh</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.0</div>
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.0"></script>
+
+  <script src="/js/src/motion.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/js/src/post-details.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+  
+  <script>
+    
+    function addCount(Counter) {
+      var $visitors = $('.leancloud_visitors');
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            
+            Counter('put', '/classes/Counter/' + counter.objectId, JSON.stringify({ time: { '__op': 'Increment', 'amount': 1 } }))
+            
+              .done(function() {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.time + 1);
+              })
+            
+              .fail(function ({ responseJSON }) {
+                console.log(`Failed to save Visitor num, with error message: ${responseJSON.error}`);
+              })
+          } else {
+            
+              Counter('post', '/classes/Counter', JSON.stringify({ title: title, url: url, time: 1 }))
+                .done(function() {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(1);
+                })
+                .fail(function() {
+                  console.log('Failed to create');
+                });
+            
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log(`LeanCloud Counter Error: ${responseJSON.code} ${responseJSON.error}`);
+        });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + 'FKPTBi1uAoXKAYkTu5qVmYU8-gzGzoHsz')
+        .done(function({ api_server }) {
+          var Counter = function(method, url, data) {
+            return $.ajax({
+              method: method,
+              url: 'https://' + api_server + '/1.1' + url,
+              headers: {
+                'X-LC-Id': 'FKPTBi1uAoXKAYkTu5qVmYU8-gzGzoHsz',
+                'X-LC-Key': 'fSe2tiDLznbEiATi2CiqRljO',
+                'Content-Type': 'application/json',
+              },
+              data: data
+            });
+          };
+          
+            addCount(Counter);
+          
+        });
+    });
+  </script>
+
+
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+      for (i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+  overflow: auto hidden;
+}
+</style>
+
+    
+  
+
+
+  
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
