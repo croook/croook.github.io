@@ -122,11 +122,6 @@
 <meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测五/image-20201016201741985.png">
 <meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测五/20190427215213997.png">
 <meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测五/20190427215248724.png">
-<meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测五/equation-1602920771129.svg">
-<meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测五/equation-1602920771129.svg">
-<meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测五/equation-1602920771129.svg">
-<meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测五/equation-1602920771129.svg">
-<meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测五/equation-1602920771129.svg">
 <meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测五/v2-174bec5acd695bacbdaa051b730f998a_1440w.jpg">
 <meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测五/20190427215413791.png">
 <meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测五/equation-1602921556460.svg">
@@ -165,7 +160,7 @@
 <meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测五/equation-1602922318504.svg">
 <meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测五/v2-f2fa5b0879976b140802d463f3622af4_1440w.jpg">
 <meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测五/equation-1602922318504.svg">
-<meta property="og:updated_time" content="2020-10-17T08:12:53.326Z">
+<meta property="og:updated_time" content="2020-10-17T10:09:25.920Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="目标检测五">
 <meta name="twitter:description" content="目标检测五SSDSSD，全称Single Shot MultiBox Detector，是Wei Liu在ECCV 2016上提出的一种目标检测算法，截至目前是主要的检测框架之一，相比Faster RCNN有明显的速度优势，相比YOLO又有明显的mAP优势（不过已经被CVPR 2017的YOLO9000超越）。   论文链接：https://arxiv.org/abs/1512.02325 论文翻">
@@ -316,7 +311,7 @@
 
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Category</a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
 
   </li>
         
@@ -333,7 +328,7 @@
 
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archive</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
 
   </li>
 
@@ -450,14 +445,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
 
               
                 
               
 
-              <time title="Post created: 2020-10-16 14:52:09" itemprop="dateCreated datePublished" datetime="2020-10-16T14:52:09+08:00">2020-10-16</time>
+              <time title="Created: 2020-10-16 14:52:09" itemprop="dateCreated datePublished" datetime="2020-10-16T14:52:09+08:00">2020-10-16</time>
             
 
             
@@ -474,7 +469,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Updated at: 2020-10-17 16:12:53" itemprop="dateModified" datetime="2020-10-17T16:12:53+08:00">2020-10-17</time>
+                <time title="Modified: 2020-10-17 18:09:25" itemprop="dateModified" datetime="2020-10-17T18:09:25+08:00">2020-10-17</time>
               
             
           </span>
@@ -488,21 +483,21 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">in</span>
+                <span class="post-meta-item-text">In</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a></span>
 
                 
                 
-                  . 
+                  , 
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/AI/CV/" itemprop="url" rel="index"><span itemprop="name">CV</span></a></span>
 
                 
                 
-                  . 
+                  , 
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/AI/CV/目标检测/" itemprop="url" rel="index"><span itemprop="name">目标检测</span></a></span>
@@ -602,7 +597,7 @@
 </li>
 </ul>
 <p><strong>SSD使用低层feature map检测小目标，使用高层feature map检测大目标</strong>  </p>
-<h4 id="先验框匹配"><a href="#先验框匹配" class="headerlink" title="先验框匹配"></a>先验框匹配</h4><p>在训练过程中，首先要确定训练图片中的ground truth（真实目标）与哪个先验框来进行匹配，与之匹配的先验框所对应的边界框将负责预测它。在Yolo中，ground truth的中心落在哪个单元格，该单元格中与其IOU最大的边界框负责预测它。但是在SSD中却完全不一样，SSD的先验框与ground truth的匹配原则主要有两点。首先，对于图片中每个ground truth，找到与其IOU最大的先验框，该先验框与其匹配，这样，可以保证每个ground truth一定与某个先验框匹配。通常称与ground truth匹配的先验框为正样本（其实应该是先验框对应的预测box，不过由于是一一对应的就这样称呼了），反之，若一个先验框没有与任何ground truth进行匹配，那么该先验框只能与背景匹配，就是负样本。一个图片中ground truth是非常少的， 而先验框却很多，如果仅按第一个原则匹配，很多先验框会是负样本，正负样本极其不平衡，所以需要第二个原则。第二个原则是：对于剩余的未匹配先验框，若某个ground truth的 <img src="/2020/10/16/目标检测五/equation-1602920771129.svg" alt="[公式]"> 大于某个阈值（一般是0.5），那么该先验框也与这个ground truth进行匹配。这意味着某个ground truth可能与多个先验框匹配，这是可以的。但是反过来却不可以，因为一个先验框只能匹配一个ground truth，如果多个ground truth与某个先验框 <img src="/2020/10/16/目标检测五/equation-1602920771129.svg" alt="[公式]"> 大于阈值，那么先验框只与IOU最大的那个ground truth进行匹配。第二个原则一定在第一个原则之后进行，仔细考虑一下这种情况，如果某个ground truth所对应最大 <img src="/2020/10/16/目标检测五/equation-1602920771129.svg" alt="[公式]"> 小于阈值，并且所匹配的先验框却与另外一个ground truth的 <img src="/2020/10/16/目标检测五/equation-1602920771129.svg" alt="[公式]"> 大于阈值，那么该先验框应该匹配谁，答案应该是前者，首先要确保某个ground truth一定有一个先验框与之匹配。但是，这种情况我觉得基本上是不存在的。由于先验框很多，某个ground truth的最大 <img src="/2020/10/16/目标检测五/equation-1602920771129.svg" alt="[公式]"> 肯定大于阈值，所以可能只实施第二个原则既可以了，这里的<a href="https://link.zhihu.com/?target=https%3A//github.com/xiaohu2015/SSD-Tensorflow/blob/master/nets/ssd_common.py" target="_blank" rel="noopener">TensorFlow版本</a>就是只实施了第二个原则，但是这里的<a href="https://link.zhihu.com/?target=https%3A//github.com/amdegroot/ssd.pytorch/blob/master/layers/box_utils.py" target="_blank" rel="noopener">Pytorch</a>两个原则都实施了。图8为一个匹配示意图，其中绿色的GT是ground truth，红色为先验框，FP表示负样本，TP表示正样本。 </p>
+<h4 id="先验框匹配"><a href="#先验框匹配" class="headerlink" title="先验框匹配"></a>先验框匹配</h4><p>在训练过程中，首先要确定训练图片中的ground truth（真实目标）与哪个先验框来进行匹配，与之匹配的先验框所对应的边界框将负责预测它。在Yolo中，ground truth的中心落在哪个单元格，该单元格中与其IOU最大的边界框负责预测它。但是在SSD中却完全不一样，SSD的先验框与ground truth的匹配原则主要有两点。首先，对于图片中每个ground truth，找到与其IOU最大的先验框，该先验框与其匹配，这样，可以保证每个ground truth一定与某个先验框匹配。通常称与ground truth匹配的先验框为正样本（其实应该是先验框对应的预测box，不过由于是一一对应的就这样称呼了），反之，若一个先验框没有与任何ground truth进行匹配，那么该先验框只能与背景匹配，就是负样本。一个图片中ground truth是非常少的， 而先验框却很多，如果仅按第一个原则匹配，很多先验框会是负样本，正负样本极其不平衡，所以需要第二个原则。第二个原则是：对于剩余的未匹配先验框，若某个ground truth的 $IOU$ 大于某个阈值（一般是0.5），那么该先验框也与这个ground truth进行匹配。这意味着某个ground truth可能与多个先验框匹配，这是可以的。但是反过来却不可以，因为一个先验框只能匹配一个ground truth，如果多个ground truth与某个先验框 $IOU$大于阈值，那么先验框只与IOU最大的那个ground truth进行匹配。第二个原则一定在第一个原则之后进行，仔细考虑一下这种情况，如果某个ground truth所对应最大 $IOU$小于阈值，并且所匹配的先验框却与另外一个ground truth的 $IOU$大于阈值，那么该先验框应该匹配谁，答案应该是前者，首先要确保某个ground truth一定有一个先验框与之匹配。但是，这种情况我觉得基本上是不存在的。由于先验框很多，某个ground truth的最大 $IOU$肯定大于阈值，所以可能只实施第二个原则既可以了，这里的<a href="https://link.zhihu.com/?target=https%3A//github.com/xiaohu2015/SSD-Tensorflow/blob/master/nets/ssd_common.py" target="_blank" rel="noopener">TensorFlow版本</a>就是只实施了第二个原则，但是这里的<a href="https://link.zhihu.com/?target=https%3A//github.com/amdegroot/ssd.pytorch/blob/master/layers/box_utils.py" target="_blank" rel="noopener">Pytorch</a>两个原则都实施了。图8为一个匹配示意图，其中绿色的GT是ground truth，红色为先验框，FP表示负样本，TP表示正样本。 </p>
 <p> <img src="/2020/10/16/目标检测五/v2-174bec5acd695bacbdaa051b730f998a_1440w.jpg" alt="img"></p>
 <p>尽管一个ground truth可以与多个先验框匹配，但是ground truth相对先验框还是太少了，所以负样本相对正样本会很多。为了保证正负样本尽量平衡，SSD采用了hard negative mining，就是对负样本进行抽样，抽样时按照置信度误差（预测背景的置信度越小，误差越大）进行降序排列，选取误差的较大的top-k作为训练的负样本，以保证正负样本比例接近1:3。  </p>
 <h4 id="预测过程"><a href="#预测过程" class="headerlink" title="预测过程"></a>预测过程</h4><p>预测过程比较简单，对于每个预测框，首先根据类别置信度确定其类别（置信度最大者）与置信度值，并过滤掉属于背景的预测框。然后根据置信度阈值（如0.5）过滤掉阈值较低的预测框。对于留下的预测框进行解码，根据先验框得到其真实的位置参数（解码后一般还需要做clip，防止预测框位置超出图片）。解码之后，一般需要根据置信度进行降序排列，然后仅保留top-k（如400）个预测框。最后就是进行NMS算法，过滤掉那些重叠度较大的预测框。最后剩余的预测框就是检测结果了。 </p>
@@ -740,10 +735,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Inhaltsverzeichnis
+            Table of Contents
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Übersicht
+            Overview
           </li>
         </ul>
       
@@ -766,7 +761,7 @@
                   <a href="/archives/">
                 
                     <span class="site-state-item-count">34</span>
-                    <span class="site-state-item-name">Artikel</span>
+                    <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
               
@@ -797,7 +792,7 @@
                       
                     
                     <span class="site-state-item-count">9</span>
-                    <span class="site-state-item-name">Kategorien</span>
+                    <span class="site-state-item-name">categories</span>
                   </a>
                 </div>
               
@@ -844,7 +839,7 @@
                       
                     
                     <span class="site-state-item-count">17</span>
-                    <span class="site-state-item-name">Tags</span>
+                    <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
               
@@ -937,7 +932,7 @@
 </div>
 
 
-  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
 
 
 
