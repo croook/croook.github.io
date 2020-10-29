@@ -1,3 +1,4 @@
+https://croook.github.io/2020/10/28/EfficientDet/
 https://croook.github.io/2020/10/16/目标检测汇总/
 https://croook.github.io/2020/10/16/目标检测五/
 https://croook.github.io/2020/10/16/目标检测四/
