@@ -118,7 +118,7 @@
 <meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测四/v2-45795a63cdbaac8c05d875dfb6fcfb5a_1440w.jpg">
 <meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测四/20181220112516165.png">
 <meta property="og:image" content="https://croook.github.io/2020/10/16/目标检测四/v2-cb8bb72fad701466328b386da6a93943_1440w.jpg">
-<meta property="og:updated_time" content="2020-10-29T12:19:53.932Z">
+<meta property="og:updated_time" content="2020-10-29T12:22:11.770Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="目标检测四">
 <meta name="twitter:description" content="目标检测四YOLO v1参考：https://zhuanlan.zhihu.com/p/32525231 参考：https://zhuanlan.zhihu.com/p/31427164  yolo (you only look once)。 Yolo算法采用一个单独的CNN模型实现end-to-end的目标检测 ，整个系统如下图所示：首先将输入图片resize到448x448，然后送入CNN网络">
@@ -427,7 +427,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2020-10-29 20:19:53" itemprop="dateModified" datetime="2020-10-29T20:19:53+08:00">2020-10-29</time>
+                <time title="Modified: 2020-10-29 20:22:11" itemprop="dateModified" datetime="2020-10-29T20:22:11+08:00">2020-10-29</time>
               
             
           </span>
@@ -535,7 +535,7 @@
 <p>另外一点是，由于每个单元格预测多个边界框。但是其对应类别只有一个。那么在训练时，如果该单元格内确实存在目标，那么只选择与ground truth的IOU最大的那个边界框来负责预测该目标，而其它边界框认为不存在目标。这样设置的一个结果将会使一个单元格对应的边界框更加专业化，其可以分别适用不同大小，不同高宽比的目标，从而提升模型性能。大家可能会想如果一个单元格内存在多个目标怎么办，其实这时候Yolo算法就只能选择其中一个来训练，这也是Yolo算法的缺点之一。要注意的一点时，对于不存在对应目标的边界框，其误差项就是只有置信度，坐标项误差是没法计算的。而只有当一个单元格内确实存在目标时，才计算分类误差项，否则该项也是无法计算的。</p>
 <p> <img src="/2020/10/16/目标检测四/v2-45795a63cdbaac8c05d875dfb6fcfb5a_1440w.jpg" alt="img"></p>
 <p> <img src="/2020/10/16/目标检测四/20181220112516165.png" alt="在这里插入图片描述">  </p>
-<p> 其中第一项是边界框中心坐标的误差项，$1^{obj}<em>{ij}$ 指的是第$i$个单元格存在目标，且该单元格中的第$j$个边界框负责预测该目标。第二项是边界框的高与宽的误差项。第三项是包含目标的边界框的置信度误差项。第四项是不包含目标的边界框的置信度误差项。而最后一项是包含目标的单元格的分类误差项， $1^{obj}</em>{i}$ 指的是第 $i$个单元格存在目标。这里特别说一下置信度的target值$C<em>i$ ，如果是不存在目标，此时由于$Pr</em>{object}=0$，那么 $C<em>i=0$。如果存在目标$Pr</em>{object}=1$，  ，此时需要确定 $IOU^{truth}_{pred}$，当然你希望最好的话，可以将IOU取1，这样$C_i$=1，但是在YOLO实现中，使用了一个控制参数rescore（默认为1），当其为1时，IOU不是设置为1，而就是计算truth和pred之间的真实IOU。不过很多复现YOLO的项目还是取 $C_i=1$，这个差异应该不会太影响结果吧。 </p>
+<p> 其中第一项是边界框中心坐标的误差项，$1^{obj}<em>{ij}$ 指的是第$i$个单元格存在目标，且该单元格中的第$j$个边界框负责预测该目标。第二项是边界框的高与宽的误差项。第三项是包含目标的边界框的置信度误差项。第四项是不包含目标的边界框的置信度误差项。而最后一项是包含目标的单元格的分类误差项， $1^{obj}</em>{i}$ 指的是第 $i$个单元格存在目标。这里特别说一下置信度的target值$C<em>i$ ，如果是不存在目标，此时由于$Pr</em>{object}=0$，那么 $C<em>i=0$。如果存在目标$Pr</em>{object}=1$， 此时需要确定 $IOU^{truth}_{pred}$，当然你希望最好的话，可以将IOU取1，这样$C_i= 1$，但是在YOLO实现中，使用了一个控制参数rescore（默认为1），当其为1时，IOU不是设置为1，而就是计算truth和pred之间的真实IOU。不过很多复现YOLO的项目还是取 $C_i=1$，这个差异应该不会太影响结果吧。 </p>
 <h3 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h3><p> <img src="/2020/10/16/目标检测四/v2-cb8bb72fad701466328b386da6a93943_1440w.jpg" alt="img"></p>
 <p>Yolo的Correct的是低于Fast R-CNN。另外Yolo的Localization误差偏高，即定位不是很准确。但是Yolo的Background误差很低，说明其对背景的误判率较低。</p>
 <ul>
