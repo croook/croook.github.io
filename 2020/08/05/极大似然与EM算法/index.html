@@ -15,7 +15,7 @@
 
 
 <html class="theme-next muse use-motion" lang="En">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -526,7 +526,7 @@
 <p>设f是定义域为实数的函数，如果对于所有的实数x， $f^{‘’}(x)\geqslant 0$ 那么f是凸函数，如果$f^{‘’}(x)&gt; 0$ 那么f是严格凸函数。</p>
 <p>jensen不等式： 如果f是凸函数，X是随机变量，那么 $E[f(x)]\geqslant f[E(x)]$，特别的，如果f是严格凸函数，那么当且仅当$p(x=E[x])=1$时（X为常量），取得 $E[f(x)]= f[E(x)]$</p>
 <h2 id="lazy-Statistician规则"><a href="#lazy-Statistician规则" class="headerlink" title="lazy Statistician规则"></a>lazy Statistician规则</h2><p>设 y 是随机变量 x 的函数，$y=g(x)(g是连续函数)$，那么：</p>
-<p>(1) x 是<strong>离散随机变量</strong>，分布为$p(x=x<em>k)=p_k,k∈N∗$,若$∑^∞</em>{k=1} g(x) p_k$绝对收敛，则</p>
+<p>(1) x 是<strong>离散随机变量</strong>，分布为$p(x=x_k)=p_k,k∈N∗$,若$∑^∞_{k=1} g(x) p_k$绝对收敛，则</p>
 <script type="math/tex; mode=display">
 E(y)=E|g(x)|=∑^∞_{k=1}g(x_k)p_k</script><p> (2) x 是<strong>连续随机变量</strong>，分布概率为$f(x)$,若$∫^∞_{−∞}g(x)f(x)dx$ 绝对收敛，则</p>
 <script type="math/tex; mode=display">
@@ -551,7 +551,7 @@ E(y)=E|g(x)|=∫^∞_{−∞}g(x)f(x)dx</script><h2 id="EM公式推导"><a href=
 <p>形式化表示为：</p>
 <ul>
 <li><strong>E-step</strong>        $Q_i(z^{(i)})=p(z^{(i)}∣x^{(i)};θ) $</li>
-<li><strong>M-step</strong>       $θ=\arg \max<em>\theta{∑^n</em>{i=1}∑_{z^{(i)}}Qi(z^{(i)})log\frac {p(x^{(i)}),z^{(i)};θ)}{Qi(z^{(i)})}} $</li>
+<li><strong>M-step</strong>       $θ=\arg \max_\theta{∑^n_{i=1}∑_{z^{(i)}}Qi(z^{(i)})log\frac {p(x^{(i)}),z^{(i)};θ)}{Qi(z^{(i)})}} $</li>
 </ul>
 <p>由于$L(\theta)$会单调增加。因此EM算法收敛。</p>
 <p>证明：<a href="https://www.cnblogs.com/jerrylead/archive/2011/04/06/2006936.html" target="_blank" rel="noopener">收敛证明</a></p>
@@ -1056,7 +1056,7 @@ E(y)=E|g(x)|=∫^∞_{−∞}g(x)f(x)dx</script><h2 id="EM公式推导"><a href=
 </div>
 
 
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
 
 
 

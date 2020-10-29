@@ -15,7 +15,7 @@
 
 
 <html class="theme-next muse use-motion" lang="En">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -525,7 +525,7 @@ A=
 <script type="math/tex; mode=display">
 A = Vdiag(λ)V^{-1}</script><p>我们将实对称矩阵分解成实特征向量和实特征值：</p>
 <script type="math/tex; mode=display">
-A=QΛQ^{T}</script><p>其中$Q$是$A$的特征向量组成的正交矩阵，$Λ$是对角矩阵，特征值$Λ<em>{i,i}$对应的特征向量是矩阵$Q$的第$i$列，记作$Q</em>{:,i}$，由于$Q$是正交矩阵，可以将$A$看作沿方向$v^{i}$延展$λ_{i}$倍的空间。</p>
+A=QΛQ^{T}</script><p>其中$Q$是$A$的特征向量组成的正交矩阵，$Λ$是对角矩阵，特征值$Λ_{i,i}$对应的特征向量是矩阵$Q$的第$i$列，记作$Q_{:,i}$，由于$Q$是正交矩阵，可以将$A$看作沿方向$v^{i}$延展$λ_{i}$倍的空间。</p>
 <p>虽然任意一个实对称矩阵$A$都有特征分解，但是特征分解可能并不唯一。如果两个或多个特征向量拥有相同的特征值，那么在由这些特征向量产生的生成子空间中，任意一组正交向量都是该特征值对应的特征向量。因此，我们可以等价地从这 些特征向量中构成$Q$作为替代。按照惯例，我们通常按降序排列$Λ$的元素。在该 约定下，特征分解唯一当且仅当所有的特征值都是唯一的。 </p>
 <p>矩阵的特征分解给了我们很多关于矩阵的有用信息。矩阵是奇异的当且仅当含 有零特征值。</p>
 <p>所有特征值都是正数的矩阵被称为正定（positive deﬁnite）；所有特征值都是非 负数的矩阵被称为半正定（positive semideﬁnite）。同样地，所有特征值都是负数的 矩阵被称为负定（negative deﬁnite）；所有特征值都是非正数的矩阵被称为 半负定 （negative semideﬁnite）。 半正定矩阵受到关注是因为它们保证 $∀x,x^{T}Ax≥0$。此外， 正定矩阵还保证$x^{T}Ax=0\Rightarrow x=0$。</p>
@@ -605,7 +605,7 @@ H(x)=E_{x\sim P}[I(x)]=-E_{x\sim P}[log(P(x))]</script><p>一个分布的香农�
 <h3 id="KL散度"><a href="#KL散度" class="headerlink" title="KL散度"></a>KL散度</h3><p>如果我们对于同一个随机变量 t 有两个单独的概率分布 $P(x)$ 和 $Q(x)$，我们可以使用KL 散度（Kullback-Leibler (KL) divergence）来衡量这两个分布的差异</p>
 <script type="math/tex; mode=display">
 D_{KL}(P||Q)=E_{x\sim P}[log\frac{P(x)}{Q(x)}]=E_{x\sim P}[logP(x)-logQ(x)]</script><p>在离散型变量的情况下，KL 散度衡量的是，当我们使用一种被设计成能够使得概率分布$Q$产生的消息的长度最小的编码，发送包含由概率分布$P$产生的符号 的消息时，所需要的额外信息量 (如果我们使用底数为 2 的对数时，信息量用比特衡量，但在机器学习中，我们通常用奈特和自然对数。) </p>
-<p>KL 散度有很多有用的性质，最重要的是它是非负的。KL 散度为 0 当且仅当$P$和$Q$在离散型变量的情况下是相同的分布，或者在连续型变量的情况下是 ‘‘几乎处处’’ 相同的。因为 KL 散度是非负的并且衡量的是两个分布之间的差异，它经常被用作分布之间的某种距离。然而，它并不是真的距离因为它不是对称的：对于某 些$P$和$Q$，$D<em>{KL}(P||Q)\neq D</em>{KL}(Q||P)$。这种非对称性意味着选择$D<em>{KL}(P||Q)$ 还是$D</em>{KL}(Q||P)$ 影响很大</p>
+<p>KL 散度有很多有用的性质，最重要的是它是非负的。KL 散度为 0 当且仅当$P$和$Q$在离散型变量的情况下是相同的分布，或者在连续型变量的情况下是 ‘‘几乎处处’’ 相同的。因为 KL 散度是非负的并且衡量的是两个分布之间的差异，它经常被用作分布之间的某种距离。然而，它并不是真的距离因为它不是对称的：对于某 些$P$和$Q$，$D_{KL}(P||Q)\neq D_{KL}(Q||P)$。这种非对称性意味着选择$D_{KL}(P||Q)$ 还是$D_{KL}(Q||P)$ 影响很大</p>
 <p><img src="/2020/04/08/线性代数、概率论/13.png" style="zoom: 67%;"></p>
 <p>一个和 KL 散度密切联系的量是交叉熵（cross-entropy）$H(P,Q)=H(P)+ D_{KL}(P||Q)$，它和 KL 散度很像但是缺少左边一项：</p>
 <script type="math/tex; mode=display">
@@ -903,7 +903,7 @@ H(P,Q)=-E_{x\sim P}logQ(x)</script><p>针对 $Q$ 最小化交叉熵等价于最�
 </div>
 
 
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
 
 
 

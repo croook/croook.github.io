@@ -15,7 +15,7 @@
 
 
 <html class="theme-next muse use-motion" lang="En">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -132,7 +132,7 @@
 <meta property="og:image" content="https://croook.github.io/2020/10/28/EfficientDet/image-20201029191824275.png">
 <meta property="og:image" content="https://croook.github.io/2020/10/28/EfficientDet/image-20201029193055414.png">
 <meta property="og:image" content="https://croook.github.io/2020/10/28/EfficientDet/image-20201029193208324.png">
-<meta property="og:updated_time" content="2020-10-29T12:29:08.667Z">
+<meta property="og:updated_time" content="2020-10-29T12:55:38.179Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="EfficientDet">
 <meta name="twitter:description" content="EfficientNetEfficientNet: Rethinking Model Scaling for Convolutional Neural Networks论文链接： https://arxiv.org/pdf/1905.11946.pdf官方源码： https://github.com/tensorflow/tpu/tree/master/models/official/effici">
@@ -441,7 +441,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2020-10-29 20:29:08" itemprop="dateModified" datetime="2020-10-29T20:29:08+08:00">2020-10-29</time>
+                <time title="Modified: 2020-10-29 20:55:38" itemprop="dateModified" datetime="2020-10-29T20:55:38+08:00">2020-10-29</time>
               
             
           </span>
@@ -579,7 +579,7 @@
 <ul>
 <li><strong>Backbone network：</strong>和EfficientNet B0-B6使用相同的放大系数。</li>
 <li><strong>BiFPN network：</strong><img src="/2020/10/28/EfficientDet/image-20201028221126786.png" alt="image-20201028221126786" style="zoom: 80%;"></li>
-<li><strong>Box/class prediction network：</strong>它的宽度和BiFPN保持一致（$W<em>{pred}=W</em>{bifpn}$）,深度线性增加：$D<em>{box}=D</em>{class}=3+\left \lfloor \phi/3 \right \rfloor$</li>
+<li><strong>Box/class prediction network：</strong>它的宽度和BiFPN保持一致（$W_{pred}=W_{bifpn}$）,深度线性增加：$D_{box}=D_{class}=3+\left \lfloor \phi/3 \right \rfloor$</li>
 <li><strong>Input image resolution：</strong>因为BiFPN使用了3-7层的特征，所以输入的分辨率需要能被$2^7=128$整除：$R_{input}=512+\phi·128$，</li>
 </ul>
 <p>基于以上三个公式，拓展开发了EfficientDet D0-D7。</p>
@@ -879,7 +879,7 @@
 </div>
 
 
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
 
 
 
