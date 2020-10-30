@@ -124,11 +124,12 @@
 <meta property="og:image" content="https://croook.github.io/2020/10/15/目标检测三/8595017-8fb67aed4d4788cb.webp">
 <meta property="og:image" content="https://croook.github.io/2020/10/15/目标检测三/image-20201015195038921.png">
 <meta property="og:image" content="https://croook.github.io/2020/10/15/目标检测三/image-20201015195307503.png">
+<meta property="og:image" content="https://croook.github.io/2020/10/15/目标检测三/75922-20180309172307785-1447062351.png">
 <meta property="og:image" content="https://croook.github.io/2020/10/15/目标检测三/image-20201015195951087.png">
 <meta property="og:image" content="https://croook.github.io/2020/10/15/目标检测三/image-20201015200235278.png">
 <meta property="og:image" content="https://croook.github.io/2020/10/15/目标检测三/5649247-85ff40a2f6061b5b.webp">
 <meta property="og:image" content="https://croook.github.io/2020/10/15/目标检测三/5649247-17ef13fc8cfc18c5.webp">
-<meta property="og:updated_time" content="2020-10-17T02:09:39.814Z">
+<meta property="og:updated_time" content="2020-10-29T14:24:09.853Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="目标检测三">
 <meta name="twitter:description" content="目标检测三参考：https://www.cnblogs.com/skyfsm/p/6806246.html Fast R-CNN原理论文地址： Fast R-CNN  代码地址： 代码地址：rbgirshick/fast-rcnn  相对于R-CNN，Fast R-CNN主要有三点改进：  提出了RoIPooling，避免了对提取的region proposals进行缩放到224x224，然后经过">
@@ -437,7 +438,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2020-10-17 10:09:39" itemprop="dateModified" datetime="2020-10-17T10:09:39+08:00">2020-10-17</time>
+                <time title="Modified: 2020-10-29 22:24:09" itemprop="dateModified" datetime="2020-10-29T22:24:09+08:00">2020-10-29</time>
               
             
           </span>
@@ -599,6 +600,7 @@
 <p>为了兼顾分辨率和语义信息，FPN将高层提取到的语义信息自上而下进行融合。</p>
 <p><img src="/2020/10/15/目标检测三/image-20201015195307503.png" alt="image-20201015195307503"></p>
 <p>借用Resnet的思想，使用跨层连接，上层进行2倍上采样。</p>
+<p> <img src="/2020/10/15/目标检测三/75922-20180309172307785-1447062351.png" alt="img"> </p>
 <h2 id="RFCN"><a href="#RFCN" class="headerlink" title="RFCN"></a>RFCN</h2><p>代码：<a href="https://github.com/daijifeng001/r-fcn" target="_blank" rel="noopener">https://github.com/daijifeng001/r-fcn</a></p>
 <p>参考：<a href="https://blog.csdn.net/baidu_32173921/article/details/71741970" target="_blank" rel="noopener">https://blog.csdn.net/baidu_32173921/article/details/71741970</a></p>
 <p><strong>出发点：图片分类的平移不变性与物体检测之间的平移变换性之间的矛盾</strong></p>
@@ -636,8 +638,8 @@
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ul>
 <li><p>RCNN<br>　　1. 在图像中确定约1000-2000个候选框 (使用选择性搜索)</p>
 <pre><code>  　　2. 每个候选框内图像块缩放至相同大小，并输入到CNN内进行特征提取 
-  　　3. 对候选框中提取出的特征，使用分类器判别是否属于一个特定类
-       　　4. 对于属于某一特征的候选框，用回归器进一步调整其位置
+      　　3. 对候选框中提取出的特征，使用分类器判别是否属于一个特定类
+          　　4. 对于属于某一特征的候选框，用回归器进一步调整其位置
 </code></pre></li>
 <li><p>Fast RCNN</p>
 <ol>
@@ -779,7 +781,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">35</span>
+                    <span class="site-state-item-count">36</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
