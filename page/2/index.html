@@ -257,7 +257,7 @@
 
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Category</a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
 
   </li>
         
@@ -274,7 +274,7 @@
 
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archive</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
 
   </li>
 
@@ -355,6 +355,442 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://croook.github.io/2020/10/11/目标检测一/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="sh">
+      <meta itemprop="description" content="so we beat on, boats against the current, borne back ceaselessly into the past.">
+      <meta itemprop="image" content="/images/ava.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Crookshank">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/10/11/目标检测一/" class="post-title-link" itemprop="url">目标检测一</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2020-10-11 22:07:09" itemprop="dateCreated datePublished" datetime="2020-10-11T22:07:09+08:00">2020-10-11</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2020-10-17 09:50:30" itemprop="dateModified" datetime="2020-10-17T09:50:30+08:00">2020-10-17</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/AI/CV/" itemprop="url" rel="index"><span itemprop="name">CV</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/AI/CV/目标检测/" itemprop="url" rel="index"><span itemprop="name">目标检测</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+            <span id="/2020/10/11/目标检测一/" class="leancloud_visitors" data-flag-title="目标检测一">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Views: </span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>
+              目标检测一非极大值抑制nmsnms目标检测算法会产生数量巨大的候选矩形框，这些矩形框有很多是指向同一目标，存在大量冗余。nms可以消除多余的框，找到最佳的物体检测位置。
+非极大值抑制（Non-Maximum Suppression）的思想是搜索局部极大值，抑制非极大值元素  
+
+交并比
+IoU(Intersection over Union)为交并比 。
+ 
+ 
+
+
+经典nms
+设定目标框的置信度阈值，常用的阈值是0.5左右
+根据置信度降序排列候选框列表
+选取置信度最高的框A添加到输出列表，并将其从候选框列表中删除
+计算A与候选框列表中的所有框的IoU值，删除大于阈值的候选框
+重复上述过程，直
+              ...
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2020/10/11/目标检测一/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://croook.github.io/2020/08/05/极大似然与EM算法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="sh">
+      <meta itemprop="description" content="so we beat on, boats against the current, borne back ceaselessly into the past.">
+      <meta itemprop="image" content="/images/ava.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Crookshank">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/08/05/极大似然与EM算法/" class="post-title-link" itemprop="url">极大似然与EM算法</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2020-08-05 14:08:44" itemprop="dateCreated datePublished" datetime="2020-08-05T14:08:44+08:00">2020-08-05</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2020-08-07 16:16:50" itemprop="dateModified" datetime="2020-08-07T16:16:50+08:00">2020-08-07</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/AI/NLP/" itemprop="url" rel="index"><span itemprop="name">NLP</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+            <span id="/2020/08/05/极大似然与EM算法/" class="leancloud_visitors" data-flag-title="极大似然与EM算法">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Views: </span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>
+              极大似然估计参考： https://www.zhihu.com/question/24124998 
+极大似然是对概率模型参数学习优化目标的一种定义 。 就是利用已知的样本结果信息，反推最具有可能（最大概率）导致这些样本结果出现的模型参数值 。
+对于离散型的随机变量：
+ 
+如果是一个连续型的随机变量  ：
+  
+想对$L(\theta)$求最值，为了便于求导，两边取对数，有：
+  
+如果方程有唯一解，且是极大值点，那么我们就求得了极大似然估计值。 
+例子1：抛硬币
+例子2：单参数
+例子3：多参数
+
+总体方差的极大似然估计值的分母是  而不是  ，因此他不是一个无偏估计量。但是可以说他是渐近无偏
+              ...
+            </p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2020/08/05/极大似然与EM算法/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://croook.github.io/2020/08/04/NLP三/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -393,14 +829,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
 
               
                 
               
 
-              <time title="Post created: 2020-08-04 15:01:33" itemprop="dateCreated datePublished" datetime="2020-08-04T15:01:33+08:00">2020-08-04</time>
+              <time title="Created: 2020-08-04 15:01:33" itemprop="dateCreated datePublished" datetime="2020-08-04T15:01:33+08:00">2020-08-04</time>
             
 
             
@@ -417,7 +853,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Updated at: 2020-08-11 10:59:54" itemprop="dateModified" datetime="2020-08-11T10:59:54+08:00">2020-08-11</time>
+                <time title="Modified: 2020-08-11 10:59:54" itemprop="dateModified" datetime="2020-08-11T10:59:54+08:00">2020-08-11</time>
               
             
           </span>
@@ -431,14 +867,14 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">in</span>
+                <span class="post-meta-item-text">In</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a></span>
 
                 
                 
-                  . 
+                  , 
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/AI/NLP/" itemprop="url" rel="index"><span itemprop="name">NLP</span></a></span>
@@ -513,7 +949,7 @@
           
             <div class="post-button text-center">
               <a class="btn" href="/2020/08/04/NLP三/#more" rel="contents">
-                Weiterlesen &raquo;
+                Read more &raquo;
               </a>
             </div>
           
@@ -610,14 +1046,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
 
               
                 
               
 
-              <time title="Post created: 2020-08-03 10:44:01" itemprop="dateCreated datePublished" datetime="2020-08-03T10:44:01+08:00">2020-08-03</time>
+              <time title="Created: 2020-08-03 10:44:01" itemprop="dateCreated datePublished" datetime="2020-08-03T10:44:01+08:00">2020-08-03</time>
             
 
             
@@ -634,7 +1070,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Updated at: 2020-08-05 14:07:58" itemprop="dateModified" datetime="2020-08-05T14:07:58+08:00">2020-08-05</time>
+                <time title="Modified: 2020-08-05 14:07:58" itemprop="dateModified" datetime="2020-08-05T14:07:58+08:00">2020-08-05</time>
               
             
           </span>
@@ -648,14 +1084,14 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">in</span>
+                <span class="post-meta-item-text">In</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a></span>
 
                 
                 
-                  . 
+                  , 
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/AI/NLP/" itemprop="url" rel="index"><span itemprop="name">NLP</span></a></span>
@@ -717,7 +1153,7 @@ Visual Attention注意力包括软注意力(soft attention)和强注意力
           
             <div class="post-button text-center">
               <a class="btn" href="/2020/08/03/NLP二/#more" rel="contents">
-                Weiterlesen &raquo;
+                Read more &raquo;
               </a>
             </div>
           
@@ -814,14 +1250,14 @@ Visual Attention注意力包括软注意力(soft attention)和强注意力
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
 
               
                 
               
 
-              <time title="Post created: 2020-08-02 15:42:02" itemprop="dateCreated datePublished" datetime="2020-08-02T15:42:02+08:00">2020-08-02</time>
+              <time title="Created: 2020-08-02 15:42:02" itemprop="dateCreated datePublished" datetime="2020-08-02T15:42:02+08:00">2020-08-02</time>
             
 
             
@@ -838,7 +1274,7 @@ Visual Attention注意力包括软注意力(soft attention)和强注意力
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Updated at: 2020-08-05 14:05:36" itemprop="dateModified" datetime="2020-08-05T14:05:36+08:00">2020-08-05</time>
+                <time title="Modified: 2020-08-05 14:05:36" itemprop="dateModified" datetime="2020-08-05T14:05:36+08:00">2020-08-05</time>
               
             
           </span>
@@ -852,14 +1288,14 @@ Visual Attention注意力包括软注意力(soft attention)和强注意力
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">in</span>
+                <span class="post-meta-item-text">In</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a></span>
 
                 
                 
-                  . 
+                  , 
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/AI/NLP/" itemprop="url" rel="index"><span itemprop="name">NLP</span></a></span>
@@ -924,7 +1360,7 @@ jiebajieba一般用来完成中文分词
           
             <div class="post-button text-center">
               <a class="btn" href="/2020/08/02/NLP一/#more" rel="contents">
-                Weiterlesen &raquo;
+                Read more &raquo;
               </a>
             </div>
           
@@ -1021,14 +1457,14 @@ jiebajieba一般用来完成中文分词
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
 
               
                 
               
 
-              <time title="Post created: 2020-04-08 17:30:42" itemprop="dateCreated datePublished" datetime="2020-04-08T17:30:42+08:00">2020-04-08</time>
+              <time title="Created: 2020-04-08 17:30:42" itemprop="dateCreated datePublished" datetime="2020-04-08T17:30:42+08:00">2020-04-08</time>
             
 
             
@@ -1045,7 +1481,7 @@ jiebajieba一般用来完成中文分词
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Updated at: 2020-04-30 09:26:02" itemprop="dateModified" datetime="2020-04-30T09:26:02+08:00">2020-04-30</time>
+                <time title="Modified: 2020-04-30 09:26:02" itemprop="dateModified" datetime="2020-04-30T09:26:02+08:00">2020-04-30</time>
               
             
           </span>
@@ -1059,7 +1495,7 @@ jiebajieba一般用来完成中文分词
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">in</span>
+                <span class="post-meta-item-text">In</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a></span>
@@ -1139,7 +1575,7 @@ $A$有N个线性无关的
           
             <div class="post-button text-center">
               <a class="btn" href="/2020/04/08/线性代数、概率论/#more" rel="contents">
-                Weiterlesen &raquo;
+                Read more &raquo;
               </a>
             </div>
           
@@ -1236,14 +1672,14 @@ $A$有N个线性无关的
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
 
               
                 
               
 
-              <time title="Post created: 2020-03-09 11:42:30" itemprop="dateCreated datePublished" datetime="2020-03-09T11:42:30+08:00">2020-03-09</time>
+              <time title="Created: 2020-03-09 11:42:30" itemprop="dateCreated datePublished" datetime="2020-03-09T11:42:30+08:00">2020-03-09</time>
             
 
             
@@ -1260,7 +1696,7 @@ $A$有N个线性无关的
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Updated at: 2020-04-09 17:19:08" itemprop="dateModified" datetime="2020-04-09T17:19:08+08:00">2020-04-09</time>
+                <time title="Modified: 2020-04-09 17:19:08" itemprop="dateModified" datetime="2020-04-09T17:19:08+08:00">2020-04-09</time>
               
             
           </span>
@@ -1274,7 +1710,7 @@ $A$有N个线性无关的
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">in</span>
+                <span class="post-meta-item-text">In</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a></span>
@@ -1355,7 +1791,7 @@ JS散度：
           
             <div class="post-button text-center">
               <a class="btn" href="/2020/03/09/GAN/#more" rel="contents">
-                Weiterlesen &raquo;
+                Read more &raquo;
               </a>
             </div>
           
@@ -1452,14 +1888,14 @@ JS散度：
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
 
               
                 
               
 
-              <time title="Post created: 2020-03-09 11:14:48" itemprop="dateCreated datePublished" datetime="2020-03-09T11:14:48+08:00">2020-03-09</time>
+              <time title="Created: 2020-03-09 11:14:48" itemprop="dateCreated datePublished" datetime="2020-03-09T11:14:48+08:00">2020-03-09</time>
             
 
             
@@ -1476,7 +1912,7 @@ JS散度：
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Updated at: 2020-04-09 17:22:35" itemprop="dateModified" datetime="2020-04-09T17:22:35+08:00">2020-04-09</time>
+                <time title="Modified: 2020-04-09 17:22:35" itemprop="dateModified" datetime="2020-04-09T17:22:35+08:00">2020-04-09</time>
               
             
           </span>
@@ -1490,7 +1926,7 @@ JS散度：
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">in</span>
+                <span class="post-meta-item-text">In</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a></span>
@@ -1582,7 +2018,7 @@ RNN记忆单元ht是
           
             <div class="post-button text-center">
               <a class="btn" href="/2020/03/09/RNN/#more" rel="contents">
-                Weiterlesen &raquo;
+                Read more &raquo;
               </a>
             </div>
           
@@ -1679,14 +2115,14 @@ RNN记忆单元ht是
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
 
               
                 
               
 
-              <time title="Post created: 2020-03-05 14:22:58" itemprop="dateCreated datePublished" datetime="2020-03-05T14:22:58+08:00">2020-03-05</time>
+              <time title="Created: 2020-03-05 14:22:58" itemprop="dateCreated datePublished" datetime="2020-03-05T14:22:58+08:00">2020-03-05</time>
             
 
             
@@ -1703,7 +2139,7 @@ RNN记忆单元ht是
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Updated at: 2020-04-09 17:24:03" itemprop="dateModified" datetime="2020-04-09T17:24:03+08:00">2020-04-09</time>
+                <time title="Modified: 2020-04-09 17:24:03" itemprop="dateModified" datetime="2020-04-09T17:24:03+08:00">2020-04-09</time>
               
             
           </span>
@@ -1717,7 +2153,7 @@ RNN记忆单元ht是
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">in</span>
+                <span class="post-meta-item-text">In</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a></span>
@@ -1777,7 +2213,7 @@ RNN记忆单元ht是
           
             <div class="post-button text-center">
               <a class="btn" href="/2020/03/05/PyTorch实践/#more" rel="contents">
-                Weiterlesen &raquo;
+                Read more &raquo;
               </a>
             </div>
           
@@ -1874,14 +2310,14 @@ RNN记忆单元ht是
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
 
               
                 
               
 
-              <time title="Post created: 2020-03-05 11:16:00" itemprop="dateCreated datePublished" datetime="2020-03-05T11:16:00+08:00">2020-03-05</time>
+              <time title="Created: 2020-03-05 11:16:00" itemprop="dateCreated datePublished" datetime="2020-03-05T11:16:00+08:00">2020-03-05</time>
             
 
             
@@ -1898,7 +2334,7 @@ RNN记忆单元ht是
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Updated at: 2020-04-09 17:25:36" itemprop="dateModified" datetime="2020-04-09T17:25:36+08:00">2020-04-09</time>
+                <time title="Modified: 2020-04-09 17:25:36" itemprop="dateModified" datetime="2020-04-09T17:25:36+08:00">2020-04-09</time>
               
             
           </span>
@@ -1912,7 +2348,7 @@ RNN记忆单元ht是
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">in</span>
+                <span class="post-meta-item-text">In</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a></span>
@@ -1980,402 +2416,7 @@ GPU加速的张量计算
           
             <div class="post-button text-center">
               <a class="btn" href="/2020/03/05/PyTorch基础/#more" rel="contents">
-                Weiterlesen &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://croook.github.io/2020/02/05/tensorflow学习/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="sh">
-      <meta itemprop="description" content="so we beat on, boats against the current, borne back ceaselessly into the past.">
-      <meta itemprop="image" content="/images/ava.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Crookshank">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2020/02/05/tensorflow学习/" class="post-title-link" itemprop="url">tensorflow学习</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-
-              
-                
-              
-
-              <time title="Post created: 2020-02-05 14:31:00" itemprop="dateCreated datePublished" datetime="2020-02-05T14:31:00+08:00">2020-02-05</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Updated at: 2020-03-04 16:07:36" itemprop="dateModified" datetime="2020-03-04T16:07:36+08:00">2020-03-04</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">in</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/AI/" itemprop="url" rel="index"><span itemprop="name">AI</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-            <span id="/2020/02/05/tensorflow学习/" class="leancloud_visitors" data-flag-title="tensorflow学习">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Views: </span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>
-              Tensorflowhello worldimport tensorflow.compat.v1 as tftf.disable_v2_behavior()vec_1 = tf.constant([1, 2, 3, 4])vec_2 = tf.constant([1, 2, 3, 4])v_add = tf.add(vec_1,vec_2)with tf.Session() as sess:	print(sess.run(v_add))
-import tensorflow.compat.v1 as tftf.disable_v2_behavior()vec_1 = tf.constant([1
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2020/02/05/tensorflow学习/#more" rel="contents">
-                Weiterlesen &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://croook.github.io/2020/01/01/HBase/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="sh">
-      <meta itemprop="description" content="so we beat on, boats against the current, borne back ceaselessly into the past.">
-      <meta itemprop="image" content="/images/ava.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Crookshank">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2020/01/01/HBase/" class="post-title-link" itemprop="url">HBase</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-
-              
-                
-              
-
-              <time title="Post created: 2020-01-01 19:53:28" itemprop="dateCreated datePublished" datetime="2020-01-01T19:53:28+08:00">2020-01-01</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Updated at: 2020-02-05 14:32:42" itemprop="dateModified" datetime="2020-02-05T14:32:42+08:00">2020-02-05</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">in</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/云计算/" itemprop="url" rel="index"><span itemprop="name">云计算</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-            <span id="/2020/01/01/HBase/" class="leancloud_visitors" data-flag-title="HBase">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Views: </span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>
-              HBase安装hbase下载wget https://archive.apache.org/dist/hbase/2.0.0-alpha4/hbase-2.0.0-alpha4-bin.tar.gz
-安装后解压到/opt/hbase文件夹
-配置环境变量修改~/.bashrc文件，添加以下代码
-export HBASE_HOME=/opt/hbase export PATH=$PATH:$HBASE_HOME/bin
-立即生效，source ~/.bashrc
-修改配置文件修改以下内容，/opt/hbase/conf/hbase-env.sh
-export HBASE_MANAGES_ZK=tr
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2020/01/01/HBase/#more" rel="contents">
-                Weiterlesen &raquo;
+                Read more &raquo;
               </a>
             </div>
           
@@ -2468,8 +2509,8 @@ export HBASE_MANAGES_ZK=tr
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">37</span>
-                    <span class="site-state-item-name">Artikel</span>
+                    <span class="site-state-item-count">39</span>
+                    <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
               
@@ -2501,8 +2542,12 @@ export HBASE_MANAGES_ZK=tr
                     
                       
                     
-                    <span class="site-state-item-count">10</span>
-                    <span class="site-state-item-name">Kategorien</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">categories</span>
                   </a>
                 </div>
               
@@ -2552,8 +2597,12 @@ export HBASE_MANAGES_ZK=tr
                     
                       
                     
-                    <span class="site-state-item-count">19</span>
-                    <span class="site-state-item-name">Tags</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">21</span>
+                    <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
               
@@ -2629,7 +2678,7 @@ export HBASE_MANAGES_ZK=tr
 </div>
 
 
-  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
 
 
 

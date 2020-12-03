@@ -1,3 +1,5 @@
+https://croook.github.io/2020/12/03/image-caption-papers-202004-Oscar/
+https://croook.github.io/2020/12/02/image-caption综述/
 https://croook.github.io/2020/11/07/Local-Paddle-Serving/
 https://croook.github.io/2020/10/30/目标检测代码/
 https://croook.github.io/2020/10/28/EfficientDet/
