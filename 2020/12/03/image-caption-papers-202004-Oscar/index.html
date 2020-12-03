@@ -120,7 +120,7 @@
 <meta property="og:image" content="https://croook.github.io/2020/12/03/image-caption-papers-202004-Oscar/image-20201203194300816.png">
 <meta property="og:image" content="https://croook.github.io/2020/12/03/image-caption-papers-202004-Oscar/image-20201203194331820.png">
 <meta property="og:image" content="https://croook.github.io/2020/12/03/image-caption-papers-202004-Oscar/image-20201203194400628.png">
-<meta property="og:updated_time" content="2020-12-03T11:47:49.977Z">
+<meta property="og:updated_time" content="2020-12-03T11:59:22.063Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="image-caption-papers_202004_Oscar">
 <meta name="twitter:description" content="Oscar: Object-Semantics Aligned Pre-training for Vision-Language TasksOscar: Object-Semantics Aligned Pre-training The code and pre-trained models are released: https://github.com/microsoft/Oscar We p">
@@ -412,7 +412,7 @@
                 
               
 
-              <time title="Created: 2020-12-03 16:36:32 / Modified: 19:47:49" itemprop="dateCreated datePublished" datetime="2020-12-03T16:36:32+08:00">2020-12-03</time>
+              <time title="Created: 2020-12-03 16:36:32 / Modified: 19:59:22" itemprop="dateCreated datePublished" datetime="2020-12-03T16:36:32+08:00">2020-12-03</time>
             
 
             
@@ -538,6 +538,11 @@
 <p><img src="/2020/12/03/image-caption-papers-202004-Oscar/image-20201203194300816.png" alt="image-20201203194300816"></p>
 <p><img src="/2020/12/03/image-caption-papers-202004-Oscar/image-20201203194331820.png" alt="image-20201203194331820"></p>
 <p><img src="/2020/12/03/image-caption-papers-202004-Oscar/image-20201203194400628.png" alt="image-20201203194400628"></p>
+<p>我们使用 t-SNE 可视化工具，把 COCO 测试集的图像-文本对的语义特征空间画在了二维平面上。对于每个图像区域和单词序列，我们将其传递通过模型，并将其最后一层输出用作特征。比较带有和不带有物体标签的预训练模型。</p>
+<p>图 4 中的结果揭示了一些有趣的发现。第一个发现是关于同一个物体的两种不同模态的：借助对象标签，可以大大减少两个模态之间同一对象的距离。</p>
+<p>例如，Oscar 中 Person 的图片和文本表示比基线方法中的视觉表示和文本表示更接近，这个在图 4 中用红色曲线表示。</p>
+<p>第二个发现是不同物体间的：添加物体标签后，具有相关语义的对象类越来越接近（但仍可区分） 而这在基线方法中有些混合，例如图 4 中用灰色曲线表示的动物（zebra, elephant, sheep等）。</p>
+<p>这证明了物体标签在学习对齐语义中的重要性：物体被用做定位点链接和规范化了跨模式的特征学习。</p>
 
       
     </div>
