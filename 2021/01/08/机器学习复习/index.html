@@ -1,0 +1,1618 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="En">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+  <meta name="google-site-verification" content="7Oev-o_nVgfEcRT4Mc9fXSxqXK0_WXFBAuBh4GdzGuM">
+
+
+
+
+
+
+
+  <meta name="baidu-site-verification" content="5Nq4yOLRnQ">
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.ico?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.ico?v=7.0.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="一、机器学习介绍&amp;amp;线性、逻辑回归什么是机器学习 要学什么—决策函数 从哪里学—训练数据 怎样学习—求解机器学习模型  针对某个任务 （Task ），利用训练数据 （Experience ），求解一个学习模型，从而提高该任务的性能 （Performance） 机器学习要素：  任务、目标（Task） 使用经验数据（Experience） 提高学习性能（Performance）  线性、逻辑回">
+<meta name="keywords" content="机器学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习复习">
+<meta property="og:url" content="https://croook.github.io/2021/01/08/机器学习复习/index.html">
+<meta property="og:site_name" content="Crookshank">
+<meta property="og:description" content="一、机器学习介绍&amp;amp;线性、逻辑回归什么是机器学习 要学什么—决策函数 从哪里学—训练数据 怎样学习—求解机器学习模型  针对某个任务 （Task ），利用训练数据 （Experience ），求解一个学习模型，从而提高该任务的性能 （Performance） 机器学习要素：  任务、目标（Task） 使用经验数据（Experience） 提高学习性能（Performance）  线性、逻辑回">
+<meta property="og:locale" content="En">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108105501675.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108105823098.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108105915740.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108110107043.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108121452211.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108121548608.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108122218592.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108122226039.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108122237542.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108122339936.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108122618980.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108124017039.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108124032366.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108124351546.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108125450374.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108133751141.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108131604993.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108131624798.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108131634968.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108131650807.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108135853429.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108140046831.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108140921319.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108141827426.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108141847890.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108141936433.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108142659383.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108142710900.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108142727415.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108142739751.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108144043966.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108145016997.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108145114008.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108144828797.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108144758437.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108164518211.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108164532062.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108164549486.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108164650226.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108164720638.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108165135301.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108165148868.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108165650606.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108170310260.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108170927376.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108170944889.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108182843976.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108184654166.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108184703008.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108185442232.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108190527897.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108190602266.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108191521838.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108191707731.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108191744154.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108194331300.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108194857976.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108194926798.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108194946685.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108195028912.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108195047944.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108195147484.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108200835447.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108210815773.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108210851925.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108211144741.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108211500387.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108212238667.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108212326139.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108212437733.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108212525198.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108212737639.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108215148325.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108221621387.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108221537516.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108222706473.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108222743026.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108222837266.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108222905302.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108221202560.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108221719018.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108221728915.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108222201945.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108222523345.png">
+<meta property="og:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108222602939.png">
+<meta property="og:updated_time" content="2021-01-08T14:32:18.648Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="机器学习复习">
+<meta name="twitter:description" content="一、机器学习介绍&amp;amp;线性、逻辑回归什么是机器学习 要学什么—决策函数 从哪里学—训练数据 怎样学习—求解机器学习模型  针对某个任务 （Task ），利用训练数据 （Experience ），求解一个学习模型，从而提高该任务的性能 （Performance） 机器学习要素：  任务、目标（Task） 使用经验数据（Experience） 提高学习性能（Performance）  线性、逻辑回">
+<meta name="twitter:image" content="https://croook.github.io/2021/01/08/机器学习复习/image-20210108105501675.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://croook.github.io/2021/01/08/机器学习复习/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>机器学习复习 | Crookshank</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="En">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Crookshank</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://croook.github.io/2021/01/08/机器学习复习/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="sh">
+      <meta itemprop="description" content="so we beat on, boats against the current, borne back ceaselessly into the past.">
+      <meta itemprop="image" content="/images/ava.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Crookshank">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">机器学习复习
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2021-01-08 22:31:29 / Modified: 22:32:18" itemprop="dateCreated datePublished" datetime="2021-01-08T22:31:29+08:00">2021-01-08</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/机器学习/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+            <span id="/2021/01/08/机器学习复习/" class="leancloud_visitors" data-flag-title="机器学习复习">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Views: </span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="一、机器学习介绍-amp-线性、逻辑回归"><a href="#一、机器学习介绍-amp-线性、逻辑回归" class="headerlink" title="一、机器学习介绍&amp;线性、逻辑回归"></a>一、机器学习介绍&amp;线性、逻辑回归</h1><h2 id="什么是机器学习"><a href="#什么是机器学习" class="headerlink" title="什么是机器学习"></a>什么是机器学习</h2><ul>
+<li>要学什么—决策函数</li>
+<li>从哪里学—训练数据</li>
+<li>怎样学习—求解机器学习模型</li>
+</ul>
+<p>针对某个任务 （Task ），利用训练数据 （Experience ），求<br>解一个学习模型，从而提高该任务的性能 （Performance）</p>
+<p>机器学习要素：</p>
+<ul>
+<li>任务、目标（Task）</li>
+<li>使用经验数据（Experience）</li>
+<li>提高学习性能（Performance）</li>
+</ul>
+<h2 id="线性、逻辑回归"><a href="#线性、逻辑回归" class="headerlink" title="线性、逻辑回归"></a>线性、逻辑回归</h2><h3 id="多元线性回归"><a href="#多元线性回归" class="headerlink" title="多元线性回归"></a>多元线性回归</h3><p><img src="/2021/01/08/机器学习复习/image-20210108105501675.png" alt="image-20210108105501675"></p>
+<p><img src="/2021/01/08/机器学习复习/image-20210108105823098.png" alt="image-20210108105823098"></p>
+<p><img src="/2021/01/08/机器学习复习/image-20210108105915740.png" alt="image-20210108105915740"></p>
+<p>损失函数几何意义：试图找到一个超平面，使所有样本到超平面上的欧式距离之和最小</p>
+<h3 id="梯度下降法求解"><a href="#梯度下降法求解" class="headerlink" title="梯度下降法求解"></a>梯度下降法求解</h3><p><img src="/2021/01/08/机器学习复习/image-20210108110107043.png" alt="image-20210108110107043"></p>
+<p><img src="/2021/01/08/机器学习复习/image-20210108121452211.png" alt="image-20210108121452211"></p>
+<h3 id="随机梯度下降法"><a href="#随机梯度下降法" class="headerlink" title="随机梯度下降法"></a>随机梯度下降法</h3><p><img src="/2021/01/08/机器学习复习/image-20210108121548608.png" alt="image-20210108121548608"></p>
+<h3 id="正规方程"><a href="#正规方程" class="headerlink" title="正规方程"></a>正规方程</h3><p><img src="/2021/01/08/机器学习复习/image-20210108122218592.png" alt="image-20210108122218592"></p>
+<p><img src="/2021/01/08/机器学习复习/image-20210108122226039.png" alt="image-20210108122226039"></p>
+<p><img src="/2021/01/08/机器学习复习/image-20210108122237542.png" alt="image-20210108122237542"></p>
+<h3 id="比较"><a href="#比较" class="headerlink" title="比较"></a>比较</h3><p><img src="/2021/01/08/机器学习复习/image-20210108122339936.png" alt="image-20210108122339936"></p>
+<ul>
+<li>MSE （mean square error） 均方误差</li>
+</ul>
+<h3 id="F1-measure"><a href="#F1-measure" class="headerlink" title="F1 measure"></a>F1 measure</h3><p><img src="/2021/01/08/机器学习复习/image-20210108122618980.png" alt="image-20210108122618980"></p>
+<h3 id="逻辑回归"><a href="#逻辑回归" class="headerlink" title="逻辑回归"></a>逻辑回归</h3><p><img src="/2021/01/08/机器学习复习/image-20210108124017039.png" alt="image-20210108124017039"></p>
+<p><img src="/2021/01/08/机器学习复习/image-20210108124032366.png" alt="image-20210108124032366"></p>
+<p>梯度上升法求解：</p>
+<p><img src="/2021/01/08/机器学习复习/image-20210108124351546.png" alt></p>
+<p><img src="/2021/01/08/机器学习复习/image-20210108125450374.png" alt="image-20210108125450374"></p>
+<h1 id="二、神经网络"><a href="#二、神经网络" class="headerlink" title="二、神经网络"></a>二、神经网络</h1><p><img src="/2021/01/08/机器学习复习/image-20210108133751141.png" alt="image-20210108133751141"></p>
+<h2 id="损失"><a href="#损失" class="headerlink" title="损失"></a>损失</h2><h3 id="二分类损失"><a href="#二分类损失" class="headerlink" title="二分类损失"></a>二分类损失</h3><p><img src="/2021/01/08/机器学习复习/image-20210108131604993.png" alt="image-20210108131604993"></p>
+<h3 id="多分类损失"><a href="#多分类损失" class="headerlink" title="多分类损失"></a>多分类损失</h3><p><img src="/2021/01/08/机器学习复习/image-20210108131624798.png" alt="image-20210108131624798"></p>
+<p><img src="/2021/01/08/机器学习复习/image-20210108131634968.png" alt="image-20210108131634968"></p>
+<h3 id="回归损失"><a href="#回归损失" class="headerlink" title="回归损失"></a>回归损失</h3><p><img src="/2021/01/08/机器学习复习/image-20210108131650807.png" alt="image-20210108131650807"></p>
+<h2 id="反向传播一般情形"><a href="#反向传播一般情形" class="headerlink" title="反向传播一般情形"></a>反向传播一般情形</h2><p><img src="/2021/01/08/机器学习复习/image-20210108135853429.png" alt="image-20210108135853429"></p>
+<p><img src="/2021/01/08/机器学习复习/image-20210108140046831.png" alt="image-20210108140046831"></p>
+<p><img src="/2021/01/08/机器学习复习/image-20210108140921319.png" alt="image-20210108140921319"></p>
+<p><img src="/2021/01/08/机器学习复习/image-20210108141827426.png" alt="image-20210108141827426"></p>
+<p><img src="/2021/01/08/机器学习复习/image-20210108141847890.png" alt="image-20210108141847890"></p>
+<p><img src="/2021/01/08/机器学习复习/image-20210108141936433.png" alt="image-20210108141936433"></p>
+<ul>
+<li>注意，由于$z^l$是关于l-1层权重和偏置的函数，所以对$b^{l-1}$ 求偏导，链式法则前面应该是对l层的z求偏导。</li>
+</ul>
+<p><img src="/2021/01/08/机器学习复习/image-20210108142659383.png" alt="image-20210108142659383"></p>
+<p><img src="/2021/01/08/机器学习复习/image-20210108142710900.png" alt="image-20210108142710900"></p>
+<p><img src="/2021/01/08/机器学习复习/image-20210108142727415.png" alt="image-20210108142727415"></p>
+<p><img src="/2021/01/08/机器学习复习/image-20210108142739751.png" alt="image-20210108142739751"></p>
+<h2 id="神经网络模型算法"><a href="#神经网络模型算法" class="headerlink" title="神经网络模型算法"></a>神经网络模型算法</h2><p><img src="/2021/01/08/机器学习复习/image-20210108144043966.png" alt="image-20210108144043966"></p>
+<h2 id="对数似然vs二次代价"><a href="#对数似然vs二次代价" class="headerlink" title="对数似然vs二次代价"></a>对数似然vs二次代价</h2><ul>
+<li><p>二次代价：刚开始学习的速度比较缓慢</p>
+<p><img src="/2021/01/08/机器学习复习/image-20210108145016997.png" alt="image-20210108145016997"></p>
+</li>
+<li><p>交叉熵：刚开始学习的速度相当快，与期待一样，当严重错误时能以最快速度学习；当预测输出接近正确输出时，学习速度变慢</p>
+<p><img src="/2021/01/08/机器学习复习/image-20210108145114008.png" alt></p>
+</li>
+</ul>
+<p><img src="/2021/01/08/机器学习复习/image-20210108144828797.png" alt="image-20210108144828797"></p>
+<p><img src="/2021/01/08/机器学习复习/image-20210108144758437.png" alt="image-20210108144758437"></p>
+<h1 id="三、支持向量机"><a href="#三、支持向量机" class="headerlink" title="三、支持向量机"></a>三、支持向量机</h1><h2 id="问题建模"><a href="#问题建模" class="headerlink" title="问题建模"></a>问题建模</h2><p><img src="/2021/01/08/机器学习复习/image-20210108164518211.png" alt="image-20210108164518211"></p>
+<p><img src="/2021/01/08/机器学习复习/image-20210108164532062.png" alt="image-20210108164532062"></p>
+<p><img src="/2021/01/08/机器学习复习/image-20210108164549486.png" alt="image-20210108164549486"></p>
+<h2 id="求解"><a href="#求解" class="headerlink" title="求解"></a>求解</h2><h3 id="约束优化、对偶"><a href="#约束优化、对偶" class="headerlink" title="约束优化、对偶"></a>约束优化、对偶</h3><p><img src="/2021/01/08/机器学习复习/image-20210108164650226.png" alt="image-20210108164650226"></p>
+<p><img src="/2021/01/08/机器学习复习/image-20210108164720638.png" alt="image-20210108164720638"></p>
+<p><img src="/2021/01/08/机器学习复习/image-20210108165135301.png" alt="image-20210108165135301"></p>
+<p><img src="/2021/01/08/机器学习复习/image-20210108165148868.png" alt="image-20210108165148868"></p>
+<h3 id="SVM对偶问题"><a href="#SVM对偶问题" class="headerlink" title="SVM对偶问题"></a>SVM对偶问题</h3><p><img src="/2021/01/08/机器学习复习/image-20210108165650606.png" alt="image-20210108165650606"></p>
+<p><img src="/2021/01/08/机器学习复习/image-20210108170310260.png" alt="image-20210108170310260"></p>
+<p><img src="/2021/01/08/机器学习复习/image-20210108170927376.png" alt="image-20210108170927376"></p>
+<p><img src="/2021/01/08/机器学习复习/image-20210108170944889.png" alt="image-20210108170944889"></p>
+<ul>
+<li>对偶问题的规模正比于训练样本数</li>
+</ul>
+<p><img src="/2021/01/08/机器学习复习/image-20210108182843976.png" alt="image-20210108182843976"></p>
+<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><p><img src="/2021/01/08/机器学习复习/image-20210108184654166.png" alt="image-20210108184654166"></p>
+<p><img src="/2021/01/08/机器学习复习/image-20210108184703008.png" alt="image-20210108184703008"></p>
+<ul>
+<li>超平面法向量是支持向量的线性组合：仅支持向量的 $\alpha_i \neq0$ </li>
+</ul>
+<h2 id="SVM性质"><a href="#SVM性质" class="headerlink" title="SVM性质"></a>SVM性质</h2><p><img src="/2021/01/08/机器学习复习/image-20210108185442232.png" alt="image-20210108185442232"></p>
+<h2 id="软SVM"><a href="#软SVM" class="headerlink" title="软SVM"></a>软SVM</h2><p><img src="/2021/01/08/机器学习复习/image-20210108190527897.png" alt="image-20210108190527897"></p>
+<p><img src="/2021/01/08/机器学习复习/image-20210108190602266.png" alt="image-20210108190602266"></p>
+<p><img src="/2021/01/08/机器学习复习/image-20210108191521838.png" alt="image-20210108191521838"></p>
+<ul>
+<li><strong>注意，软SVM主问题中的约束多了一个 $\epsilon_i \geq 0$</strong> </li>
+</ul>
+<h3 id="软SVM对偶问题推导"><a href="#软SVM对偶问题推导" class="headerlink" title="软SVM对偶问题推导"></a>软SVM对偶问题推导</h3><p><img src="/2021/01/08/机器学习复习/image-20210108191707731.png" alt="image-20210108191707731" style="zoom:150%;"></p>
+<p><img src="/2021/01/08/机器学习复习/image-20210108191744154.png" alt="image-20210108191744154" style="zoom:150%;"></p>
+<p><img src="/2021/01/08/机器学习复习/image-20210108194331300.png" alt="image-20210108194331300"></p>
+<h3 id="软SVM高效求解"><a href="#软SVM高效求解" class="headerlink" title="软SVM高效求解"></a>软SVM高效求解</h3><p><img src="/2021/01/08/机器学习复习/image-20210108194857976.png" alt="image-20210108194857976"></p>
+<p><img src="/2021/01/08/机器学习复习/image-20210108194926798.png" alt="image-20210108194926798"></p>
+<p><img src="/2021/01/08/机器学习复习/image-20210108194946685.png" alt="image-20210108194946685"></p>
+<p><img src="/2021/01/08/机器学习复习/image-20210108195028912.png" alt="image-20210108195028912"></p>
+<p><img src="/2021/01/08/机器学习复习/image-20210108195047944.png" alt="image-20210108195047944"></p>
+<p><img src="/2021/01/08/机器学习复习/image-20210108195147484.png" alt="image-20210108195147484"></p>
+<p><img src="/2021/01/08/机器学习复习/image-20210108200835447.png" alt="image-20210108200835447"></p>
+<h1 id="四、集成学习、特征选择"><a href="#四、集成学习、特征选择" class="headerlink" title="四、集成学习、特征选择"></a>四、集成学习、特征选择</h1><h2 id="集成学习"><a href="#集成学习" class="headerlink" title="集成学习"></a>集成学习</h2><h3 id="集成方法分类"><a href="#集成方法分类" class="headerlink" title="集成方法分类"></a>集成方法分类</h3><ul>
+<li>串行式集成学习 ：个体学习器之间存在强依赖关系，后生成的个体学习器依赖前面生成的个体学习器。代表<br>性算法 Boosting。</li>
+<li>并行式集成学习方法： 个体学习器之间不存在强依赖关系，代表是 Bagging和随机森林</li>
+</ul>
+<h3 id="重采样方法"><a href="#重采样方法" class="headerlink" title="重采样方法"></a>重采样方法</h3><ul>
+<li>随机采样：在原来的数据集上随机采样一个子集，得到新的训练集，这就是 Bagging 族方法的做法。</li>
+<li>带权采样：采样时，可以给训练集里的每个元素不同的权，权值通过上一次训练的结果来确定。这就是<br>Boosting 族方法的做法。</li>
+</ul>
+<h3 id="AdaBoost"><a href="#AdaBoost" class="headerlink" title="AdaBoost"></a>AdaBoost</h3><p>关注 被错分的样本 器重 性能好的弱分类器</p>
+<p><img src="/2021/01/08/机器学习复习/image-20210108210815773.png" alt="image-20210108210815773"></p>
+<h3 id="Bagging"><a href="#Bagging" class="headerlink" title="Bagging"></a>Bagging</h3><p><img src="/2021/01/08/机器学习复习/image-20210108210851925.png" alt="image-20210108210851925"></p>
+<p><img src="/2021/01/08/机器学习复习/image-20210108211144741.png" alt="image-20210108211144741"></p>
+<h3 id="随机森林"><a href="#随机森林" class="headerlink" title="随机森林"></a>随机森林</h3><p><img src="/2021/01/08/机器学习复习/image-20210108211500387.png" alt="image-20210108211500387"></p>
+<h2 id="特征选择与稀疏学习"><a href="#特征选择与稀疏学习" class="headerlink" title="特征选择与稀疏学习"></a>特征选择与稀疏学习</h2><h3 id="过滤式方法"><a href="#过滤式方法" class="headerlink" title="过滤式方法"></a>过滤式方法</h3><ul>
+<li>单变量过滤方法：Singal-to-noise ratio (S2N)</li>
+<li>Relief</li>
+</ul>
+<p><img src="/2021/01/08/机器学习复习/image-20210108212238667.png" alt="image-20210108212238667"></p>
+<h3 id="包裹式方法"><a href="#包裹式方法" class="headerlink" title="包裹式方法"></a>包裹式方法</h3><p><img src="/2021/01/08/机器学习复习/image-20210108212326139.png" alt="image-20210108212326139"></p>
+<p><img src="/2021/01/08/机器学习复习/image-20210108212437733.png" alt="image-20210108212437733"></p>
+<h3 id="嵌入式方法"><a href="#嵌入式方法" class="headerlink" title="嵌入式方法"></a>嵌入式方法</h3><p><img src="/2021/01/08/机器学习复习/image-20210108212525198.png" alt="image-20210108212525198"></p>
+<p><img src="/2021/01/08/机器学习复习/image-20210108212737639.png" alt="image-20210108212737639"></p>
+<h4 id="Lasso回归"><a href="#Lasso回归" class="headerlink" title="Lasso回归"></a>Lasso回归</h4><p><img src="/2021/01/08/机器学习复习/image-20210108215148325.png" alt="image-20210108215148325"></p>
+<h4 id="坐标下降法求解"><a href="#坐标下降法求解" class="headerlink" title="坐标下降法求解"></a>坐标下降法求解</h4><p><img src="/2021/01/08/机器学习复习/image-20210108221621387.png" alt="image-20210108221621387"></p>
+<p><img src="/2021/01/08/机器学习复习/image-20210108221537516.png" alt="image-20210108221537516"></p>
+<h4 id="坐标下降法推导"><a href="#坐标下降法推导" class="headerlink" title="坐标下降法推导"></a>坐标下降法推导</h4><p><img src="/2021/01/08/机器学习复习/image-20210108222706473.png" alt="image-20210108222706473"></p>
+<p><img src="/2021/01/08/机器学习复习/image-20210108222743026.png" alt="image-20210108222743026"></p>
+<p><img src="/2021/01/08/机器学习复习/image-20210108222837266.png" alt="image-20210108222837266"></p>
+<p>综上有：</p>
+<p><img src="/2021/01/08/机器学习复习/image-20210108222905302.png" alt="image-20210108222905302"></p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p><img src="/2021/01/08/机器学习复习/image-20210108221202560.png" alt="image-20210108221202560"></p>
+<p><img src="/2021/01/08/机器学习复习/image-20210108221719018.png" alt="image-20210108221719018"></p>
+<p><img src="/2021/01/08/机器学习复习/image-20210108221728915.png" alt="image-20210108221728915"></p>
+<h2 id="稀疏学习"><a href="#稀疏学习" class="headerlink" title="稀疏学习"></a>稀疏学习</h2><p><img src="/2021/01/08/机器学习复习/image-20210108222201945.png" alt="image-20210108222201945"></p>
+<p>xi为p*1维，B为p*k维，ai为k*1维，也就是将样本x从p维降到k维</p>
+<p><img src="/2021/01/08/机器学习复习/image-20210108222523345.png" alt="image-20210108222523345"></p>
+<p><img src="/2021/01/08/机器学习复习/image-20210108222602939.png" alt="image-20210108222602939"></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/" rel="tag"># 机器学习</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/01/06/tfidf-ldada文本分类/" rel="next" title="tfidf-ldada文本分类">
+                <i class="fa fa-chevron-left"></i> tfidf-ldada文本分类
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/ava.jpg" alt="sh">
+            
+              <p class="site-author-name" itemprop="name">sh</p>
+              <p class="site-description motion-element" itemprop="description">so we beat on, boats against the current, borne back ceaselessly into the past.</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">42</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">23</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/croook" title="GitHub &rarr; https://github.com/croook" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:sh5672186@sina.com" title="E-Mail &rarr; mailto:sh5672186@sina.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、机器学习介绍-amp-线性、逻辑回归"><span class="nav-number">1.</span> <span class="nav-text">一、机器学习介绍&amp;线性、逻辑回归</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是机器学习"><span class="nav-number">1.1.</span> <span class="nav-text">什么是机器学习</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线性、逻辑回归"><span class="nav-number">1.2.</span> <span class="nav-text">线性、逻辑回归</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#多元线性回归"><span class="nav-number">1.2.1.</span> <span class="nav-text">多元线性回归</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#梯度下降法求解"><span class="nav-number">1.2.2.</span> <span class="nav-text">梯度下降法求解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#随机梯度下降法"><span class="nav-number">1.2.3.</span> <span class="nav-text">随机梯度下降法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正规方程"><span class="nav-number">1.2.4.</span> <span class="nav-text">正规方程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#比较"><span class="nav-number">1.2.5.</span> <span class="nav-text">比较</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#F1-measure"><span class="nav-number">1.2.6.</span> <span class="nav-text">F1 measure</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#逻辑回归"><span class="nav-number">1.2.7.</span> <span class="nav-text">逻辑回归</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、神经网络"><span class="nav-number">2.</span> <span class="nav-text">二、神经网络</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#损失"><span class="nav-number">2.1.</span> <span class="nav-text">损失</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#二分类损失"><span class="nav-number">2.1.1.</span> <span class="nav-text">二分类损失</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多分类损失"><span class="nav-number">2.1.2.</span> <span class="nav-text">多分类损失</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#回归损失"><span class="nav-number">2.1.3.</span> <span class="nav-text">回归损失</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#反向传播一般情形"><span class="nav-number">2.2.</span> <span class="nav-text">反向传播一般情形</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#神经网络模型算法"><span class="nav-number">2.3.</span> <span class="nav-text">神经网络模型算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对数似然vs二次代价"><span class="nav-number">2.4.</span> <span class="nav-text">对数似然vs二次代价</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、支持向量机"><span class="nav-number">3.</span> <span class="nav-text">三、支持向量机</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题建模"><span class="nav-number">3.1.</span> <span class="nav-text">问题建模</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#求解"><span class="nav-number">3.2.</span> <span class="nav-text">求解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#约束优化、对偶"><span class="nav-number">3.2.1.</span> <span class="nav-text">约束优化、对偶</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SVM对偶问题"><span class="nav-number">3.2.2.</span> <span class="nav-text">SVM对偶问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#例子"><span class="nav-number">3.3.</span> <span class="nav-text">例子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SVM性质"><span class="nav-number">3.4.</span> <span class="nav-text">SVM性质</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#软SVM"><span class="nav-number">3.5.</span> <span class="nav-text">软SVM</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#软SVM对偶问题推导"><span class="nav-number">3.5.1.</span> <span class="nav-text">软SVM对偶问题推导</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#软SVM高效求解"><span class="nav-number">3.5.2.</span> <span class="nav-text">软SVM高效求解</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、集成学习、特征选择"><span class="nav-number">4.</span> <span class="nav-text">四、集成学习、特征选择</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#集成学习"><span class="nav-number">4.1.</span> <span class="nav-text">集成学习</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#集成方法分类"><span class="nav-number">4.1.1.</span> <span class="nav-text">集成方法分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重采样方法"><span class="nav-number">4.1.2.</span> <span class="nav-text">重采样方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AdaBoost"><span class="nav-number">4.1.3.</span> <span class="nav-text">AdaBoost</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bagging"><span class="nav-number">4.1.4.</span> <span class="nav-text">Bagging</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#随机森林"><span class="nav-number">4.1.5.</span> <span class="nav-text">随机森林</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特征选择与稀疏学习"><span class="nav-number">4.2.</span> <span class="nav-text">特征选择与稀疏学习</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#过滤式方法"><span class="nav-number">4.2.1.</span> <span class="nav-text">过滤式方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#包裹式方法"><span class="nav-number">4.2.2.</span> <span class="nav-text">包裹式方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#嵌入式方法"><span class="nav-number">4.2.3.</span> <span class="nav-text">嵌入式方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Lasso回归"><span class="nav-number">4.2.3.1.</span> <span class="nav-text">Lasso回归</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#坐标下降法求解"><span class="nav-number">4.2.3.2.</span> <span class="nav-text">坐标下降法求解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#坐标下降法推导"><span class="nav-number">4.2.3.3.</span> <span class="nav-text">坐标下降法推导</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">4.2.3.4.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#稀疏学习"><span class="nav-number">4.3.</span> <span class="nav-text">稀疏学习</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">sh</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.0</div>
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.0"></script>
+
+  <script src="/js/src/motion.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/js/src/post-details.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+  
+  <script>
+    
+    function addCount(Counter) {
+      var $visitors = $('.leancloud_visitors');
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            
+            Counter('put', '/classes/Counter/' + counter.objectId, JSON.stringify({ time: { '__op': 'Increment', 'amount': 1 } }))
+            
+              .done(function() {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.time + 1);
+              })
+            
+              .fail(function ({ responseJSON }) {
+                console.log(`Failed to save Visitor num, with error message: ${responseJSON.error}`);
+              })
+          } else {
+            
+              Counter('post', '/classes/Counter', JSON.stringify({ title: title, url: url, time: 1 }))
+                .done(function() {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(1);
+                })
+                .fail(function() {
+                  console.log('Failed to create');
+                });
+            
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log(`LeanCloud Counter Error: ${responseJSON.code} ${responseJSON.error}`);
+        });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + 'FKPTBi1uAoXKAYkTu5qVmYU8-gzGzoHsz')
+        .done(function({ api_server }) {
+          var Counter = function(method, url, data) {
+            return $.ajax({
+              method: method,
+              url: 'https://' + api_server + '/1.1' + url,
+              headers: {
+                'X-LC-Id': 'FKPTBi1uAoXKAYkTu5qVmYU8-gzGzoHsz',
+                'X-LC-Key': 'fSe2tiDLznbEiATi2CiqRljO',
+                'Content-Type': 'application/json',
+              },
+              data: data
+            });
+          };
+          
+            addCount(Counter);
+          
+        });
+    });
+  </script>
+
+
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+      for (i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+  overflow: auto hidden;
+}
+</style>
+
+    
+  
+
+
+  
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

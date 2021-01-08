@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[机器学习复习]]></title>
+    <url>%2F2021%2F01%2F08%2F%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%A4%8D%E4%B9%A0%2F</url>
+    <content type="text"><![CDATA[一、机器学习介绍&amp;线性、逻辑回归什么是机器学习 要学什么—决策函数 从哪里学—训练数据 怎样学习—求解机器学习模型 针对某个任务 （Task ），利用训练数据 （Experience ），求解一个学习模型，从而提高该任务的性能 （Performance） 机器学习要素： 任务、目标（Task） 使用经验数据（Experience） 提高学习性能（Performance） 线性、逻辑回归多元线性回归 损失函数几何意义：试图找到一个超平面，使所有样本到超平面上的欧式距离之和最小 梯度下降法求解 随机梯度下降法 正规方程 比较 MSE （mean square error） 均方误差 F1 measure 逻辑回归 梯度上升法求解： 二、神经网络 损失二分类损失 多分类损失 回归损失 反向传播一般情形 注意，由于$z^l$是关于l-1层权重和偏置的函数，所以对$b^{l-1}$ 求偏导，链式法则前面应该是对l层的z求偏导。 神经网络模型算法 对数似然vs二次代价 二次代价：刚开始学习的速度比较缓慢 交叉熵：刚开始学习的速度相当快，与期待一样，当严重错误时能以最快速度学习；当预测输出接近正确输出时，学习速度变慢 三、支持向量机问题建模 求解约束优化、对偶 SVM对偶问题 对偶问题的规模正比于训练样本数 例子 超平面法向量是支持向量的线性组合：仅支持向量的 $\alpha_i \neq0$ SVM性质 软SVM 注意，软SVM主问题中的约束多了一个 $\epsilon_i \geq 0$ 软SVM对偶问题推导 软SVM高效求解 四、集成学习、特征选择集成学习集成方法分类 串行式集成学习 ：个体学习器之间存在强依赖关系，后生成的个体学习器依赖前面生成的个体学习器。代表性算法 Boosting。 并行式集成学习方法： 个体学习器之间不存在强依赖关系，代表是 Bagging和随机森林 重采样方法 随机采样：在原来的数据集上随机采样一个子集，得到新的训练集，这就是 Bagging 族方法的做法。 带权采样：采样时，可以给训练集里的每个元素不同的权，权值通过上一次训练的结果来确定。这就是Boosting 族方法的做法。 AdaBoost关注 被错分的样本 器重 性能好的弱分类器 Bagging 随机森林 特征选择与稀疏学习过滤式方法 单变量过滤方法：Singal-to-noise ratio (S2N) Relief 包裹式方法 嵌入式方法 Lasso回归 坐标下降法求解 坐标下降法推导 综上有： 总结 稀疏学习 xi为p*1维，B为p*k维，ai为k*1维，也就是将样本x从p维降到k维]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>机器学习</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[tfidf-ldada文本分类]]></title>
     <url>%2F2021%2F01%2F06%2Ftfidf-ldada%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%2F</url>
     <content type="text"><![CDATA[Tfidf为了统计词频，将分词后的字符串分割成词 12X_train = [[word for word in line.split()] for line in X_train]X_test = [[word for word in line.split()] for line in X_test] 12345678910111213def tfidf(X_train): # print(X_train[:3]) dict = corpora.Dictionary(X_train) # dict.save('dict1.dict') corpus = [dict.doc2bow(text) for text in X_train] # print(corpus[:3]) tfidf_model = models.TfidfModel(corpus) # num_docs=100805, num_nnz=1761406 # test = ['反映', 'xx', ... , 'xx', '问题'] # print(dict.doc2bow(test)) # print(tfidf_model[dict.doc2bow(test)]) corpus_tfidf = tfidf_model[corpus] # corpus_tfidf.save('corpus_tfidf.corp') return corpus_tfidf, tfidf_model, dict # 双层list corpurs是将词转化为（id, 词频）的形式 corpus_tfidf是（id，tfidf权重）的形式 通过tfidf_model[anycoupus]，可以将任意的经过dict.doc2bow转换后的词频corpus转化为tfidf corpus，这里的corpus_tfidf = tfidf_model[corpus]， 只是转化了自身。 LDAlda用在文本分类中本质是降维，lda有多少个主题，就可以将一个句子映射到多少维，表示属于每一个主题的可能性，再将这个embedding使用分类器进行分类。 1lda = models.ldamulticore.LdaMulticore(corpus=corpus_tfidf, id2word=dict, num_topics=100) 之后可以通过 lda.inference([tfidf_model[dict.doc2bow(i)]])[0][0] 得到一个新的词组的embedding 123456789train, test = [], []for i in X_train: train.append(lda.inference([tfidf_model[dict.doc2bow(i)]])[0][0])for i in X_test: test.append(lda.inference([tfidf_model[dict.doc2bow(i)]])[0][0])train, test = np.asarray(train), np.asarray(test)np.save('train.npy', train)np.save('test.npy', test) 分类1234567train, test = np.load('train.npy').tolist(), np.load('test.npy').tolist()print("------Training svm classifier------")sv = SVC(C=1, kernel='rbf')sv.fit(train, y_train)pred_y = sv.predict(test)print(classification_report(y_test, pred_y))]]></content>
