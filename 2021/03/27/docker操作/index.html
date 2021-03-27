@@ -108,7 +108,7 @@
 <meta property="og:site_name" content="Crookshank">
 <meta property="og:description" content="构建镜像commit 新建容器  在容器内安装所需的环境  通过commit命令建立新的image docker commit container_id image_name:tag   Dockerfile 将项目代码拷贝到主机某一路径下（可以通过docker cp，并保证路径下没有其他文件）  在同一路径下创建Dockerfile文件 1234FROM fasttext:1.0ADD ./do">
 <meta property="og:locale" content="En">
-<meta property="og:updated_time" content="2021-03-27T13:34:14.863Z">
+<meta property="og:updated_time" content="2021-03-27T13:48:51.401Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="docker操作">
 <meta name="twitter:description" content="构建镜像commit 新建容器  在容器内安装所需的环境  通过commit命令建立新的image docker commit container_id image_name:tag   Dockerfile 将项目代码拷贝到主机某一路径下（可以通过docker cp，并保证路径下没有其他文件）  在同一路径下创建Dockerfile文件 1234FROM fasttext:1.0ADD ./do">
@@ -258,7 +258,7 @@
 
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Category</a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
 
   </li>
         
@@ -275,7 +275,7 @@
 
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archive</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
 
   </li>
 
@@ -392,14 +392,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
 
               
                 
               
 
-              <time title="Post created: 2021-03-27 21:18:20 / Updated at: 21:34:14" itemprop="dateCreated datePublished" datetime="2021-03-27T21:18:20+08:00">2021-03-27</time>
+              <time title="Created: 2021-03-27 21:18:20 / Modified: 21:48:51" itemprop="dateCreated datePublished" datetime="2021-03-27T21:18:20+08:00">2021-03-27</time>
             
 
             
@@ -418,7 +418,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">in</span>
+                <span class="post-meta-item-text">In</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a></span>
@@ -496,7 +496,9 @@
 <li>本地使用 <code>docker login</code> 进行登录</li>
 <li>tag修改镜像名称：<code>docker tag container_name your_dockerhub_id/your_dockerhub_repository</code></li>
 <li><code>docker push your_dockerhub_id/your_dockerhub_repository</code> 对于同一个仓库，命令是固定的</li>
+<li><code>docker logout</code> 退出</li>
 </ul>
+<h1 id="镜像打包"><a href="#镜像打包" class="headerlink" title="镜像打包"></a>镜像打包</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker save -o fasttext.tar fasttext:2.0</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -588,10 +590,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Inhaltsverzeichnis
+            Table of Contents
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Übersicht
+            Overview
           </li>
         </ul>
       
@@ -614,7 +616,7 @@
                   <a href="/archives/">
                 
                     <span class="site-state-item-count">43</span>
-                    <span class="site-state-item-name">Artikel</span>
+                    <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
               
@@ -657,7 +659,7 @@
                       
                     
                     <span class="site-state-item-count">15</span>
-                    <span class="site-state-item-name">Kategorien</span>
+                    <span class="site-state-item-name">categories</span>
                   </a>
                 </div>
               
@@ -718,7 +720,7 @@
                       
                     
                     <span class="site-state-item-count">24</span>
-                    <span class="site-state-item-name">Tags</span>
+                    <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
               
@@ -779,7 +781,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#构建镜像"><span class="nav-number">1.</span> <span class="nav-text">构建镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#commit"><span class="nav-number">1.1.</span> <span class="nav-text">commit</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dockerfile"><span class="nav-number">1.2.</span> <span class="nav-text">Dockerfile</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建容器"><span class="nav-number">2.</span> <span class="nav-text">创建容器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#交互方式"><span class="nav-number">2.1.</span> <span class="nav-text">交互方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后台运行方式"><span class="nav-number">2.2.</span> <span class="nav-text">后台运行方式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#dockerhub"><span class="nav-number">3.</span> <span class="nav-text">dockerhub</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#构建镜像"><span class="nav-number">1.</span> <span class="nav-text">构建镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#commit"><span class="nav-number">1.1.</span> <span class="nav-text">commit</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dockerfile"><span class="nav-number">1.2.</span> <span class="nav-text">Dockerfile</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建容器"><span class="nav-number">2.</span> <span class="nav-text">创建容器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#交互方式"><span class="nav-number">2.1.</span> <span class="nav-text">交互方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后台运行方式"><span class="nav-number">2.2.</span> <span class="nav-text">后台运行方式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#dockerhub"><span class="nav-number">3.</span> <span class="nav-text">dockerhub</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#镜像打包"><span class="nav-number">4.</span> <span class="nav-text">镜像打包</span></a></li></ol></div>
             
 
           </div>
@@ -811,7 +813,7 @@
 </div>
 
 
-  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
 
 
 
