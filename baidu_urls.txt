@@ -1,3 +1,4 @@
+https://croook.github.io/2021/03/27/docker操作/
 https://croook.github.io/2021/01/08/机器学习复习/
 https://croook.github.io/2021/01/06/tfidf-ldada文本分类/
 https://croook.github.io/2020/12/19/fasttext文本分类/
