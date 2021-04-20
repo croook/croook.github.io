@@ -400,7 +400,7 @@
                 
               
 
-              <time title="Created: 2021-04-20 21:18:48 / Modified: 21:20:41" itemprop="dateCreated datePublished" datetime="2021-04-20T21:18:48+08:00">2021-04-20</time>
+              <time title="Created: 2021-04-20 21:18:48 / Modified: 23:08:36" itemprop="dateCreated datePublished" datetime="2021-04-20T21:18:48+08:00">2021-04-20</time>
             
 
             
@@ -471,8 +471,12 @@
         
           
             <p>
-              Paddle目标检测V2.0.2
-              
+              Paddle目标检测V1.8paddlepaddle 1.8.3paddlehub 1.8.3
+预测测试图像：
+
+代码（calParams可以计算参数量）：
+import osimport paddlehub as hubimport numpy as npdef calParams(model):    Total_params = 0    Trainable_params = 0    NonTrainable_params = 0    _, _, main_prog = model.context()    for block in main_prog.blocks:        
+              ...
             </p>
           <!--noindex-->
           
