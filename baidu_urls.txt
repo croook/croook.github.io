@@ -1,3 +1,4 @@
+https://croook.github.io/2021/08/28/v2ray-wordpress/
 https://croook.github.io/2021/05/06/git操作/
 https://croook.github.io/2021/04/20/Paddle目标检测/
 https://croook.github.io/2021/04/20/Paddle图像分类/
