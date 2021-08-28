@@ -114,7 +114,7 @@
 <meta property="og:image" content="https://croook.github.io/2021/08/28/v2ray-wordpress/BH7g2IlPA45WNqD.png">
 <meta property="og:image" content="https://croook.github.io/2021/08/28/v2ray-wordpress/oXwrAPinOhv79pY.png">
 <meta property="og:image" content="https://croook.github.io/2021/08/28/v2ray-wordpress/image-20210828144642515.png">
-<meta property="og:updated_time" content="2021-08-28T09:17:03.360Z">
+<meta property="og:updated_time" content="2021-08-28T09:18:53.640Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="v2ray+wordpress">
 <meta name="twitter:description" content="v2ray+wordpress参考博客 准备工作vpsvultr购买vps，选择New York，3.5$/mo。 freenomfreenom申请域名，不用开vpn，Edit Account Details中修改Country、City和所在城市匹配即可。 My Domains -&amp;gt; Manage Domain -&amp;gt; Manage Freenom DNS，添加对应的A记录，如下图，T">
@@ -265,7 +265,7 @@
 
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Category</a>
 
   </li>
         
@@ -282,7 +282,7 @@
 
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archive</a>
 
   </li>
 
@@ -399,14 +399,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
 
               
                 
               
 
-              <time title="Created: 2021-08-28 13:36:32 / Modified: 17:17:03" itemprop="dateCreated datePublished" datetime="2021-08-28T13:36:32+08:00">2021-08-28</time>
+              <time title="Post created: 2021-08-28 13:36:32 / Updated at: 17:18:53" itemprop="dateCreated datePublished" datetime="2021-08-28T13:36:32+08:00">2021-08-28</time>
             
 
             
@@ -425,7 +425,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">In</span>
+                <span class="post-meta-item-text">in</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/博客/" itemprop="url" rel="index"><span itemprop="name">博客</span></a></span>
@@ -578,7 +578,8 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod -R 777 /home/wwwroot</span><br></pre></td></tr></table></figure>
 <p>导入的是：所有文章、页面、评论、自定义字段、条目信息（分类和标签等）、导航菜单以及自定义文章</p>
 <h3 id="主题迁移"><a href="#主题迁移" class="headerlink" title="主题迁移"></a>主题迁移</h3><p>安装ashe主题，通过外观 -&gt; About Ashe 一键导入Demo</p>
-<p>上传图片时如果提示剪裁图片发生错误，安装包：<code>sudo apt-get install php7.4-gd</code></p>
+<p>上传图片时如果提示剪裁图片发生错误：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">安装包：</span><br><span class="line">sudo apt-get install php7.4-gd</span><br><span class="line">重启服务：</span><br><span class="line">service nginx restart</span><br><span class="line">service php7.4-fpm restart</span><br></pre></td></tr></table></figure>
 <p>根据老网站的配置，进行自定义</p>
 <h3 id="小工具迁移"><a href="#小工具迁移" class="headerlink" title="小工具迁移"></a>小工具迁移</h3><p>安装并启用小工具 Widget Importer &amp; Exporter，进行导入导出，之后对多余的小工具进行删除、修改</p>
 
@@ -674,10 +675,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
+            Inhaltsverzeichnis
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
+            Übersicht
           </li>
         </ul>
       
@@ -700,7 +701,7 @@
                   <a href="/archives/">
                 
                     <span class="site-state-item-count">47</span>
-                    <span class="site-state-item-name">posts</span>
+                    <span class="site-state-item-name">Artikel</span>
                   </a>
                 </div>
               
@@ -749,7 +750,7 @@
                       
                     
                     <span class="site-state-item-count">18</span>
-                    <span class="site-state-item-name">categories</span>
+                    <span class="site-state-item-name">Kategorien</span>
                   </a>
                 </div>
               
@@ -816,7 +817,7 @@
                       
                     
                     <span class="site-state-item-count">27</span>
-                    <span class="site-state-item-name">tags</span>
+                    <span class="site-state-item-name">Tags</span>
                   </a>
                 </div>
               
@@ -909,7 +910,7 @@
 </div>
 
 
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
+  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
 
 
 
